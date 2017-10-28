@@ -1,0 +1,189 @@
+
+/** ------------------------------------------------------------------------------------------------
+* WOOCOMMERCe MY ACCOUNT
+* ------------------------------------------------------------------------------------------------ */
+
+.woocommerce-account {
+
+	&.logged-in {
+
+		.entry-content {
+
+			> .woocommerce {
+				margin-left: -30px;
+				margin-right: -30px;
+			    display: flex;
+			    flex-direction: row;
+    			align-items: stretch;
+			}
+		}
+	}
+}
+
+.woocommerce-MyAccount-content,
+.woodmart-my-account-sidebar {
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	padding-top:10px;
+}
+
+.woodmart-my-account-sidebar {
+	flex:1 0 25%;
+	max-width: 25%;
+	width:25%;
+	border-right: 1px solid;
+	@extend %main-border-color;
+
+	.sidebar-container {
+		margin-bottom: 30px;
+		padding-top: 30px;
+	    border-top: 1px solid;
+	    @extend %main-border-color;
+	}
+}
+
+.woocommerce-MyAccount-content {
+	flex:1 0 75%;
+	max-width: 75%;
+	width:75%;
+
+	> h2,
+	header > h2 {
+		@extend %title-size;
+	}
+
+	> p {
+		font-size: 110%;
+
+		&:first-child {
+			padding-bottom: 30px;
+			margin-bottom: 30px;
+			border-bottom:1px solid;
+			@extend %main-border-color;
+
+			strong {
+				color:$heading-color;
+			}
+
+			mark {
+				color:white;
+				@extend %primary-background;
+			}
+		}
+	}
+
+	.woocommerce-Message {
+		@extend %woo-nots-not-hidden;
+	}
+
+	.wrapper-boxed & {
+
+		.woocommerce-Message {
+			@extend %woo-nots-not-hidden-boxed;
+		}
+	}
+
+	.woodmart-dark & {
+
+		> p {
+
+			&:first-child {
+
+				strong {
+					color:$scheme-light--body-color-darken;
+				}
+			}
+		}		
+	}
+}
+
+.woocommerce-EditAccountForm {
+	
+	fieldset {
+		margin-top: 40px;
+	}
+}
+
+// ------------------------------------------
+// MY ACCOUNT NAVIGATION
+// ------------------------------------------ 
+
+.woocommerce-MyAccount-title {
+    font-size: 18px;
+    font-weight: 600;
+	padding-left: 15px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+    text-transform: uppercase;
+    border-bottom: 1px solid;
+    @extend %main-border-color;
+}
+
+.woocommerce-MyAccount-navigation {
+	margin-bottom: 30px;
+
+	ul {
+
+	    li {
+
+	        a {
+	            display: block;
+			    padding: 10px 15px;
+			    color: rgba(0, 0, 0, 0.9);
+			    line-height: 20px;
+			    text-transform: none;
+			    font-size: 14px;
+			    font-weight: 600;
+
+	            &:hover,
+	            &:focus {
+	                color: rgba(0, 0, 0, 0.9);
+	                background-color: #f8f8f8;
+	                text-decoration: none;
+	            }
+	        }
+
+	        &.is-active {
+
+	            > a {
+	                color: rgba(0, 0, 0, 0.9);
+	                background-color: rgba(136, 136, 136, 0.12);
+	                cursor: default;
+	            }
+	        }
+
+	        &:last-child {
+	            border-bottom: none;
+	        }
+	    }
+	}
+
+	.woodmart-dark & {
+
+		ul {
+
+		    li {
+
+		        a {
+					color:$scheme-light--body-color-darken;
+
+		            &:hover,
+		            &:focus {
+		                color: $scheme-light--body-color-darken;
+		                background-color: $scheme-light--background-light-dark;
+		            }
+		        }
+
+		        &.is-active {
+
+		            > a {
+		                color: $scheme-light--body-color-darken;
+		                background-color: $scheme-light--background-light-dark;
+		            }
+		        }	
+		    }
+		}	
+	}
+}

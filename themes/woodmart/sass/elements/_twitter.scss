@@ -1,0 +1,61 @@
+/** ------------------------------------------------------------------------------------------------
+* TWITTER
+* ------------------------------------------------------------------------------------------------ */
+
+.woodmart-twitter-element {
+
+    .twitter-post {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid;
+        @extend %main-border-color;
+
+
+        &:last-child {
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+            border-bottom: none;
+        }
+    }
+
+    .twitter-image-wrapper {
+        margin-right: 10px;
+        flex:0 0 auto;
+    }
+
+    .twitter-content-wrapper {
+        flex:1 1 auto;
+    }
+
+    .stt-em {
+        display: block;
+        margin-top: 5px;
+
+        a {
+            color:#bbb;
+
+            &:hover,
+            &:focus {
+                color:#777;
+            }
+        }
+    }
+
+    .color-scheme-light & {
+
+        .stt-em {
+
+            a {
+                color:rgda(255,255,255,0.6);
+
+                &:hover,
+                &:focus {
+                    color:rgda(255,255,255,0.8);
+                }
+            }
+        }
+    }
+}

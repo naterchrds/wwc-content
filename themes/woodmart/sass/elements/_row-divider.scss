@@ -1,0 +1,88 @@
+/** ------------------------------------------------------------------------------------------------
+* SECTION-DIVIDER
+* ------------------------------------------------------------------------------------------------ */
+
+.woodmart-row-divider {
+	margin-left: -15px;
+	margin-right: -15px;
+
+	svg {
+		display: block;
+	}
+}
+
+.dvr-style-waves-small,
+.dvr-style-waves-wide,
+.dvr-style-triangle {
+
+	svg {
+		height: 3vw;	
+	}
+}
+
+.dvr-style-clouds {
+
+	svg {
+		height: 6vw;
+	}
+}
+
+.dvr-style-curved-line,
+.dvr-style-diagonal-left,
+.dvr-style-diagonal-right,
+.dvr-style-half-circle,
+.dvr-style-paint-stroke {
+
+	svg {
+		height: 50px;	
+	}
+}
+
+// --------------------------------
+// SVG-DIVIDER-OVERLAP
+// --------------------------------
+
+.dvr-overlap-enable {
+	position: relative;
+
+	svg {
+		position: absolute;
+		left: 0;
+		right:0;
+	}
+
+	&.dvr-position-top {
+
+		svg {
+			top: 0;	
+		}
+	}
+
+	&.dvr-position-bottom {
+
+		svg {
+			bottom: 0;			
+		}
+	}
+}
+
+// --------------------------------
+// FIRE FOXFIX
+// --------------------------------
+
+.browser-Firefox {
+
+	.dvr-position-top {
+
+		svg {
+			margin-top: -1px;
+		}
+	}
+
+	.dvr-position-bottom {
+
+		svg {
+			margin-bottom: -1px;			
+		}
+	}	
+}

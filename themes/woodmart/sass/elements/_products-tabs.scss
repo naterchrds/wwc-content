@@ -1,0 +1,426 @@
+
+/** ------------------------------------------------------------------------------------------------
+* PRODUCT TABS
+* ------------------------------------------------------------------------------------------------ */
+
+.woodmart-products-tabs {
+
+	.tabs-navigation-wrapper {
+		position: relative;
+
+		&:after {
+			@extend %gradient-hidden-right;
+		}
+	}
+
+	.woodmart-tabs-header {
+		position: relative;
+
+		.tabs-icon {
+			max-height: 30px;
+			height: 100%;
+		    width: auto;
+		    margin-right: 10px;
+		}
+	}
+
+	.open-title-menu {
+		display: none;
+	}
+
+	.tabs-name {
+		line-height: 1.4;
+		color:$heading-color;
+		@extend %title-size;
+		@extend %title-font;
+
+		> span {
+			vertical-align: middle;
+		}
+	}
+
+	.products-tabs-title {
+	    margin-left: -15px;
+	    margin-right: -15px;
+
+	    li {
+	    	display: inline-block;
+		    font-size: 16px;
+		    line-height: 1.4;
+		    text-transform: uppercase;
+		    font-weight: 600;
+		    color: $body-color;
+    		padding-top: 10px;
+		    padding-bottom: 10px;
+		    padding-left: 15px;
+		    padding-right: 15px;
+		    cursor: pointer;
+		    @extend %title-font; 
+
+	    	transition: 
+	    		color 0.25s ease;
+		    -webkit-transition: 
+		    	color 0.25s ease;
+
+		    &:hover,
+		    &.active-tab-title {
+		    	color:$light-dark;
+		    }
+	    }
+
+	    .tab-label {
+    		position: relative;
+	    }
+	}
+
+	.woodmart-tab-content {
+		transform:none;
+		opacity: 1;
+		visibility: visible;
+	    transition: 
+	    	transform 0.25s ease,
+	    	opacity 0.25s ease,
+	    	visibility 0s ease;
+	    -webkit-transition: 
+	    	transform 0.25s ease,
+	    	opacity 0.25s ease,
+	    	visibility 0s ease;	
+
+	    &.loading {
+    		opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+    		transform:translateY(30px);	
+
+		    transition: 
+		    	transform 0.25s ease,
+		    	opacity 0.25s ease,
+		    	visibility 0s ease 0.3s;
+		    -webkit-transition: 
+		    	transform 0.25s ease,
+		    	opacity 0.25s ease,
+		    	visibility 0s ease 0.3s;	
+	    }		
+	}
+
+	&.tabs-design-default {
+
+		.woodmart-tabs-header {
+			margin-bottom: 15px;
+			text-align: center;
+		}
+	
+		.tabs-name {
+			margin-bottom: 10px;
+		}
+
+		.products-tabs-title {
+
+		    li {
+
+			    &.active-tab-title {
+
+			    	.tab-label {
+
+						&:after {
+				    		@extend %scale-link-hover;
+				    	}
+			    	}
+			    } 
+		    }
+
+			.tab-label {
+				@include scale-link($display-val:inline-block, $gap-bottom:1px, $width-border:2px, $color-border:$primary-color, $transition-duration:0.4s);
+		    	
+		    	&:after {
+					@extend %primary-border;
+				}
+		    }
+		}
+
+		.woodmart-tab-content {
+
+			&.loading {
+
+				.wrap-loading-arrow {
+					display: none;				
+				}
+			 }
+		}
+	}
+
+	&.tabs-design-simple {
+
+		.woodmart-tabs-header {
+		    display: flex;
+		    align-items: flex-end;
+		    flex-direction: row;
+		    margin-bottom: 20px;
+		    border-bottom: 2px solid #eaeaea;			
+		}
+
+		.tabs-name {
+    		position: relative;
+    		z-index: 1;
+		    margin-bottom: -2px;
+		    padding-bottom: 5px;
+		    padding-top: 5px;
+		    border-bottom: 2px solid;
+		    @extend %primary-border;	
+		    vertical-align: middle;	
+		    margin-right: 25px;
+		}
+
+		.tabs-icon {
+			margin-left: 2px;
+		}
+
+		.products-tabs-title {
+
+		    li {
+		    	font-size: 14px;
+
+			    &.active-tab-title {
+			    	@extend %primary-color;
+			    }
+			}
+		} 
+
+		.owl-nav,
+		.wrap-loading-arrow {
+			position: absolute;
+			top: -62px;
+			right:0;
+			animation:fadeIn 0.5s ease both 0.3s;
+			-webkit-animation:fadeIn 0.5s ease both 0.3s;	
+
+			> div {
+				position: static;
+				width:30px;
+				height: 40px;
+				margin-top: 0;
+				transform:none;
+				opacity: 1;
+				visibility: visible;
+				pointer-events: visible;
+
+				&:after {
+					font-size: 14px;
+					font-weight: 700;
+				}
+
+				&[class*="prev"],
+				&[class*="next"] {
+					padding: 0;
+					margin: 0;
+				}
+			}
+		}
+
+		.wrap-loading-arrow {
+			right:-10px; // fix space right 
+		}
+
+		.owl-carousel {
+
+			&:after,
+			&:before {
+				content: none;
+			}
+		}
+
+		.woodmart-products-loader {
+			position: absolute;
+			top:0;
+			left:0;
+			right:0;
+			margin-top: 30px;
+		}
+
+		.woodmart-tab-content {
+
+			&.loading {
+
+				.owl-nav, 
+				.wrap-loading-arrow {
+					display: none;				
+				}
+			 }
+		}
+
+		.element-loading {
+
+			.woodmart-products-loader {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	.woodmart-dark &,
+	.color-scheme-light & {
+
+		.tabs-name {
+			color:$scheme-light--title-color;
+		}
+
+		.products-tabs-title {
+
+		    li {
+			    color: $scheme-light--body-color;
+
+			    &:hover,
+			    &.active-tab-title {
+			    	color:$scheme-light--body-color-darken;
+			    }
+		    }
+		}
+
+		&.tabs-design-simple {
+
+			.woodmart-tabs-header {
+				border-color: $scheme-light--border-color-lighten;
+			}
+		}
+	}
+}
+
+/** ------------------------------
+* AJAX ARROW
+* ------------------------------ */
+
+.woodmart-products-element {
+	position: relative;
+}
+
+.pagination-arrows {
+	position: relative;
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+	-webkit-transform: none;
+
+	transition:
+		opacity 0.25s ease,
+		visibility 0.25s ease,
+		transform 0.25s ease;
+	-webkit-transition:
+		opacity 0.25s ease,
+		visibility 0.25s ease,
+		transform 0.25s ease;
+
+	&.loading {
+		opacity: 0;
+		pointer-events: none;
+		visibility: hidden;
+		-webkit-transform: translate3d(0, 30px, 0);
+		transform: translate3d(0, 30px, 0);
+	}
+
+	.browser-Safari & {
+
+		&.loading {
+			visibility: visible;
+		}	
+	}
+}
+
+.woodmart-animated-products {
+
+	.product-grid-item {
+		opacity: 0;
+		transition: 
+			transform 0.3s ease,
+			opacity 0.3s ease;
+		-webkit-transition: 
+			transform 0.3s ease,
+			opacity 0.3s ease;
+
+		-webkit-transform:scale(0.7);
+		transform:scale(0.7);
+
+		&.woodmart-animated {
+			opacity: 1;
+			-webkit-transform:scale(1);
+			transform:scale(1);
+		}
+	}
+}
+
+/** ------------------------------
+* Loaders
+* ------------------------------ */
+
+.woodmart-tabs-loader {
+	position: absolute;
+	left:0;
+	right:0;
+	top:100%;
+	margin-top: 50px;
+    opacity:0;
+    visibility: hidden;
+    pointer-events: none;
+    text-align: center;
+}
+
+.woodmart-products-loader {
+	position: fixed;
+    top: 50%;
+    left:50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    opacity:0;
+    visibility: hidden;
+    pointer-events: none;
+    text-align: center;	
+}
+
+.woodmart-tabs-loader,
+.woodmart-products-loader {
+
+	.browser-Safari & {
+		visibility: visible;
+	}
+}
+
+.element-loading {
+
+	.woodmart-tabs-loader,
+	.woodmart-products-loader {
+
+	    &:after {
+	    	@include act-loader;		    	
+	    }
+	}
+
+	.woodmart-tabs-loader {
+        opacity:1;
+        visibility: visible;
+	    -webkit-transition:
+		    opacity .3s ease,
+		    visibility .3s ease;
+	    transition:
+		    opacity .3s ease,
+		    visibility .3s ease;		
+	}
+
+	.woodmart-products-loader {
+	    -webkit-transition:
+		    opacity .15s ease,
+		    visibility .15s ease;
+	    transition:
+		    opacity .15s ease,
+		    visibility .15s ease;
+
+		&:not(.hidden-loader) {
+	        opacity:1;
+	        visibility: visible;
+		    -webkit-transition:
+			    opacity .3s ease,
+			    visibility .3s ease;
+		    transition:
+			    opacity .3s ease,
+			    visibility .3s ease;
+		}
+	}
+}

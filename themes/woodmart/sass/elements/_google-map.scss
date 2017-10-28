@@ -1,0 +1,117 @@
+/** ------------------------------------------------------------------------------------------------
+* GOOGLE MAPS 
+* ------------------------------------------------------------------------------------------------ */
+
+.google-map-container {
+	position:relative;
+
+	.woodmart-google-map-wrapper {
+		z-index: 4;
+	}
+
+	.woodmart-google-map-wrapper,
+	.woodmart-google-map {
+		position: absolute!important;
+		top:0;
+		left:0;
+		right:0;
+		bottom: 0;
+	}
+
+	img {
+		max-width: none;
+	}
+}
+
+.map-container-with-content {
+
+	//vertical
+
+	&.content-vertical-top {
+
+		.woodmart-google-map-content-wrap {
+			justify-content: flex-start;
+		}
+	}
+
+	&.content-vertical-middle {
+
+		.woodmart-google-map-content-wrap {
+			justify-content: center;
+		}
+	}
+
+	&.content-vertical-bottom {
+
+		.woodmart-google-map-content-wrap {
+			justify-content: flex-end;
+		}
+	}
+
+	//horizontal
+
+	&.content-horizontal-left {
+
+		.woodmart-google-map-content-wrap {
+			align-items: flex-start;
+		}
+	}
+
+	&.content-horizontal-center {
+
+		.woodmart-google-map-content-wrap {
+			align-items: center;
+		}
+	}
+
+	&.content-horizontal-right {
+
+		.woodmart-google-map-content-wrap {
+			align-items: flex-end;
+		}
+	}
+}
+
+.woodmart-google-map-content-wrap {
+	display: flex;
+    flex-direction: column;
+    align-items: stretch;
+	position: relative;
+	height: 100%;
+    width: 90%;
+	padding: 50px 15px;
+	margin: 0 auto;
+
+	> .woodmart-google-map-content {
+		padding: 30px;
+		margin-bottom: 0;
+		background-color: white;
+		box-shadow: 0 0 12px rgba(0, 0, 0, 0.22);
+		max-width: 300px;
+		width: 100%;
+		z-index: 6;
+	}
+
+	.woodmart-dark & {
+		
+		> .woodmart-google-map-content {
+			background-color: $scheme-light--background-popup;
+		}
+	}
+}
+
+.map-mask-dark {
+  	background-color: black;
+
+	.woodmart-google-map-wrapper {
+		opacity:0.6;
+	}
+}
+
+.map-mask-light {
+    background-color: white;
+
+    .woodmart-google-map-wrapper {
+		opacity:0.7;
+    }
+}

@@ -1,0 +1,88 @@
+
+/** ------------------------------------------------------------------------------------------------
+* TOP BAR / #woodmart-top-bar
+* ------------------------------------------------------------------------------------------------ */
+
+.topbar-wrapp {
+	position: relative;
+	height: $heightTopBar;
+	border-bottom:1px solid $main-border-color;
+
+	&.header-color-light {
+		border-color: transparent;
+	}
+}
+
+.topbar-content {
+    display: flex;
+    height: $heightTopBar;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.topbar-text {
+	flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+	@extend %remove-margin;
+
+	> h1,
+	> h2,
+	> h3 {
+		font-size:14px;
+	}
+
+	> h4,
+	> h5,
+	> h6 {
+		font-size:12px;
+	}	
+
+	.header-color-light & {
+		@extend %color-white-only-widget-area;
+	}
+}
+
+.topbar-column {
+    display: flex;
+    align-items: stretch;
+	flex:1 1 auto;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.topbar-menu,
+.topbar-text {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.topbar-right-text {
+	justify-content: flex-end;
+}
+
+.top-bar-right {
+	justify-content: flex-end;
+
+	.topbar-menu {
+
+		.sub-menu-dropdown,
+		.submenu-languages {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	.menu-item-design-default {
+
+		.sub-sub-menu {
+			left:auto;
+			right:100%;
+		}
+	}
+}

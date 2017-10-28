@@ -1,0 +1,181 @@
+
+/** ------------------------------------------------------------------------------------------------
+* PAGE TITLE
+* ------------------------------------------------------------------------------------------------ */
+
+.page-title {
+	position: relative;
+	margin-top: -40px;
+	margin-bottom: 40px;
+
+	h1 {
+		margin-bottom: 0;
+		line-height: 1;
+		font-weight: 600;
+	}
+
+	.breadcrumbs {
+		margin-top:10px;
+	}
+}
+
+/** ------------------------------------------
+* TITLE SIZE 
+* ------------------------------------------ */
+
+.title-size-small {
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	.entry-title,
+	h1 {
+		font-size: 44px;
+	}
+
+	.woodmart-checkout-steps {
+
+		ul {
+
+			li {
+				font-size:18px;
+			}
+		}
+	}
+}
+
+.title-size-default {
+	padding-top: 60px;
+	padding-bottom: 60px;
+	
+	.entry-title,
+	h1 {
+		font-size: 68px;
+	}
+}
+
+.title-size-large {
+	padding-top: 100px;
+	padding-bottom: 100px;
+	
+	.entry-title,
+	h1 {
+		font-size: 78px;
+	}
+
+	.woodmart-checkout-steps {
+
+		ul {
+
+			li {
+				font-size:26px;
+			}
+		}
+	}
+}
+
+.woodmart-header-overlap {
+
+	.page-title {
+		margin-top: 0;
+	}
+
+	.title-size-small {
+		padding: 120px 0 70px 0;
+	}
+
+	.title-size-default {
+  		padding: 150px 0 110px 0;
+	}
+
+	.title-size-large {
+	  padding: 180px 0 140px 0;
+	}
+}
+
+.woodmart-header-advanced {
+
+	.page-title {
+		margin-top: -71px;
+	}
+
+	.title-size-small {
+		padding-top: 45px;
+	}
+
+	.title-size-default {
+		padding-top: 80px;
+	}
+
+	.title-size-large {
+		padding-top: 125px;
+	}
+}
+
+
+/** ------------------------------------------
+* TITLE DESIGN
+* ------------------------------------------ */
+
+.title-design-centered {
+	text-align: center;
+}
+
+.title-design-disable {
+	display: none;
+}
+
+/** ------------------------------------------
+* TITLE BREADCRUMBS
+* ------------------------------------------ */
+
+.breadcrumbs {
+	font-size: 0px;
+	line-height: 16px;
+
+	> span,
+	> a {
+		display: inline-block;
+
+		&:after {
+			content: "/";
+			display:inline-block;
+			padding: 0 8px;
+		}
+	}
+
+	a,
+	span {
+		text-decoration: none;
+		font-size: 11px;
+		letter-spacing: 0.3px;
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+
+	> span {
+
+		&:last-child {
+
+			&:after {
+				content: none;
+			}
+		}
+	}
+
+	.color-scheme-light & {
+		color:rgba(255,255,255,1);
+
+		a,
+		span {
+			color:rgba(255,255,255,1);
+		}
+
+		a {
+
+			&:hover {
+				color:rgba(255,255,255,0.7);
+			}
+		}
+	}
+}
+

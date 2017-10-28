@@ -1,0 +1,52 @@
+
+/** ------------------------------------------------------------------------------------------------
+* WISHLIST
+* ------------------------------------------------------------------------------------------------ */
+
+.yith-wcwl-add-to-wishlist {
+	margin-top:0;
+
+	.ajax-loading {
+		display: none!important;
+		height: 0!important;
+		width: 0!important;
+	}
+
+	.feedback {
+        display: none;
+    }
+
+	.clear,
+	+ .clear {
+		display: none;
+	}
+}
+
+.wishlist-title  {
+
+	h2 {
+		padding: 0;
+		@extend %title-size;
+	}
+}
+
+
+
+.yith-wcwl-share {
+    margin-bottom: 5px;
+    text-align: center;
+
+    h4.yith-wcwl-share-title {
+    	text-transform: uppercase;
+    	font-weight: 600;
+    	font-size: 14px;
+    }
+}
+
+/** ------------------------------------------
+* MESSAGE POPUP
+* ------------------------------------------ */
+
+// #yith-wcwl-popup-message {
+// 	display: none!important;
+// }

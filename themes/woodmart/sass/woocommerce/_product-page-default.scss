@@ -1,0 +1,2440 @@
+
+/** ------------------------------------------------------------------------------------------------
+* SINGLE SHOP PAGE 
+* ------------------------------------------------------------------------------------------------ */
+
+.single-product {
+
+	.site-content {
+
+		margin-top: -40px;
+    	padding-top: 40px; //need to product with bg
+
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.main-page-wrapper {
+
+		// > .container-fluid {
+		//     padding-left: 0;
+		//     padding-right: 0;			
+		// }
+	}
+}
+
+//**
+//* 
+//* single breadcrumbs wrapper general style
+//**
+
+.single-breadcrumbs-wrapper {
+	margin-bottom: 15px;
+    margin-top: -15px;
+
+	.container {
+
+		&:after,
+		&:before {
+			content: none;
+		}
+	}
+
+	.single-breadcrumbs,
+	.container {
+		display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    flex-wrap: wrap;
+	}
+
+    .woocommerce-breadcrumb {
+    	margin-bottom: 10px;
+    	font-size: 13px;
+    }
+}
+
+//**
+//* 
+//* Sidebar on single product page
+//**
+
+.area-sidebar-product-single {
+	margin-bottom: 0;
+
+	&.sidebar-right {
+		border-left:1px solid;
+		@extend %main-border-color;
+	}
+
+	&.sidebar-left {
+		border-right:1px solid;
+		@extend %main-border-color;
+	}
+}
+
+//**
+//* 
+//* Width of product sumary wrapper
+//**
+
+.product-image-summary-wrap,
+.product-image-summary-inner {
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    &:after,
+    &:before {
+    	content:none;
+    }
+
+    > .col-sm-10 {
+    	flex:0 1 83.33333333%;
+    	max-width: 83.33333333%;
+    	width:83.33333333%;    	
+    }
+
+    > .col-sm-9 {
+    	flex:0 1 75%;
+    	max-width: 75%;
+    	width:75%;
+    }
+
+    > .col-sm-8 {
+    	flex:0 1 66.66666667%;
+    	max-width: 66.66666667%;
+    	width:66.66666667%;
+    }
+
+    > .col-sm-6 {
+    	flex:0 1 50%;
+    	max-width: 50%;
+    	width:50%;
+    }
+
+    > .col-sm-4 {
+    	flex:0 1 33.33333333%;
+    	max-width: 33.33333333%;
+    	width:33.33333333%;
+    }
+
+    > .col-sm-3 {
+    	flex:0 1 25%;
+    	max-width: 25%;
+    	width:25%;
+    }
+
+    > .col-sm-2 {
+    	flex:0 1 16.66666667%;
+    	max-width: 16.66666667%;
+    	width:16.66666667%;
+    }
+}
+
+//**
+//* 
+//* default style single product page
+//**
+
+// .product-image-summary-inner {
+//     display: flex;
+//     align-items: stretch;
+//     flex-direction: row;
+//     flex-wrap:nowrap;
+
+//     &:after,
+//     &:before {
+//     	content:none;
+//     }
+
+//     > .col-sm-6 {
+//     	flex:0 1 50%;
+//     	max-width: 50%;
+//     	width:50%;
+//     }
+
+//     > .col-sm-8 {
+//     	flex:0 1 66.66666667%;
+//     	max-width: 66.66666667%;
+//     	width:66.66666667%;
+//     }
+
+//     > .col-sm-4 {
+//     	flex:0 1 33.33333333%;
+//     	max-width: 33.33333333%;
+//     	width:33.33333333%;
+//     }
+// }
+
+//**
+//* 
+//* single product Global style
+//**
+
+.single-product-page {
+
+	> div {
+		margin-bottom: 40px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	//**
+	//* 
+	//* single breadcrumbs wrapper for (default style)
+	//**
+
+	.single-breadcrumbs-wrapper {
+		margin-top: 0;
+		margin-bottom: 10px;
+	}
+
+	//**
+	//* 
+	//*  Product rating
+	//**
+
+	.woocommerce-product-rating {
+		margin-bottom: 20px;
+	}
+
+	.star-rating {
+		margin-right: 5px;
+		width: 75px;
+		letter-spacing: 2px;
+
+		// span {
+
+		// 	&:before {
+		// 		color: #eabe12;
+		// 	}
+		// }
+	}
+
+	.woocommerce-review-link {
+		color:$body-color;
+		font-size: 13px;
+		text-decoration: none;
+
+		&:hover {
+			color:$heading-color;
+		}
+	}
+
+	.woodmart-dark & {
+
+		.woocommerce-review-link {
+			color:$scheme-light--body-color-lighten;
+
+			&:hover {
+				color:$scheme-light--body-color-darken;
+			}
+		}
+	}
+}
+
+.product-image-summary {
+
+	.product-images {
+
+		.onsale {
+			top:15px;
+			left: auto;
+			right:15px;
+			z-index: 10;
+			min-width: 55px;
+			min-height: 55px;
+		}
+	}
+
+	//**
+	//* 
+	//*  Product title
+	//**
+
+	.entry-title {
+      	font-size: 34px;
+    	font-weight: 600;
+    	line-height: 1.2;
+    	@extend %secondary-title;
+	}
+
+	//**
+	//* 
+	//*  Product price
+	//**
+
+	.summary-inner,
+	.woodmart-scroll-content {
+
+		> .price {
+			font-size: 22px;
+			line-height: 1.2;
+
+			&:empty {
+				display: none;
+			}
+		}
+	}
+
+	.woocommerce-product-details__short-description {
+		margin-bottom: 25px;
+	}
+
+	//**
+	//* 
+	//*  Product brends
+	//**
+
+	.woodmart-product-brands {
+		float: right;
+		margin-left: 10px;
+		margin-bottom: 10px;
+
+		a {
+		    min-height: 70px;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+			padding: 10px;
+			background-color: white;
+			box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12);
+	    	transition:all 0.3s ease;
+	    	-webkit-transition:all 0.3s ease;
+
+	    	&:hover {
+				box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+			}
+		}
+
+		img {
+		    max-width: 90px;
+		    max-height: 70px;
+		}
+	}
+
+	//**
+	//* 
+	//*  Product countdown
+	//**
+
+	.woodmart-product-countdown {
+		margin-bottom: 10px;
+	}
+
+	//**
+	//* 
+	//*  Product cart
+	//**
+
+	.quantity {
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+
+	.single_add_to_cart_button {
+		margin-bottom: 10px;
+	}
+
+	.cart {
+		margin-bottom: 15px;
+	}
+
+    .stock {
+		@extend %stock-lable;
+	}
+
+	.out-of-stock {
+		@extend %out-of-stock-lable;
+	}
+
+	.in-stock {
+		@extend %in-stock-lable;
+	}
+
+	//**
+	//* 
+	//*  Product variations
+	//**
+
+	.variations {
+		margin-bottom: 25px;
+	}
+
+	.woodmart-dark & {
+
+		.woodmart-product-brands {
+			
+			a {
+				background-color: $scheme-light--background-popup;
+			}
+		}
+	}
+}
+
+//**
+//* 
+//*  Product description
+//**
+
+.woocommerce-product-details__short-description {
+	@extend %alt-table-style;
+	line-height: 1.8;
+
+	p {
+		line-height: 1.8;
+	}
+}
+
+//**
+//* 
+//*  Product wishlist and compare
+//**
+
+.compare-btn-wrapper,
+.summary-inner > .yith-wcwl-add-to-wishlist {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+	font-size: 0;
+	margin-right: 20px;
+	margin-bottom: 20px;
+
+	a {
+		display: inline-block;
+	    vertical-align: middle;
+	    font-size: 14px;
+	    line-height: 1;
+	    letter-spacing: 0;
+	    font-weight: 600;
+	    color:$light-dark;
+	    padding: 0;
+	    background-color: transparent;
+	    text-transform: none;
+	    position: relative;
+
+        &:before {
+		    margin-right: 5px;
+		    font-weight: normal;
+		    vertical-align: middle;
+		    display: inline-block;
+		     
+
+            transition:
+                opacity .1s ease;
+
+            -webkit-transition:
+                opacity .1s ease;
+		}
+
+		&:after {
+			@include loader($size:14px, $b-width:1px, $color-loader:#bbbbbb, $color-border: $light-dark);
+			position: absolute;
+			top: 50%;
+			left:0;
+			margin-top: -7px;
+			opacity: 0;
+
+            transition:
+                opacity .2s ease;
+
+            -webkit-transition:
+                opacity .2s ease;
+		}
+
+		&:hover {
+			box-shadow: none;
+			@extend %primary-color;
+		}
+
+		&:focus {
+			box-shadow: none;
+		}
+	}
+
+	.woodmart-dark & {
+
+		a {
+			color:$scheme-light--body-color-darken;
+
+			&:after {
+				border-color:$scheme-light--border-color-lighten;
+				border-left-color: $scheme-light--border-color-white;
+			}
+
+			&:hover {
+				@extend %primary-color;
+			}
+		}		
+	}
+}
+
+//**
+//* 
+//*  Product compare
+//**
+
+.compare-btn-wrapper {
+
+	a {
+
+        &:before {
+			@include font-icon($font-Flaticon-compare);
+		}
+
+	 	.blockOverlay {
+        	display: none!important; 
+        }
+
+        &.loading {
+
+        	&:after {
+        		opacity: 1;
+        		@include act-loader;
+        	}
+
+			&:before {
+				opacity: 0;
+			}
+		}
+
+		&.added {
+			
+			&:before {
+				@extend %primary-color;
+			} 
+		}
+	}
+}
+
+//**
+//* 
+//*  Product wishlist 
+//**
+
+.summary-inner {
+
+	> .yith-wcwl-add-to-wishlist {
+
+		a {
+		    display: inline-flex;
+		    align-items: center;
+		    flex-direction: row;
+
+	        &:before {
+				@include font-icon($font-Flaticon-shapes);
+			}
+		}
+
+		.woodmart-tooltip-label {
+			display: none;
+		}
+
+		.yith-wcwl-wishlistaddedbrowse,
+		.yith-wcwl-wishlistexistsbrowse {
+
+			a {
+
+				&:before {
+					@extend %primary-color;
+				}
+			}
+		}
+
+		.yith-wcwl-add-button {
+
+			&.feid-in {
+
+	            > a {
+
+		        	&:after {
+		        		opacity: 1;
+		        		@include act-loader;
+		        	}
+
+					&:before {
+						opacity: 0;
+					}
+	            }
+			}
+		}
+	}
+}
+
+//**
+//* 
+//*  Product gallery woocommerce 
+//**
+
+.product-images-inner {
+	position: relative;
+	z-index: 1; // fix when torn one sticky image
+}
+
+.woocommerce-product-gallery {
+	opacity: 1!important;
+
+	.owl-carousel {
+		overflow: hidden;
+
+		&:after,
+		&:before {
+			content:none;
+		}
+	}
+
+	.owl-nav {
+
+		@extend %arrow-disable-color;
+
+	    > div {
+
+			&[class*="prev"] {
+				left:5px;    
+			}
+
+			&[class*="next"] {
+				right:5px;      
+			} 
+	    }
+	}
+
+	.woocommerce-product-gallery__image,
+	.woocommerce-product-gallery__image--placeholder,
+	.product-image-thumbnail {
+		
+		img {
+			width:100%;
+		}
+	}
+
+	.product-image-thumbnail {
+		cursor: pointer;
+
+		-webkit-transition:
+			opacity 0.25s ease;
+		transition:
+			opacity 0.25s ease;
+
+		&:hover,
+		&.active-thumb {
+			opacity: 0.5;
+		}
+	}
+
+	.thumbnails {
+		opacity: 0;
+
+		&.thumbnails-ready {
+			opacity: 1;
+			transition: opacity 0.6s ease 1s;
+		}
+	}
+
+	//**
+	//* 
+	//* Slick slider (Vertical slider)
+	//**
+
+	.slick-slider {
+	    display: flex;
+	    flex-direction: row;
+	    align-items: stretch;
+	    flex-wrap: wrap;
+	    justify-content: space-between;
+		margin-right: -30px;
+		padding-left: 15px;
+		padding-right: 15px;
+
+		.slick-list {
+			order:1;
+			flex: 1 1 100%;
+			max-width: 100%;
+			width: 100%;
+			// animation:fadeIn 0.6s ease 1s both;
+			// -webkit-animation:fadeIn 0.6s ease 1s both;	
+		}
+
+		.slick-prev,
+		.slick-next {
+			order:2;
+		}
+	}
+
+	//**
+	//* 
+	//* Owl slider (Horizontal slider)
+	//**
+
+	.thumbnails {
+
+		&.owl-carousel {
+
+			.owl-stage-outer {
+				// animation:fadeIn 0.6s ease;
+				// -webkit-animation:fadeIn 0.6s ease;	
+			}
+			
+			.owl-item {
+				padding-left: 2px;
+				padding-right: 2px;
+			}
+		}
+	}
+
+	&.image-action-none {
+
+		.product-image-wrap {
+
+			a {
+				cursor: default;
+			}
+		}
+
+		.owl-carousel {
+
+			.product-image-wrap {
+
+				a {
+					cursor: move;
+				}
+			}
+		}		
+	}
+
+	&.image-action-zoom {
+
+		.owl-carousel {
+
+			.product-image-wrap {
+				cursor: move;
+				cursor: grab;
+				cursor: -webkit-grab;
+			}
+		}
+
+		.owl-grab {
+
+			.zoomImg {
+				opacity: 0!important;
+				-webkit-transition:
+					opacity 0.25s ease;
+				transition:
+					opacity 0.25s ease;
+			}
+		}
+	}
+
+	&.thumbs-position-bottom {
+
+		.woocommerce-product-gallery__wrapper {
+			margin-bottom: 4px;
+			padding-left: 2px;
+			padding-right: 2px;
+		}
+	}
+
+	&.thumbs-position-bottom_column,
+	&.thumbs-position-bottom_grid,
+	&.thumbs-position-bottom_combined {
+
+		.product-image-wrap {
+			margin-bottom: 4px;
+
+			&:first-child {
+				flex:1 1 100%;
+				max-width: 100%;			
+			}
+		}		
+	}
+
+	&.thumbs-position-bottom_grid,
+	&.thumbs-position-bottom_combined {
+
+	    .woocommerce-product-gallery__wrapper {
+			display: flex;
+		    flex-direction: row;
+		    flex-wrap: wrap;
+		    margin-left: -2px;
+		    margin-right: -2px;
+	    }
+
+		.product-image-wrap {
+			flex:1 1 50%;
+			max-width: 50%;
+		    padding-left: 2px;
+		    padding-right: 2px;
+		}
+	}
+
+	&.thumbs-position-bottom_combined {
+
+		.product-image-wrap {
+
+		    &:nth-child(3n+4) {
+				flex:1 1 100%;
+				max-width: 100%;
+		    }			
+		}	
+	}
+
+	.woodmart-dark & {
+
+		.owl-nav {
+			@extend %arrow-disable-color-white;
+		}
+	}	
+}
+
+//**
+//* 
+//* Buttons on main image
+//**
+
+.product-additional-galleries {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 15px;
+	opacity: 0;
+	-webkit-transition: 
+		opacity 0.4s ease 1s;
+    transition: 
+	    opacity 0.4s ease 1s;
+
+	> div {
+		margin-bottom: 10px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.document-ready & {
+		opacity: 1;
+	}
+}
+
+.product-360-button,
+.product-video-button,
+.woodmart-show-product-gallery-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+	> a {
+		display: flex;
+		flex-direction: row;
+	    align-items: center;
+	    flex-wrap:nowrap;
+	    height: 50px;
+	    min-width: 50px;
+		overflow: hidden;
+	    border-radius: 30px;
+	    font-size: 13px;
+	    background: rgba(255,255,255,0.9);
+	    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
+	    color:rgba(0,0,0,0.7);
+
+		&:before {
+			@include font-icon($font-Flaticon-lup);
+			display: inline-block;
+			font-size: 16px;
+			height: 50px;
+			line-height: 50px;
+			width: 50px;
+			text-align: center;
+			 
+		}
+
+		> span {
+			white-space: nowrap;
+		    max-width: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    font-weight: 600;
+
+			-webkit-transition: 
+				padding 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15),
+				max-width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+		    transition: 
+			    padding 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15),
+			    max-width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+		}
+
+		&:hover,
+		&:focus {
+			color:$light-dark;
+		}
+
+		&:hover {
+
+			> span {
+			    padding-right: 25px;
+			    max-width: 280px;				
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		> a {
+			color:$scheme-light--body-color;
+			background-color: $scheme-light--background-popup-transparent;
+
+			&:hover,
+			&:focus {
+				color:$scheme-light--body-color-darken;
+			}
+		}
+	}
+}
+
+.product-360-button {
+
+	> a {
+
+		&:before {
+			font-size: 26px;
+			@include font-icon($font-Flaticon-360-deg);
+		}
+	}
+}
+
+.woodmart-show-product-gallery-wrap {
+
+	> a {
+
+		&:before {
+			@include font-icon($font-Flaticon-scaleerrows);
+		}
+	}	
+}
+
+.product-video-button {
+	
+	> a {
+
+		&:before {
+			@include font-icon($font-Flaticon-button-play-2);
+		}
+	}	
+}
+
+//**
+//* 
+//* Variations form
+//**
+
+.variations_form {
+
+	.variations {
+		transition:
+			margin-bottom .3s ease;
+		-webkit-transition:
+			margin-bottom .3s ease;	
+
+		label {
+			margin-bottom: 0;
+		    font-weight: 600;
+		    color:$heading-color;
+		    margin-right: 20px;
+		    white-space: nowrap;
+
+		    &:after {
+		    	content:":";
+		    	margin-left:2px;
+		    }
+		}
+
+		tr {
+
+			&:last-child {
+
+				td {
+					padding-bottom: 0px;
+				}
+			}
+		}
+
+		td {
+			border:none;
+			vertical-align:middle;
+			padding:0;
+			padding-bottom: 20px;
+		}
+
+		.value {
+			position: relative;
+			width:100%;
+
+			select {
+				max-width:260px;
+				display:inline-block;
+			}
+		}
+
+		.with-swatches {
+
+			select {
+				display: none;
+			}			
+		}
+	}
+
+	.reset_variations {
+		font-size: 12px;
+		margin-left:10px;
+		vertical-align:middle;
+		display:inline-block;
+		opacity: 0!important;
+		visibility: hidden!important;
+		display: inline-block!important;
+		pointer-events:none;
+
+	    backface-visibility: hidden;
+	    -webkit-backface-visibility: hidden;
+	    perspective: 800px;
+	    -webkit-perspective: 800px;
+
+		&:before {
+			content: "\f00d";
+			font-family: "FontAwesome";
+			margin-right: 5px;
+			display: inline-block;
+		}
+
+		&:hover,
+		&:focus {
+			color:#818181;
+		}
+	}
+
+	&.variation-swatch-selected {
+
+		.reset_variations {
+     		pointer-events: visible;
+    		opacity: 1!important;
+    		visibility: visible!important;			
+		}	
+	}
+
+	.woocommerce-variation {
+		animation:fadeInBottomShort 0.2s ease; 
+		-webkit-animation:fadeInBottomShort 0.2s ease;
+		@include clear-element;
+	}
+
+	// inline, because has bag when price on switches is ==
+
+	.woocommerce-variation-price,
+	.woocommerce-variation-availability {
+		display: inline;
+		vertical-align: middle;
+	}
+
+	.woocommerce-variation-price {
+		
+		.price {
+			font-size: 16px;
+			vertical-align: middle;
+			display: inline-block;
+			margin-right: 15px;
+			margin-bottom: 20px;
+		}
+	}
+
+	.woocommerce-variation-availability {
+
+		.stock {
+			vertical-align: middle;
+			display: inline-block;
+		}
+	}
+
+	.woocommerce-variation-description {
+
+		p {
+			margin-bottom: 10px;
+		}
+	}
+
+    .stock {
+		@extend %stock-lable;
+	}
+
+	.out-of-stock {
+		@extend %out-of-stock-lable;
+	}
+
+	.in-stock {
+		@extend %in-stock-lable;
+	}
+
+	.color-scheme-light &,
+    .woodmart-dark & {
+
+    	label {
+    		color:$scheme-light--body-color-darken;
+    	}
+
+		.reset_variations {
+
+			&:hover,
+			&:focus {
+				color:$scheme-light--body-color-darken;
+			}
+		}
+    }
+}
+
+//**
+//* 
+//*  Product meta 
+//**
+
+.product_meta {
+	display: block;
+	line-height: 1.2;
+
+	> span {
+		color: $light-dark;
+		font-weight:600;
+		font-size: 14px;
+
+		a,
+		span {
+			color: $body-color;
+			display: inline-block;
+			font-weight:normal;
+			margin: 0 1px;
+		}
+
+		a {
+			&:hover {
+				color: rgb(116, 116, 116);
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		> span {
+			color:$scheme-light--body-color-darken;
+
+			a,
+			span {
+				color:$scheme-light--body-color;
+			}
+
+			a {
+				&:hover {
+					color: $scheme-light--link-color-hover;
+				}
+			}
+		}
+	}
+}
+
+//**
+//* 
+//*  Product share
+//**
+
+.product-share {
+	margin-bottom:10px;
+	line-height: 1.2;
+
+	.share-title {
+		vertical-align: middle;
+		font-weight:600;
+		color: #1B1919;
+		margin-right:5px;
+
+		&:after {
+			content:":";
+		}
+	}
+
+	.woodmart-social-icons {
+		display:inline-flex;
+	}
+
+	.woodmart-dark & {
+
+		.share-title {
+			color:$scheme-light--body-color-darken;
+		}
+
+        .woodmart-social-icon {
+
+            a {
+                color:rgba(255,255,255,1);
+
+                &:hover {
+                    color:rgba(255,255,255,.6);                       
+                }
+            }
+        }
+	}
+}
+
+//**
+//* 
+//*  Product add to cart button
+//**
+
+.single_add_to_cart_button {
+	@include btn-default-primary;
+	@extend %shop-buttons;
+	@extend %loader-add-to-cart;
+
+	+ .added_to_cart {
+		display: none;
+	}
+}
+
+//**
+//* 
+//*  Product swatches select
+//**
+
+.swatches-select {
+	display:inline-block;
+	vertical-align:middle;
+
+	> div {
+		position:relative;
+		font-size:16px;
+		line-height: 1.3;
+		font-weight:600;
+		display: inline-block;
+		text-align:center;
+		vertical-align:middle;
+		cursor:pointer;
+		min-width: 25px;
+		color:#1B1919;
+		margin-right: 15px;
+		margin-top:5px;
+		margin-bottom:5px;
+		border-bottom:2px solid transparent;
+
+		&:hover {
+			border-color:black;
+		}
+
+		&.swatch-size-large {
+			font-size:18px;
+		}
+
+		&.swatch-size-xlarge {
+			font-size:24px;
+		}
+
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+
+	.image-swatch,
+	.colored-swatch {
+		font-size:0;
+		width: 25px;
+		height: 25px;
+		border-bottom:none!important;
+		border-radius:50%;
+		background-size: cover;
+
+		&:after {
+			content:"";
+			position:absolute;
+			left:0;
+			bottom:-5px;
+			width:100%;
+			border-bottom:2px solid transparent;
+		}
+
+		&:hover,
+		&.active-swatch {
+
+			&:after {
+				border-color:black;
+			}
+		}
+
+		&.swatch-size-large {
+			width: 45px;
+			height: 45px;
+			font-size:0;
+		}
+
+		&.swatch-size-xlarge {
+			width: 70px;
+			height: 70px;
+			font-size:0;
+		}
+	}
+
+	.swatch-enabled {
+		cursor:pointer;
+	}
+
+	.swatch-disabled {
+		cursor:default;
+		opacity: 0.4;
+	}
+
+	.active-swatch {
+		border-color:black;
+	}
+
+    .color-scheme-light &,
+    .woodmart-dark & {
+
+    	> div {
+    		color:$scheme-light--body-color-darken;
+
+    		&:hover {
+    			border-color:$scheme-light--body-color-darken;
+    		}
+    	}
+
+    	.active-swatch {
+    		border-color:$scheme-light--body-color-darken;
+    	}
+
+		.image-swatch,
+		.colored-swatch {
+
+			&:hover,
+			&.active-swatch {
+
+				&:after {
+					border-color:$scheme-light--body-color-darken;
+				}
+			}
+		}   	
+    }
+}
+
+// ------------------------------------------
+// PRODUCT SHADOW
+// ------------------------------------------ 
+
+.product-summary-shadow {
+
+	.summary-inner {
+		background-color: white;
+    	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+		padding: 30px 35px 15px 35px;
+	}
+
+	.area-sidebar-product-single {
+		border:none;
+	}
+
+	.woodmart-dark & {
+
+		.summary-inner {
+			background-color: $scheme-light--background-light-dark;
+		}
+	}
+}
+
+// ------------------------------------------
+// PRODUCT HAS THUMBNAILS
+// ------------------------------------------ 
+
+.product-with-attachments {
+
+	.thumbs-position-left {
+		margin-left: -31px;
+	}
+}
+
+// ------------------------------------------
+// PRODUCT FULL WIDTH
+// ------------------------------------------ 
+
+.product-full-width {
+
+	&.product-design-alt,
+	&.product-summary-shadow {
+
+		&:not(.product-sticky-on) {
+
+			.summary-inner {
+				margin: 0 auto;
+			}
+		}
+		
+		.summary-inner {
+			max-width: 620px;
+		}		
+	}
+}
+
+// ------------------------------------------
+// PRODUCT HAS BACKGROUND
+// ------------------------------------------ 
+
+.product-has-bg {
+
+	.product-tabs-wrapper {
+		border-top:none;
+	}
+}
+
+// ------------------------------------------
+// PRODUCT DESIGN DEFAULT
+// ------------------------------------------ 
+
+.product-design-default {
+
+	.entry-summary {
+
+		&.col-sm-4 {
+			@extend %brand-without-float;
+
+			.woocommerce-breadcrumb {
+
+				.breadcrumb-link-last {
+					color:$light-dark;
+					font-weight: 600;
+					margin-right: 0;
+					
+					&:after {
+						content:none;
+					}						
+				}
+
+				.breadcrumb-last {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		.entry-summary {
+
+			&.col-sm-4 {
+
+				.woocommerce-breadcrumb {
+
+					.breadcrumb-link-last {
+						color:$scheme-light--body-color-darken;
+					}
+				}
+			}
+		}		
+	}
+}
+
+// ------------------------------------------
+// META POSITION
+// ------------------------------------------
+
+.meta-location-add_to_cart {
+	@extend %default-meta-style;
+}
+
+.woodmart-before-product-tabs {
+	margin-top: -41px; // to fix space 
+	margin-right: -15px;
+    margin-left: -15px;
+    background-color: #f7f7f7;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+
+	.product_meta {
+	    display: inline-block;
+	    vertical-align: middle;
+
+		> span,
+		> div:not(.product-share) {
+		    display: inline-block;
+		    margin-bottom: 5px;
+		    margin-top: 5px;
+		    margin-right: 10px;
+		    margin-left: 10px;
+		}
+	}
+
+	.product-share {
+		display: inline-block;
+		vertical-align: middle;
+	    margin-bottom: 0px;
+    	margin-right: 10px;
+	    margin-left: 10px;
+	}
+
+	.woodmart-dark & {
+		background-color: $scheme-light--background-light-dark;
+	}
+}
+
+// ------------------------------------------
+// PRODUCT TABS AND ACCORDION
+// ------------------------------------------
+
+//**
+//* 
+//*  General style tabs wrapper
+//**
+
+.product-tabs-wrapper {
+	padding-bottom:40px;
+	padding-top: 40px;
+	background-color: white;
+	border-top:1px solid;
+	border-bottom: 1px solid;
+	@extend %main-border-color;
+
+	.woodmart-dark & {
+		background-color: $scheme-light--background-light-dark;
+	}
+}
+
+.poduct-tabs-inner {
+
+	> div {
+		margin-bottom: 40px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+//**
+//* 
+//*  Style tabs
+//**
+
+.tabs-layout-tabs {
+
+	.woodmart-accordion-title {
+		display: none;
+	}
+
+	.tabs {
+		margin-top: -40px;
+		margin-bottom: 30px;
+		text-align:center;
+
+		li {
+			display: inline-flex;
+			margin-right: 30px;
+
+			a {
+				position: relative;
+				display: inline-block;
+				font-size: 16px;
+				text-transform: uppercase;
+				font-weight:600;
+				color:$body-color;
+				@extend %title-font;
+				padding-top: 30px;
+				padding-bottom: 10px;
+
+			    &:after {
+			        content:'';
+			        position: absolute;
+			        bottom:100%;
+			        margin-bottom: -2px;
+			        left:0;
+			        width: 0;
+			        height: 3px;
+			        @extend %primary-background;
+			        transition:
+			        	width 0.3s cubic-bezier(0.175,0.885,0.320,1.15);
+			        -webkit-transition:
+			        	width 0.3s cubic-bezier(0.175,0.885,0.320,1.15);
+			    }
+
+				&:hover,
+				&:focus {
+					color:$heading-color;
+				}
+			}
+
+			&.active {
+						
+				a {
+					color:$heading-color;
+
+					&:after {
+						width: 100%;
+					}
+				}
+			}
+
+			&:last-child {
+				margin-right: 0px;
+			}
+		}
+	}
+
+	// Width of additional information on tabs
+
+	#tab-additional_information {
+
+		.wc-tab-inner {
+
+			> div {
+				
+				> h2:first-child {
+					max-width:650px;
+					margin-left:auto;
+					margin-right:auto;
+				}
+			}
+		}
+
+		.shop_attributes {
+			max-width:650px;
+			margin:0 auto;	
+		}
+	}
+
+	.woodmart-dark & {
+
+		li {
+
+			a {
+				color:$scheme-light--body-color;
+
+				&:hover,
+				&:focus {
+					color:$scheme-light--body-color-darken;
+				}
+			}
+
+			&.active {
+						
+				a {
+					color:$scheme-light--body-color-darken;
+				}
+			}
+		}		
+	}
+}
+
+//**
+//* 
+//*  Style accordion
+//**
+
+.woodmart-accordion-title {
+	position: relative;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    color:$light-dark;
+    @extend %title-font;
+
+    &:hover,
+    &.active {
+    	@extend %primary-color;
+    } 
+
+    &:focus:not(.active):not(:hover) {
+    	color:$light-dark;
+    }
+
+    &:after {
+    	@include font-icon($font-Flaticon-arrows);
+    	position: absolute;
+    	right:0;
+    	top:50%;
+    	margin-top: -10px;
+    	height: 20px;
+    	line-height: 20px;
+    	width: 20px;
+    	text-align: center;
+    	font-size: 12px;
+    	color:#bbb;
+    	 
+    	transition:transform 0.4s ease;
+    	-webkit-transition:transform 0.4s ease;
+    	backface-visibility: hidden;
+    	perspective: 800px;
+        -webkit-backface-visibility: hidden;
+    	-webkit-perspective: 800px;
+    }
+
+    &.active {
+
+    	&:after {
+    		transform:rotate(180deg);
+    		-webkit-transform:rotate(180deg);
+    	}
+    }
+
+    .woodmart-dark & {
+    	color:$scheme-light--title-color;
+
+	    &:hover,
+	    &.active {
+	    	@extend %primary-color;
+	    } 
+
+	    &:focus:not(.active):not(:hover) {
+	    	color:$scheme-light--title-color;
+	    }
+
+    	&:after {
+    		color:$scheme-light--body-color-lighten;
+    	}
+    }
+}
+
+.tabs-layout-accordion {
+	border-top:2px solid rgba(119, 119, 119, 0.17);
+
+	.tabs {
+		display: none;
+	}
+
+	.woodmart-tab-wrapper {
+		border-bottom: 1px solid rgba(119, 119, 119, 0.17);
+
+		.wc-tab {
+			padding-bottom: 20px;
+
+			> h2:first-child {
+				display: none;
+			}
+		}
+	}
+
+	.woodmart-scroll {
+		display: flex;
+		flex-direction:column;
+		align-items: stretch;
+		position: relative;
+    	overflow: hidden;
+
+		.woodmart-scroll-content {
+			flex:1 1 auto;
+			position: relative;
+			max-height: 250px;
+			padding-right: 20px;
+			overflow: scroll;
+    		overflow-x: hidden;
+		}
+
+		.woodmart-scroll-pane {
+			right:2px;
+		}
+	}
+
+	#tab-reviews {
+		margin-top: 10px;
+	}
+
+	#tab-reviews {
+
+		.wc-tab-inner {
+
+			.woodmart-scroll-content {
+				max-height: 400px;
+			}
+		}		
+	}
+
+	.woodmart-dark & {
+		border-color: $scheme-light--border-color;
+
+		.woodmart-tab-wrapper {
+			border-color: $scheme-light--border-color;
+		}
+	}
+}
+
+//**
+//* 
+//*  Tabs location standart
+//**
+
+.tabs-location-standard {
+
+	&.reviews-location-separate {
+
+		&.tabs-type-tabs {
+
+			.woocommerce-tabs {
+				padding-bottom: 30px;
+				border-bottom:1px solid;
+				@extend %main-border-color;	
+			}		
+		}
+	}
+
+	&.tabs-type-accordion {
+
+		> div:not(:last-child) {
+			margin-bottom: 25px;
+		}
+
+		.product-tabs-wrapper {
+			padding-top: 25px;
+			padding-bottom: 25px;
+			border-top:none;
+		}
+
+		&:not(.reviews-location-separate),
+		&.meta-location-after_tabs { 
+
+			.product-tabs-wrapper {
+				border-bottom: none;
+			}
+		}
+
+		.woodmart-before-product-tabs {
+			margin-top: -26px;
+		}
+	}
+}
+
+//**
+//* 
+//*  Style accordion in summary
+//**
+
+.tabs-location-summary {
+
+	.product-image-summary {
+
+		.woocommerce-Reviews {
+			flex-direction: column;
+			margin-left: 0px;
+	    	margin-right: 0px;
+
+			#comments,
+			#review_form_wrapper {
+				flex-basis:100%;
+				max-width: 100%;
+			    padding-left: 0;
+			    padding-right: 0;
+			}
+		}
+
+		.commentlist {
+			margin-top: 0;
+			margin-bottom: 20px;
+
+			li:not(:last-child) {
+				padding-bottom: 5px;
+			    margin-bottom: 5px;			
+			}
+		}
+
+		.woocommerce-Reviews-title {
+			display: none;
+		}
+	}
+
+	// .product-tabs-wrapper {
+	// 	margin-top: 40px;
+	// }
+
+	.tabs-layout-accordion {
+		margin-bottom: 25px;
+		margin-top: 10px;
+
+		.woodmart-accordion-title {
+		    padding-top:15px;
+		    padding-bottom:15px;
+		    font-size: 14px;
+		}
+	}
+
+
+	&:not(.reviews-location-separate) {
+
+		.product-tabs-wrapper { // fix space
+		    height: 0;
+		    visibility: hidden;
+		    pointer-events:none;
+		    opacity: 0;
+		    padding: 0;
+		    border: none;
+		    margin: 0;
+		}
+
+		.woodmart-before-product-tabs {
+			margin-top: 0;
+		}
+
+		&:not(.product-has-bg):not(.meta-location-after_tabs) {
+
+			.product-tabs-wrapper {
+				margin-top: -40px;
+			}
+		}
+	}
+
+	&.meta-location-add_to_cart {
+
+		.product_meta {
+		    border-top: none;
+		    padding-top: 0;
+		}
+	}
+}
+
+//**
+//* 
+//*  Tabs and accordion content
+//**
+
+.woocommerce-Tabs-panel {
+	display: none;
+	line-height: 1.6;
+	animation:fadeIn 0.4s ease;
+	-webkit-animation:fadeIn 0.4s ease;	
+
+	.wc-tab-inner {
+
+		> div {
+
+			> h2:first-child {
+			    font-size: 14px;
+			    font-weight: 600;
+			    text-transform: uppercase;	
+			}
+		}
+	}
+}
+
+#tab-additional_information {
+
+	.shop_attributes {
+
+		th,
+		td {
+			padding-left: 0;
+			padding-right: 0;
+
+			p {
+				margin-bottom: 0;
+			}
+		}
+
+		th {
+			text-align: left;
+			font-size: 14px;
+		}
+
+		td {
+			text-align: right;
+		}
+
+		tr {
+
+			&:last-child {
+
+				th,
+				td {
+					border:none;
+				}
+			}
+		}
+	}
+}
+
+#tab-seller {
+
+	ul {
+
+		li {
+			margin-bottom:15px;
+
+			> span {
+				font-weight:600;
+				color:$light-dark;
+			}
+
+			> span.details {
+				font-weight:normal;
+				color: $body-color;
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		ul {
+
+			li {
+
+				> span {
+					color:$scheme-light--body-color-darken;
+				}
+
+				> span.details {
+					color: $scheme-light--body-color;
+				}
+			}
+		}		
+	}
+}
+
+#tab-description,
+#tab-brand_tab,
+#tab-woodmart_additional_tab {
+	line-height: 1.8;
+
+	p {
+		line-height: 1.8;
+	}
+}
+
+
+// ------------------------------------------
+// REVIEWS
+// ------------------------------------------ 
+
+.woocommerce-Reviews {
+	display: flex;
+    flex-direction: row;
+	margin-left: -30px;
+	margin-right: -30px;
+
+	#comments,
+	#review_form_wrapper {
+		flex:0 1 50%;
+		max-width: 50%;
+		padding-left: 30px;
+    	padding-right: 30px;
+	}
+
+	.comment-reply-title,
+	.woocommerce-Reviews-title {
+		font-size: 14px;
+	    text-transform: uppercase;
+	}
+
+	.comment-reply-title {
+		@extend %heading-style;
+	}
+
+	.clear {
+		display: none;
+	}
+}
+
+.comment-respond {
+
+	.stars {
+		display: inline-block;
+		margin-bottom: 0;
+		vertical-align:middle;
+
+		span {
+			display:inline-block;
+		}
+
+		a {
+			margin-right:20px;
+			display:inline-block;
+			font-size:0;
+			letter-spacing: 2px;
+			color:#b1b1b1;
+
+			&:hover {
+				text-decoration:none;
+				color:#eabe12;
+			}
+
+			&:after {
+				font-family: "FontAwesome";
+				font-size:14px;
+				line-height:20px;
+			}
+
+			&.active {
+				color:#eabe12;
+			}
+		}
+
+		.star-1 {
+
+			&:after {
+				content:"\f006";
+			}
+		}
+
+		.star-2 {
+
+			&:after {
+				content:"\f006 \f006";
+			}
+		}
+
+		.star-3 {
+
+			&:after {
+				content:"\f006 \f006 \f006";
+			}
+		}
+
+		.star-4 {
+			
+			&:after {
+				content:"\f006 \f006 \f006 \f006";
+			}
+		}
+
+		.star-5 {
+			
+			&:after {
+				content:"\f006 \f006 \f006 \f006 \f006";
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		.stars {
+
+			a:not(:hover):not(.active) {
+				color:$scheme-light--body-color-lighten;
+			}
+		}
+	}
+}
+
+.commentlist {
+						
+	li {
+		border-bottom:1px solid;
+		@extend %main-border-color;
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+
+		&:last-child {
+			margin-bottom:0;
+			padding-bottom: 0;
+			border:none;
+		}
+	}
+
+	.review_comment_container,
+	.comment_container {
+		padding: 15px 0 15px 0;
+		display: flex;
+	    flex-direction: row;
+	    align-items: flex-start;
+
+		.dokan-review-author-img img,
+		> img {
+			max-width: 60px;
+			border-radius: 50%;
+			margin-right: 20px;
+		}
+	}
+	
+	.comment-text {
+		display: flex;
+	    flex-wrap: wrap;
+	    flex-direction: row;
+	    justify-content: space-between;
+		flex: 1 1 auto;
+
+		.star-rating {
+			order: 2;
+			margin-bottom: 10px;
+			margin-right: 0;
+		}
+
+		.meta {
+			order: 1;
+			line-height: 18px;
+			margin-bottom: 10px;
+			font-size: 14px;
+
+			strong {
+				color:$heading-color;
+			}
+
+			time {
+				font-style: italic;
+			}
+		}
+
+		.description {
+			margin-bottom: 0;
+			order: 3;
+			flex:1 1 100%;
+			max-width: 100%;
+
+			p {
+				margin-bottom: 10px;
+
+				&:last-child {
+					margin-bottom:0;
+				}
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		.comment-text {
+
+			.meta {
+
+				strong {
+					color:$scheme-light--body-color-darken;
+				}
+			}
+		}
+	}
+}
+
+.product-extra-content {
+	margin-bottom: 40px;
+
+	.product-image-summary-wrap + & {
+		margin-top: 35px;
+		margin-bottom: 0;
+	}
+}
+
+.related-and-upsells {
+
+	.owl-carousel {
+		margin-bottom: 35px;
+	}
+
+	> div {
+
+		&:first-child {
+			padding-top: 0;
+			border-top: 0;
+		}
+	}
+
+	&:after,
+	&:before {
+		content:none;
+	}
+
+	&:empty {
+		display: none;
+	}
+}
+
+.woodmart-product-instagram {
+	margin-bottom: 35px;
+	padding-top: 40px;
+	border-top:1px solid;
+	@extend %main-border-color;
+}
+
+.woodmart-products-nav {
+	position:relative;
+    margin-bottom: 10px;
+    font-size: 0;
+
+	.product-btn {
+		display: inline-flex;
+		vertical-align: middle;
+
+		> a {
+			display:block;
+			vertical-align: middle;
+    		font-size: 0;
+    		text-align:center;
+    		line-height:20px;
+    		height: 20px;
+    		width: 20px;
+			color:$light-dark;
+
+			&:hover,
+			&:focus {
+				color:#878787;
+			}
+
+			span {
+				font-size: 12px;
+
+		    	&:before {
+		    		@include font-icon($font-Flaticon-left-arrow-chevron);
+		    		display: inline-block;
+					 
+				}
+		    }
+		}
+
+		&:hover {
+
+			> .wrapper-short {
+				visibility:visible;
+				opacity:1;
+				animation:fadeInLeftShort 0.3s ease both;
+				-webkit-animation:fadeInLeftShort 0.3s ease both;
+				-webkit-transition:
+					opacity .3s ease,
+					visibility .3s ease;
+				transition:
+					opacity .3s ease,
+					visibility .3s ease;
+			}
+		}
+	}
+
+	.product-next {
+
+		> a {
+
+			span {
+
+		    	&:before {
+		    		@include font-icon($font-Flaticon-right-arrow-chevron);
+				}
+			}
+		}
+	}
+
+	.woodmart-back-btn {
+		display: inline-flex;
+		flex-direction: column;
+		justify-content: center;
+	    align-items: center;
+	    line-height: 20px;
+	    height: 20px;
+	    width: 20px;
+	    padding-left: 0;
+	    padding-right: 0;
+	    text-align: center;
+	    vertical-align: middle;
+	    color:$light-dark;
+		
+		&:after {
+			@include font-icon($font-Flaticon-layout);
+			font-size: 14px;
+		}
+
+		&:hover,
+		&:focus {
+			color:#878787;
+		}
+	}
+
+	.wrapper-short {
+		position:absolute;
+		top:100%;
+		right:0;
+		padding-top:10px;
+		visibility:hidden;
+		opacity:0;
+		min-width:240px;
+		z-index:350;
+		animation:fadeOutLeftShort .1s ease .1s both;
+		-webkit-animation:fadeOutLeftShort .1s ease .1s both;
+		-webkit-transition:
+			opacity .1s ease .1s,
+			visibility .1s ease .1s;
+		transition:
+			opacity .1s ease .1s,
+			visibility .1s ease .1s;
+	}
+
+	.product-short {
+		display: flex;
+	    align-items: center;
+	    flex-direction: row;
+		background-color: white;
+		@include shadow-drop-element;
+	}
+
+	.product-short-image {
+
+		img {
+			max-width: 90px;
+		}		
+	}
+
+	.product-short-description {
+		padding: 10px 15px;
+
+		.product-title {
+			display: block;
+		    margin-bottom: 7px;
+    		font-size: 14px;
+		}
+
+		.price {
+			display:block;
+			font-size: 14px;
+			line-height: 1.2;
+		}
+	}
+
+	.woodmart-dark & {
+
+		.product-btn {
+
+			> a {
+				color:$scheme-light--body-color-darken;
+
+				&:hover,
+				&:focus {
+					color:$scheme-light--body-color;
+				}
+			}
+		}	
+
+		.woodmart-back-btn {
+			color:$scheme-light--body-color-darken;
+
+			&:hover,
+			&:focus {
+				color:$scheme-light--body-color;
+			}
+		}
+
+		.product-short {
+			background-color: $scheme-light--background-popup;
+		}	
+	}
+}
+
+.woodmart-product-instagram {
+
+	.product-instagram-intro {
+		font-size: 16px;
+
+		span {
+			color:$light-dark;
+			font-weight: 600;
+		}
+	}
+
+	.woodmart-dark & {
+
+		.product-instagram-intro {
+
+			span {
+				color:$scheme-light--body-color-darken;
+			}
+		}		
+	}
+}

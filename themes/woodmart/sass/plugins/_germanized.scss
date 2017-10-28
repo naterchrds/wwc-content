@@ -1,0 +1,103 @@
+
+/** ------------------------------------------------------------------------------------------------
+* Germanized plagin
+* ------------------------------------------------------------------------------------------------ */
+
+// PRODUCT
+
+.wc-gzd-sale-price-label {
+	font-weight: 600;
+	font-size: 90%;
+	color:$light-dark;
+	margin-right:5px;
+	margin-left:5px;
+}
+
+.product,
+.product-quick-view {
+
+	p.wc-gzd-additional-info {
+		font-size: inherit;
+
+		a {
+			font-weight: 600;
+		}
+	}
+}
+
+// FOOTER INFO
+
+p.footer-info {
+	padding-top: 10px;
+	padding-bottom: 10px;
+    margin-bottom: 0;
+}
+
+// CART PAGE
+
+.cart_totals {
+
+	p.wc-gzd-additional-info {
+		font-size: 90%;
+	    width: 100%;
+	    border-top: none;
+	    padding-top: 15px;
+	    margin-bottom: 0;
+	    display: block;
+	}
+}
+
+// CHECKOUT PAGE
+
+// html[class*="gr__"] {
+
+// 	.woocommerce-checkout-review-order {
+// 	    display: flex;
+// 	    flex-direction: column;
+// 	    align-items: stretch;
+
+// 	    .order_review_heading {
+// 	    	order:1;
+// 	    }
+
+// 	    .responsive-table {
+// 	    	order:2;
+// 	    }
+
+// 	    #order_payment_heading {
+// 	    	order:3;
+// 	    }
+
+// 	    #payment {
+// 	    	order:4;
+// 	    }
+
+// 	    .wc-terms-and-conditions {
+// 	    	order:5;
+// 	    }
+
+// 	    .wc-gzd-order-submit {
+// 	    	order:6;
+// 	    }
+// 	}
+
+// }
+
+#order_payment_heading {
+	text-align: center;
+	@extend %title-size;
+}
+
+#order_review {
+
+	.legal {
+		float: none;
+		padding-right: 0;
+		padding-top: 15px;
+	}
+}
+
+.wc-gzd-edit-data-notice {
+	background-color: #f9f9f9;
+	margin-bottom: 20px;
+}

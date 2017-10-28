@@ -1,0 +1,273 @@
+
+/** ------------------------------------------------------------------------------------------------
+* PRICING TABLE
+* ------------------------------------------------------------------------------------------------ */
+
+.pricing-tables-wrapper {
+	
+	.pricing-tables {
+	    display: flex;
+	    flex-direction: row;
+	    align-items:center;
+	    flex-wrap: wrap;
+	    margin-left: -15px;
+   		margin-right: -15px;
+	}
+}
+
+.woodmart-price-table {
+	position: relative;
+    flex:1 1 230px;
+    margin-bottom: 35px;
+    margin-left: 15px;
+    margin-right: 15px;
+	text-align: center;
+	transition:
+		transform .3s ease;
+	-webkit-transition:
+		transform .3s ease;
+
+	perspective: 800px;
+    backface-visibility: hidden;
+    -webkit-perspective: 800px;
+    -webkit-backface-visibility: hidden;
+
+	.woodmart-plan-name {
+		padding: 15px;
+	}
+
+	.woodmart-plan-title {
+		font-weight: 600;
+		font-size: 20px;
+		color: $heading-color;
+		@extend %title-font;		
+	}
+
+	.woodmart-plan-inner {
+		position: relative;
+		background-color: white;
+		border: 1px solid;
+		@extend %main-border-color;
+		box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.05);
+		transition:
+			box-shadow .3s ease;
+		-webkit-transition:
+			box-shadow .3s ease;
+	}
+
+	.price-label {
+	    position: absolute;
+	    top: -1px;
+	    right: -1px;
+	    overflow: hidden;
+	    text-transform: uppercase;
+	    font-weight: 600;
+	    font-size: 12px;
+	    line-height: 22px;
+	    padding-left: 10px;
+	    padding-right: 10px;
+	    text-align: center;
+	    color: white;
+	    white-space: nowrap;
+	    width: 80px;
+	    height: 80px;
+
+    	> span {
+    		transform: rotate(45deg);
+		    display: block;
+		    background: red;
+		    margin-top: 15px;
+		    margin-left: -15px;
+		    width: 115px;
+    	}
+	}
+
+	.woodmart-plan-price {
+		padding: 15px 20px;
+		line-height: 1;
+	}
+
+	.woodmart-price-currency {
+	    vertical-align: top;
+	    font-size: 28px;
+	    color:$light-dark;	
+	}
+
+	.woodmart-price-value {
+		font-size: 42px;
+	    vertical-align: middle;
+	    font-weight: 600;	
+	    color:$light-dark;	
+	}
+
+	.woodmart-price-suffix {
+		display: block;
+		color:#bbb;
+	    font-size: 16px;
+	    margin-top: 5px;
+	}
+
+	.woodmart-plan-features {
+		padding: 25px;
+		border-bottom: 1px solid;
+		@extend %main-border-color;
+	}
+
+	.woodmart-plan-feature {
+		border-bottom: 1px solid;
+		@extend %main-border-color;
+		color:$body-color;
+	    padding-bottom: 15px;
+	    margin-bottom: 15px;
+
+		&:last-child {
+			padding-bottom: 0px;
+		    margin-bottom: 0px;	
+		    border-bottom:none;
+		}
+	}
+
+	.woodmart-plan-footer {
+	    padding: 20px 15px;
+
+	    .add-to-cart-loop {
+			@extend %buttons-text-replace-icon;
+
+			span:not(.woodmart-tooltip-label) {
+				@include button-size-default;
+			}	
+
+	    	&.added {
+				display: none;
+			}    	
+	    }
+
+	    > a {
+			@include btn-default-primary;
+			@extend %shop-buttons;
+	    }
+	}
+
+	&.label-color-red {
+		
+		.price-label {
+			
+			> span {
+				background-color: #EF4836;
+			}
+		}		
+	}
+
+	&.label-color-green {
+		
+		.price-label {
+
+			> span {
+				background-color: #0fa34c;
+			}
+		}		
+	}
+
+	&.label-color-blue {
+		
+		.price-label {
+
+			> span {
+				background-color: #2a7ce4;
+			}
+		}		
+	}
+
+	&.label-color-yellow {
+		
+		.price-label {
+
+			> span {
+				background-color: #F7CA18;
+			}
+		}		
+	}
+
+	&.price-style-default {
+
+		.woodmart-plan-price {
+			@extend %primary-background;
+			margin-top: -1px;
+			margin-left: -1px;
+			margin-right: -1px;
+
+			> span {
+				color:white;
+			}
+		}
+	}
+
+	&.price-style-alt {
+
+		.woodmart-plan-price {
+			border-bottom:1px solid;
+			@extend %main-border-color;
+		}
+
+		.woodmart-price-currency {
+			@extend %primary-color;	
+		}
+
+		.woodmart-price-value {
+			@extend %primary-color;
+		}
+	}
+
+	&.price-highlighted {
+    	top: -10px;
+
+		.price-label {
+		    top: -2px;
+		    right: -2px;
+		}
+
+		.woodmart-plan-inner {
+			box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.12);
+		}
+
+		.woodmart-plan-inner {
+			border:2px solid;
+			@extend %primary-border;
+		}
+	}
+
+	&:hover {
+		transform:translate3d(0, -10px, 0);
+		-webkit-transform:translate3d(0, -10px, 0);
+
+		.woodmart-plan-inner {
+			box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.12);
+		}
+	}
+
+	.woodmart-dark &,
+	.color-scheme-light & {
+
+		.woodmart-plan-title {
+			color: $scheme-light--title-color;
+		}
+		
+		.woodmart-plan-inner {
+			border-color: $scheme-light--border-color-lighten;
+			background-color: $scheme-light--background-light-dark;
+		}
+
+		.woodmart-price-suffix {
+			color:$scheme-light--body-color-lighten;
+		}
+
+		.woodmart-plan-features {
+			border-color: $scheme-light--border-color-lighten;
+		}
+
+		.woodmart-plan-feature {
+			border-color: $scheme-light--border-color-lighten;
+			color:$scheme-light--body-color;
+		}		
+	}
+}

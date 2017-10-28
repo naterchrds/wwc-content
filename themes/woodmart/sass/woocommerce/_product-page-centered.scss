@@ -1,0 +1,88 @@
+/** ------------------------------------------------------------------------------------------------
+* SINGLE PRODUCT PAGE - ALTERNATIVE
+* ------------------------------------------------------------------------------------------------ */
+
+.product-design-alt {
+
+	.product-image-summary {
+
+		@extend %brand-without-float;
+
+		div[itemprop="description"] {
+			margin-bottom: 20px;
+		}
+
+		.product_meta {
+			margin-bottom: 15px;
+
+			> span {
+			    display: inline-block;
+			    margin-bottom: 5px;
+			    margin-top: 5px;
+			    margin-right: 10px;
+			    margin-left: 10px;
+			    vertical-align: middle;
+			}
+		}
+	}
+	
+	.entry-summary {
+		text-align: center;
+	}
+
+	.woocommerce-variation {
+		margin-top: 0;
+	}
+
+	.woocommerce-variation-price {
+
+		.price {
+			margin-left: 7px;
+			margin-right: 7px;
+		}
+	}
+
+	.woocommerce-variation-availability {
+
+		.stock {
+			margin-left: 7px;
+			margin-right: 7px;
+		}
+	}
+
+	@extend %variation-align-center;
+
+	table.variations {
+
+		.reset_variations {
+			bottom: -30px;
+		}		
+	}
+
+	.compare-btn-wrapper, 
+	.summary-inner > .yith-wcwl-add-to-wishlist {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+    .variation-swatch-selected {
+
+    	.variations {
+    		margin-bottom: 50px;
+    	}
+    }
+
+	&.tabs-location-summary {
+
+		.woodmart-accordion-title {
+
+			&:after {
+				content:none;
+			}
+		}
+
+		.woocommerce-Tabs-panel {
+			text-align: left;
+		}
+	}	
+}

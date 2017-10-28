@@ -1,0 +1,686 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER BASE
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-base {
+	position: relative;
+	margin-bottom: 20px;
+    -webkit-transition: transform .3s ease;
+    transition: transform .3s ease;
+
+	.content-product-imagin {
+		position: absolute;
+	    left: 0px;
+	    right: 0px;
+	    top: -15px;
+	    bottom: 0;
+	    visibility: hidden;
+	    opacity: 0;
+	    background-color: #fff;
+	    -webkit-transform:scale(0.98);
+	    transform:scale(0.98);
+
+	    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.15);
+	    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+	}
+
+	.product-element-top {
+		margin-bottom: 0px;
+	}
+
+	.product-information {
+		position: relative;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	    padding-left: 10px;
+	    padding-right: 10px;
+
+	    &:hover {
+
+	    	.more-details-btn {
+				-webkit-transform: 
+					translateY(0) 
+					translateZ(0);
+			    transform: 
+			    	translateY(0) 
+			    	translateZ(0);
+			}
+	    }
+	}
+
+	&:not(.product-in-carousel) {
+
+		.woodmart-buttons {
+			position: static;
+			flex-direction: row;
+		    justify-content: space-between;
+		    align-items: center;
+			background-color: transparent;
+			box-shadow: none;
+			opacity: 1;
+			@include tooltip-fade-in-top;
+
+			> div {
+
+				a {
+					width: 40px;
+					height: 40px;
+					line-height: 40px;
+				}
+			}
+		}
+	}
+
+	// ADD TO CART BUTON DEFAULT
+
+	&:not(.product-in-carousel):not(.hover-width-small) {
+		
+		// FIX (when wishlist o quick disable)
+		
+		.woodmart-buttons {
+			
+			> div:not(.woodmart-add-btn) {
+				flex: 1 0 0;
+			}
+
+			.wrap-wishlist-button {
+				text-align: left;
+			}
+
+			.wrap-quickview-button {
+				text-align: right;
+			}
+		}
+
+		.woodmart-add-btn {
+
+			> a {
+				@include btn-default-primary;	
+				@extend %shop-buttons;
+				@extend %buttons-text-replace-icon;
+				display: block;
+				width: auto;
+				height: auto;
+
+				span:not(.woodmart-tooltip-label) {
+					@include button-size-small;
+				}
+
+				&.added {
+					display: none;
+				}
+			}
+
+			.added_to_cart {
+				@include button-size-small;
+
+				&:before {
+					content: none;
+				}
+			}
+		}	
+	}
+
+	.catalog-mode-on & {
+
+		.woodmart-buttons {
+	
+			.woodmart-add-btn {
+				display: none;
+			}
+		}
+
+		&:not(.product-in-carousel):not(.hover-width-small) {
+
+			.woodmart-buttons {
+				padding-top: 10px;
+				padding-bottom: 5px;
+				border-top: 1px solid $main-border-color;
+
+				> div {
+					margin-left: 5px;
+					margin-right: 5px;
+					margin-top: 5px;
+					margin-bottom: 5px;
+					flex: 1 1 auto;
+
+					a {
+						width: auto;
+						height: auto;
+						line-height: 1.2;
+						font-size: 14px;
+						font-weight: 600;
+						text-transform: capitalize;
+
+						&:before {
+							vertical-align: middle;
+							margin-right: 5px;
+							font-size: 14px;
+						}
+
+						&:after {
+							left:0;
+						    width: 14px;
+						    height: 14px;
+							margin-left: 0;
+							margin-top: -8px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.catalog-mode-on.woodmart-dark &,
+	.catalog-mode-on .color-scheme-light & {
+
+		&:not(.product-in-carousel):not(.hover-width-small) {
+
+			.woodmart-buttons {
+				border-color:$scheme-light--border-color-lighten;
+			}
+		}
+	}
+
+	.woodmart-product-countdown {
+		display: flex;
+		align-items: stretch;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		padding-top: 5px;
+		border-top: 1px solid $main-border-color;
+		
+		> span {
+			min-width: 0;
+			box-shadow: none;
+			background-color: transparent;
+			flex:1 1 auto;
+		}
+	}
+
+	&:not(.hover-width-small) {
+
+		.woodmart-product-countdown {
+
+			> span {
+				border-right:1px solid $main-border-color;
+
+				&:last-child {
+					border:none;
+				}
+			}
+		}
+	}
+
+	.woodmart-dark &,
+	.color-scheme-light & {
+
+		&:not(.hover-width-small) {
+
+			.woodmart-product-countdown {
+
+				> span {
+					border-color:$scheme-light--border-color-lighten;
+				}
+			}			
+		}
+	}
+
+	.wrapp-swatches {
+		position: absolute;
+		bottom: 0;
+		left:0;
+		right:0;
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+		background-color: rgba(255,255,255,1);
+		border-bottom: 1px solid rgba(0,0,0,0.07);
+		border-top: 1px solid rgba(0,0,0,0.07);
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		-webkit-backface-visibility: hidden;
+    	backface-visibility: hidden;
+
+		-webkit-transform: 
+			translateY(100%) 
+			translateZ(0);
+	    transform: 
+	    	translateY(100%) 
+	    	translateZ(0);
+
+	    -webkit-transition: transform .3s ease;
+	    transition: transform .3s ease;
+
+	    &:empty {
+	    	display:none;
+	    }
+	}
+
+	.swatches-on-grid {
+		margin-bottom: 0;
+	}
+
+	.product-compare-button {
+		flex: 1 1 auto;
+    	text-align: right;
+
+		a {
+			display:inline-block;
+			position: relative;
+			padding: 0;
+	        background-color: transparent;
+	        border:none;
+	        text-decoration:none;
+	        text-align: center;
+	        font-weight: 400;
+	        font-size: 0px;
+	        letter-spacing: 0;
+	        width: 30px;
+	        height: 30px;
+	        line-height: 30px;
+	        color:rgba(0, 0, 0, 0.9);
+
+	        &:before {
+	        	@include font-icon($font-Flaticon-compare);
+	            display:inline-block;
+				font-size: 18px;
+				 
+				-webkit-transition:  
+					opacity .15s ease;
+			    transition: 
+			    	opacity .15s ease;
+	        }
+
+	        &:after {
+	        	@include loader($size:18px, $b-width:1px, $color-loader:#bbbbbb, $color-border: rgb(0,0,0));
+	        	position: absolute;
+				top:50%;
+				left:50%;
+				opacity: 0;
+				margin-left: -9px;
+				margin-top: -9px;
+				-webkit-transition:  
+					opacity .2s ease;
+			    transition: 
+			    	opacity .2s ease;
+	        }
+
+	        .blockOverlay {
+	        	display: none!important; 
+	        }
+
+	        &:hover,
+	        &:focus {
+	        	@extend %primary-color;
+	        	box-shadow: none;
+	        }
+
+	        &.loading {
+
+				&:before {
+					opacity: 0;
+				}
+
+				&:after {
+					opacity: 1;
+					@include act-loader;
+				}
+			}
+		}
+	}
+
+	.hover-content {
+		margin-bottom: 12px;
+		max-height: 88px;
+    	overflow: hidden;
+    	position: relative;
+
+		@extend %alt-table-style;
+	}
+
+	.hover-content-inner {
+		line-height: 22px;
+
+		p {
+			margin-bottom: 0;
+			line-height: 22px;
+		}
+	}
+
+	.show-full-description {
+		max-height: none;
+
+		.more-details-btn {
+			display: none;
+		}
+	}
+
+    .wrapp-product-price {
+	    display: flex;
+	    flex-direction: column-reverse;
+	    align-items: center;
+	    justify-content: flex-end;
+	    -webkit-transition: transform .3s ease;
+	    transition: transform .3s ease;
+    }
+
+	.fade-in-block {
+		position: absolute;
+    	top: 100%;
+    	left: 0;
+    	width: 100%;
+		visibility: hidden;
+		opacity: 0;
+		margin-top: 0px;
+		padding-left: 10px;
+	    padding-right: 10px;
+	    padding-bottom: 10px;
+	}
+
+	.browser-Safari & {
+
+		.fade-in-block {
+			visibility: visible;
+			pointer-events: none;
+		}
+	}
+
+
+	&:hover,
+	&.state-hover {
+
+		.wrapp-swatches {
+			-webkit-transform: 
+				translateY(0) 
+				translateZ(0);
+		    transform: 
+		    	translateY(0) 
+		    	translateZ(0);
+		}
+	}
+
+	&.state-hover {
+
+    	.more-details-btn {
+			-webkit-transform: 
+				translateY(0) 
+				translateZ(0);
+		    transform: 
+		    	translateY(0) 
+		    	translateZ(0);
+		}		
+	}
+
+	&.has-stars.purchasable,
+	&.has-stars.product-type-external {
+
+		.fade-in-block {
+			padding-bottom: 5px;
+		}
+		
+		.product-rating-price {
+			height: 30px;
+			line-height: 30px;
+			overflow: hidden;
+		}
+
+		.wrapp-product-price {
+			height: 60px;
+			transform:
+				translateY(0px)
+				translateZ(0);
+			-webkit-transform:
+				translateY(0px)
+				translateZ(0);
+		}
+
+		.star-rating,
+		.wrapp-product-price .price {
+			line-height: 30px;
+		    height: 30px;
+		    margin-bottom: 0;
+		    overflow: hidden;
+		}
+
+		.woodmart-product-cats {
+			margin-bottom: 0;
+		}
+
+		&:hover,
+		&.state-hover {
+
+			.wrapp-product-price {
+				transform:
+					translateY(-30px)
+					translateZ(0);
+				-webkit-transform:
+					translateY(-30px)
+					translateZ(0);
+			}
+		}
+	}
+
+	&.hover-ready {
+
+		&:hover,
+		&.state-hover {
+			z-index: 20;
+			-webkit-transform: 
+				translateY(-5px) 
+				translateZ(0);
+		    transform: 
+		    	translateY(-5px) 
+		    	translateZ(0);
+
+			.content-product-imagin {
+			    visibility: visible;
+			    opacity: 1;
+			    -webkit-transform:scale(1);
+			    transform:scale(1);
+
+			    -webkit-transition: 
+			    	opacity .3s ease, 
+			    	visibility .0s ease, 
+			    	transform .3s ease;
+			    transition: 
+			    	opacity .3s ease, 
+			    	visibility .0s ease, 
+			    	transform .3s ease;
+			}
+			
+			.swatches-on-grid {
+				bottom:10px;
+				opacity: 1;
+				visibility: visible;
+			}
+
+			.fade-in-block {
+				opacity: 1;
+				visibility: visible;
+
+				-webkit-transform: 
+					translateY(-5px) 
+					translateZ(0);
+			    transform: 
+			    	translateY(-5px) 
+			    	translateZ(0);
+
+			    -webkit-transition: 
+				    opacity .3s ease, 
+				    visibility .0s ease,
+				    transform .3s ease;
+			    transition: 
+				    opacity .3s ease, 
+				    visibility .0s ease,
+				    transform .3s ease;
+			}
+		}
+
+		&.has-stars.purchasable {
+
+			.fade-in-block {
+				-webkit-transform: 
+					translateY(-10px) 
+					translateZ(0);
+			    transform: 
+			    	translateY(-10px) 
+			    	translateZ(0);				
+			}
+		}
+	}
+
+	.browser-Safari & {
+
+		&.hover-ready {
+
+			&:hover,
+			&.state-hover {
+				
+				.fade-in-block {
+					pointer-events: visible;
+				}
+			}
+		}
+	}
+
+	.quick-shop-close {
+		top:-5px;
+	}
+
+	&.loading-quick-shop {
+
+		.wrapp-swatches {
+			-webkit-transform: 
+				translateY(100%) 
+				translateZ(0);
+		    transform: 
+		    	translateY(100%) 
+		    	translateZ(0);
+		}		
+	}
+
+	&.quick-shop-shown {
+
+		.wrapp-swatches {
+			opacity: 0;
+		}
+	}
+
+	&.quick-shop-shown,
+	&.loading-quick-shop {
+
+		.woodmart-buttons {
+			opacity: 1;
+		}
+	}
+
+	.woodmart-dark &,
+	.color-scheme-light & {
+
+		.content-product-imagin {
+			background-color: $scheme-light--background-popup;
+		}
+
+		.wrapp-swatches {
+			background-color: $scheme-light--background-popup;
+			border-color: $scheme-light--border-color-lighten;
+		}
+
+		.product-compare-button {
+
+			a {
+				color: $scheme-light--body-color-darken;
+
+				&:after {
+					border-color:$scheme-light--border-color-lighten;
+					border-left-color: $scheme-light--border-color-white;
+				}
+
+				&:hover,
+				&:focus {
+					color:$scheme-light--body-color;
+				}				
+			}
+		}
+
+		.woodmart-product-countdown {
+			border-color:$scheme-light--border-color-lighten;
+		}
+	}
+
+	&.product-in-carousel {
+		margin-bottom: 10px;
+		overflow: hidden;
+
+		@extend %fade-in-left-buttons;
+
+		.product-information {
+			position: static;
+		}
+
+		.fade-in-block {
+		    position: static;
+		    padding: 0;
+		    opacity: 1;
+			visibility: visible;
+			pointer-events: visible;
+		}
+
+		.hover-content {
+			display: none;
+		}
+
+		&.quick-shop-shown,
+		&.loading-quick-shop {
+
+			.woodmart-buttons {
+				opacity: 0;
+				visibility: hidden;
+			}
+		}
+	}
+
+	&.hover-width-small:not(.product-in-carousel) {
+
+		.woodmart-buttons {
+			overflow: hidden;
+
+			> div {
+				flex:1 1 auto;
+				margin-left: -1px;
+				margin-right: -1px;
+				border-right:1px solid rgba(0,0,0,0.1);
+
+				&:last-child {
+					border-right:none;
+				}
+
+				&:empty {
+					display: none;
+				}
+
+				a {
+					width:auto;
+				}
+			}
+		}
+	}
+
+	.woodmart-dark &,
+	.color-scheme-light & { 
+
+		&.hover-width-small:not(.product-in-carousel) {
+
+			.woodmart-buttons {
+
+				> div {
+					border-color: $scheme-light--border-color-lighten;
+				}
+			}
+		}
+	}
+}

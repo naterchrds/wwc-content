@@ -1,0 +1,114 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER ICONS
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-icons {
+
+	.wrapp-battons {
+		position: absolute;
+		bottom:10px;
+		left:0;
+		right:0;
+		opacity: 0;
+		visibility: hidden;
+		text-align: center;
+
+		transform:translate3d(0,25px,0);
+	    -webkit-transform:translate3d(0,25px,0);
+
+		-webkit-transition:
+			opacity .3s ease,
+			visibility .3s ease,
+			transform .3s ease;
+		transition:
+			opacity .3s ease,
+			visibility .3s ease,
+			transform .3s ease;
+	}
+
+	.woodmart-buttons {
+		position: static;
+		display: inline-flex;
+		align-items: stretch;
+		flex-direction: row;
+		flex-wrap:nowrap;
+		opacity: 1;
+		padding: 0 7px;
+
+		> div {
+
+			a {
+				width: 43px;
+				@include tooltip-fade-in-top;
+			}
+		}
+	}
+
+	&:hover {
+
+		.wrapp-battons {
+			transform:none;
+		    -webkit-transform:none;			
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	&.product-swatched {
+
+		.wrapp-battons {
+			transform:translateY(20px);
+			-webkit-transform:translateY(20px);
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.product-element-top {
+
+			&:hover {
+
+				.wrapp-battons {
+					transform:translateY(0);
+					-webkit-transform:translateY(0);
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+	}
+
+	&.hover-width-small {
+
+		.wrapp-battons {
+			bottom:0;
+		}
+
+		.woodmart-buttons {
+			display:flex;
+			background: rgba(255, 255, 255, 0.9);
+			border-bottom: 1px solid rgba(0,0,0,0.05);
+			border-top: 1px solid rgba(0,0,0,0.05);
+
+			> div {
+				flex:1 1 auto;
+
+				a {
+					width: auto;
+				}
+			}
+		}
+	}
+
+	.woodmart-dark &,
+	.color-scheme-light & {
+
+		&.hover-width-small {
+
+			.woodmart-buttons {
+				background-color: $scheme-light--background-popup;
+				border-color: $scheme-light--border-color-lighten;
+			}
+		}		
+	}
+}

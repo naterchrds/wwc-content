@@ -1,0 +1,548 @@
+
+/* ------------------------------------------------------------------------------------------------
+*  WOODMART FILTERS BY SWATCHES
+* ------------------------------------------------------------------------------------------------*/
+
+.woodmart-woocommerce-layered-nav {
+
+    > .filter-pseudo-link {
+        display: none;
+    }
+
+    .woodmart-scroll {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+
+        &:hover {
+
+            .woodmart-scroll-content {
+
+                &:not(.show-labels-off) {
+
+                    + .woodmart-scroll-pane {
+                        margin-left: 10px;
+                    }
+                } 
+            } 
+        }
+    }
+
+    .woodmart-scroll-content {
+        position: relative;
+        flex: 1 1 auto;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    .woodmart-scroll-pane {
+        position: relative;
+        flex: 0 0 auto;
+    }
+
+    .browser-Firefox &,
+    .browser-Edge &,
+    .browser-Internet & {
+
+        .woodmart-scroll-pane {
+            opacity: 1;
+            margin-left: 0!important;
+        } 
+
+        .woodmart-scroll-content {
+            padding-right: 7px;
+        }
+    }
+
+    .browser-Firefox &,
+    .browser-Internet & {
+
+        .woodmart-scroll-content {
+            margin-right: -19px!important;
+        }          
+    }
+
+    .browser-Edge & {
+
+        .woodmart-scroll-content {
+            margin-right: -15px!important;
+        }   
+    }
+
+    li {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+        margin-bottom: 5px;
+    }
+
+    //** Style of link **//
+
+    .layered-nav-link {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex:1 1 auto;
+        position: relative;
+        padding-right: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        &:after {
+            content:"\f00d";
+            display: none;
+            margin-left: 5px;
+            line-height: 1;
+            font-weight: 400;
+            font-size: 12px;
+            font-family:"FontAwesome";
+        }
+
+        &:hover,
+        &:focus {
+
+            .filter-swatch {
+
+                span {
+
+                    &:after {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            + .count {
+                @extend %counter-style-hover;
+            }
+        }     
+    }
+
+    //** Style of count **//
+
+    .count {
+        @extend %counter-style;
+    }
+
+    //** Swatch wrapp **//
+
+    .swatch-inner {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    //** Style of swatch **//
+
+    .filter-swatch {
+        position: relative;
+        margin-right: 10px;
+        font-size: 0;
+        -webkit-transition:
+            opacity 0.25s ease;
+        transition:
+            opacity 0.25s ease;
+
+        > span {
+            position: relative;
+            display:block;
+            border-radius:50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            vertical-align: middle;
+
+            &[style^="background-image"] {
+                border: 1px solid rgba(0,0,0,0.1);
+            }
+
+            &:after {
+                @include font-icon($font-Flaticon-check);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                font-weight: bold;
+                line-height: 1;
+                color: white;
+                background-color: rgba(0,0,0,0.1);
+                border-radius: 50%;
+                 
+
+                -webkit-transition:
+                    opacity 0.2s ease;
+                transition:
+                    opacity 0.2s ease;
+            }
+        }
+    }
+
+    //** Style of title swatch **//
+
+    .layer-term-name {
+        position: relative;
+        line-height: 1.2;
+        font-size: 14px;
+    }
+
+    //** chosen filter **//
+
+    .chosen {
+
+        .layered-nav-link {
+            font-weight: 600;
+            color: $light-dark;
+
+            &:after {
+                display: block;
+            }
+        }
+
+        .count {
+            @extend %counter-style-hover;
+        }
+
+        .filter-swatch {
+
+            span {
+
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    //**  
+    //** SWATCHES WITH TEXT 
+    //**
+
+    .with-swatch-text {
+
+        .layered-nav-link {
+            font-weight: 600;
+            color:$light-dark;           
+        }
+
+        .layer-term-name {
+            min-width: 20px;
+            text-align: center;
+
+            &:after {
+                content:"";
+                position: absolute;
+                top: 100%;
+                left:0;
+                right:0;
+                height: 2px;
+                margin-top: 1px;
+                opacity: 0;
+                background-color: black;
+                -webkit-transition:all 0.25s ease;
+                transition:all 0.25s ease;
+            }
+        }
+
+        .layered-nav-link {
+            
+            &:hover,
+            &:focus {
+                color:#777;
+            }
+        }
+
+        &.chosen {
+
+            .layer-term-name {
+
+                &:after {
+                    opacity: 1;
+                }
+            }           
+        }
+    }
+
+    //**  
+    //** SWATCHES WITH BRAND 
+    //**
+
+    .swatches-brands {
+        
+        .filter-swatch {
+
+            span {
+                border-radius:0;
+                border: none;
+
+                &:after {
+                    content:none;
+                }
+            }
+        }
+
+        .layered-nav-link {
+
+            &:hover,
+            &:focus {
+
+                .filter-swatch {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        .chosen {
+
+            .layered-nav-link {
+
+                .filter-swatch {
+                    opacity: 0.5;
+                }
+            }          
+        }
+    }
+
+    //**  
+    //** SWATCHES POSITION INLINE
+    //**
+
+    .swatches-display-inline {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        
+        li {
+            margin-right: 10px;
+            
+            &:last-child {
+                margin-bottom: 5px;
+            }
+        }
+
+        .with-swatch-text {
+
+            .layer-term-name {
+                padding-left: 4px;
+                padding-right: 4px;
+                min-width: 0;
+            }
+        }
+
+        .count {
+            border-radius: 50%;
+            font-size: 10px;
+            min-width: 20px;
+        }
+
+        &.swatches-brands {
+                
+            li {
+                margin-right: 20px;  
+            }         
+        }
+
+        &.show-labels-off {
+
+            .with-swatch-text {
+
+                .layer-term-name {
+                    min-width: 25px;
+                }
+            }
+        }
+    }
+
+    //**  
+    //** SWATCHES 2 LINES
+    //**
+
+    .swatches-display-double {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin-left: -5px;
+        margin-right: -5px;
+
+        li {
+            flex:1 1 50%;
+            max-width: 50%;
+            padding-right: 5px;
+            padding-left: 5px;
+
+            &:last-child {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    //**  
+    //** SWATCHES SIZE SMALL
+    //**
+
+    .swatches-small {
+
+        .filter-swatch {
+
+            > span {
+                width: 15px;
+                height: 15px;
+
+                &:after {
+                    font-size: 8px;
+                }
+            }
+        }
+
+        .with-swatch-text {
+
+            .layer-term-name {
+                font-size:14px;
+            }
+        }
+
+        &.swatches-brands {
+            
+            .filter-swatch {
+
+               > span {
+                    width: 45px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+
+    //**  
+    //** SWATCHES SIZE NORMAL
+    //**
+
+    .swatches-normal {
+
+        .filter-swatch {
+
+            > span {
+                width: 25px;
+                height: 25px;
+
+                &:after {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .with-swatch-text {
+
+            .layer-term-name {
+                font-size:16px;
+            }
+        }
+
+        &.swatches-brands {
+            
+            .filter-swatch {
+
+                > span {
+                    width: 60px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+
+    //**  
+    //** SWATCHES SIZE LARGE
+    //**
+
+    .swatches-large {
+
+        .filter-swatch {
+
+            > span {
+                width: 35px;
+                height: 35px;
+
+                &:after {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .with-swatch-text {
+
+            .layer-term-name {
+                font-size:18px;
+            }
+        }
+
+        &.swatches-brands {
+            
+            .filter-swatch {
+
+                > span {
+                    width: 90px;
+                    height: 40px;
+                }
+            }
+        }
+    }
+
+    //**  
+    //** SWATCHES WITHOUT TEXT
+    //**
+
+    .show-labels-off {
+
+        .wc-layered-nav-term:not(.with-swatch-text) {
+
+            .layer-term-name {
+                display: none;
+            }
+        }
+
+        .count {
+            display:none;
+        }
+
+        .filter-swatch {
+            margin-right:0;
+        }
+
+        .layered-nav-link {
+            padding-right: 0;
+
+            &:after {
+                content:none;
+            }
+        }
+    }
+
+    .color-scheme-light &,
+    .woodmart-dark & { 
+
+        .chosen {
+
+            .layered-nav-link {
+                color: white;
+            }
+        }
+
+        .with-swatch-text {
+
+            .layered-nav-link {
+                color:white;           
+            }
+
+            .layer-term-name {
+
+                &:after {
+                    background-color: white;
+                }
+            }
+        }
+    }
+}
+

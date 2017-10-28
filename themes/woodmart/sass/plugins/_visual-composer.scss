@@ -1,0 +1,533 @@
+
+/** ------------------------------------------------------------------------------------------------
+* VISUAL COMPOSER 
+* ------------------------------------------------------------------------------------------------ */
+
+.wpb_single_image .vc_single_image-wrapper.vc_box_shadow, 
+.wpb_single_image .vc_single_image-wrapper.vc_box_shadow img, 
+.wpb_single_image .vc_single_image-wrapper.vc_box_shadow_border,
+.wpb_single_image .vc_single_image-wrapper.vc_box_shadow_border img, 
+.wpb_single_image .vc_single_image-wrapper.vc_box_shadow_border_circle, 
+.wpb_single_image .vc_single_image-wrapper.vc_box_shadow_border_circle img, 
+.wpb_single_image .vc_single_image-wrapper.vc_box_shadow_circle, 
+.wpb_single_image .vc_single_image-wrapper.vc_box_shadow_circle img {
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.12);
+}
+
+// /** ------------------------------------------
+// * ACCORDION V.C.
+// * ------------------------------------------ */
+
+.wpb-js-composer {
+
+    .vc_tta.vc_general {
+
+        &.vc_tta-style-classic {
+
+            // THIS STYLE ONLY TO ACCORDION
+
+            &.vc_tta-accordion {
+
+                .vc_tta-panel-heading {
+                    border:none!important;
+                    margin-top: 0!important;
+                    margin-bottom: 0!important;
+                }
+
+                .vc_tta-panel-title {
+                    font-size: 16px;
+                    font-weight: 600;
+                    @extend %content-font;
+
+                    > a {
+                        padding-top: 18px;
+                        padding-bottom: 18px;
+                    }
+                }
+
+                &.vc_tta-color-white {
+
+                    .vc_tta-panels {
+                        border-top:2px solid rgba(119, 119, 119, 0.17);
+                    }
+
+                    .vc_tta-panel {
+                        border-bottom:1px solid;
+                        @extend %main-border-color;
+
+                        &.vc_active {
+
+                            .vc_tta-panel-title {
+                                
+                                > a {
+                                    color:$light-dark;
+                                }
+                            }
+                        }
+                    }
+
+                    .vc_tta-panel-heading {
+
+                        &:hover {
+                            background-color: transparent;
+                        }
+                    } 
+
+                    .vc_tta-panel-title {
+
+                        > a {
+                            padding-left: 0;
+                            padding-right: 0;
+                        }
+                        
+                        &.vc_tta-controls-icon-position-right {
+
+                            .vc_tta-controls-icon {
+                                right:5px;
+                            }
+
+                            > a {
+                                padding-right: 25px;
+                                padding-left: 5px;
+                            }
+                        }
+
+                        &.vc_tta-controls-icon-position-left {
+
+                            .vc_tta-controls-icon {
+                                left:5px;
+                            }
+
+                            > a {
+                                padding-left: 25px;
+                                padding-right: 5px;
+                            }
+                        }
+
+                        &:hover {
+
+                            > a {
+                                color:$light-dark;
+                            }
+                        }
+                    } 
+
+                    .vc_tta-panel-body {
+                        padding-top: 0;
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        border:none;
+                    }         
+                }
+            }
+
+            // THIS STYLE ONLY TO TABS 
+
+            &.vc_tta-tabs {
+
+                .vc_tta-tabs-container {
+                    position: relative;
+
+                    &:after {
+                        @extend %gradient-hidden-right;
+                    }
+                }
+                
+                .vc_tta-tab {
+
+                    > a {
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        padding-left: 15px;
+                        padding-right: 15px;
+                        border:none;
+                        background-color: transparent;
+                        color: $body-color;
+                        font-size: 16px;
+                        line-height: 1.4;
+                        font-weight: 600;
+                        @extend %title-font; 
+
+                        &:hover {
+                            color:$light-dark;
+                            border:none;
+                            background-color: transparent;
+
+                            .vc_tta-title-text {
+
+                                &:after {
+                                    @extend %scale-link-hover;
+                                }
+                            }
+                        }
+                    }
+
+                    .vc_tta-title-text {
+                        position: relative;
+                        @extend %scale-link-space;
+                        
+                        &:after {
+                            @extend %scale-link-decoration;
+                        }
+                    }
+
+                    &.vc_active {
+                        
+                        > a {
+                            border:none;
+                            background-color: transparent;
+                            color:$light-dark;
+                        }
+
+                        .vc_tta-title-text {
+
+                            &:after {
+                                @extend %scale-link-hover;
+                            }
+                        }
+                    }
+                }
+
+                .vc_tta-panel {
+                    margin: 0px;
+                    overflow: hidden;
+
+                    &.vc_active {
+
+                        .vc_tta-panel-body {
+                            opacity: 1;
+                            visibility: visible;
+                            position: relative;
+                            z-index: 2;
+                            -webkit-transform: translateY(0);
+                            transform: translateY(0);  
+                            transition: 
+                                transform .25s ease .25s,
+                                opacity .25s ease .25s,
+                                visibility .25s ease .25s;
+                            -webkit-transition: 
+                                transform .25s ease .25s,
+                                opacity .25s ease .25s,
+                                visibility .25s ease .25s;                     
+                        }
+                    }
+                }
+
+                .vc_tta-panel-body {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    opacity: 0;
+                    visibility: hidden;
+                    z-index: 1;
+                    -webkit-transform: translateY(20px);
+                    transform: translateY(20px);
+
+                    transition: 
+                        transform 0.25s ease,
+                        opacity 0.25s ease,
+                        visibility 0.25s ease;
+                    -webkit-transition: 
+                        transform 0.25s ease,
+                        opacity 0.25s ease,
+                        visibility 0.25s ease; 
+
+                    height: auto!important;
+                    padding-top: 10px!important;
+                    padding-bottom: 10px!important;
+                    display: block!important;
+                }
+            }
+
+            &.vc_tta-tabs-position-left,
+            &.vc_tta-tabs-position-right,
+            &.vc_tta-tabs-position-bottom {
+                
+                .vc_tta-panel {
+
+                    .vc_tta-panel-body {
+                        -webkit-transform: translateY(10px);
+                        transform: translateY(10px); 
+                    }               
+                }
+            }
+        }
+    }
+}
+
+/** ------------------------------------------
+* VIDEO PLAYER WITH IMAGE ON BG
+* ------------------------------------------ */
+
+.wpb_video_wrapper {
+    position: relative;
+    
+    .woodmart-video-poster-wrapper,
+    .woodmart-video-poster-wrapper:after,
+    .woodmart-video-poster {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+    }
+
+    .woodmart-video-poster-wrapper {
+        position: absolute!important;
+        z-index: 2;
+        cursor: pointer;
+        overflow: hidden;
+
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        perspective: 800px;
+        -webkit-perspective: 800px;
+
+        -webkit-transition:
+            opacity .5s cubic-bezier(0, 0, 0.44, 1.18),
+            visibility .5s cubic-bezier(0, 0, 0.44, 1.18);
+        transition:
+            opacity .5s cubic-bezier(0, 0, 0.44, 1.18),
+            visibility .5s cubic-bezier(0, 0, 0.44, 1.18); 
+
+        &:after {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.15);
+            z-index: 2;
+
+            -webkit-transition:
+                background-color .5s cubic-bezier(0, 0, 0.44, 1.18);
+            transition:
+                background-color .5s cubic-bezier(0, 0, 0.44, 1.18);  
+        }
+
+        &.hidden-poster {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    .woodmart-video-poster {
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat; 
+        margin: -1px; 
+
+        -webkit-transition:
+            transform .5s cubic-bezier(0, 0, 0.44, 1.18);
+        transition:
+            transform .5s cubic-bezier(0, 0, 0.44, 1.18);        
+    }
+
+    .button-play {
+        position: absolute;
+        top:50%;
+        left: 50%;
+        height: 100px;
+        line-height: 95px;
+        width: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+        padding-left: 5px;
+        text-align: center;
+        color:white;
+        border:4px solid rgba(255,255,255,0.4);
+        border-radius: 50%;
+        z-index: 3;
+
+        -webkit-transition:
+            border-color .5s cubic-bezier(0, 0, 0.44, 1.18);
+        transition:
+            border-color .5s cubic-bezier(0, 0, 0.44, 1.18);  
+
+        &:after {
+            @include font-icon($font-Flaticon-button-play-2);
+            display: inline-block;
+            font-size: 32px;
+             
+
+            -webkit-transition:
+                transform .5s cubic-bezier(0, 0, 0.44, 1.18);
+            transition:
+                transform .5s cubic-bezier(0, 0, 0.44, 1.18);  
+        }
+    }
+
+    &:hover {
+
+        .woodmart-video-poster-wrapper {
+
+            &:after {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .button-play {
+            border-color:rgba(255,255,255,0.6);
+
+            &:after {
+                transform: scale(0.8);
+                -webkit-transform: scale(0.8);
+            }
+        }
+
+        .woodmart-video-poster {
+            transform: scale(1.09);
+            -webkit-transform: scale(1.09);             
+        }
+    }
+}
+
+/** ------------------------------------------
+* PARALLAX
+* ------------------------------------------ */
+
+.parallax-yes {
+    background-size: cover;
+}
+
+.attachment_fixed-yes {
+    background-attachment: fixed;
+}
+
+.vc_row {
+    
+    &.woodmart-disable-overflow {
+        overflow:visible;
+    }
+}
+
+/** ------------------------------------------
+* FIX SCROLL IN WULL WIDTH CONTAINER
+* ------------------------------------------ */
+
+.vc_row-full-width {
+    float: left;
+    width: 100%;
+}
+
+/** ------------------------------------------
+* ROW IN ROW, NO PADDING
+* ------------------------------------------ */
+
+.vc_row-no-padding {
+
+    .vc_row-fluid {
+        margin-right:0px;
+        margin-left:0px;
+    }
+}
+
+/** ------------------------------------------
+* FIX MARGIN
+* ------------------------------------------ */
+
+.wpb_widgetised_column {
+
+    > .wpb_wrapper {
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/** ------------------------------------------
+* FIX MARGIN IN WIDGET COLUMN
+* ------------------------------------------ */
+
+.widgetarea-head {
+
+    .wpb_widgetised_column {
+        margin-bottom:0;
+    }
+}
+
+/** ------------------------------------------
+* BG POSITION
+* ------------------------------------------ */
+
+body {
+    
+    .woodmart-bg-left-top,
+    .woodmart-bg-left-top > .vc_column-inner {
+        background-position: left top!important; 
+    }
+
+    .woodmart-bg-left-center,
+    .woodmart-bg-left-center > .vc_column-inner {
+        background-position: left center!important; 
+    }
+
+    .woodmart-bg-left-bottom,
+    .woodmart-bg-left-bottom > .vc_column-inner {
+        background-position: left bottom!important; 
+    }
+
+    .woodmart-bg-right-top,
+    .woodmart-bg-right-top > .vc_column-inner {
+        background-position: right top!important; 
+    }
+
+    .woodmart-bg-right-center,
+    .woodmart-bg-right-center > .vc_column-inner {
+        background-position: right center!important; 
+    }
+
+    .woodmart-bg-right-bottom,
+    .woodmart-bg-right-bottom > .vc_column-inner {
+        background-position: right bottom!important; 
+    }
+
+    .woodmart-bg-center-top,
+    .woodmart-bg-center-top > .vc_column-inner {
+        background-position: center top!important; 
+    }
+
+    .woodmart-bg-center-center,
+    .woodmart-bg-center-center > .vc_column-inner {
+        background-position: center center!important; 
+    }
+
+    .woodmart-bg-center-bottom,
+    .woodmart-bg-center-bottom > .vc_column-inner {
+        background-position: center bottom!important; 
+    }  
+}
+
+/** ------------------------------------------
+* FULL WIDTH ROW AND SECTION
+* ------------------------------------------ */
+
+// 95vw it is width of container
+
+.vc_row[data-vc-full-width], 
+section[data-vc-full-width] {
+    box-sizing: border-box;
+    position: relative;
+    width:100vw;
+    left: calc((-100vw - -95vw) / 2);
+}
+
+.vc_row[data-vc-full-width]:not([data-vc-stretch-content]), 
+section[data-vc-full-width]:not([data-vc-stretch-content]) {
+    padding-left: calc((100vw - 95vw) / 2);
+    padding-right: calc((100vw - 95vw) / 2);
+}
+
+.platform-Windows {
+
+    .vc_row[data-vc-full-width], 
+    section[data-vc-full-width] {
+        width:calc(100vw - #{$width-scrollbar-windows});
+    }
+}
+
+.browser-Edge {
+
+    .vc_row[data-vc-full-width], 
+    section[data-vc-full-width] {
+        width:calc(100vw - #{$width-scrollbar-windows-edge});
+    }      
+}

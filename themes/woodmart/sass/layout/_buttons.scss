@@ -1,0 +1,454 @@
+
+/** ------------------------------------------------------------------------------------------------
+* BUTTONS / #woodmart-button
+* ------------------------------------------------------------------------------------------------ */
+
+.btn,
+.button,
+ button,
+.added_to_cart,
+[type="submit"],
+[type="button"] {
+	@include button-size-default;
+	@include btn-default-grey;
+	@include default-button;
+
+	i {
+		margin-left:3px;
+	}
+
+	&[disabled] {
+		opacity: 0.6!important;
+	}
+
+	//****  COLOR BOTTON  ****//
+
+	&.btn-color-default {
+		@include btn-default-grey;
+	}
+
+	&.btn-color-black {
+		@include btn-default-black;
+	}
+
+	&.btn-color-white {
+		@include btn-default-white;
+	}
+
+	&.btn-color-alt {
+		@include btn-default-alternative;
+	}
+
+	&.btn-color-primary {
+		@include btn-default-primary;
+	}
+
+	// //****  STYLE BOTTON  ****//
+
+	// &.btn-style-bordered {
+	// 	@include border-button;
+	// }
+
+	// &.btn-style-link {
+	// 	@include link-button;
+	// }
+
+	// &.btn-style-round {
+	// 	@include round-button;
+	// }
+
+	// &.btn-style-3d {
+	// 	@include button-3d;
+	// }
+
+	// &.btn-full-width {
+	// 	@include full-width-button;
+	// }
+}
+
+body {
+
+	.btn,
+	.button,
+	 button,
+	.added_to_cart,
+	[type="submit"],
+	[type="button"] {
+		
+		&.btn-style-bordered {
+			@include border-button;
+		}
+
+		&.btn-style-link {
+			@include link-button;
+		}
+
+		&.btn-style-round {
+			@include round-button;
+		}
+
+		&.btn-style-3d {
+			@include button-3d;
+		}
+
+		&.btn-full-width {
+			@include full-width-button;
+		}
+	}
+}
+
+//****  SIZE BOTTON  ****//
+
+.btn-size-extra-small {
+	@include button-size-extra-small;
+}
+
+.btn-size-small {
+	@include button-size-small;
+}
+
+.btn-size-default {
+	@include button-size-default;
+}
+
+.btn-size-large {
+	@include button-size-large;
+}
+
+.btn-size-extra-large {
+	@include button-size-x-large;
+}
+
+//****  STYLE BOTTON  ****//
+
+.btn-style-bordered {
+
+	// size bordered button
+
+	&.btn-size-extra-small {
+		@include button-border-size-extra-small;
+	}
+
+	&.btn-size-small {
+		@include button-border-size-small;
+	}
+
+	&.btn-size-default {
+		@include button-border-size-default;
+	}
+
+	&.btn-size-large {
+		@include button-border-size-large;
+	}
+
+	&.btn-size-extra-large {
+		@include button-border-size-x-large;
+	}
+
+	&.btn-color-default {
+		@include btn-bordered-grey;
+	}	
+
+	&.btn-color-primary {
+		@include btn-bordered-primary;
+	}
+
+	&.btn-color-alt {
+		@include btn-bordered-alternative;
+	}
+
+	&.btn-color-black {
+		@include btn-bordered-black;
+	}
+
+	&.btn-color-white {
+		@include btn-bordered-white;
+	}
+}
+
+.btn-style-link {
+
+	&.btn-color-default {
+		@include btn-link-grey;
+	}	
+
+	&.btn-color-primary {
+		@include btn-link-primary;
+	}
+
+	&.btn-color-alt {
+		@include btn-link-alternative;
+	}
+
+	&.btn-color-black {
+		@include btn-link-black;
+	}
+
+	&.btn-color-white {
+		@include btn-link-white;
+	}
+}
+
+.btn-style-3d {
+
+	&.btn-color-black {
+		@include btn-3d-black;
+	}	
+}
+
+//**** BOTTON DEFAULT ****//
+
+// @extend %default-buttons;
+
+.btns-default-rounded,
+.btns-default-flat {
+	
+	%default-buttons {
+		
+		&:hover,
+		&:focus {
+			box-shadow: none;
+		}
+	}	
+}
+
+.btns-default-3d {
+
+	%default-buttons {
+		@include button-3d;
+
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+	}
+}
+
+.btns-default-rounded {
+	
+	%default-buttons {
+		@include round-button;
+	}	
+}
+
+.btns-default-light {
+
+	%default-buttons {
+		color:white;
+	}	
+}
+
+.btns-default-hover-light {
+
+	%default-buttons {
+
+		&:hover,
+		&:focus {
+			color:white;
+		}
+	}
+}
+
+.btns-default-dark {
+
+	%default-buttons {
+		color:$light-dark;
+	}	
+}
+
+.btns-default-hover-dark {
+
+	%default-buttons {
+
+		&:hover,
+		&:focus {
+			color:$light-dark;
+		}
+	}
+}
+
+//**** BOTTON SHOP ****//
+
+// @extend %shop-buttons;
+
+
+.btns-shop-flat,
+.btns-shop-rounded {
+	
+	%shop-buttons {
+		
+		&:hover,
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}
+
+.btns-shop-3d {
+
+	%shop-buttons {
+		@include button-3d;
+
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+	}
+}
+
+.btns-shop-rounded {
+	
+	%shop-buttons {
+		@include round-button;
+	}	
+}
+
+.btns-shop-light {
+
+	%shop-buttons {
+		color:white;
+	}	
+}
+
+.btns-shop-hover-light {
+
+	%shop-buttons {
+
+		&:hover,
+		&:focus {
+			color:white;
+		}
+	}
+}
+
+.btns-shop-dark {
+
+	%shop-buttons {
+		color:$light-dark;
+	}	
+}
+
+.btns-shop-hover-dark {
+
+	%shop-buttons {
+
+		&:hover,
+		&:focus {
+			color:$light-dark;
+		}
+	}
+}
+
+//**** BOTTON ACCENT ****//
+
+// @extend %accent-buttons;
+
+.btns-accent-flat,
+.btns-accent-rounded {
+	
+	%accent-buttons {
+		
+		&:hover,
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}
+
+.btns-accent-flat {
+
+}
+
+.btns-accent-3d {
+
+	%accent-buttons {
+		@include button-3d;
+
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+	}
+}
+
+.btns-accent-rounded {
+	
+	%accent-buttons {
+		@include round-button;
+	}	
+}
+
+.btns-accent-light {
+
+	%accent-buttons {
+		color:white;
+	}	
+}
+
+.btns-accent-hover-light {
+
+	%accent-buttons {
+
+		&:hover,
+		&:focus {
+			color:white;
+		}
+	}
+}
+
+.btns-accent-dark {
+
+	%accent-buttons {
+		color:$light-dark;
+	}	
+}
+
+.btns-accent-hover-dark {
+
+	%accent-buttons {
+
+		&:hover,
+		&:focus {
+			color:$light-dark;
+		}
+	}
+}
+
+
+///////////
+////
+// ELEMENT BUTTON
+//////
+///
+
+.woodmart-button-wrapper {
+
+	&.btn-inline {
+		display: inline-block;
+		margin-bottom: 10px;
+		margin-right: 10px;
+	}
+}
+
+.text-center {
+
+	.woodmart-button-wrapper {
+
+		&.btn-inline {
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+	}
+}
+
+.text-right {
+
+	.woodmart-button-wrapper {
+
+		&.btn-inline {
+			margin-left: 10px;
+			margin-right: 0;
+		}
+	}
+}
+

@@ -1,0 +1,1138 @@
+/*
+ Theme Name:   Woodmart Child
+ Description:  Woodmart Child Theme
+ Author:       XTemos
+ Author URI:   http://xtemos.com
+ Template:     woodmart
+ Version:      1.0.0
+ Text Domain:  woodmart
+*/
+.woodmart-title-style-simple.woodmart-title-color-default .liner-continer:after {
+    background-color: rgba(255,56,0,0.75);
+}
+
+body {
+	margin:0;
+    padding:0;
+    overflow-y: scroll;
+    transform-origin: 50% 50% 0;
+    background-color: transparent;
+}
+
+.vc_column-inner vc_custom_1505163488657 {
+	background-color: #222222 !important;
+}
+
+
+a.cookies-accept-btn{
+
+	background-color: black !important;
+}
+
+
+
+div#contact-info-right.wpb_column.vc_column_container.vc_col-sm-4.vc_col-has-fill {
+	background-color: #222222;
+	margin-top: -30px;
+	margin-bottom: -30px;
+	right: -30px;
+}
+
+
+
+
+
+
+body.page-id-655.woodmart-google-map-content-wrap > .woodmart-google-map-content {
+    padding: 30px;
+    margin: 0 auto;
+    background-color: white;
+    -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.22);
+    max-width: 300px;
+    width: 100%;
+    z-index: 6;
+    top: 0px;
+    left: 0px;
+    position: relative;
+    display: block;
+}
+
+.woodmart-threed-view .nav_bar {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    margin-left: -42px;
+    z-index: 1001;
+    background-color: white;
+    -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+}
+	
+
+div.woodmart-threed-view {
+	
+    overflow: visible;
+}
+/*div.woodmart-threed-view.kaysville-view-popout-med {
+
+	
+    width: 100%;
+    height: 400px           m mm         
+}
+
+
+div.woodmart-threed-view.kaysville-view-popout-med > img{
+
+	
+
+}*/
+
+/*.kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 {
+    overflow: hidden;
+    height: 475px;
+   
+}*/
+
+/*.kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 > img {
+    width: 400px;
+    height: 268px;
+   
+}*/
+
+.woodmart-threed-view .nav_bar {
+    position: absolute;
+    left: 50%;
+    margin-left: -42px;
+    z-index: 1001;
+    background-color: white;
+    -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.woodmart-threed-view .threed-title {
+    position: relative;
+    z-index: 40;
+    text-align: center;
+    top: -10px;
+    visibility: hidden;
+}
+
+ul.threed-view-images {
+	width: 710px;
+    display: inline !important;
+}
+
+/*.woodmart-threed-view .threed-view-images img {
+
+   
+}*/
+
+.vc_column-inner.vc_custom_1505268108422 {
+    padding-top: 0;
+}
+
+div#kays-popout-view.mfp-with-anim.woodmart-content-popup {
+    background: transparent;
+    position: relative;
+    left: 0%;
+    margin: 0 auto;
+    top: 15%;
+}
+
+div#gallery_368.woodmart-images-gallery.woodmart-spacing-0.gallery-spacing-0.columns-3.view-carousel.photoswipe-images {
+
+	width: 400px;
+    height: 400px;
+}
+
+.header-menu-top.header-has-no-bg .navigation-wrap {
+
+    display:none!important;
+
+}    
+
+body.page-id-67 {
+
+    overflow: auto;
+}
+
+#popuppress-1671 .pps-content {
+    padding: 0px;
+    display: flex;
+    flex: 1;
+    flex-basis: 600px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pps-popup .pps-iframe iframe, .pps-popup .pps-pdf > iframe {
+    display: flex;
+    flex: 1;
+    width: 640px;
+}
+
+iframe > .labeldesc.custom_padding10.custom_textAlignJustify {
+    padding: 10px;
+}
+
+a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+    background: #38a3f4;
+    color: white;
+    font-family: Lato;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 700;
+    border: 2px solid #38a3f4;
+    width: auto;
+    padding: 11px 26px 11px 28px;
+}
+
+.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup:hover {
+
+    background: transparent;
+    color: #38a3f4;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}   
+
+
+/*a#slide-115-layer-71:after {
+  
+    content: " ";
+    border-top: 27px solid transparent;
+    border-left: 26px solid #38a3f4;
+    border-bottom: 24px solid transparent;
+    border-right: 25px solid transparent;
+    width:0px;
+    height:0px;  
+  
+}*/
+
+/*a#slide-115-layer-45:before {
+
+    content: " ";
+    border-top: 27px solid transparent;
+    border-left: 25px solid transparent;
+    border-bottom: 24px solid transparent;
+    border-right: 26px solid #e54e23;
+    width:0px;
+    height:0px;
+  
+}*/
+.scrollToTop.button-show {
+    pointer-events: visible;
+    opacity: 1;
+    transform: none;
+    -webkit-transform: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.scrollToTop:after {
+    content: "UP";
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: bold;
+    line-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vc_column-inner.vc_custom_1505163488657 {
+    background-color: #333;
+}
+
+.woodmart-social-icons.icons-design-colored .woodmart-social-icon.social-email a {
+    background-color: #F89A1E;
+    display: none;
+}
+
+.woodmart-social-icons.icons-design-colored .woodmart-social-icon.social-instagram a {
+    background-color: #774430;
+    display: none;
+}
+
+
+@media only screen and (min-width: 1025px) {
+
+    body.page-id-614 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: 20px;
+        bottom: 24px;
+        padding: 10px 20px;
+        font-size: 16px;
+        position: absolute;
+
+    }  
+
+    body.page-id-52 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        left: -30px;
+        bottom: -46px;
+        padding: 6px 12px;
+        font-size: 12px;
+        position: absolute;
+
+    }    
+
+    body.page-id-1877 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        left: -30px;
+        bottom: -46px;
+        padding: 6px 12px;
+        font-size: 12px;
+        position: absolute;
+
+    }
+
+    div#slider-40-layer-182 {
+        right: -70px;
+        bottom: 4px;
+    }
+
+    div#slider-40-layer-184 {
+        right: -70px;
+        bottom: 4px;
+    }
+
+    body.page-id-1877 div#slide-133-layer-33 {
+        top: 100px;
+        left: -50px;
+    }
+
+    body.page-id-1877 p#slide-133-layer-32 {
+        font-size: 16px !important;
+        padding: 15px !important;
+        margin: 5px !important;
+    }
+
+    body.page-id-1877 p#slide-133-layer-35 {
+        font-size: 16px !important;
+        padding: 15px !important;
+        margin: 5px !important;
+    }
+
+    body.page-id-1877 h2#slide-133-layer-31 {
+        font-size: 22px !important;
+    }
+
+
+
+} 
+
+
+@media only screen and (max-width: 1024px) {
+
+    a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        padding: 10px 15px;
+        font-size: 12px;
+        line-height: 12px;
+        position: absolute;
+        transform-origin: 50% 50% 0px;
+        right: 0;
+        bottom: -9%;
+    }
+
+    body.page-id-52 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: 20px;
+        bottom: 24px;
+        padding: 10px 15px;
+        font-size: 16px;
+        position: absolute;
+
+    } 
+
+    body.page-id-1877 p#slide-133-layer-32 {
+        font-size: 16px !important;
+        padding: 15px !important;
+        margin: 5px !important;
+    }
+
+    body.page-id-1877 p#slide-133-layer-35 {
+        font-size: 16px !important;
+        padding: 15px !important;
+        margin: 5px !important;
+    }
+
+    body.page-id-1877 h2#slide-133-layer-31 {
+        font-size: 22px !important;
+    }
+
+
+} 
+
+@media only screen and (device-width: 1024px) {
+
+    a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: 20px;
+    }  
+
+    div#slider-40-layer-182 {
+        right: -200px;
+    }
+
+    div#slider-40-layer-184 {
+        right: -200px;
+    }
+
+    body.page-id-52 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: -268px;
+        bottom: 1px;
+        padding: 8px 12px;
+        font-size: 14px;
+        position: absolute;
+
+    } 
+
+    body.page-id-52 div#slider-49-layer-224 {
+        display: none;
+    }
+
+    body.page-id-614 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        right: 15px;
+        bottom: 15px;
+    }
+    body.page-id-614 div#slider-46-layer-176 {
+        right: -150px;
+        font-size:16px !important;
+    }
+
+    body.page-id-614 div#slider-46-layer-222 {
+        right: -190px;
+        font-size:16px !important;
+    }
+
+    body.page-id-614 div#slider-46-layer-223 {
+        right: -187px;
+        font-size:16px !important;
+    }
+
+    body.page-id-614 div#slider-46-layer-175 {
+        right: -160px;
+        font-size:16px !important;
+    }
+
+    body.page-id-52 div#slider-49-layer-176 {
+        right: -270px;
+        font-size:16px !important;
+        bottom: 50px;
+    }
+
+    body.page-id-52 div#slider-49-layer-222 {
+        right: -274px;
+        font-size:16px !important;
+        bottom: 50px;
+    }
+
+    body.page-id-52 div#slider-49-layer-223 {
+        right: -254px;
+        font-size:16px !important;
+        bottom: 50px;
+    }
+
+    body.page-id-52 div#slider-49-layer-175 {
+        right: -250px;
+        font-size:16px !important;
+        bottom: 50px;
+    }
+
+    body.page-id-1877 div#slider-47-layer-176 {
+        right: -100px;
+        font-size: 14px !important;
+        bottom: -5px;
+    }
+
+    body.page-id-1877 div#slider-47-layer-222 {
+        right: -120px;
+        bottom: -5px;
+        font-size: 14px !important;
+    }
+
+    body.page-id-1877 div#slider-47-layer-223 {
+        right: -87px;
+        font-size: 14px !important;
+        bottom: -5px;
+    }
+
+    body.page-id-1877 div#slider-47-layer-175 {
+        right: -80px;
+        font-size: 14px !important;
+        bottom: -5px;
+    }
+    body.page-id-1877 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        right: -100px;
+        bottom: -54px;
+    }
+
+    body.page-id-1877 div#slide-132-layer-63 {
+        top: 158px;
+        left: -210px;
+        border-left: 4px solid rgb(229, 78, 35) !important;
+        position: absolute;
+        display: flex;
+        z-index: 1001 !important;
+    }
+
+    body.page-id-1877 div#slide-132-layer-25 {
+        top: 200px;
+        left: -210px;
+    }
+
+    body.page-id-1877 div#slide-132-layer-26 {
+        top: 200px;
+        left: -210px;
+    }
+
+    body.page-id-1877 div#slide-132-layer-51 {
+        top: 160px;
+        left: -80px;
+    }
+
+    body.page-id-1877 div#slide-132-layer-39 {
+        top: 161px;
+        left: -80px;
+    }
+
+    body.page-id-1877 div#slide-134-layer-33 {
+        bottom: 50px;
+        left: -80px;
+    }
+
+    body.page-id-1877 h2#slide-134-layer-31 {
+        font-size: 22px !important;
+    }
+
+    body.page-id-1877 h2#slide-133-layer-31 {
+        font-size: 22px !important;
+    }
+
+   body.page-id-1877 p#slide-134-layer-32 {
+        font-size: 14px !important;
+        padding: 15px !important;
+        margin: 5px !important;
+    }
+
+    body.page-id-1877 p#slide-134-layer-35 {
+        font-size: 14px !important;
+        padding: 15px !important;
+        margin: 5px !important;
+    }
+
+    body.page-id-1877 div#slide-134-layer-42 > .tp-element-background{
+        height: 100% !important;
+        width: 100% !important;
+    }
+
+    body.page-id-1877 div#slide-134-layer-41 {
+        top: 10px;
+        left: -60px;
+    }
+
+    body.page-id-1877 div#slide-134-layer-42 {
+        top: 10px;
+    }
+
+    body.page-id-1877 div#slide-134-layer-43 {
+        top: -60px;
+    }
+
+    body.page-id-1877 div#slide-134-layer-44 {
+        top: -60px;
+        left: -60px;
+    }
+
+    body.page-id-1877 div#slide-134-layer-40 {
+        top: 10px;
+        left: -125px;
+    }
+
+    body.page-id-1877 div#slide-134-layer-45 {
+        top: -60px;
+        left: -125px;
+    }
+
+    body.page-id-1877 div#slide-133-layer-33 {
+        left: -90px;
+        top: -7px;
+    }
+
+    body.page-id-1877 div#slide-133-layer-29 {
+        top: 20px;
+        font-size: 14px !important;
+        left: -40px;
+    }
+
+    body.page-id-1877 div#slide-133-layer-30 {
+        top: 20px;
+        font-size: 14px !important;
+        left: -45px;
+    }
+
+} 
+
+@media only screen and (max-width: 778px) {
+
+    a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        padding: 10px 15px;
+        font-size: 12px;
+        line-height: 12px;
+        position: absolute;
+        transform-origin: 50% 50% 0px;
+        right: 0;
+        bottom: 33%;
+    }
+
+    body.page-id-614 div#slider-46-layer-176 {
+        right: -30px;
+        font-size: 16px !important;
+        top: -20px;
+    }
+
+    body.page-id-614 div#slider-46-layer-222 {
+        right: 30px;
+        font-size: 16px !important;
+        top: -20px;
+    }
+
+    body.page-id-614 div#slider-46-layer-223 {
+        right: 30px;
+        font-size:16px !important;
+        top: -10px;
+    }
+
+    body.page-id-614 div#slider-46-layer-175 {
+        right: -30px;
+        font-size:16px !important;
+        top: -10px;
+    }
+
+
+    
+
+} 
+
+@media only screen and (max-width: 768px) {
+
+    a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        padding: 10px 15px;
+        font-size: 12px;
+        line-height: 12px;
+        position: absolute;
+        transform-origin: 50% 50% 0px;
+        right: 0;
+        bottom: 33%;
+    }
+
+    body.page-id-52 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: 35px;
+        bottom: -5px;
+        padding: 10px 15px;
+        font-size: 14px;
+        position: absolute;
+
+    } 
+
+    .kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 {
+        display: flex;
+        flex: 1;
+        height: 370px;
+        width: 100%;
+        margin: 130px 0px 130px 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    body.page-id-52 {
+
+        overflow-y: scroll;
+        background: black !important;
+        padding: 0;
+
+    }
+
+    body.page-id-1877 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: 35px;
+        bottom: -5px;
+        padding: 10px 15px;
+        font-size: 14px;
+        position: absolute;
+
+    }
+
+    i.fa-icon-caret-left.rs-woodmart-layout-full-screen-rs-133-rs-beforeafter-shift.rs-woodmart-layout-full-screen-rs-133-rs-beforeafter-bounce-left {
+        transform: translateX(-10px);
+        padding: 0px 10px;
+        font-size: 30px;
+    }
+
+
+    i.fa-icon-caret-right.rs-woodmart-layout-full-screen-rs-133-rs-beforeafter-shift.rs-woodmart-layout-full-screen-rs-133-rs-beforeafter-bounce-right {
+        transform: translateX(-10px);
+        padding: 0px 10px;
+        font-size: 30px;
+
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        border-radius: 45px !important;
+        padding: 5px !important;
+        height: 50px !important;
+    }
+
+    .rs-addon-beforeafter-line {
+        display: block;
+        position: absolute;
+        z-index: 20;
+        height: 52vh !important;
+        transform: translateY(304px);
+        width: 4px !important;
+        background: black !important;
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        z-index: 20;
+    }
+
+
+
+}  
+
+
+
+
+
+@media only screen and (max-width: 480px) {
+
+    body.page-id-52 {
+
+        overflow-y: scroll;
+        background: black !important;
+        padding: 0;
+
+    }
+
+    /*a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        transform-origin: 50% 50% 0px;
+        right: 36%;
+        display: flex;
+        position: absolute;
+        padding: 15px 20px;
+    }*/
+
+    body.page-id-614 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        right: 153px;
+        bottom: 123px;
+        padding: 15px 30px;
+        font-size: 16px;
+        position: absolute;
+        background: transparent;
+
+    }
+
+    body.page-id-52 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: 180px;
+        bottom: 3px;
+        padding: 10px 15px;
+        font-size: 14px;
+        position: absolute;
+
+    }
+
+    .woodmart-threed-view .threed-view-images img {
+
+        height: auto !important;
+       
+    }
+
+    .woodmart-threed-view .nav_bar {
+
+        top: 206px;
+    }
+
+    div#bldg-const-popout {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+        height: auto;
+        justify-content: flex-start;
+        align-items: center;
+        margin: auto 0;
+    }
+
+    .kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 {
+        display: flex;
+        flex: 1;
+        height: 370px;
+        width: 100%;
+        margin: -260px 0px 130px 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .woodmart-threed-view .nav_bar a {
+        display: inline-block;
+        width: 42px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 0px;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        background-color: #e54e23;
+    }
+
+    body.page-id-1877 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: 38%;
+        bottom: -1px;
+        padding: 8px 12px;
+        font-size: 12px;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+
+    }
+
+    .rs-addon-beforeafter-line {
+        display: block;
+        position: absolute;
+        z-index: 20;
+        height: 50vh !important;
+        transform: translateY(215px);
+        width: 4px !important;
+        background: black !important;
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        z-index: 20;
+    }
+
+    body.page-id-1877 div#slide-133-layer-29 {
+        font-size: 14px !important;
+    }
+
+    body.page-id-1877 div#slide-133-layer-30 {
+        font-size: 20px !important;
+        left: -30px;
+        top: 2px;
+    }
+
+    i.fa-icon-caret-left.rs-woodmart-layout-full-screen-rs-133-rs-beforeafter-shift.rs-woodmart-layout-full-screen-rs-133-rs-beforeafter-bounce-left {
+        transform: translateX(-10px);
+        padding: 0px 10px;
+        font-size: 30px;
+    }
+
+
+    i.fa-icon-caret-right.rs-woodmart-layout-full-screen-rs-133-rs-beforeafter-shift.rs-woodmart-layout-full-screen-rs-133-rs-beforeafter-bounce-right {
+        transform: translateX(-10px);
+        padding: 0px 10px;
+        font-size: 30px;
+
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        border-radius: 45px !important;
+        padding: 5px !important;
+        height: 50px !important;
+    }
+
+    div#popuppress-2146 {
+        left: -75px;
+    }
+
+
+}
+
+@media only screen and (device-width: 414px) {
+
+
+    body.page-id-614 {
+
+        overflow-y: scroll;
+        background: black !important;
+        padding: 0;
+
+    }
+
+    .kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 {
+
+        margin: -200px 0px 90px 0px;
+
+    }
+
+    body.page-id-614 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+
+        right: 154px;
+        bottom: 123px;
+        padding: 15px 30px;
+        font-size: 16px;
+        position: absolute;
+        background: transparent;
+
+    }
+
+    body.page-id-1877 a.btn.btn-color-white.btn-style-link.btn-size-large.woodmart-open-popup {
+        top: -14px;
+        left: -10px;
+        font-size: 8px !important;
+        padding: 0px;
+        border:none !important;
+    }
+
+    .rs-addon-beforeafter-line {
+        display: block;
+        position: absolute;
+        z-index: 20;
+        height: 50vh !important;
+        transform: translateY(215px);
+        width: 4px !important;
+        background: black !important;
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        z-index: 20;
+    }
+
+    body.page-id-1877 div#slide-133-layer-29 {
+        font-size: 14px !important;
+    }
+
+    body.page-id-1877 div#slide-133-layer-30 {
+        font-size: 20px !important;
+        left: -30px;
+        top: 2px;
+    }
+
+} 
+
+@media only screen and (device-width: 412px) {
+
+
+    .kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 {
+
+        margin: -160px 0px 110px 0px;
+
+    }
+
+    body.page-id-1877 a.btn.btn-color-white.btn-style-link.btn-size-large.woodmart-open-popup {
+        top: -14px;
+        left: -10px;
+        font-size: 8px !important;
+        padding: 0px;
+        border:none !important;
+    }
+
+    .rs-addon-beforeafter-line {
+        display: block;
+        position: absolute;
+        z-index: 20;
+        height: 55vh !important;
+        transform: translateY(185px);
+        width: 4px !important;
+        background: black !important;
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        z-index: 20;
+    }
+
+    body.page-id-1877 div#slide-133-layer-29 {
+        font-size: 14px !important;
+    }
+
+    body.page-id-1877 div#slide-133-layer-30 {
+        font-size: 20px !important;
+        left: -30px;
+        top: 2px;
+    }
+
+}  
+
+@media only screen and (device-width: 375px) {
+
+    a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        transform-origin: 50% 50% 0px;
+        right: 36%;
+        display: flex;
+        position: absolute;
+        padding: 15px 20px;
+
+    }
+
+    body.page-id-614 {
+
+        overflow-y: scroll;
+
+    }
+
+    .woodmart-threed-view .nav_bar {
+
+        top: 181px;
+    }
+
+    .kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 {
+
+       margin: -190px 0px 70px 0px;
+
+    }
+
+    body.page-id-1877 a.btn.btn-color-white.btn-style-link.btn-size-large.woodmart-open-popup {
+        top: -14px;
+        left: -10px;
+        font-size: 8px !important;
+        padding: 0px;
+        border:none !important;
+    }
+
+    .rs-addon-beforeafter-line {
+        display: block;
+        position: absolute;
+        z-index: 20;
+        height: 60vh !important;
+        transform: translateY(197px);
+        width: 4px !important;
+        background: black !important;
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        z-index: 20;
+    }
+
+    body.page-id-1877 div#slide-133-layer-29 {
+        font-size: 14px !important;
+    }
+
+    body.page-id-1877 div#slide-133-layer-30 {
+        font-size: 20px !important;
+        left: -30px;
+        top: 2px;
+    }
+
+        
+
+} 
+
+
+@media only screen and (device-width: 360px) {
+
+    .kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 {
+
+        margin: -160px 0px 110px 0px;
+
+    }
+
+    body.page-id-614 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+  
+        bottom: 93px;
+ 
+    }
+
+    body.page-id-1877 a.btn.btn-color-white.btn-style-link.btn-size-large.woodmart-open-popup {
+        top: -14px;
+        left: -10px;
+        font-size: 8px !important;
+        padding: 0px;
+        border:none !important;
+    }
+
+    body.page-id-1877 div#slide-133-layer-29 {
+        font-size: 14px !important;
+    }
+
+    body.page-id-1877 div#slide-133-layer-30 {
+        font-size: 20px !important;
+        left: -30px;
+        top: 2px;
+    }
+
+    .rs-addon-beforeafter-line {
+        display: block;
+        position: absolute;
+        z-index: 20;
+        height: 50vh !important;
+        transform: translateY(188px);
+        width: 4px !important;
+        background: black !important;
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        z-index: 20;
+    }
+
+} 
+
+@media only screen and (device-width: 320px) {
+
+    .kaysville-view-popout-med-bg.wpb_column.vc_column_container.vc_col-sm-7 {
+
+        margin: -190px 0px 50px 0px;
+
+    }
+
+    .woodmart-threed-view .nav_bar {
+
+        top: 151px;
+    }
+
+    body.page-id-614 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        right: 173px;
+        bottom: 73px;
+        padding: 10px 25px;
+        font-size: 12px;
+        position: absolute;
+        background: transparent;
+    }
+
+    body.page-id-1877 a.btn.btn-color-white.btn-style-link.btn-size-large.woodmart-open-popup {
+        top: -14px;
+        left: -10px;
+        font-size: 8px !important;
+        padding: 0px;
+        border:none !important;
+    }
+
+    .rs-addon-beforeafter-line {
+        display: block;
+        position: absolute;
+        z-index: 20;
+        height: 45vh !important;
+        transform: translateY(168px);
+        width: 4px !important;
+        background: black !important;
+    }
+
+    span.rs-addon-beforeafter-btn.rs-before-after-element.rs-addon-beforeafter-btn-horizontal {
+        z-index: 20;
+    }
+
+    body.page-id-1877 div#slide-133-layer-29 {
+        font-size: 14px !important;
+        top: -20px;
+    }
+
+    body.page-id-1877 div#slide-133-layer-30 {
+        font-size: 20px !important;
+        left: -30px;
+        top: -18px;
+    }
+
+} 
+
+

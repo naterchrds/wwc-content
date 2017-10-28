@@ -1,0 +1,152 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER BUTTON
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-button {
+
+	.product-element-top {
+
+		&:before {
+			content:"";
+			position: absolute;
+			top:0;
+			bottom: 0;
+			left: 0;
+			right:0;
+			background-color: rgba(0,0,0,0.5);
+			opacity: 0;
+			z-index: 2;
+			-webkit-transition:visibility 0.3s ease, opacity 0.3s ease;
+			transition:visibility 0.3s ease, opacity 0.3s ease;
+		}				
+	}
+
+	.woodmart-buttons {
+		@extend %buttons-without-background;
+		@extend %button-color-white;
+	}
+
+	@extend %buttons-without-background-hover;
+
+	.product-image-link {
+		position:relative;
+	}
+
+	.hover-mask {
+		position: absolute;
+		left: 0;
+		top: 57%;
+		width: 100%;
+		text-align: center;
+		opacity: 0;
+		z-index: 3;
+
+		-webkit-transition:
+			transform 0.3s ease, 
+			top 0.3s ease, 
+			opacity 0.3s ease;
+		transition:
+			transform 0.3s ease, 
+			top 0.3s ease, 
+			opacity 0.3s ease;
+
+		-webkit-transform: 
+			translateY(-50%);
+		transform:
+			translateY(-50%);
+
+		@extend %bordered-white-button;
+		
+	}
+
+	&:hover {
+
+		.product-element-top {
+
+			&:before {
+				opacity: 1;
+			}				
+		}
+
+		.hover-mask {
+			top:50%;
+			opacity: 1;
+		}
+	}
+
+	&.product-swatched:not(.loading-quick-shop):not(.quick-shop-shown) {
+
+		.hover-mask {
+			top:55%;
+			opacity: 0;
+		}
+
+		.product-image-link {
+			opacity: 1;
+		}
+
+		.woodmart-buttons {
+			right: -10px;
+			opacity: 0;
+		}
+
+		.product-element-top {
+
+			&:before {
+				opacity: 0;
+			}
+
+			&:hover {
+
+				&:before {
+					opacity: 1;
+				}
+
+				.hover-mask {
+					top:50%;
+					opacity: 1;
+				}
+
+				.woodmart-buttons {
+					right: 0px;
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	&.loading-image {
+
+		.hover-mask {
+			opacity:0;
+		}
+	}
+
+	&.loading-quick-shop,
+	&.quick-shop-shown {
+
+		.product-element-top {
+
+			&:before {
+				opacity: 0;
+			}				
+		}
+
+		.hover-mask {
+			opacity:0;
+		}	
+
+		.woodmart-buttons {
+			opacity: 0;
+		}	
+	}
+
+	.color-scheme-light &,
+    .woodmart-dark & {
+
+    	.woodmart-buttons {
+    		background-color: transparent;
+    	}
+    }
+}

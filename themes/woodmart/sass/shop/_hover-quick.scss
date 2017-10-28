@@ -1,0 +1,146 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER QUICK
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-quick {
+
+	@extend %fade-in-left-buttons;
+
+	.single_add_to_cart_button {
+		border-radius: 0;
+	}
+
+	.woodmart-add-btn {
+		position: absolute;
+		bottom: 0;
+		left:0;
+		right:0;
+
+		-webkit-transform: 
+			translateY(100%) 
+			translateZ(0);
+	    transform: 
+	    	translateY(100%) 
+	    	translateZ(0);
+
+		backface-visibility: hidden;
+    	perspective: 800px;
+    	-webkit-backface-visibility: hidden;
+    	-webkit-perspective: 800px;
+
+		transition: 
+			transform .3s ease,
+			opacity .3s ease;
+		-webkit-transition: 
+			-webkit-transform .3s ease,
+			opacity .3s ease;
+
+		> p {
+			display: none;
+		}
+
+		> a {
+			@include btn-default-primary;	
+			@extend %buttons-text-replace-icon;
+			font-size: 13px;
+			color:white;
+			display: block;
+			opacity: 0.8;
+
+			span {
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			&:hover,
+			&:focus {
+				opacity: 1;
+				box-shadow: none;
+			}
+		}
+
+		.added_to_cart {
+		    padding-top: 10px;
+		    padding-bottom: 10px;
+	    	padding-left: 10px;
+			padding-right: 10px;
+
+			&:before {
+				content: none;
+			}
+		}
+	}
+
+	&:hover {
+
+		.woodmart-add-btn {
+			-webkit-transform: 
+				translateY(0) 
+				translateZ(0);
+		    transform: 
+		    	translateY(0) 
+		    	translateZ(0);
+		}
+	}
+
+	&.loading-quick-shop {
+
+		.woodmart-add-btn {
+			-webkit-transform: 
+				translateY(100%) 
+				translateZ(0);
+		    transform: 
+		    	translateY(100%) 
+		    	translateZ(0);
+		}		
+	}
+
+	&.product-swatched {
+
+		.woodmart-buttons {
+		    transform:translateX(20px);
+		    -webkit-transform:translateX(20px);
+			opacity: 0;
+		}
+
+		.woodmart-add-btn {
+			-webkit-transform: 
+				translateY(100%) 
+				translateZ(0);
+		    transform: 
+		    	translateY(100%) 
+		    	translateZ(0);
+		}	
+
+		.product-element-top {
+
+			&:hover {
+
+				.woodmart-buttons {
+					transform:translateX(0);
+					-webkit-transform:translateX(0);
+					opacity: 1;
+				}
+
+				.woodmart-add-btn {
+					-webkit-transform: 
+						translateY(0) 
+						translateZ(0);
+				    transform: 
+				    	translateY(0) 
+				    	translateZ(0);
+				}	
+			}
+		}
+	}
+
+	&.quick-shop-shown {
+
+		.woodmart-add-btn {
+			opacity: 0;
+		}
+	}
+}

@@ -1,0 +1,584 @@
+
+/** ------------------------------------------------------------------------------------------------
+* ANIMATIONS / #woodmart-animation
+* ------------------------------------------------------------------------------------------------ */
+
+
+// // ROTATE ANIMATION
+
+@keyframes load-spin {
+
+    100% { 
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes load-spin {
+
+    100% { 
+        -webkit-transform: rotate(360deg); 
+    }
+}
+
+// FADE IN ANIMATION
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+// FADE OUT ANIMATION
+
+@keyframes fadeOut {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+// FADE IN LEFT ANIMATION
+
+@keyframes fadeInLeft {
+
+    from {
+        transform: translate3d(-50px, 0, 0);
+    }
+
+    to {
+        transform: none;
+    }
+}
+
+@-webkit-keyframes fadeInLeft {
+
+    from {
+        -webkit-transform: translate3d(-50px, 0, 0);
+    }
+
+    to {
+        -webkit-transform: none;
+    }
+}
+
+// FADE IN LEFT SHORT ANIMATION
+
+@keyframes fadeInLeftShort {
+
+    from {
+        transform: translate3d(-20px, 0, 0);
+    }
+
+    to {
+        transform: none;
+    }
+}
+
+@-webkit-keyframes fadeInLeftShort {
+
+    from {
+        -webkit-transform: translate3d(-20px, 0, 0);
+    }
+
+    to {
+        -webkit-transform: none;
+    }
+}
+
+// FADE OUT LEFT ANIMATION
+
+@-webkit-keyframes fadeOutLeft {
+
+    from {
+        -webkit-transform: none;
+    }
+
+    to {
+        -webkit-transform: translate3d(-50px, 0, 0);
+    }
+}
+
+@keyframes fadeOutLeft {
+
+    from {
+        transform: none;
+    }
+
+    to {
+        transform: translate3d(-50px, 0, 0);
+    }
+}
+
+// FADE OUT LEFT SHORT ANIMATION
+
+@-webkit-keyframes fadeOutLeftShort {
+
+    from {
+        -webkit-transform: none;
+    }
+
+    to {
+        -webkit-transform: translate3d(-20px, 0, 0);
+    }
+}
+
+@keyframes fadeOutLeftShort {
+
+    from {
+        transform: none;
+    }
+
+    to {
+        transform: translate3d(-20px, 0, 0);
+    }
+}
+
+// FADE OUT RIGHT ANIMATION
+
+@keyframes fadeOutRight {
+
+    from {
+        transform: none;
+    }
+
+    to {
+        transform: translate3d(50px, 0, 0);
+    }
+}
+
+@-webkit-keyframes fadeOutRight {
+
+    from {
+        transform: none;
+    }
+
+    to {
+        -webkit-transform: translate3d(50px, 0, 0);
+    }
+}
+
+// FADE IN BOTTOM ANIMATION
+
+@keyframes fadeInBottomShort {
+
+    from {
+        transform: translate3d(0, 20px, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0px, 0);
+    }
+}
+
+@-webkit-keyframes fadeInBottomShort {
+
+    from {
+        -webkit-transform: translate3d(0, 20px, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0px, 0);
+    }
+}
+
+// FULL FADE IN BOTTOM ANIMATION
+
+@keyframes show-element-long-from-bottom {
+
+    from {
+        transform:translate3d(0, 100%, 0);
+    }
+
+    to {
+        transform:none;
+    }
+}
+
+@-webkit-keyframes show-element-long-from-bottom {
+
+    from {
+        -webkit-transform:translate3d(0, 100%, 0);
+    }
+
+    to {
+        -webkit-transform:none;
+    }
+}
+
+
+
+
+
+@-webkit-keyframes show-element-long-to-bottom {
+
+    from {
+        -webkit-transform:none;
+    }
+
+    to {
+        -webkit-transform:translate3d(0, 100%, 0);
+    }
+}
+
+// FULL FADE FROM TOP ANIMATION
+
+@keyframes show-element-from-top {
+
+    from {
+        transform:translate3d(0, -100%, 0);
+    }
+
+    to {
+        transform:none;
+    }
+}
+
+@-webkit-keyframes show-element-from-top {
+
+    from {
+        -webkit-transform:translate3d(0, -100%, 0);
+    }
+
+    to {
+        -webkit-transform:none;
+    }
+}
+
+// FULL FADE TO TOP ANIMATION
+
+@keyframes show-element-long-to-top {
+
+    from {
+        transform:none;       
+    }
+
+    to {
+        transform:translate3d(0, -100%, 0);
+    }
+}
+
+@-webkit-keyframes show-element-long-to-top {
+
+    from {
+       -webkit-transform:none; 
+    }
+
+    to {
+        -webkit-transform:translate3d(0, -100%, 0);
+    }
+}
+
+// PREV ANIMATION
+
+@keyframes prev-animate {
+
+    25% {
+        transform: translate3d(0px, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(3px, 0, 0);
+    }
+
+    75% {
+        transform: translate3d(-3px, 0, 0);
+    }
+}
+
+@-webkit-keyframes prev-animate {
+
+    25% {
+        -webkit-transform: translate3d(0px, 0, 0);
+    }
+
+    50% {
+        -webkit-transform: translate3d(3px, 0, 0);
+    }
+
+    75% {
+        -webkit-transform: translate3d(-3px, 0, 0);
+    }
+}
+
+// NEXT ANIMATION
+
+@keyframes next-animate {
+
+    25% {
+        transform: translate3d(0px, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-3px, 0, 0);
+    }
+
+    75% {
+        transform: translate3d(3px, 0, 0);
+    }
+}
+
+@-webkit-keyframes next-animate {
+
+    25% {
+        -webkit-transform: translate3d(0px, 0, 0);
+    }
+
+    50% {
+        -webkit-transform: translate3d(-3px, 0, 0);
+    }
+
+    75% {
+        -webkit-transform: translate3d(3px, 0, 0);
+    }
+}
+
+
+// MENU DROP IN TOP
+
+@keyframes menu-in-top {
+
+    from {
+        transform: translate3d(0, -15px, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes menu-in-top {
+
+    from {
+        -webkit-transform: translate3d(0, -15px, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+// MENU DROP TO TOP
+
+@keyframes menu-to-top {
+
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, -15px, 0);
+    }
+}
+
+@-webkit-keyframes menu-to-top {
+
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, -15px, 0);
+    }
+}
+
+// MENU DROP IN BOTTOM
+
+@keyframes menu-in-bottom {
+
+    from {
+        transform: translate3d(0, 15px, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes menu-in-bottom {
+
+    from {
+        -webkit-transform: translate3d(0, 15px, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+// MENU DROP TO BOTTOM
+
+@keyframes menu-to-bottom {
+
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, 15px, 0);
+    }
+}
+
+@-webkit-keyframes menu-to-bottom {
+
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 15px, 0);
+    }
+}
+
+// MENU DROP IN LEFT
+
+@keyframes menu-in-left {
+
+    from {
+        transform: translate3d(-15px, 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes menu-in-left {
+
+    from {
+        -webkit-transform: translate3d(-15px, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+// MENU DROP TO RIGHT
+
+@keyframes menu-to-right {
+
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(15px, 0, 0);
+    }
+}
+
+@-webkit-keyframes menu-to-right {
+
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        -webkit-transform: translate3d(15px, 0, 0);
+    }
+}
+
+// LOADER WOOCOMMERCE FADE IN
+
+@keyframes fade-in-loader {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+@-webkit-keyframes fade-in-loader {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+// TOOLTIP FADE IN
+
+@keyframes fadeInTooltip {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.9;
+    }
+}
+
+@-webkit-keyframes fadeInTooltip {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.9;
+    }
+}
+
+// // SCALE FROM LARGE TO DEFAULT
+
+// @keyframes scale-from-large {
+
+//     from {
+//         transform: scale(1.2);
+//     }
+
+//     to {
+//         transform: none;
+//     }
+// }
+
+// @-webkit-keyframes scale-from-large {
+
+//     from {
+//         -webkit-transform: scale(1.2);
+//     }
+
+//     to {
+//         -webkit-transform: none;
+//     }
+// }
+
+
+

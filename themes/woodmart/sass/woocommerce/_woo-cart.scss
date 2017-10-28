@@ -1,0 +1,227 @@
+
+/** ------------------------------------------------------------------------------------------------
+* CART
+* ------------------------------------------------------------------------------------------------ */
+
+.cart-empty {
+	position: relative;
+	text-align: center;
+	font-size: 48px;
+	font-weight: 700;
+	line-height: 1.2;
+	color: $heading-color;
+	@extend %title-font;
+	margin-top: 5vw;
+	margin-bottom: 15px;
+
+    &:before {
+        @include font-icon($font-Flaticon-carttest-2);
+        display: block;
+        color:rgba(135, 135, 135, 0.15);
+		font-size: 180px;
+		line-height: 180px;
+		font-weight:normal;
+		margin-bottom: 20px;
+		 
+    }
+
+    &:after {
+        @include font-icon($font-Flaticon-cross);
+	    position: absolute;
+	    left: 50%;
+	    margin-left: -10px;
+	    top: 27px;
+	    color: #858585;
+	    font-size: 48px;
+	    line-height: 48px;
+	    font-weight: bold;  
+    }
+
+    .woodmart-dark & {
+    	color:$scheme-light--title-color;
+
+    	&:before {
+    		color:$scheme-light--body-color-lighten;
+    	}
+
+    	&:after {
+    		color:$scheme-light--body-color-darken;
+    	}
+    }
+}
+
+.woodmart-empty-cart-text {
+	text-align: center;
+    margin-bottom: 0px;
+    font-size: 110%;
+    line-height: 1.8;
+
+    + .return-to-shop {
+	  	margin-top: 25px;
+		margin-bottom: 5vw; 
+
+		.button { 
+			@include button-size-large;
+		} 	
+    }
+}
+
+.return-to-shop {
+	text-align: center;
+
+	.button {
+		@include btn-default-primary;
+		@extend %shop-buttons;
+	}
+}
+
+.cart-content-wrapper {
+	display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-left: -15px;
+    margin-right: -15px;
+
+    .cart-data-form,
+    .cart-totals-section {
+    	padding-left: 15px;
+    	padding-right: 15px;
+    }
+
+    .cart-data-form {
+    	flex:1 1 auto;
+    	max-width: 100%;
+    	padding-top: 20px;
+    }
+
+    .cart-totals-section {
+    	flex:0 0 400px;
+    	max-width: 400px;
+    }
+}
+
+.cart-totals-inner {
+    border: 3px solid #EFEFEF;
+    padding: 25px;
+
+	h2 {
+		@extend %title-size;
+		margin-bottom: 5px;
+		padding-left: 6px;
+	}
+
+	table {
+		margin-bottom: 10px;
+
+		tr {
+
+			&:last-child {
+				th,
+				td {
+					border-bottom:none;
+				}
+			}
+		}
+
+		.cart-subtotal {
+
+			.amount {
+				color:$body-color;
+				font-weight: normal;
+			}
+		}
+	}
+
+	.woocommerce-shipping-calculator {
+		margin-top: 10px;
+
+		> p {
+			margin-bottom: 0;
+		}
+	}
+
+	.shipping-calculator-form {
+		margin-top: 20px;
+
+		.button {
+			@include button-size-small;
+			@extend %default-buttons;
+		}
+	}
+
+	.shipping-calculator-button {
+		@extend %primary-color;
+		font-weight: 600;
+	}
+
+	.checkout-button {
+	    padding-top: 13px;
+	    padding-bottom: 13px;
+		@include btn-default-primary;
+		@include full-width-button;
+		@extend %shop-buttons;
+	}
+
+	.woodmart-dark & {
+		border-color:$scheme-light--border-color-lighten;
+
+		table {
+
+			.cart-subtotal {
+
+				.amount {
+					color:$scheme-light--body-color;
+				}
+			}
+		}
+	}
+}
+
+.cart-actions {
+	text-align: right;
+	display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+	&:after,
+	&:before {
+		content:none;
+	}
+
+	> div {
+		flex: 1 1 auto;
+		width: auto;
+	}
+
+	.button[name="update_cart"] {
+		@extend %default-buttons;
+	}
+	
+	.coupon {
+	    display: flex;
+	    align-items: center;
+	    flex-direction: row;
+
+		label {
+			display: none;
+		}
+
+		.input-text {
+			max-width:230px; 
+			margin-right: 10px;
+		}
+	}
+
+	.button[name="apply_coupon"] {
+	    @include btn-default-primary;
+	    @extend %accent-buttons;
+	}
+}
+
+.cross-sells {
+	margin-top: 70px;
+
+	> h2 {
+		@extend %title-size;
+	}
+}

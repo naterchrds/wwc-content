@@ -1,0 +1,115 @@
+
+/** ------------------------------------------------------------------------------------------------
+* FOOTER
+* ------------------------------------------------------------------------------------------------ */
+
+.footer-sidebar {
+	padding-top: 40px;
+	padding-bottom: 10px;
+}
+
+.footer-widget {
+	margin-bottom: 30px;
+}
+
+.woodmart-prefooter {
+	background-color: #ffffff;
+	padding-bottom: 40px;
+	
+	.woodmart-dark & { 
+		background-color: $scheme-light--background-main;
+	}
+}
+
+.copyrights-wrapper {
+	border-top: 1px solid;
+	@extend %main-border-color;
+
+	.color-scheme-light & {
+		border-color:rgba(255, 255, 255, 0.1);	
+	}
+}
+
+/** ------------------------------------------
+* MIN FOOTER
+* ------------------------------------------ */
+
+.min-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: -15px;
+	margin-right: -15px;
+
+	> div {
+		flex:1 0 50%;
+		padding-left: 15px;
+		padding-right: 15px;
+		@extend %remove-margin;
+	}
+
+	.col-right {
+		text-align: right;
+	}
+
+	.copyrights-centered & {
+		flex-direction: column;
+		text-align: center;
+
+		.col-right {
+			text-align: center;
+		}
+
+		> div {
+			margin-bottom: 10px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.footer-act-sticky-global {
+
+	.main-page-wrapper,
+	.woodmart-prefooter {
+		position: relative;
+	}
+
+	.main-page-wrapper {
+		z-index: 2;
+	}
+
+	.woodmart-prefooter {
+		z-index: 1;
+	}
+}
+
+.sticky-footer-on {  
+
+	.footer-container {
+		position: fixed;
+		bottom: 0;
+		right:0;
+		left:0;
+		width: auto;
+		visibility: hidden;
+		opacity: 0;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		perspective: 800px;
+		-webkit-perspective: 800px;
+
+		&.footer-act-sticky {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+	
+
+	

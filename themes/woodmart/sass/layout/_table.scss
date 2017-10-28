@@ -1,0 +1,98 @@
+
+/** ------------------------------------------------------------------------------------------------
+* TABLE
+* ------------------------------------------------------------------------------------------------ */
+
+.table-bordered-style {
+
+	th,
+	td {
+		border: 1px solid #EFEFEF;
+	}
+
+	.color-scheme-light & {
+
+		th,
+		td {
+			border-color:rgba(255, 255, 255, 0.4);
+		}
+	}
+}
+
+table {
+	width: 100%;
+	margin-bottom: 35px;
+	font-size: 14px;
+	line-height: 1.4;
+		
+	th {
+		padding: 15px 10px;
+		text-align: left;
+		font-size: 16px;
+		font-weight: 600;
+		text-transform:uppercase;
+		line-height: 1.2;
+		color: $heading-color;
+		vertical-align: middle;
+		border: none;
+		border-bottom: 2px solid #EFEFEF;
+		@extend %title-font;
+	}
+
+	td {
+		padding: 15px 12px;
+		border: none;
+		text-align: left;
+		border-bottom: 1px solid #E6E6E6;
+	}
+
+	tbody,
+	tfoot {
+
+		th {
+			border-bottom: 1px solid #E6E6E6;
+    		text-transform: none;
+    		font-size: 14px;
+		}
+	}
+
+    .color-scheme-light &,
+    .woodmart-dark & {
+
+		th {
+			color: white;
+			border-color:$scheme-light--border-color-lighten;
+		}
+
+		td {
+			border-color:$scheme-light--border-color-lighten;
+		}
+
+		tbody,
+		tfoot {
+
+			th {
+				border-color:$scheme-light--border-color-lighten;
+			}
+		}
+	}	
+}
+
+//------------------------------------------
+// RESPONSIVE TABLE
+// ------------------------------------------
+
+.responsive-table {
+ 	overflow-x: auto;
+ 	margin-bottom:30px;
+
+	table {
+	  	margin:0;
+	}
+
+	.responsive-table {
+		margin-bottom:0px;
+		overflow-x: visible;
+	}
+}
+

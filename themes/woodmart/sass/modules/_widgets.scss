@@ -1,0 +1,1820 @@
+
+/** ------------------------------------------------------------------------------------------------
+* WIDGETS / #woodmart-widgets
+* ------------------------------------------------------------------------------------------------ */
+
+/** ------------------------------------------
+* BASE STYLE WIDGET
+* ------------------------------------------ */
+
+// .widget-hidable {
+	
+// 	.widgettitle,
+// 	.widget-title { 
+// 		position: relative;
+// 		padding-top: 10px;
+// 		padding-bottom: 10px;
+// 		margin-bottom: 10px;
+// 		cursor: pointer;
+// 		-moz-user-select: none;
+// 		-webkit-user-select: none;
+// 		-ms-user-select: none;
+
+// 		&:after {
+// 			content: $font-Flaticon-right-arrow-chevron;
+// 			position: absolute;
+// 			top:50%;
+// 			right:0;
+// 			margin-top: -7px;
+// 			line-height: 14px;
+// 			font-size: 10px;
+// 			font-weight: normal;
+// 			color: #adadad;
+// 			display: inline-block;
+// 			 
+
+// 			-webkit-transform: rotate(90deg);
+// 			-moz-transform: rotate(90deg);
+// 			-o-transform: rotate(90deg);
+// 			-ms-transform: rotate(90deg);
+// 			-sand-transform: rotate(90deg);
+
+// 			-webkit-transition:transform 0.2s ease;
+// 			transition:transform 0.2s ease;
+// 		}
+// 	}
+
+// 	&.widget-hidden {
+
+// 		.widgettitle,
+// 		.widget-title { 
+
+// 			&:after {
+// 				-webkit-transform: rotate(0deg);
+// 				-moz-transform: rotate(0deg);
+// 				-o-transform: rotate(0deg);
+// 				-ms-transform: rotate(0deg);
+// 				-sand-transform: rotate(0deg);
+// 			}
+// 		}
+// 	}
+
+// 	.color-scheme-light & {
+
+// 		.widgettitle,
+// 		.widget-title {
+
+// 			&:before {
+// 				background-color: rgba(255, 255, 255, 0.8);
+// 			}
+// 		}
+// 	}
+// }
+
+.widgettitle,
+.widget-title {
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight:600;
+	color:$heading-color;
+	margin-bottom: 20px;
+}
+
+/** ------------------------------------------
+* WIDGET RECENT ENTRIES
+* ------------------------------------------ */
+
+.widget_recent_entries {
+
+	ul {
+							
+		li {
+
+			a {
+				display: block;
+				@extend %secondary-title-style;
+				@extend %title-hover;
+			}
+		}
+	}
+
+	.post-date {
+		position: static;
+	    background-color: transparent;
+	    box-shadow: none;
+	    display:block;
+	    min-width: 0;
+	    text-align: left;
+	    line-height: inherit;
+		color:#bbb;
+		margin-top:5px;
+		font-size:12px;
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.post-date {
+			color:rgba(255,255,255,0.8); 
+		}
+	}
+}
+
+/** ------------------------------------------
+* WIDGET RECENT COMMENTS
+* ------------------------------------------ */
+
+.widget_recent_comments {
+	
+	ul {
+
+		li {
+
+			> a {
+				@extend %secondary-title-style;
+				@extend %title-hover;
+			}
+
+			.url {
+				color:$heading-color;
+				font-weight:600;
+			}
+
+			&:before {
+				@include font-icon($font-Flaticon-note);
+				font-size: 12px;
+				color:$heading-color;
+				display:inline-block;
+				font-weight:normal;
+				margin-right:7px;
+				 
+			}
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		ul {
+
+			li {
+
+				&:before {
+					color:white;
+				}
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* WIDGET RECENT POST
+* ------------------------------------------ */
+
+.woodmart-recent-posts {
+
+	li {
+	    display: flex;
+	    flex-direction: row;
+	    align-items: stretch;
+		margin-bottom: 15px;
+    	padding-bottom: 15px;
+		border-bottom: 1px solid;
+		@extend %main-border-color;
+
+		&:last-child {
+			border:none;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	.recent-posts-thumbnail {
+		flex:0 0 auto;
+		margin-right: 15px;
+	}
+
+	.recent-posts-info {
+		flex:1 1 auto;
+	}
+
+	.attachment-thumbnail {
+		max-width: 60px;
+	}
+
+	.entry-title {
+		font-size: 14px;
+		margin-bottom: 8px;
+
+		a {
+			@extend %secondary-title-style;
+			
+			&:hover {
+				@extend %title-hover;
+			}
+		}
+	}
+
+	.recent-posts-time,
+	.recent-posts-comment {
+		font-size: 12px;
+		color:#bbb;
+	}
+
+	.recent-posts-time {
+		margin-right: 5px;
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.entry-title {
+
+			a {
+				@extend %title-hover-white;
+			}
+		}
+
+		.recent-posts-time,
+		.recent-posts-comment {
+			color:rgba(255,255,255,0.8); 
+		}
+	}
+}  
+
+/** ------------------------------------------
+* WIDGET CATEGORIES
+* ------------------------------------------ */  
+
+.widget_categories,
+.widget_pages,
+.widget_archive,
+.widget_nav_menu {
+
+	.screen-reader-text {
+		display: none;
+	}
+
+   	ul {
+
+		li {
+			color: #bbbbbb;  
+			font-size: 14px;
+			display: block;
+
+			a {
+				padding-right: 2px;
+				display: inline-block;
+			}
+
+			&.current_page_item {
+				
+			    > a {
+			        font-weight: 600;
+			       	color:$light-dark;
+			    }
+			}
+		}
+	}
+
+	li {
+
+		ul {
+			margin-top: 15px;
+			padding-left: 15px;
+
+			ul {
+
+				ul {
+
+					ul {
+
+						ul {
+							padding-left: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+	   	ul {
+
+			li {
+				color:rgba(255,255,255,0.6); 
+
+				&.current_page_item {
+				
+				    > a {
+				       	color:white;
+				    }
+				}
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* PRODUCT CATEGORIS COUNT
+* ------------------------------------------ */
+
+.widget_product_categories {
+
+	.widget-title {
+		margin-bottom: 10px;
+	}
+
+	.product-categories {
+		margin-bottom: -5px;
+
+		li {
+			position: relative;
+			margin-bottom: 0;
+			
+			a {
+				display: block;
+				padding-top: 8px;
+				padding-bottom: 8px;
+				padding-right: 25px;
+				line-height:1.4;
+				text-decoration: none;
+				font-size: 14px;
+
+				&:hover + .count,
+				&:focus + .count {
+					@extend %counter-style-hover;
+				}
+			}
+
+			&.current-cat {
+
+				> a {
+					color:$light-dark;
+					font-weight: 600;
+				}
+
+				> .count {
+					@extend %counter-style-hover;
+				}				
+			}
+		}   
+	}
+
+	.children {
+		padding-left:15px;
+	}
+
+	.count {
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin-top: 7px;
+		@extend %counter-style;
+	}
+
+	.woodmart-cats-toggle {
+	    position: absolute;
+	    top: 8px;
+	    right: 0;
+	    height: 22px;
+	    width: 22px;
+	    line-height: 22px;
+	    border-radius: 50%;
+	    color: #bbb;
+		text-align: center;
+		cursor: pointer;
+		display: none;
+
+		transition:
+			background-color .25s ease,
+			color .25s ease,
+			transform .25s ease;
+		-webkit-transition:
+			background-color .25s ease,
+			color .25s ease,
+			transform .25s ease;
+
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		perspective: 800px;
+		-webkit-perspective: 800px;
+
+		&:after {
+			content: "\f107";
+		    font-size: 16px;
+		    font-family: "FontAwesome";
+		}
+
+		&.toggle-active {
+			transform:rotate(180deg);
+			-webkit-transform:rotate(180deg);
+		}
+
+		&:hover,
+		&.toggle-active {
+			background-color: #f9f9f9;
+			color:$light-dark;
+		}
+	}
+
+	.categories-accordion-on & {
+
+		.product-categories {
+
+			li {
+				
+				a {
+					display: inline-block;
+				}
+			}
+		}
+
+		.count {
+			position: static;
+			display: inline-block;
+			margin-left: -20px;
+			margin-right: 25px;
+			margin-top: 0;
+		}
+
+		.woodmart-cats-toggle {
+			display: block;
+		}
+
+		.children {
+			display: none;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.woodmart-cats-toggle {
+			color: rgba(255,255,255,0.8);
+
+			&:hover,
+			&.toggle-active {
+				background-color: white;
+				color:$light-dark;
+			}
+		}		
+	}
+}
+
+/** ------------------------------------------
+* PRODUCT LIST
+* ------------------------------------------ */ 
+
+.product_list_widget {
+						
+	> li {
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+		border-bottom: 1px solid;
+		@extend %main-border-color;
+		@include clear-element;
+
+		a {
+			margin-bottom: 8px;
+			display: block;
+		}
+
+		.product-title {
+			font-size: 14px;
+		}
+
+		img {
+			float: left;
+			margin-right: 15px;
+			max-width: 65px;
+		}
+
+		.star-rating {
+			display:block;
+			margin-left: 80px;
+			margin-bottom:8px;
+			font-size: 12px;
+			width:70px;
+
+			span {
+
+				&:before {
+					font-size: 12px;
+				}
+			}
+		}
+
+		.reviewer {
+			font-size:14px;
+			color:#bbbbbb;
+		}
+
+		&:last-child {
+			padding-bottom: 0px;
+			margin-bottom: 0px;
+			border-bottom: none;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		> li {
+			border-color: rgba(255,255,255,0.2);
+
+			.reviewer {
+				color:rgba(255,255,255,0.8);
+			}
+		}	
+	}
+} 
+
+/** ------------------------------------------
+* WIDGET PRODUCT CAT
+* ------------------------------------------ */  
+
+.widget_shopping_cart {
+
+	.has-scrollbar {
+
+		.woodmart-scroll-content {
+		    overflow: scroll;
+			overflow-x: hidden;
+		}
+	}
+
+	.woodmart-scroll-content {
+		position: relative;
+		max-height: 250px;
+		padding-right: 5px;
+	}
+
+	.product_list_widget {
+		margin-bottom: 0px;
+		text-align: left;
+	}
+
+	.mini_cart_item {
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+
+		a {
+			margin-bottom: 0;
+		}
+
+		&:hover {
+
+			.product-title {
+				color: $light-dark;
+				opacity: 0.8;
+			}
+		}
+	}
+
+	.cart-item-image {
+		position: relative;
+		margin-right: 15px;
+		flex:0 0 auto;
+
+		&:after {
+			position: absolute;
+			left: 50%;
+			top:50%;
+			margin-top: -10px;
+			margin-left: -10px;
+			opacity: 0;
+			transition:
+				opacity 0.6s ease;
+			-webkit-transition:
+				opacity 0.6s ease;
+			@include loader($size:20px, $b-width:1px, $color-loader: rgba(0,0,0,0.1), $color-border: rgba(0,0,0,0.8));
+		}
+
+		img {
+			float: none;
+			margin-right: 0;
+			transition:
+				opacity 0.6s ease;
+			-webkit-transition:
+				opacity 0.6s ease;
+		}
+	}
+
+	.removing-process {
+
+		.cart-item-image {
+
+			&:after {
+				opacity: 1;
+				@include act-loader;
+			}
+
+			img {
+				opacity: 0.2;
+			}
+		}
+	}
+
+	.cart-item-link {
+		position: absolute;
+		top:0;
+		bottom: 0;
+		left:0;
+		right:0;
+		font-size: 0;
+		z-index: 1;
+	}
+
+	.cart-info {
+		flex:1 1 auto;
+    	padding-right: 20px;
+	}
+
+	.product-title {
+		display: block;
+		margin-bottom: 6px;
+		-webkit-transition: all 0.2s ease;
+    	transition: all 0.2s ease;
+	}
+
+	.variation {
+		margin-bottom: 6px;
+	}
+
+	.quantity {
+		color: #bbb;
+		font-size: 13px;
+		display:block;
+	}
+
+	.remove {
+		position: absolute;
+		top: 1px;
+		right: 0;
+		padding-right: 0;
+		text-align: center;
+		line-height: 20px;
+		height: 20px;
+		width: 20px;
+		font-size: 0;
+		margin-bottom:0;
+		border-radius: 50%;
+		color:rgba(0, 0, 0, 0.8);
+		z-index: 2;
+
+		&:after {
+			@include font-icon($font-Flaticon-cross);
+			font-size: 8px;
+			font-weight: bold;
+			 
+		}
+
+		&:hover {
+			background-color: white;
+			box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+		}
+	}
+
+	.total {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-bottom: 5px;
+		padding-top: 15px;
+		padding-bottom:15px;
+		border-top: 2px solid;
+		@extend %main-border-color;
+		margin-top:15px;
+
+		strong {
+			font-size: 18px;
+			color:$heading-color;
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+
+		.amount {
+			font-weight: 600;
+			font-size: 20px;
+		}
+	}                       
+
+	.buttons {
+		display: block;
+		margin-bottom: 0px;
+		text-align:center;
+
+		a {
+			@include full-width-button;
+			margin-bottom:10px;
+
+			&:last-child {
+				margin-bottom:0px;
+			}
+		}
+		
+		.btn-cart {
+			@extend %default-buttons;
+		}
+
+		.checkout {
+			@include btn-default-primary;
+			@extend %shop-buttons;
+		}
+	}
+
+	.return-to-shop {
+		margin-bottom: 0;
+
+		a {
+			@include button-size-small;
+		}
+	}
+
+	.empty {
+		position: relative;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+		border-bottom: none;
+		text-align: center;
+		font-size: 14px;
+		font-weight: 600;
+		text-transform: uppercase;
+		color:$heading-color;
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+		@extend %light-style-of-widget-shiping-cart;
+	}
+}
+
+// Darken dropdown
+
+.#{$header-drops} {
+
+	.dropdown-cart,
+	.cart-widget-side {
+
+		@extend %light-style-of-widget-shiping-cart;
+
+		ul.variation {
+			color:$scheme-light--body-color;
+		}
+
+		.product-title {
+			color:$scheme-light--title-color;
+		}		
+	}
+}
+
+/** ------------------------------------------
+* WIDGET PRODUCT
+* ------------------------------------------ */
+
+.widget_products,
+.widget_top_rated_products {
+
+	.product_list_widget {
+
+		li {
+
+			a {
+
+				&:hover {
+
+					.product-title {
+						color:$light-dark;
+						opacity: 0.8;
+					}
+				}
+			}
+
+			.product-title {
+				-webkit-transition:all 0.25s ease;
+    			transition:all 0.25s ease;
+			}
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		li {
+
+			a {
+
+				&:hover {
+
+					.product-title {
+						color:white;
+						opacity: 0.8;
+					}
+				}
+			}
+		}
+	}		
+}
+
+/** ------------------------------------------
+* WIDGET TEXT
+* ------------------------------------------ */
+
+.widget_text {
+
+	.textwidget {
+
+		h6, 
+		h5,
+		h4,
+		h3,
+		h2,
+		h1,
+		p {
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* WIDGET RECENT REVIEWS
+* ------------------------------------------ */
+
+.widget_recent_reviews {
+
+    li {
+
+    	a {
+			font-size: 14px;
+			@extend %secondary-title-style;
+			@extend %title-hover;
+    	}
+    }
+} 
+
+/** ------------------------------------------
+* WIDGET RSS
+* ------------------------------------------ */
+
+.widget_rss {
+
+	.widget-title {
+	
+		a {
+			color:$heading-color;
+			vertical-align: middle;
+
+			img {
+				vertical-align: initial;
+			}
+		}
+	}
+
+	ul {
+
+		li {
+			line-height: 1.5;
+			margin-bottom: 15px;
+			padding-bottom: 15px;
+			border-bottom: 1px solid;
+			@extend %main-border-color;
+
+			> a {
+				margin-bottom: 8px;
+				display: block;
+				font-size: 14px;
+				color:$heading-color;
+				font-weight: 600;
+				@extend %title-font;
+			}
+
+			cite {
+				margin-top: 5px;
+				display: inline-block;
+			}
+
+			&:last-child {
+				border-bottom: none;
+				margin-bottom: 0px;
+			}
+		}
+	}
+
+	.rss-date {
+		font-size:12px;
+		color: #bbbbbb;
+		margin-bottom: 8px;
+		display: block;
+
+		&:before {
+			content:"\f073";
+			font-family: "FontAwesome";
+			display: inline-block;
+			margin-right: 5px;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.widget-title {
+	
+			a {
+				color:white;
+			}
+		}
+
+		ul {
+
+			li {
+				border-color: rgba(255,255,255,0.2);
+
+				a {
+					color:white;
+				}
+			}
+		}
+
+		.rss-date {
+			color:rgba(255, 255, 255, 0.8);
+		}
+	}
+}
+
+/** ------------------------------------------
+* WIDGET TEG CLOUD
+* ------------------------------------------ */
+
+.widget_tag_cloud,
+.widget_product_tag_cloud {
+
+	.tagcloud {
+		margin: -1px -1px;
+		font-size: 0;
+
+		a {
+			padding: 5px 12px;
+			margin: 1px 1px;
+			text-transform:capitalize;
+			display: inline-block;
+			font-size: 12px!important;
+			border: 1px solid;
+			@extend %main-border-color;
+
+			&:hover,
+			&:focus {
+				@extend %primary-background;
+				@extend %primary-border;
+				color:white;
+			}
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.tagcloud {
+
+			a {
+				border-color:rgba(255, 255, 255, 0.3);
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* CALENDAR
+* ------------------------------------------ */
+
+.widget_calendar {
+
+	#wp-calendar {
+		margin-bottom: 0;
+
+		> caption {
+			text-align: center;
+			color: $heading-color;
+			font-size: 18px;
+			font-weight:600;
+			margin-bottom: 10px;
+		}
+
+		th {
+			text-align: center;
+			padding: 5px;
+			font-size: 16px;
+			border-bottom: none;
+		}
+
+		td {
+			text-align: center;
+			padding: 10px;
+			border-bottom: none;
+
+		}
+
+		#today {
+			@extend %primary-background;
+			color: white;
+			font-weight: 600;
+		}
+
+		#prev {
+			text-align: left;
+		}
+
+		#next {
+			text-align: right;
+		}
+
+		thead {
+
+			th {
+				border-bottom: 2px solid rgba(129, 129, 129, 0.10);
+			}
+		}
+
+		tfoot {
+		
+			td {
+				border-top: 2px solid rgba(129, 129, 129, 0.10);
+			}
+		}
+	}
+
+    .color-scheme-light &,
+    .woodmart-dark & {
+
+		#wp-calendar {
+
+			> caption {
+				color:white;
+			}
+
+			thead {
+
+				th {
+					border-color:rgba(255, 255, 255, 0.2);
+				}
+			}
+
+			tfoot {
+			
+				td {
+					border-color:rgba(255, 255, 255, 0.2);
+				}
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* PRICE FILTER
+* ------------------------------------------ */
+
+.widget_price_filter {
+
+	.price_slider {
+		margin-bottom: 30px;
+	}
+
+	#min_price,
+	#max_price {
+		display: none;
+	}
+
+	.price_slider_amount {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-bottom: -10px;
+
+		.button {
+			order: 2;
+			@include button-size-small;
+			@extend %default-buttons;
+			margin-bottom: 10px;
+		}
+
+		.price_label {
+			order: 1;
+			margin-bottom: 10px;
+			color:#717171;
+			
+			> span {
+				font-weight:600;
+				color:$heading-color;
+			}
+		}
+
+		.clear {
+			display: none;
+		}
+	}
+
+	.ui-slider {
+		position: relative;
+		text-align: left;
+	}
+
+	.ui-slider .ui-slider-handle {
+		position: absolute;
+		z-index: 2;
+		width: 4px;
+		height: 15px;
+		@extend %primary-background;
+		border-radius: 0;
+		cursor: ew-resize;
+		outline: none;
+		top: -6px;
+
+		&:last-child {
+			margin-left: -4px;
+		}
+	}
+
+	.ui-slider .ui-slider-range {
+		position: absolute;
+		z-index: 1;
+		font-size: .7em;
+		display: block;
+		border: 0;
+		border-radius: 0;
+		@extend %primary-background;
+	}
+
+	.price_slider_wrapper .ui-widget-content {
+		background-color: #E7E7E7;
+		border: 0;
+	}
+
+	.ui-slider-horizontal {
+		height: 2px;
+	}
+
+	.ui-slider-horizontal .ui-slider-range {
+		top: 0px;
+		height: 100%;
+	}
+
+	.ui-slider-horizontal .ui-slider-range-min {
+		left: -1px;
+	}
+
+	.ui-slider-horizontal .ui-slider-range-max {
+		right: -1px;
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.price_slider_amount {
+
+			.price_label {
+				color:rgba(255,255,255,0.8);
+
+				> span {
+					color:white;
+				}
+			}
+		}
+
+		.price_slider_wrapper {
+
+			.ui-widget-content {
+				background-color: rgba(255,255,255,0.4);
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* RATING FILTER
+* ------------------------------------------ */
+
+.widget_rating_filter {
+	
+	.wc-layered-nav-rating {
+
+		a {
+			display: flex;
+			align-items:center;
+			justify-content: space-between;
+			color:#bbb;
+		}
+	}
+}
+
+/** ------------------------------------------
+* LOYERED NAV 
+* ------------------------------------------ */
+
+.widget_layered_nav {
+
+	ul {
+
+		li {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			a {
+				flex:1 1 auto;
+				position: relative;
+				padding-right: 10px;
+
+				&:before {
+					content: "";
+					display: inline-block;
+					vertical-align: middle;
+					height: 14px;
+					width: 14px;
+					border: 2px solid #d8d8d8;
+					margin-right: 8px;
+					margin-top: -2px;
+
+					-webkit-transition: 
+						background-color 0.2s ease;
+					transition: 
+						background-color 0.2s ease;
+				}
+
+				&:after {
+					@include font-icon($font-Flaticon-check);
+					position: absolute;
+				    left: 2px;
+				    top: 2px;
+				    color: white;
+				    font-size: 10px;
+					font-weight: 600;
+					opacity: 0;
+				}
+
+				&:hover {
+
+					&:before {
+						@extend %primary-border;
+					}
+				}
+			}
+		}
+
+		.chosen {
+
+			a {
+				font-weight:600;
+				color:$light-dark;
+
+				&:before {
+					@extend %primary-border;
+					@extend %primary-background;
+				}
+
+				&:after {
+					opacity: 1;
+				}
+			}
+		}
+
+		.count {
+			color: #bbbbbb;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.chosen {
+
+			a {
+				color:white;
+			}
+		}
+
+		ul {
+
+			li {
+
+				a {
+					&:before {
+						border-color:rgba(255, 255, 255, 0.2);
+					}
+				}
+			}
+		}
+
+		.count {
+			color:rgba(255, 255, 255, 0.8);
+		}		
+	}
+}
+
+/** ------------------------------------------
+* LOYERED NAV FILTERS
+* ------------------------------------------ */
+
+.widget_layered_nav_filters {
+
+	ul {
+
+		li {
+			margin-bottom: 15px;
+	
+			a {
+				display: block;
+				position:relative;
+				font-weight:600;
+				color:$light-dark;
+				@include close-btn(left, 2px, 10px, $light-dark);
+				@include close-btn-rotate;
+			}
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		ul {
+
+			li {
+
+				a {
+					color:white;
+
+					&:after,
+					&:before {
+						background-color: white;
+					}
+				}
+			}
+		}		
+	}
+}
+
+/** ------------------------------------------
+* USER PANEL
+* ------------------------------------------ */
+
+.woodmart-user-panel {
+
+	> .woodmart-user-panel {
+		display: flex;
+	    flex-direction: row;
+	    align-items: stretch;
+	    font-size: 110%;
+	}
+
+	> a {
+		font-weight:600;
+		margin-left: 5px;	
+	}
+
+	.user-avatar {
+		flex:0 0 auto;
+		margin-right: 15px;
+
+		img {
+			max-width:60px;
+			border-radius:50%;
+		}
+	}
+
+	.user-info {
+		flex:1 1 auto;
+
+		> span {
+			display:block;
+			margin-bottom:10px;
+		}
+
+		strong {
+			color:$light-dark;
+		}
+	}
+
+	.logout-link {
+		@include default-button;
+		@include link-button;
+		@include btn-link-grey;
+	}
+
+    .color-scheme-light &,
+    .woodmart-dark & {
+
+		.user-info {
+
+			strong {
+				color:white;
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* AUTOR INFORMATION
+* ------------------------------------------ */
+
+.woodmart-author-information {
+
+	.author-avatar {
+
+		img {
+			border-radius: 50%;
+			margin-bottom: 15px;
+		}
+	}
+	
+	.author-info {
+		line-height: 1.6;
+	    text-align: inherit;
+	    background-color: transparent;
+	    padding:0;
+	}
+
+	.author-area {
+
+		> a {
+			@include default-button;
+			@include link-button;
+			@include btn-link-grey;
+			margin-top: 15px;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.author-area {
+
+			> a {
+				@include btn-link-white;
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* MC4WP 
+* ------------------------------------------ */
+
+.widget_mc4wp_form_widget {
+	
+	.mc4wp-form {
+	    margin-bottom: 0;
+
+	    p {
+	    	margin-bottom: 10px;
+	    }
+	}
+}
+
+/** ------------------------------------------
+* MEGA MENU WIDGET
+* ------------------------------------------ */
+
+.widget_nav_mega_menu {
+
+	.widget-title {
+	    color: black;
+	    background-color: #F1F1F1;
+	    display: block;
+	    margin-bottom: 0;
+	    font-size: 16px;
+	    line-height: 24px;
+	    text-align: left;
+	    text-transform: uppercase;
+	    letter-spacing: 0.4px;
+	    font-weight: 600;
+	    padding: 19px;
+
+	    &:before {
+	    	content:none;
+	    }
+
+	    &.color-scheme-light {
+	    	color:white;
+		}
+
+		+ .vertical-navigation {
+
+			.menu {
+				border-top:none;
+			}
+		}
+    }
+	
+	.vertical-navigation {
+		display: block;
+	}
+
+	.sidebar-right & {
+
+		.sub-menu-dropdown {
+			display:none;
+		}
+
+		li.menu-item-has-children {
+
+			a {
+				&:after {
+					display:none;
+				}
+			}
+		}		
+	}
+}
+
+/** ------------------------------------------
+* PRICE FILTER
+* ------------------------------------------ */
+
+.woodmart-price-filter {
+
+	.amount {
+		font-weight: normal;
+		color: inherit;
+	}
+
+	.current-state {
+        font-weight: 600;
+        color: $light-dark;
+
+		.amount {
+	        font-weight: 600;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & { 
+
+		.current-state {
+        	color: white;
+        }
+	}
+}
+
+/** ------------------------------------------
+* ORDER LIST
+* ------------------------------------------ */
+
+.woocommerce-ordering-list {
+
+	.selected-order {
+		font-weight:600;
+		color: $light-dark;
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & { 
+
+		.selected-order {
+        	color: white;
+        }
+	}
+}
+
+/** ------------------------------------------
+* COMPARE WIDGET
+* ------------------------------------------ */
+
+.yith-woocompare-widget {
+	display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .widget-title,
+    .products-list {
+    	flex:1 1 100%;
+    	max-width: 100%;
+    	width:100%;
+    }
+
+    .widget-title {
+
+    	&:empty {
+    		display: none;
+    	}
+    }
+
+    .products-list {
+    	margin-bottom: 20px;
+
+    	li {
+			font-weight: 600;
+			color: $light-dark;
+
+    		a {
+
+    			&.title {
+	    			margin-bottom: 0;
+					font-size: 14px;
+					@extend %secondary-title-style;
+    			}
+
+    			&.remove {
+    				@extend %small-close-button;
+    				position: absolute!important;
+    				top:50%;
+    				left: 0;
+    				margin-top: -15px;
+
+    				&:hover {
+    					background-color: transparent;
+    				}
+    			}
+    		}
+    	}
+    }
+
+    .clear-all {
+		@include default-button;
+		@include link-button;
+		@include btn-link-grey; 	
+    }
+
+    > a.compare {
+    	@include default-button;
+		@include button-size-small;
+		@extend %default-buttons;
+    }
+
+    .color-scheme-light &,
+    .woodmart-dark & {
+
+		.products-list {
+
+			li {
+				color:white;
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* UPSELLS WIDGET
+* ------------------------------------------ */
+
+.upsells-widget {
+	margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid;
+    @extend %main-border-color;
+
+	.product_list_widget {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-right: -5px;
+		margin-left: -5px;
+	}
+
+	.small-product-content {
+		flex:0 1 50%;
+		max-width: 50%;
+		padding-right: 5px;
+		padding-left: 5px;
+		padding-bottom: 0;
+		margin-bottom: 10px;
+		border: none;
+
+		a {
+			margin-bottom: 0;
+		}
+
+		.attachment-shop_thumbnail {
+			float: none;
+    		margin-right: 0;
+    		max-width: 100%;
+		}
+
+		&:hover {
+
+			.small-product-info {
+				opacity: 1;
+				visibility: visible;
+				transform:translateY(20px);
+				-webkit-transform:translateY(20px);
+				transition: 
+					opacity .3s ease,
+					transform .3s ease;
+				-webkit-transition: 
+					opacity .3s ease,
+					transform .3s ease;
+			}
+		}
+	}
+
+	.product-small-inner {
+		position: relative;
+		text-align: center;
+	}
+
+	.small-product-info {
+		position: absolute;
+		bottom: 100%;
+		left:-5px;
+		right:-5px;
+		z-index: 4;
+		opacity: 0;
+		visibility: hidden;
+		background: #fff;
+		box-shadow: 0 0 4px rgba(0,0,0,.15);
+		padding: 10px;
+		line-height: 1;
+		z-index: 400;
+		pointer-events: none;
+		transition:
+			visibility .3s ease, 
+			opacity .3s ease,
+			transform .3s ease;
+		-webkit-transition:
+			visibility .3s ease, 
+			opacity .3s ease,
+			transform .3s ease;
+
+		transform:translateY(0px);
+		-webkit-transform:translateY(0px);
+
+		.price,
+		.product-title {
+			display: block;
+			font-size: 12px;		
+		}
+
+		.product-title {
+			margin-bottom: 5px;
+		}
+
+		&:after {
+			content: "\f0d7";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			font-size: 20px;
+			height: 9px;
+			width: 10px;
+			margin-top: -2px;
+			margin-left: -5px;
+			line-height:10px;
+			text-shadow: 0 2px 3px rgba(0,0,0,.1);
+			color: #fff;
+			font-family: "FontAwesome";
+		}
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+
+	.woodmart-dark & {
+
+		.small-product-info {
+			background-color: $scheme-light--background-popup;
+
+			&:after {
+				color:$scheme-light--background-popup;
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* BRAND IN SIDEBAR
+* ------------------------------------------ */
+
+.area-sidebar-product-single {
+
+	.woodmart-product-brands {
+		margin-bottom: 30px;
+	    padding-bottom: 30px;
+	    border-bottom: 1px solid;
+	    @extend %main-border-color;
+    
+		img {
+    		max-height: 70px;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+			padding-bottom: 0;
+			border-bottom: none;
+		}
+	}
+}
+

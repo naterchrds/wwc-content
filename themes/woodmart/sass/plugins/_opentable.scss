@@ -1,0 +1,194 @@
+/** ------------------------------------------------------------------------------------------------
+* OPENTABLE
+* ------------------------------------------------------------------------------------------------ */
+
+div.open-table-widget-datepicker {
+	
+	&.datepicker-dropdown {
+		-webkit-box-shadow: none;
+    	box-shadow: none;
+	}
+
+	.datepicker-panel {
+
+		> ul {
+
+			> li {
+				line-height: 30px;
+			}
+		}
+	}
+}
+
+div.open-table-widget {
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	box-shadow: none;
+	border-radius: 0;
+	color:$body-color;
+
+	.otw-widget-title {
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1;
+		color: $heading-color;
+		padding-bottom: 0;
+		text-shadow: none;
+		box-shadow: none;
+		border-bottom: none;
+	}
+
+	.selectric {
+	    display: flex;
+	    align-items: stretch;
+	    justify-content: center;
+	    flex-direction: column;
+
+    	.label {
+			margin:0;
+			line-height: 1;
+			padding: 0 15px;
+		}
+
+		.button {
+			top: 50%;
+			background-color: transparent;
+			border-color: transparent;
+			padding: 0;
+			border: none;
+			height: auto;
+		
+			&:hover {
+				box-shadow: none;
+			}
+		}
+	}
+
+	.label {
+		height: auto;
+		line-height: 1;
+		font-size: inherit;
+		color: inherit;
+	}
+
+	label {
+		text-transform: inherit;
+		font-size: inherit;
+	}
+
+	input[type="text"],
+	.selectric, 
+	select {
+		line-height: 42px;
+		height: 42px;
+		background-color: transparent;
+		border: 2px solid rgba(129, 129, 129, 0.20);
+		color:$body-color;
+	}
+
+	.otw-reservation-date {
+		cursor:pointer;
+	}
+
+	.otw-button-wrap {
+		margin-bottom: 20px;
+
+		.otw-submit,
+		.otw-submit-btn {
+			@include btn-default-primary;
+			@include default-button;
+			@include button-size-default;
+			@extend %accent-buttons;
+		}
+	}
+
+	&.otw-minimal-dark-style,
+	&.otw-shadow-light-style, 
+	&.otw-shadow-dark-style {
+		padding: 40px;
+	}
+
+	&.otw-shadow-light-style, 
+	&.otw-shadow-dark-style {
+		box-shadow: 0 0 9px rgba(0, 0, 0, 0.1);
+	}
+
+	&.otw-shadow-light-style {
+		background-color: white;
+	}
+
+	&.otw-shadow-dark-style,
+	&.otw-minimal-dark-style {
+		background-color: $scheme-light--background-main;
+
+		option {
+			color: rgba(0, 0, 0, 0.8);
+		}
+	}
+
+	&.otw-minimal-light-style,
+	&.otw-minimal-dark-style {
+
+		.otw-time-wrap {
+			margin-right: 0;
+		}
+
+		input.otw-submit-btn {
+			width:auto;
+			margin: 0;
+		}
+
+		.otw-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -5px;
+			margin-right: -5px;
+		}
+
+		.otw-input-wrap {
+			flex: 1 1 130px;
+		}
+
+		.otw-input-wrap,
+		.otw-button-wrap {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+
+		.otw-button-wrap {
+			flex: 1 1 100%;
+			text-align: center;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark &,
+	&.otw-minimal-dark-style,
+	&.otw-shadow-dark-style {
+		color:white;
+
+		.otw-widget-title {
+			color: $scheme-light--title-color;
+		}
+
+		.otw-input-wrap {
+	
+			> label {
+				color: white;
+			}
+		}
+
+		.otw-input-wrap {
+			border-color:$scheme-light--border-color;
+		}
+
+		input[type="text"],
+		.selectric,
+		select {
+			border-color:$scheme-light--border-color;
+			background-color:transparent;
+			color:rgba(255,255,255,1);
+		}
+	}
+}

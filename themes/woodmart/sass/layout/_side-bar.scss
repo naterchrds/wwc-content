@@ -1,0 +1,150 @@
+
+/** ------------------------------------------------------------------------------------------------
+* SIDE-BAR 
+* ------------------------------------------------------------------------------------------------ */
+
+.sidebar-container {
+    margin-bottom: 40px;
+}
+
+.filters-area {
+    position: relative;
+    top: -10px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    border-top:1px solid;
+    border-bottom:1px solid;
+    @extend %main-border-color;
+    display: none;
+
+    + .woodmart-active-filters {
+        margin-top: -20px;
+    }
+
+    .filters-inner-area {
+        opacity: 0;
+        transition:opacity .1s ease .3s;
+        -webkit-transition:opacity .1s ease .3s;
+
+        > div {
+
+            &:nth-of-type(4n+1) {
+                clear: both;
+            }
+        }
+    }
+
+    &.filters-opened {
+
+        .filters-inner-area {
+            opacity: 1;
+            transition:opacity .25s ease-in-out;
+            -webkit-transition:opacity .25s ease-in-out;
+        }        
+    }
+}
+
+.widgetarea-mobile {
+    padding: 20px;
+}
+
+.mobile-menu-widget {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+    @extend %main-border-color;
+
+    &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+}
+
+.sidebar-widget {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid;
+    @extend %main-border-color;
+
+    &:last-child {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        border-bottom: none;
+    }
+
+    .color-scheme-light &,
+    .woodmart-dark & {
+        border-color: rgba(255,255,255,0.25);  
+    }
+}
+
+.filter-widget {
+    margin-bottom:30px;
+}
+
+.woodmart-widget,
+div[class^="vc_wp"] {
+    line-height:1.4;
+
+    a {
+        color:#727272;
+
+        &:hover,
+        &:focus {
+            color:$light-dark;
+        }
+    } 
+
+    li {
+        margin-bottom: 15px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        } 
+    }
+
+    .color-scheme-light &,
+    .woodmart-dark & {
+
+        a {
+            color:rgba(255,255,255,0.8);
+
+            &:hover,
+            &:focus {
+                color:rgba(255,255,255,1);
+            }
+        }     
+    } 
+
+    .color-scheme-dark & {
+
+         a {
+            color:#727272;
+
+            &:hover,
+            &:focus {
+                color:$light-dark;
+            }
+        }    
+    }  
+}
+
+.footer-widget {
+
+    .color-scheme-light & {
+
+        a {
+            color:rgba(255,255,255,0.6);
+
+            &:hover,
+            &:focus {
+                color:rgba(255,255,255,1);
+            }
+        }     
+    } 
+}

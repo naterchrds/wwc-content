@@ -1,0 +1,47 @@
+
+// ------------------------------------------------------------------------------------------------
+// POPUP ELEMENT 
+// ------------------------------------------------------------------------------------------------ 
+
+button {
+
+	&.mfp-close {
+ 		@extend %close-button;
+		@extend %close-button-hidden;
+ 	}	
+}
+
+.mfp-ready {
+
+	button {
+
+		&.mfp-close {
+			@extend %close-button-show;
+		}
+	}
+}
+
+.woodmart-promo-popup,
+.woodmart-content-popup {
+	margin: 30px auto;
+	width: 100%;
+	background-color: white;
+	padding: 30px;	
+
+	.woodmart-dark & {
+		background-color: $scheme-light--background-popup;
+	}
+}
+
+/** ------------------------------------------
+* PROMO POPUP
+* ------------------------------------------ */
+
+.woodmart-promo-popup {
+	display: none;
+    max-width: 800px;
+
+	.mfp-wrap & {
+		display: block;
+	}
+}

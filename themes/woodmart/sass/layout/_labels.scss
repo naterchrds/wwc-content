@@ -1,0 +1,194 @@
+
+/** ------------------------------------------------------------------------------------------------
+* LABELS
+* ------------------------------------------------------------------------------------------------ */
+
+.onsale,
+.out-of-stock-label {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap:wrap;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50%;
+    padding:5px 7px; 
+    border-radius: 35px;
+    z-index: 1;
+    color: white;
+    font-size: 14px;
+    word-break: break-all;
+    letter-spacing: 0.4px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: 600;
+
+	-webkit-transition:
+		opacity .3s ease;
+	transition:
+		opacity .3s ease;
+}
+
+.onsale {
+	@extend %primary-background;
+
+	+ .out-of-stock-label {
+		top: 65px;
+	}
+}
+
+.out-of-stock-label {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: $heading-color;
+    font-size: 12px;
+    max-width: 50px;
+    font-weight: 900;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
+
+    .woodmart-dark & {
+        background-color: $scheme-light--background-popup;
+        color:$scheme-light--body-color-darken;
+    }
+}
+
+/** ------------------------------------------
+* MENU LABEL
+* ------------------------------------------ */
+
+.item-with-label {
+
+	> a {
+		position: relative;
+	}
+}
+
+.menu-label {
+    position: absolute;
+    bottom: 85%;
+    white-space: nowrap;
+    z-index: 1;
+    opacity: 0;
+    display: inline-block;
+    margin-left: -20px;
+    color:white;
+    padding: 2px 4px;
+    color: white;
+    line-height: 12px;
+    letter-spacing: .3px;
+    font-size: 9px;
+    font-weight: 600;
+    vertical-align: middle;
+    @extend %content-font;
+    text-transform: uppercase;
+
+    -webkit-transition: 
+    	opacity 0.3s ease,
+    	color .25s ease,
+    	background-color .25s ease;
+    transition: 
+    	opacity 0.3s ease,
+    	color .25s ease,
+    	background-color .25s ease;
+
+    &:before {
+        content:"";
+        position: absolute;
+        top:100%;
+        left:20%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 4px 7px 0 0;
+        border-top-color: transparent;
+        border-left-color: transparent!important;
+        border-right-color: transparent!important;
+        border-bottom-color: transparent!important;
+    }
+}
+
+.menu-label-black {
+	background-color:black;
+	color:white;
+
+	&:before {
+		border-color: black;
+	}	
+}
+
+.menu-label-grey {
+	background-color: #ECECEC;
+	color:$light-dark;
+
+	&:before {
+		border-color: #ECECEC;
+	}
+}
+
+.menu-label-orange {
+	background-color: #fbbc34;
+
+	&:before {
+		border-color:#fbbc34;
+	}
+}
+
+.menu-label-blue {
+	background-color: #00A1BE;
+	
+	&:before {
+		border-color:#00A1BE;
+	}
+}
+
+.menu-label-white {
+	background-color: white;
+	color:$light-dark;
+
+	&:before {
+		border-color: white;
+	}
+}
+
+.menu-label-primary {
+	@extend %primary-background;
+
+	&:before {
+		@extend %primary-border;
+	}
+}
+
+.menu-label-secondary {
+	@extend %alternative-background;
+	
+	&:before {
+		@extend %alternative-border;
+	}
+}
+
+.menu-label-red {
+	background-color:#D41212;
+
+	&:before {
+		border-color: #D41212;
+	}
+}
+
+.menu-label-green {
+	background-color:#65B32E;
+
+	&:before {
+		border-color:#65B32E;
+	}
+}
+
+.document-ready {
+
+	.menu-label {
+		opacity: 1;
+	}
+}
+

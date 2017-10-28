@@ -1,0 +1,149 @@
+
+// ------------------------------------------------------------------------------------------------
+// SITE SETTINGS
+// ------------------------------------------------------------------------------------------------ 
+
+// ------------------------------------------
+// TYPOGRAPHY
+// ------------------------------------------
+
+$main-font:'lato',Arial, Helvetica, sans-serif;
+
+$title-font:'Poppins',Arial, Helvetica, sans-serif;
+
+$navigation-font:'lato',Arial, Helvetica, sans-serif;
+
+$secondary-title:'Poppins','MS Sans Serif', Geneva, sans-serif;
+
+$alternative-font:'Courgette','Comic Sans MS', cursive;
+
+// ------------------------------------------
+// COLORS
+// ------------------------------------------ 
+
+// $body-color:#4C4C4C;
+
+$body-color:#777777;
+
+$primary-color:#7eb934;
+
+$heading-color:#2d2a2a; //#121212 //#1B1919;
+
+$alternative-color:#fbbc34;
+
+$gray-color: #9A9A9A;
+
+$light-dark:#333333;
+
+$main-border-color:rgba(129, 129, 129, 0.2);
+
+
+// ------------------------------------------
+// COLOR FOR COLOR SCHEME LIGHT AND DARK VERSION
+// ------------------------------------------ 
+
+//.woodmart-dark
+
+$scheme-light--title-color:white;
+
+$scheme-light--title-color-hover:rgba(255,255,255,0.8);
+
+$scheme-light--body-color-darken:white;
+
+$scheme-light--body-color:rgba(255,255,255,0.8);
+
+$scheme-light--body-color-lighten:rgba(255,255,255,0.6);
+
+$scheme-light--body-color-extra-lighten:rgba(255,255,255,0.3);
+
+$scheme-light--link-color:rgba(255,255,255,0.9);
+
+$scheme-light--link-color-hover:white;
+
+$scheme-light--border-color-white:white;
+
+$scheme-light--border-color:rgba(255,255,255,0.25);
+
+$scheme-light--border-color-lighten:rgba(255,255,255,0.15);
+
+$scheme-light--background-main:#1a1a1a; // rgb(26, 26, 26)
+
+$scheme-light--background-popup:#101010; //rgba(16, 16, 16, 0.81)
+
+$scheme-light--background-popup-transparent:rgba(0,0,0,0.9);
+
+$scheme-light--background-light-dark:rgba(0,0,0,0.3);
+
+$scheme-light--background-white:white;
+
+
+// ------------------------------------------
+// link 
+// ------------------------------------------ 
+
+$link:'';
+
+// ------------------------------------------
+// Owl Slider
+// ------------------------------------------ 
+
+$slides_space: 20px;
+
+$arrow_width: 50px;
+
+$arrow_height: 50px;
+
+// ------------------------------------------
+// ADMIN BAR HEIGHT
+// ------------------------------------------ 
+
+$heightAdminBar:32px;
+
+$heightTopBar:42px;
+
+
+// ------------------------------------------
+// WIDTH OF SCROLLER IN WINDOWS
+// ------------------------------------------ 
+
+$width-scrollbar-windows:17px;
+
+$width-scrollbar-windows-edge:12px;
+
+// Chrome	34	17 pixels
+
+// Internet Explorer	11	17 pixels
+// Internet Explorer	10	17 pixels
+
+// Firefox	29	17 pixels
+// Firefox	28	17 pixels
+
+// Edge 12 pixels
+
+// ------------------------------------------
+// SITE WIDTH
+// ------------------------------------------
+
+$site-container-width-standard:1221px;
+
+$site-container-width-wide:1600px;
+
+$site-container-width-boxed:1160px;
+
+// ------------------------------------------
+// HEADER DROPDOWNS
+// ------------------------------------------
+
+// .#{$header-drops}
+
+$header-drops:"dropdowns-color-light";
+
+
+
+
+
+
+
+
+
+

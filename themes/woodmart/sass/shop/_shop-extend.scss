@@ -1,0 +1,346 @@
+
+// ------------------------------------------------------------------------------------------------
+// SHOP EXTEND
+// ------------------------------------------------------------------------------------------------ */
+
+// ------------------------------------------
+// QUICK SHOP WITH BIG BUTTON
+// ------------------------------------------ 
+
+// @extend %quick-shop-with-big-btn;
+
+%quick-shop-with-big-btn {
+
+    .quantity {
+    	display: none!important;
+    	flex: 0 0 auto;
+	    color: white;
+	    @extend %primary-background;
+
+	    input[type="button"],
+	    input[type="number"] {
+	    	border:none;
+	    	background-color: rgba(0, 0, 0, 0.1);
+
+	    	&:hover {
+	    		background-color: rgba(0, 0, 0, 0.15);
+	    	}
+	    }
+
+	    input[type="button"] {
+
+	    	&.minus {
+	    		border-right: 1px solid rgba(255,255,255,0.15);
+	    	}
+
+	    	&.plus {
+		    	border-left: 1px solid rgba(255,255,255,0.15);
+		    }
+	    }
+    }
+
+    .single_add_to_cart_button {
+		flex: 1 1 auto;
+	}
+}
+
+// ------------------------------------------
+// QUICK SHOP WITH SMALL BUTTON
+// ------------------------------------------ 
+
+// @extend %quick-shop-with-small-btn;
+
+%quick-shop-with-small-btn {
+
+	.woocommerce-variation-add-to-cart {
+		display: inline-flex;	
+	}
+
+    .single_add_to_cart_button {
+		font-size: 0;
+		padding: 0;
+		border:none;
+		width: 45px;
+
+		&:before {
+			margin-left: 0;
+			margin-right: -5px;
+		}
+	}
+}
+
+// ------------------------------------------
+// FADE_IN LEFT BUTTONS 
+// ------------------------------------------ 
+
+// @extend %fade-in-left-buttons;
+
+%fade-in-left-buttons {
+
+	.woodmart-buttons {
+	    top: 10px;
+	    right:10px;
+	    transform:translateX(20px);
+	    -webkit-transform:translateX(20px);
+
+	    > div {
+
+	    	a {
+	    		height: 45px;
+	    		line-height: 45px;
+	    	}
+	    }
+	}
+
+	&:hover {
+
+		.woodmart-buttons {
+			transform:translateX(0);
+			-webkit-transform:translateX(0);
+		}
+	}
+}
+
+// ------------------------------------------
+// BUTTONS WHITE AND WITHOUT BACKGROUND
+// ------------------------------------------ 
+
+// @extend %button-color-white;
+
+%button-color-white {
+
+	> div {
+
+		a {
+			color: $scheme-light--body-color-darken;
+
+			&:after {
+				border-color:$scheme-light--border-color-lighten;
+				border-left-color: $scheme-light--border-color-white;
+			}
+
+			&:hover,
+			&:focus {
+				color:$scheme-light--body-color;
+			}
+		}
+	}
+
+	.woodmart-add-btn {
+
+		.added_to_cart {
+			color:$scheme-light--body-color-darken;
+		}
+	}
+
+	.product-compare-button {
+
+		a.added {
+			color:$scheme-light--body-color-darken;
+		}
+	}
+
+	.yith-wcwl-add-to-wishlist {
+
+		.yith-wcwl-wishlistaddedbrowse,
+		.yith-wcwl-wishlistexistsbrowse {
+
+			a {
+				color:$scheme-light--body-color-darken;
+
+				&:hover,
+				&:focus {
+					color:$scheme-light--body-color;
+				}
+			}
+		}
+
+		.feid-in {
+
+            a {
+
+				&:before {
+					border-color:$scheme-light--border-color-white;
+				}
+            }
+		}
+	}
+}
+
+// @extend %buttons-without-background;
+
+%buttons-without-background {
+	top:5px;
+	right: 0;
+	z-index: 3;
+	background-color: transparent;
+	box-shadow: none;
+	visibility: hidden;
+	transform:translateX(20px);
+    -webkit-transform:translateX(20px);
+
+	> div {
+
+		a {
+			height: 40px;
+			line-height: 40px;
+
+			&:before {
+				font-size: 18px;
+			}
+		}
+	}
+}
+
+// @extend %buttons-without-background-hover;
+
+%buttons-without-background-hover {
+	
+	&:hover {
+
+		.woodmart-buttons {
+			transform:none;
+			-webkit-transform:none;
+			visibility: visible;
+		}
+	}
+}
+
+// ------------------------------------------
+// BUTTON REPLACE
+// ------------------------------------------ 
+
+// @extend %buttons-text-replace-icon;
+
+%buttons-text-replace-icon {
+	@include default-button;
+	padding: 0;
+	overflow: hidden;
+
+	.woodmart-tooltip-label {
+		display: none;
+	}
+
+	span:not(.woodmart-tooltip-label) {
+		display: block;
+		-webkit-transition: 
+			transform .25s ease, 
+			opacity .15s ease;
+	    transition: 
+	    	transform .25s ease, 
+	    	opacity .15s ease;
+	}
+
+	&:before {
+		@include font-icon($font-Flaticon-cart);
+		position: absolute;
+		top:0;
+		left:0;
+	    display: flex;
+	    flex-direction: row;
+	    align-items: center;
+	    justify-content: center;
+	    width: 100%;
+	    height: 100%;
+	    font-weight: 400;
+		font-size: 20px;
+	    color:white;
+	     
+	    -webkit-transition:
+	    	opacity .15s ease,
+	    	transform .25s ease;
+	    transition: 
+	    	opacity .15s ease,
+	    	transform .25s ease;
+    	transform: translateY(100%);
+		-webkit-transform: translateY(100%);
+	}
+
+	&:after {
+		@include loader($size:18px, $b-width:1px, $color-loader: rgba(255,255,255,0.4), $color-border: white);
+		position: absolute;
+		top:50%;
+		left:50%;
+		opacity: 0;
+		margin-left: -9px;
+		margin-top: -9px;
+		-webkit-transition:  
+			opacity .2s ease;
+	    transition: 
+	    	opacity .2s ease;
+	}
+
+	&:hover,
+	&:focus {
+
+		&:before {
+			-webkit-transform: 
+				translateY(0) 
+				translateZ(0);
+		    transform: 
+		    	translateY(0) 
+		    	translateZ(0);
+		}
+
+		span:not(.woodmart-tooltip-label) {
+			-webkit-transform: 
+				translateY(-100%) 
+				translateZ(0);
+		    transform: 
+		    	translateY(-100%) 
+		    	translateZ(0);
+		}
+	}
+
+	&.loading {
+
+		&:before {
+			opacity: 0;
+		}
+
+		&:after {
+			opacity: 1;
+			@include act-loader;
+		}
+
+		span:not(.woodmart-tooltip-label) {
+			opacity: 0;
+		}
+	}
+}
+
+// ------------------------------------------
+// BORDERED WHITE ADD TO CART BUTTON 
+// ------------------------------------------ 
+
+// @extend %bordered-white-button;
+
+%bordered-white-button {
+
+	> a {
+		@extend %buttons-text-replace-icon;
+		@include border-button;
+		border-color:white;
+		color:white;
+
+		span:not(.woodmart-tooltip-label) {
+			@include button-border-size-small;			
+		}
+
+		&:hover,
+		&:focus {
+			border-color:rgba(255,255,255, 0.6);
+		}
+	}
+
+	.added_to_cart {
+		@include button-border-size-small;
+		@include btn-bordered-white;
+
+		&:before {
+			content:none;
+		}
+	}
+}
+
+

@@ -1,0 +1,572 @@
+
+/** ------------------------------------------------------------------------------------------------
+* WOOCOMMERCE TABLE 
+* ------------------------------------------------------------------------------------------------ */
+
+/** ------------------------------------------
+* TABLE SHOP CAT
+* ------------------------------------------ */
+
+// .table-responsive-label {
+// 	display: none;
+//     color:$heading-color;
+//     font-size: 11px;
+//     font-weight: 600;
+//     text-transform: uppercase;
+//     margin-bottom: 5px;
+// }
+
+.shop_table {
+
+	tr {
+
+		td,
+		th {
+
+			&:last-child {
+				text-align: right;
+			}
+		}
+	}
+
+	.variation {
+		margin-top:10px;
+	}
+}
+
+tr {
+
+	&.order-total {
+
+		th,
+		td strong {
+			font-size: 24px;
+		}
+
+		td {
+
+			strong {
+				display: block;
+			}
+		}	
+	}
+}
+
+th {
+
+	&.product-remove,
+	&.product-thumbnail {
+		font-size: 0;
+	}
+
+	&.product-name {
+		text-align:left;
+	}
+
+	&.product-thumbnail {
+		width:10px;
+	}
+
+	&.product-remove {
+		width: 40px;
+	}
+}
+
+td {
+
+	&.product-name {
+		text-align: left;
+		
+		a {
+			font-weight: 500;
+			font-size: 14px;
+			@extend %secondary-title;
+			@extend %title-hover;
+		}
+	}
+
+	&.product-price {
+			
+		.amount {
+			font-size:14px;
+			font-weight: normal;
+			color:$body-color;
+		}
+
+		del {
+			color:#BDBDBD;
+
+			.amount {
+				color:#BDBDBD;
+				font-size:90%; 
+			}
+		}
+
+		ins {
+			text-decoration: none;
+			padding:0;
+			opacity:1;
+			background-color: transparent;
+		}
+	}
+
+	&.product-subtotal {
+			
+		span {
+			font-size:16px;
+		}
+	}
+
+	&.product-thumbnail {
+
+		img {
+			max-width:80px;
+		}
+	}
+
+	&.woocommerce-orders-table__cell-order-number {
+
+		a {
+			font-weight: 600;
+		}
+	}
+
+	&.woocommerce-orders-table__cell-order-actions {
+
+		a {
+			margin-right: 5px;
+			@include button-size-small;
+			@include btn-default-primary;
+			@extend %accent-buttons;
+
+			&:last-child {
+				margin-right: 0px;
+			}
+		}
+	}
+
+	&.product-remove {
+		padding: 0;
+		text-align:center;
+
+		a {
+			@extend %small-close-button;
+		}
+	}	
+
+	&.product-total {
+
+		.amount {
+			color:$body-color;
+			font-weight: normal;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		&.product-total {
+
+			.amount {
+				color:white;
+			}
+		}	
+	}
+
+	.woodmart-dark & {	
+
+		&.product-price {
+				
+			.amount {
+				color:$scheme-light--body-color;
+			}
+
+			del {
+				color:$scheme-light--body-color-lighten;
+
+				.amount {
+					color:$scheme-light--body-color-lighten;
+				}
+			}
+		}	
+	}
+}
+
+/** ------------------------------------------
+* WOOCOMMARCE CHECKOUT
+* ------------------------------------------ */
+
+#shipping_method {
+
+	li {
+		margin-bottom:10px;
+
+		&:last-child {
+			margin-bottom:0px;
+		}
+	}
+
+	label {
+		display:inline-block;
+		margin-bottom:0px;
+	}
+}
+
+.woocommerce-checkout-review-order-table {
+
+	th,
+	td {
+		width:50%;
+		max-width: 50%;
+	}
+
+	tfoot {
+
+		tr {
+
+			&:last-child {
+
+				th,td {
+					border-bottom: none;
+				}
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* COUPON REMOVE BUTTON
+* ------------------------------------------ */
+
+.woocommerce-remove-coupon {
+	@extend %small-close-button;	
+}
+
+
+/** ------------------------------------------
+* MY ACOUNT
+* ------------------------------------------ */
+
+// .my_account_orders {
+
+// 	.order-number {
+
+// 		a {
+// 			font-weight: 600;
+// 		}
+// 	}
+
+// 	.order-actions {
+
+// 		a {
+// 			@include button-size-small;
+// 			@include btn-default-primary;
+// 			@extend %accent-buttons;
+// 		}
+// 	}
+// }
+
+/** ------------------------------------------
+* ORDER DETAILS
+* ------------------------------------------ */
+
+.order_details {
+
+	th, td {
+		width:50%;
+		max-width: 50%;
+	}
+
+	.product-name {
+
+		a {
+			display: inline-block;
+			color:$body-color;
+			font-weight: 400;
+		}
+	}
+
+	tfoot {
+
+		tr {
+
+			&:last-child {
+
+				th {
+					font-size:24px;
+				}
+
+				td {
+
+					> .amount {
+						display: block;
+						font-size:24px;
+					}
+				}
+
+				th {
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+}
+
+
+/** ------------------------------------------
+* GROUP TABLE
+* ------------------------------------------ */
+
+.group_table {
+	border-top: 2px solid #EFEFEF;
+	margin-bottom: 25px;
+
+	td {
+
+		&.price {
+			text-align: right;
+		}
+
+		&.label {
+
+			a {
+				font-size: 14px;
+				@extend %secondary-title-style;
+				@extend %title-hover;
+			}
+		}
+
+		.quantity {
+			margin-right: 0;
+		}
+
+		&.product-quantity {
+
+			> a {
+				white-space: nowrap;
+				@include button-border-size-small;
+				@include border-button;
+				@include btn-bordered-grey;
+			}
+		}
+	}
+
+	tr {
+
+		td {
+
+			&:first-child {
+				padding-left: 0;
+			}
+
+			&:last-child {
+				padding-right: 0;
+			}
+
+		}
+	}
+}
+
+/** ------------------------------------------
+* PAY PAGE
+* ------------------------------------------ */
+
+.woocommerce-order-pay {
+
+	.shop_table {
+		
+		tfoot {
+
+			tr {
+
+				&:last-child {
+
+					th {
+						font-size: 24px;
+					}
+
+					td {
+
+						.amount {
+
+							&:first-child {
+								font-size: 24px;
+								display: block;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	td.product-total {
+
+		.amount {
+			font-weight: bold;
+			font-size: 16px;
+			@extend %primary-color;
+		}
+	}
+}
+
+/** ------------------------------------------
+* ORDER TABLE
+* ------------------------------------------ */
+
+.woocommerce-orders-table {
+	
+	td {
+
+		&.woocommerce-orders-table__cell-order-actions {
+			padding-bottom: 5px;
+
+			> a {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* WISHLIST TABLE
+* ------------------------------------------ */
+
+.wishlist_table {
+
+	th:not(.product-name) {
+		text-align: center;
+	}
+	
+	tr {
+
+		td {
+
+			&.product-stock-status {
+
+				span {
+					@extend %stock-lable;
+
+					&.wishlist-in-stock {
+						@extend %in-stock-lable;
+					}
+
+					&.wishlist-out-of-stock {
+						@extend %out-of-stock-lable;
+					}
+				}
+			}
+
+			&.product-thumbnail {
+
+				a {
+
+					img {
+						width: auto;
+					}
+				}
+			}	
+
+			&.wishlist-empty {
+				text-align: center;
+				font-weight: 600;
+				color:$light-dark;
+				font-size: 18px;
+			}		
+		}
+	}
+
+	tfoot {
+
+		tr {
+
+			&:last-child {
+
+				td,th {
+					border-bottom:none;
+				}
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		tr {
+
+			td {
+
+				&.wishlist-empty {
+					color:$scheme-light--body-color-darken;
+				}		
+			}
+		}		
+	}
+}
+
+.woocommerce {
+
+	table {
+
+		&.wishlist_table {
+			font-size:14px;
+
+			td {
+
+				&.product-add-to-cart {
+					
+					a {
+						display: inline-block!important;
+						margin: 5px;
+						border-radius: 0;
+						@include button-size-default;
+						@include btn-default-primary;
+						@extend %shop-buttons;
+					}
+
+					.ajax_add_to_cart {
+						@extend %loader-add-to-cart;
+					}
+				}
+			}
+			
+			thead {
+
+				th {
+					border-top:none;
+					padding: 15px 10px;	
+					border-color:#EFEFEF;				
+				}
+			}
+
+			tbody {
+
+				td {
+					border-color:#E6E6E6;
+				}
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		table {
+
+			&.wishlist_table {
+
+				thead {
+
+					th {
+						border-color:$scheme-light--border-color;				
+					}
+				}
+
+				tbody {
+
+					td {
+						border-color:$scheme-light--border-color-lighten;
+					}
+				}
+			}
+		}		
+	}
+}

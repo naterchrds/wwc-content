@@ -1,0 +1,89 @@
+
+/** ------------------------------------------------------------------------------------------------
+* nanoScroller
+* ------------------------------------------------------------------------------------------------ */
+
+//
+// nanoScrollerJS (Sass)
+// --------------------------------------------------
+/** initial setup **/
+$nanoClass: "woodmart-scroll" !default;
+$paneClass: "woodmart-scroll-pane" !default;
+$sliderClass: "woodmart-scroll-slider" !default;
+$contentClass: "woodmart-scroll-content" !default;
+
+.#{$nanoClass} {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;  
+
+    .#{$contentClass} {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: auto;
+        overflow-x: hidden;
+
+        &:focus {
+            outline:none;
+        }
+
+        &::-webkit-scrollbar {
+            display: none;
+        }    
+    }     
+}
+
+.#{$paneClass} {
+    width: 3px;
+    background: rgba(0,0,0,.15);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: .2s;
+       -moz-transition: .2s;
+         -o-transition: .2s;
+            transition: .2s;
+    // -webkit-border-radius: 5px;
+    //    -moz-border-radius: 5px;
+    //         border-radius: 5px;
+    visibility: hidden\9; // Target only IE7 and IE8 with this hack
+    opacity: 0;
+
+    > .#{$sliderClass} {
+        background: rgba(0,0,0,0.25);
+        position: relative;
+        margin: 0 0px;
+    }
+
+    .woodmart-dark & {
+        background: rgba(255,255,255,.15);
+
+        > .#{$sliderClass} {
+            background: rgba(255,255,255,.35);            
+        }
+    }
+}
+
+.has-scrollbar > .#{$contentClass}::-webkit-scrollbar {
+    display: block;
+}
+
+.platform-Mac .woodmart-scroll .woodmart-scroll-content::-webkit-scrollbar {
+   display:none; 
+}
+
+.#{$paneClass} {
+    .#{$nanoClass}:hover > &,
+    .woodmart-sidebar-scroll:hover > &,
+    &.active,
+    &.flashed {
+        visibility: visible\9; // Target only IE7 and IE8 with this hack
+        opacity: 0.99;
+    }
+}

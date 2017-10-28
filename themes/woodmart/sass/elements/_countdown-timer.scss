@@ -1,0 +1,177 @@
+
+/** ------------------------------------------------------------------------------------------------
+* COUNTDOWN TIMER
+* ------------------------------------------------------------------------------------------------ */
+
+.woodmart-timer {
+	display: block;
+	font-size: 0;
+	line-height: 1;
+
+	> span {
+		display:inline-flex;
+		flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    padding:5px;
+		margin:0 2px 5px 2px;
+	  	min-width:55px;
+	  	min-height:55px;
+		font-size: 20px;
+		line-height: 20px;
+		background-color:white;
+		color:$light-dark;
+		font-weight: 600;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+
+		span {
+			font-weight: 400;
+			font-size:10px;
+		  	line-height: 10px;
+			display:block;
+			text-transform:uppercase;
+			margin-top: 5px;
+			color:$body-color;
+		}
+	}
+}
+
+//------------------------------------------
+// SIZE
+// -----------------------------------------
+
+.timer-size-medium {
+
+	.woodmart-timer {
+
+		> span {
+		  	min-width:65px;
+		  	min-height:65px;
+			font-size: 24px;
+			line-height: 24px;
+
+			span {
+			  	font-size:12px;
+			  	line-height: 12px;
+			}
+		}
+	}		
+}
+
+.timer-size-large {
+
+	.woodmart-timer {
+
+		> span {
+		  	min-width:80px;
+		  	min-height: 80px;
+			font-size: 28px;
+			line-height: 28px;
+
+			span {
+			  	font-size:14px;
+			  	line-height: 14px;
+			}
+		}
+	}		
+}
+
+.timer-size-xlarge {
+
+	.woodmart-timer {
+
+		> span {
+		  	min-width:100px;
+		  	min-height: 100px;
+			font-size: 42px;
+			line-height: 42px;
+
+			span {
+			  	font-size:16px;
+			  	line-height: 16px;
+			}
+		}
+	}	
+}
+
+//------------------------------------------
+// TRANSPARENT STYLE
+// -----------------------------------------
+
+.timer-style-transparent {
+
+	.woodmart-timer {
+
+		> span {
+			background-color: rgba(255,255,255, .2);
+			box-shadow: none;
+		}
+	}
+}
+
+.timer-style-active {
+
+	.woodmart-timer {
+
+		> span {
+			@extend %primary-background;
+		}
+	}	
+}
+
+//------------------------------------------
+// COLOR LIGHT
+// -----------------------------------------
+
+.color-scheme-light {
+
+	&.woodmart-countdown-timer {
+
+		.woodmart-timer {
+
+			> span {
+				color:$scheme-light--body-color-darken;
+
+				span {
+				  	color:$scheme-light--body-color;
+				}
+			}
+		}
+	}
+
+	&.timer-style-standard {
+
+		.woodmart-timer {
+
+			> span {
+				background-color:$scheme-light--background-popup;
+			}
+		}
+	}
+
+	&.timer-style-transparent {
+
+		.woodmart-timer {
+
+			> span {
+				background-color:rgba(0,0,0,0.2);
+			}
+		}	
+	}
+}
+
+.woodmart-product-countdown {
+
+	.woodmart-dark &,
+	.color-scheme-light & {
+
+		> span {
+			color:white;
+			background-color: $scheme-light--background-popup;
+
+			span {
+			  	color:rgba(255,255,255,0.8);
+			}
+		}		
+	}
+}

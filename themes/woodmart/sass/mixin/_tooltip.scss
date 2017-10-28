@@ -1,0 +1,171 @@
+
+//------------------------------------------
+// TOOLTIP MIXIN
+// -----------------------------------------
+
+$wood-tooltip-height:               34px !default;
+
+$wood-tooltip-bg:                   #000 !default;
+
+$wood-tooltip-color:                #fff !default;
+
+$wood-tooltip-arrow-color:          $wood-tooltip-bg !default;
+
+$wood-tooltip-arrow-width:          5px !default;
+
+///****  add tooltip ****///
+
+@mixin add-tooltip {
+    position: relative;
+
+    .woodmart-tooltip-label {
+        position: absolute;
+        padding: 0px 15px;
+        line-height: $wood-tooltip-height;
+        height: $wood-tooltip-height;
+        text-align:center;
+        font-size: 12px;
+        letter-spacing: .3px;
+        border-radius: 0;
+        font-weight: normal;
+        text-transform: capitalize;
+        white-space: nowrap;
+        color: $wood-tooltip-color;
+        background-color: $wood-tooltip-bg;
+        z-index: 2;
+        pointer-events: none;
+        visibility: hidden;
+        opacity: 0;
+
+        &:before {
+            content:"";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+        }
+    }
+
+    &:hover {
+
+        .woodmart-tooltip-label {
+            animation:fadeInTooltip 0.3s ease;
+            -webkit-animation:fadeInTooltip 0.3s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+@mixin tooltip-fade-in-left {
+
+    .woodmart-tooltip-label {
+        top:50%;
+        bottom:auto;
+        left:auto;
+        right:100%;
+        margin-top: -$wood-tooltip-height / 2;
+        margin-left: 0;
+        margin-right: 8px;
+        margin-bottom: 0;
+
+        &:before {
+            top:50%;
+            bottom: auto;
+            left:100%;
+            right:auto;
+            margin-top:-$wood-tooltip-arrow-width;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            border-width: $wood-tooltip-arrow-width 0 $wood-tooltip-arrow-width $wood-tooltip-arrow-width;
+            border-color:transparent;
+            border-left-color: $wood-tooltip-arrow-color;
+        }
+    }
+}
+
+@mixin tooltip-fade-in-right {
+
+    .woodmart-tooltip-label {
+        top:50%;
+        bottom:auto;
+        left:100%;
+        right:auto;
+        margin-top: -$wood-tooltip-height / 2;
+        margin-left: 8px;
+        margin-right: 0;
+        margin-bottom: 0;
+
+        &:before {
+            top:50%;
+            bottom: auto;
+            left:auto;
+            right:100%;
+            margin-top:-$wood-tooltip-arrow-width;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            border-width: $wood-tooltip-arrow-width $wood-tooltip-arrow-width $wood-tooltip-arrow-width 0;
+            border-color:transparent;
+            border-right-color: $wood-tooltip-arrow-color;
+        }
+    }
+}
+
+@mixin tooltip-fade-in-bottom {
+
+    .woodmart-tooltip-label {
+        top:100%;
+        bottom:auto;
+        left:50%;
+        right:auto;
+        margin-top: 8px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+
+        &:before {
+            top:auto;
+            bottom: 100%;
+            left:50%;
+            right:auto;
+            margin-top: 0;
+            margin-left:-$wood-tooltip-arrow-width;
+            margin-right: 0;
+            margin-bottom: 0;
+            border-width: 0 $wood-tooltip-arrow-width $wood-tooltip-arrow-width;
+            border-color:transparent;
+            border-bottom-color: $wood-tooltip-arrow-color;
+        }
+    }
+}
+
+@mixin tooltip-fade-in-top {
+
+    .woodmart-tooltip-label {
+        top:auto;
+        bottom:100%;
+        left:50%;
+        right:auto;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 8px;
+
+        &:before {
+            top:100%;
+            bottom: auto;
+            left:50%;
+            right:auto;
+            margin-top: 0;
+            margin-left:-$wood-tooltip-arrow-width;
+            margin-right: 0;
+            margin-bottom: 0;
+            border-width: $wood-tooltip-arrow-width $wood-tooltip-arrow-width 0;
+            border-color:transparent;
+            border-top-color: $wood-tooltip-arrow-color;
+        }
+    }
+}

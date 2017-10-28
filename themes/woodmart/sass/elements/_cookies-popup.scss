@@ -1,0 +1,102 @@
+
+// ------------------------------------------------------------------------------------------------
+// COOKIES POPUP
+// ------------------------------------------------------------------------------------------------
+
+.woodmart-cookies-popup {
+	position: fixed;
+	top:auto;
+	left:0;
+	right:0;
+	bottom: 0;
+	z-index: 999;
+	padding: 15px 30px;
+	background-color: white;
+	box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.14);
+	// color:$body-color;
+
+	transform: translate3d(0,100%,0);
+	-webkit-transform: translate3d(0,100%,0);
+
+	-webkit-transition:
+		transform 0.35s ease;
+	transition:
+		transform 0.35s ease;
+
+	&.popup-display {
+		transform: none;
+		-webkit-transform: none;
+	}
+
+	&.popup-hide {
+		transform: translate3d(0,100%,0);
+		-webkit-transform: translate3d(0,100%,0);
+	}
+
+	.woodmart-dark & {
+		background-color:$scheme-light--background-popup;
+	}
+}
+
+.woodmart-cookies-inner {
+	display: flex;
+	align-items:center;
+	justify-content: space-between;
+
+    .cookies-buttons {
+		flex:0 0 auto;
+    }
+
+	.cookies-info-text {
+		flex:1 1 auto;
+		padding-right: 30px;
+	}
+}
+
+.cookies-buttons {
+
+	> a {
+		margin-right:20px;
+
+		&:last-child {
+			margin-right:0px;
+		}
+	}
+
+	.cookies-accept-btn {
+		@extend %accent-buttons;
+	}
+
+	.cookies-more-btn {
+	    color: $light-dark;
+	    text-transform: uppercase;
+	    font-size: 13px;
+	    font-weight: 600;
+	    border-bottom: 2px solid #e4e4e4;
+
+    	&:hover,
+		&:focus { 
+			opacity: 0.7;
+		}
+	}
+
+	.woodmart-dark & {
+
+		.cookies-more-btn {
+			color:$scheme-light--title-color;
+			border-color: $scheme-light--border-color;
+		}
+	}
+}
+
+.woocommerce-demo-store {
+	
+	.woodmart-cookies-popup {
+
+		&.popup-display {
+			transform: translate3d(0,-46px,0);
+			-webkit-transform: translate3d(0,-46px,0);
+			-ms-transform: translate3d(0,-46px,0);
+		}		
+	}	
+}

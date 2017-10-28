@@ -1,0 +1,215 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER INFO
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-info {
+	text-align: left;
+
+	.product-element-top {
+		margin-bottom: 0;
+	}
+
+	.woodmart-buttons {
+	    bottom: 10px;
+	    right: 10px;
+	    transform:translateX(20px);
+	    -webkit-transform:translateX(20px);
+
+	    > div {
+
+	    	a {
+	    		height: 45px;
+	    		line-height: 45px;
+	    	}
+	    }
+	}
+
+	.top-information {
+		position: absolute;
+		top: 20px;
+	    left: 25px;
+	    right: 25px;
+		-webkit-transition:
+			opacity .3s ease;
+		transition:
+			opacity .3s ease;
+	}
+
+	.bottom-information {
+		position: absolute;
+		bottom: 20px;
+		left:25px;
+		right: 60px;
+		display: flex;
+    	flex-direction: column;
+
+    	backface-visibility: hidden;
+    	-webkit-backface-visibility: hidden;
+    	perspective: 800px;
+    	-webkit-perspective: 800px;
+
+		transform:
+			translateY(100%)
+			translateZ(0);
+		-webkit-transform:
+			translateY(100%)
+			translateZ(0);
+
+		-webkit-transition:
+			transform .3s ease,
+			opacity .3s ease;
+		transition:
+			transform .3s ease,
+			opacity .3s ease;
+
+		.price {
+			position: absolute;
+			left:0;
+			bottom: 100%;
+			font-size: 16px;
+
+			ins,
+			del {
+				display: block;
+			}
+
+			ins {
+				margin-top: 5px;
+			}
+		}
+	}
+
+	.onsale, 
+	.out-of-stock-label {
+		left: auto;
+		right:7px;
+	}
+
+	// // Need when turn on color scheme light
+
+	// h3.product-title {
+	// 	font-size: 16px;
+	// 	color:$light-dark;
+
+	// 	a {
+	// 		color:$light-dark;
+			
+	// 		&:hover {
+	// 			color:$light-dark;
+	// 			opacity: 0.8;
+	// 		}
+	// 	}
+	// }
+
+	// // Need when turn on color scheme light
+
+	// &.product-grid-item {
+
+	// 	div.woodmart-product-cats {
+	// 		color: #9E9E9E;
+
+	// 		a {
+	// 			color: #9E9E9E;
+
+	// 			&:hover,
+	// 			&:focus {
+	// 				color:#5c5c5c;
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	.swatches-on-grid {
+		order: 3;
+		margin-top: 10px;
+		opacity: 0;
+		-webkit-transition:
+			opacity .3s ease;
+		transition:
+			opacity .3s ease;
+	}
+
+	.star-rating {
+		order: 2;
+		margin-top: 10px;
+		margin-bottom: 0px;
+		opacity: 0;
+		-webkit-transition:
+			opacity .3s ease;
+		transition:
+			opacity .3s ease;
+	}
+
+	.amount, 
+	.price, 
+	.price ins {
+		color:$light-dark;
+	}
+
+	.price del {
+		color: #BDBDBD;
+	}
+
+	del {
+
+		.amount {
+    		color: #BDBDBD;		
+		}
+	}
+
+	&.outofstock,
+	&.sale {
+
+		.top-information {
+			right: 60px;
+		}
+	}
+
+	&:hover {
+
+		.woodmart-buttons {
+			transform:translateX(0);
+			-webkit-transform:translateX(0);
+		}
+
+		.bottom-information {
+			transform:none;
+			-webkit-transform:none;
+		}
+
+		.swatches-on-grid,
+		.star-rating {
+			opacity: 1;		
+		}
+	}
+
+	&.quick-shop-shown,
+	&.loading-quick-shop {
+		
+		.bottom-information,
+		.top-information {
+			opacity: 0;
+		}		
+	}
+
+	.woodmart-dark & {
+
+		.amount, 
+		.price, 
+		.price ins {
+			color:$scheme-light--body-color-darken;
+		}
+
+		.price del {
+			color: $scheme-light--body-color-extra-lighten;
+		}
+
+		del {
+
+			.amount {
+	    		color: $scheme-light--body-color-extra-lighten;		
+			}
+		}
+	}
+}

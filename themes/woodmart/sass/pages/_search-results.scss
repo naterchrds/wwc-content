@@ -1,0 +1,93 @@
+
+/** ------------------------------------------------------------------------------------------------
+* SEARCH RESULTS /  #woodmart-search-results
+* ------------------------------------------------------------------------------------------------ */
+
+/** ------------------------------------------
+* SEARCH BY PRODUCT NO RESULTS
+* ------------------------------------------ */
+
+.search-no-results {
+
+	&.woocommerce {
+
+		.woocommerce-info {
+			@extend %woo-nots-not-hidden;
+			margin-bottom: 20px;
+		}
+	}
+
+	&.wrapper-boxed {
+
+		&.woocommerce {
+
+			.woocommerce-info {	
+				@extend %woo-nots-not-hidden-boxed;
+			}
+		}	
+	}
+}
+
+/** ------------------------------------------
+* SEARCH BY POSTS
+* ------------------------------------------ */
+
+.search-no-results {
+
+	.page-title {
+		
+		.breadcrumbs {
+			display: none;
+		}
+	}
+}
+
+.not-found {
+
+	.entry-header {
+		text-align: center;
+
+		&:before {
+            @include font-icon($font-Flaticon-lup);
+			display: inline-block;
+			font-size: 100px;
+			@extend %primary-color;
+			margin-bottom: 10px;
+             
+        }
+
+       	.entry-title {
+       		text-transform: capitalize;
+       		font-size: 48px;
+       		font-weight: 900;
+       		margin-bottom: 15px;
+       	}
+	}
+
+	.entry-content {
+       	text-align: center;
+
+       	> p {
+       		font-size: 16px;
+       		margin-bottom: 30px;
+       	}
+    }
+    
+	.searchform {
+		max-width: 350px;
+		width: 100%;
+		margin: 0 auto;
+		margin-bottom: 30px;
+		position: relative;
+
+		input[type="text"] {
+			padding-right: 105px;
+		}
+
+		#searchsubmit {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	}
+}

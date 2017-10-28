@@ -1,0 +1,73 @@
+
+/** ------------------------------------------------------------------------------------------------
+* PAGE 404
+* ------------------------------------------------------------------------------------------------ */
+
+.error404 {
+
+	.page-header {
+		border-bottom: 0;
+		padding-bottom: 0;
+		margin: 0;
+		margin-bottom: 20px;
+		position: relative;
+
+		&:before {
+	        content:"404";
+	        position: absolute;
+	        top:-20px;
+	        left:50%;
+	        color: #f4f4f4;
+	        font-size: 400px;
+	        line-height: 320px;
+	        font-weight: bold;
+	        transform:translateX(-50%);
+	        -webkit-transform:translateX(-50%);
+    	}
+	}
+
+	.page-title {
+		border-bottom: none;
+		margin-bottom: 0px;
+		margin-top: 0;
+		padding: 115px 0;
+		text-align: center;
+		text-transform: uppercase;
+		@extend %primary-color;
+		letter-spacing: 1px;
+		font-size: 82px;
+		line-height: 82px;
+		font-weight: 900;
+	}
+
+	.page-content {
+		text-align: center;
+
+		h2 {
+		    font-size: 28px;
+		    font-weight: 800;
+		    line-height: 1.2;
+		    text-transform: uppercase;
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-size:110%;
+		}
+
+		> .searchform {
+			max-width: 400px;
+			margin: 0 auto;
+		}
+	}
+
+	&.woodmart-dark {
+
+		.page-header {
+
+			&:before {
+				color:rgba(255,255,255,0.1);	
+			}
+		}	
+	}
+}

@@ -1,0 +1,35 @@
+
+/* ------------------------------------------------------------------------------------------------
+* HOVER STANDARD
+* ------------------------------------------------------------------------------------------------ */
+
+.woodmart-hover-standard {
+	
+	@extend %fade-in-left-buttons;
+
+	.btn-add {
+		margin-top: 10px;
+
+		> p {
+			display: none;
+		}
+
+		> a {
+			@extend %buttons-text-replace-icon;
+			@extend %shop-buttons;
+			@include btn-default-primary;	
+
+			span:not(.woodmart-tooltip-label) {
+				@include button-size-small;
+			}
+		}
+
+		.added_to_cart {
+			@include button-size-small;
+
+			&:before {
+				content: none;
+			}
+		}
+	}
+}

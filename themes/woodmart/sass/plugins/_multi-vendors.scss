@@ -1,0 +1,339 @@
+
+/** ------------------------------------------------------------------------------------------------
+* YITH MULTI VENDOR
+* ------------------------------------------------------------------------------------------------ */
+
+.by-vendor-name {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+// REPORT BUTTON
+
+#yith-wpv-abuse-report-link {
+
+	small {
+		font-size: inherit;
+	}
+}
+
+#yith-wpv-abuse {
+	@include button-size-small;
+	@include btn-default-primary;
+	@include default-button;
+	@extend %accent-buttons;
+}
+
+.yith-wpv-abuse-report-title {
+	line-height: 1.4;
+	margin-bottom: 20px;
+}
+
+// ------------------------------------------
+// ON SINGLE PRODUCT 
+// ------------------------------------------
+
+.single-product-content {
+
+	.by-vendor-name {
+    	margin-bottom: 20px;
+	}
+
+	// REPORT BUTTON ON SINGLE PRODUCT PAGE
+
+	#yith-wpv-abuse-report-link {
+		margin-bottom: 15px;
+	}
+}
+
+// ------------------------------------------
+// QUICK VIEW
+// ------------------------------------------
+
+.popup-quick-view {
+
+	.by-vendor-name {
+   		margin-bottom: 5px;
+	}
+}
+
+// ------------------------------------------
+// PRODUCT HOVERS
+// ------------------------------------------
+
+.product-grid-item {
+
+	.by-vendor-name {
+		display: none;
+	}	
+}
+
+.woodmart-hover-info-alt,
+.woodmart-hover-button,
+.woodmart-hover-quick {
+
+	.by-vendor-name-link {
+		color: white;
+	}
+}
+
+// ------------------------------------------
+// REGISTER AND LOGIN
+// ------------------------------------------ 
+
+#customer_login {
+
+	label.inline.vendor-register-label {
+		margin-bottom: 20px;
+	}
+}
+
+label[for="vendor-terms"] {
+	display: inline-block;
+	vertical-align: baseline;
+}
+
+/** ------------------------------------------------------------------------------------------------
+* WC VENDORS
+* ------------------------------------------------------------------------------------------------ */
+
+label[for="apply_for_vendor"],
+label[for="agree_to_terms"] {
+	display: inline-block;
+}
+
+.entry-content {
+
+	> center + hr + h2 + form {
+	
+		p {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+
+			label,
+			input {
+				margin-right: 10px;
+			}
+		}
+	}
+}
+
+.pv_paypal_container, 
+.pv_shop_name_container,
+#pv_seller_info_container,
+#pv_shop_description_container {
+
+	b {
+		font-weight: 600;
+	}
+}
+
+#pv_seller_info_container,
+#pv_shop_description_container {
+	margin-bottom: 20px;
+
+	textarea {
+		width: 100% !important;
+	}
+}
+
+// SOLD BY ON SINGLE PAGE
+
+.single-product-content {
+
+	.product_meta {
+
+		br {
+			content: "";
+   			display: block;
+   			height: 20px;
+		}
+	}
+}
+
+// SOLD BY ON PRODUCT HOVERS
+
+.product-grid-item {
+
+	.wcvendors_sold_by_in_loop {
+	    margin-bottom: 15px;
+	    display: inline-block;
+	}
+
+	&.woodmart-hover-info-alt,
+	&.woodmart-hover-button {
+
+		.wcvendors_sold_by_in_loop {
+			color: white;
+
+			a {
+				color: white;
+			}
+		}
+	}
+
+	&.woodmart-hover-base,
+	&.woodmart-hover-icons,
+	&.woodmart-hover-alt,
+	&.woodmart-hover-info,
+	&.woodmart-hover-quick {
+	
+		.wcvendors_sold_by_in_loop,
+		.wcvendors_sold_by_in_loop + br {
+			display: none;
+		}
+	}
+}
+
+// DESCRIPTION SHOP, QUICK-VIEW, SINGLEPRODUCT
+
+.wcv_shop_description {
+	margin-bottom: 30px;
+	line-height: 1.5;
+}
+
+.popup-quick-view {
+
+	> h1 {
+		padding: 30px;
+		margin-bottom: 0;
+	}
+
+	.wcv_shop_description {
+		padding: 0 30px 30px 30px;
+		margin-bottom: 0;
+	}
+}
+
+
+/** ------------------------------------------------------------------------------------------------
+* DOKAN
+* ------------------------------------------------------------------------------------------------ */
+
+.dokan-dashboard {
+
+	.dokan-dash-sidebar {
+
+		ul.dokan-dashboard-menu  {
+
+			li {
+
+				&.settings {
+					
+					i.pull-right {
+						padding-top: 0;
+					}
+				}
+
+				&.active {
+
+					&:after {
+						left: auto;
+						right: 0;
+					}
+
+				}
+			}
+		}
+	}
+
+	.dashboard-widget {
+
+		.title {
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+	}
+
+	.dokan-form-group {
+
+		.datepicker {
+			width: auto;
+		}
+
+		select {
+			height: 42px;
+		}
+	}
+
+	.dokan-btn:not(.dokan-feat-image-btn) {
+		color: #ffffff;
+    	background-color: #f05025;
+    	border-color: #f05025;
+    	border-radius: 4px;
+	}
+
+	.product-listing-top {
+		padding-bottom: 15px;
+	}
+
+	.media-modal-close {
+		position: absolute;
+		background-color: transparent;
+    	height: 60px;
+	}
+
+	.media-toolbar-secondary {
+
+		select.attachment-filters {
+			height: auto;
+   			padding-right: 30px;
+			padding-left: 15px;
+  			width: 300px;
+		}
+	}
+
+	.media-toolbar-primary {
+		
+		.search {
+			line-height: 34px;
+   			padding: 0 15px;
+    		height: 34px;
+    		box-sizing: border-box;
+		}
+	}
+}
+
+.dokan-store-sidebar {
+	
+	.widget {
+		margin-bottom: 20px;
+	}
+
+	.widget-title {
+		margin-bottom: 15px;
+	}
+}
+
+.dokan-best-selling {
+
+	del {
+		color: #BDBDBD;
+	}
+
+	ins {
+		text-decoration: none;
+	}
+}
+
+.dokan-category-menu {
+
+	.sub-category {
+		padding-left: 15px;
+
+		.children {
+			padding-left: 15px;
+		}
+
+		h3 {
+			padding-top: 15px;
+			margin-bottom: 14px;
+			font-size: 14px;
+			font-weight: normal;
+			line-height: 1.4;
+		}
+	}
+}

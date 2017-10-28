@@ -1,0 +1,959 @@
+
+/** ------------------------------------------------------------------------------------------------
+* SHOP
+* ------------------------------------------------------------------------------------------------ */
+
+.term-description {
+	margin-bottom: 25px;
+}
+
+/** ------------------------------------------
+* LOADING PRODUCT
+* ------------------------------------------ */
+
+@each $space in 0, 2, 6, 10, 20, 30 {
+
+	.products-spacing-#{$space} {
+	    margin-left:#{-$space / 2}px;
+		margin-right:#{-$space / 2}px;
+    	
+    	.product {
+    		padding-left:#{$space / 2}px;
+    		padding-right:#{$space / 2}px;
+    	}
+
+    	.woodmart-hover-info,
+    	.woodmart-hover-info-alt,
+    	.product-category {
+			margin-bottom:#{$space}px;
+    	}
+
+    	.content-product-imagin {
+     		margin-left:-#{(30 - $space) / 2}px;
+    		margin-right:-#{(30 - $space) / 2}px;   		
+    	}
+  	}
+}
+
+/** ------------------------------------------
+* PRODUCT LOADER
+* ------------------------------------------ */
+
+.products {
+    -webkit-transition:
+    	opacity 0.25s ease,
+    	visibility 0.25s ease,
+    	transform 0.25s ease;
+	transition:
+		opacity 0.25s ease,
+		visibility 0.25s ease,
+		transform 0.25s ease;
+}
+
+.woodmart-shop-loader,
+.woodmart-products-loader,
+.woodmart-tabs-loader {
+
+    &:after {
+        @include loader($size:30px, $b-width:1px, $color-loader:#bbbbbb, $color-border: rgb(0,0,0));
+    }
+
+	.woodmart-dark &,
+	.color-scheme-light & {
+
+		&:after {
+			border-color:$scheme-light--border-color-lighten;
+			border-left-color: $scheme-light--border-color-white;
+		}
+	}
+}
+
+.woodmart-shop-loader {
+    opacity:0;
+    visibility: hidden;
+    pointer-events: none;
+
+	&:not(.hidden-loader) {
+    	position: fixed;
+	    top: 50%;
+	    left: 50%;
+	    margin-top: -15px;				
+	}
+
+	&.hidden-from-top {
+		position: relative;
+
+		&:after {
+			position: absolute;
+			left:50%;
+			margin-left: -15px;
+			top:30px;
+		}
+
+		&.hidden-loader {
+			margin-left: 0px!important;
+		}
+	}
+
+	&.hidden-from-bottom {
+		position: absolute;
+		left:50%;
+		margin-left: -15px;
+		bottom: 115px;
+
+		&.hidden-loader {
+			margin-left: -15px!important;
+		}
+	}
+
+	.browser-Safari & {
+		visibility: visible;
+	}
+}
+
+.woodmart-loading {
+
+	.woodmart-shop-loader {
+        opacity:1;
+        visibility: visible;
+	    -webkit-transition:
+		    opacity .3s ease,
+		    visibility .3s ease;
+	    transition:
+		    opacity .3s ease,
+		    visibility .3s ease;
+
+		&.hidden-loader {
+			animation:fadeIn 1s ease;
+		}
+
+        &:after {
+        	@include act-loader;
+        }		
+	}
+
+	.products {
+		opacity:0;
+		pointer-events: none;
+		transform:translateY(30px);
+		-webkit-transform:translateY(30px);
+	}
+}
+
+/** ------------------------------------------
+* ACTIVE FILTERS
+* ------------------------------------------ */
+
+.woodmart-active-filters {
+	margin-top:-15px;
+	margin-bottom:15px;
+	min-height:1px;
+
+	.widget_layered_nav_filters {
+		
+		ul {
+
+			li {
+				margin-bottom:5px;
+				margin-right:15px;
+				display:inline-block;
+
+				a {
+					@include close-btn-rotate(-45deg, 45deg, 0, 0);
+					color:#1B1919;
+					text-decoration:none;
+
+					&:after,
+					&:before {
+						background-color:#1B1919;
+					}
+				}
+			}
+		}
+	}
+}
+
+/** ------------------------------------------
+* LOOP HEAD
+* ------------------------------------------ */
+
+.shop-loop-head {
+	margin-bottom: 20px;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.woodmart-woo-breadcrumbs {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+	.woocommerce-breadcrumb {
+		margin-bottom: 15px;
+	}
+}
+
+.woodmart-shop-tools {
+
+	div,
+	form {
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.woocommerce-result-count {
+	line-height: 20px;
+	font-size: 14px;
+	display: none;
+}
+
+.woocommerce-ordering {
+	position: relative;
+	display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    vertical-align: middle;
+    margin-right: 30px;
+    margin-bottom: 10px;
+
+    select {
+		border-top-style:none;
+		border-left-style:none;
+		border-right-style:none;
+        background: transparent;
+	    padding-left: 2px;
+	    padding-right: 20px;
+	    padding-bottom: 5px;
+	    height: auto;
+	    font-size: 14px;
+	    line-height: 18px;
+	    font-weight: 600;
+	    color: $heading-color;
+	    cursor: pointer;
+
+    	&:focus {
+    		@extend %primary-border;
+    	}
+    }
+
+    &:after {
+		content: "\f107";
+	    position: absolute;
+	    top: 50%;
+	    right: 4px;
+	    font-size: 16px;
+	    height: 16px;
+	    line-height: 16px;
+	    margin-top: -9px;
+	    color: #bbb;
+	    font-family: "FontAwesome";
+    }
+
+    .woodmart-dark & {
+
+    	select {
+    		color:$scheme-light--body-color-darken;
+    	}
+
+    	&:after {
+    		color:$scheme-light--body-color-lighten;
+    	}
+    }
+}
+
+.woodmart-products-per-page {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+	vertical-align: middle;
+	margin-right: 23px;
+	font-size: 14px;
+	line-height: 20px;
+    margin-bottom: 15px;
+    color:#8e8e8e;
+
+	.per-page-title {
+		display: inline-block;
+		margin-bottom: 0;
+		margin-right: 0px;
+		color:$heading-color;
+		font-weight:600;
+		vertical-align: middle;
+
+		&:after {
+			content: ' :';
+		}
+	}
+
+	.per-page-variation {
+		display: inline-block;
+		vertical-align: middle;
+		color:#8e8e8e;
+		padding: 0 7px;
+
+		&:hover,
+		&:focus {
+			color:$heading-color;
+		}
+
+		&.current-variation {
+			color:$heading-color;
+			font-weight: 600;
+		}
+	}
+
+	.per-page-border {
+		vertical-align: middle;
+		display: inline-block;
+
+		&:after {
+			content: "/";
+		}
+
+		&:last-child {
+			display: none;
+		}		
+	}
+
+	.woodmart-dark & {
+		color:$scheme-light--body-color-lighten;
+
+		.per-page-title {
+			color:$scheme-light--title-color;
+		}
+
+		.per-page-variation {
+			color:$scheme-light--body-color-lighten;
+
+			&:hover,
+			&:focus {
+				color:$scheme-light--body-color-darken;
+			}
+
+			&.current-variation {
+				color:$scheme-light--body-color-darken;
+			}
+		}
+	}
+}
+
+.woodmart-products-per-row {
+	display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    vertical-align: middle;
+    margin-right: 30px;
+    margin-bottom: 15px;
+
+	.per-row-variation {
+		display: inline-flex;
+		vertical-align: middle;
+	    margin-right: 12px;
+	    opacity: 0.3;
+
+	    svg {
+			width: 19px!important;
+			height: 19px!important;
+	    }
+
+	    &:hover {
+	    	opacity: 0.7;
+	    }
+
+	    &:focus {
+	    	opacity: 0.9;
+	    }
+
+	    &.current-variation {
+			opacity: 0.9;
+			cursor: default;			
+	    }
+
+	    &:last-child {
+	    	margin-right: 0;
+	    }
+	}
+
+	.per-row-6 {
+		
+	    svg {
+			width: 23px!important;
+	    }		
+	}
+
+	.woodmart-dark & {
+
+		svg {
+			fill:$scheme-light--body-color-darken;
+		}
+	}
+}
+
+
+.woodmart-show-sidebar-btn {
+	display: none;
+	float: left;
+	align-items: center;
+	vertical-align: middle;
+	font-weight: 800;
+	font-size: 13px;
+	line-height: 20px;
+	text-transform: uppercase;
+	margin-bottom: 15px;
+	margin-right: 30px;
+	color:$heading-color;
+	cursor:pointer;
+
+	span:not(.woodmart-side-bar-icon) {
+		vertical-align: middle;
+	}
+
+	.woodmart-side-bar-icon {
+		@include burger(17px, 2px, 6px, rgba(0, 0, 0, 0.3), all 0.25s ease);
+		vertical-align: middle;
+		margin-right: 7px;
+	}
+
+	&:hover {
+
+		.woodmart-side-bar-icon {
+
+			&,
+			&:before,
+			&:after {
+				background-color: black;
+			}
+
+			&:before {
+   				width: 12px;
+			}
+
+			&:after {
+				width: 10px;
+			}
+		}
+	}
+
+	&.btn-clicked {
+
+		.woodmart-side-bar-icon {
+			background-color: transparent;
+
+			&:before,
+			&:after {
+				background-color: black;
+				width: 15px;
+			}
+
+			&:before {
+				transform: 
+					translate3d(0px, 6px, 0) 
+					rotate(45deg);
+			}
+
+			&:after {
+				transform: 
+					translate3d(0px, -6px, 0) 
+					rotate(-45deg);
+			}
+		}		
+	}
+
+	.woodmart-dark & {
+		color:$scheme-light--body-color-darken;
+
+		.woodmart-side-bar-icon {
+			
+			&,
+			&:before,
+			&:after {
+				background-color: $scheme-light--body-color-lighten;
+			}
+		}
+
+		&.btn-clicked {
+
+			.woodmart-side-bar-icon {
+				background-color: transparent;
+
+				&:before,
+				&:after {
+					background-color: $scheme-light--background-white;
+				}
+			}				
+		}
+	}
+}
+
+
+.woodmart-back-btn {
+	display: inline-block;
+
+	span {
+		display: none;
+	}	
+
+	&:after {
+		display: inline-block;
+		 
+	}
+}
+
+.woodmart-filter-buttons {
+	display:inline-block;
+	vertical-align: middle;
+	margin-right: 30px;
+	margin-bottom: 15px;
+
+	.open-filters {
+		font-size: 13px;
+		line-height: 20px;
+	    text-transform: uppercase;
+	    font-weight: 800;
+	    color: #2d2a2a;
+	    position: relative;
+	    padding-right: 18px;
+	    letter-spacing: .6px;
+	    text-decoration: none;
+
+		&:after,
+		&:before {
+			content: "";
+		    width: 10px;
+		    height: 2px;
+		    position:absolute;
+		    right:0px;
+		    top: 50%;
+		    margin-top: -1px;
+		    display: inline-block;
+		    background-color: #1B1919;
+		    -webkit-transition:all 0.25s ease;
+			transition:all 0.25s ease;
+		}
+
+		&:before {
+			transform:rotate(-90deg);
+			-webkit-transform:rotate(-90deg);
+		}
+
+		&:hover {
+
+			&:after {
+				transform: translateX(-6px) rotate(50deg);
+			    -webkit-transform: translateX(-6px) rotate(50deg);
+			}
+
+			&:before {
+				transform:rotate(-50deg);
+				-webkit-transform:rotate(-50deg);
+			}
+		}
+
+		&.btn-opened {
+
+			&:before {
+				transform:rotate(-45deg);
+				-webkit-transform:rotate(-45deg);
+			}
+
+			&:after {
+				transform:rotate(45deg);
+				-webkit-transform:rotate(45deg);
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		.open-filters {
+			color:$scheme-light--body-color-darken;
+
+			&:after,
+			&:before {
+				background-color:$scheme-light--background-white;
+			}
+		}
+	}
+}
+
+.icon-drop-category {
+	position:absolute;
+	top:50%;
+	right:0;
+	margin-top: -20px;
+	z-index:1;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+
+    &:after {
+    	@include font-icon($font-Flaticon-right-arrow-chevron);
+    	font-size: 16px;
+    	color:$heading-color;
+    	height: 25px;
+    	line-height: 25px;
+    	width: 25px;
+    	text-align: center;
+    	display: inline-block;
+    	 
+
+    	backface-visibility: hidden;
+    	-webkit-backface-visibility: hidden;
+
+    	transform: rotate(90deg);
+	    -webkit-transform: rotate(90deg);
+
+	    -webkit-transition:transform 0.2s ease-in-out;
+		transition:transform 0.2s ease-in-out;
+    }
+
+    &.woodmart-act-icon {
+
+    	&:after {
+    		transform: rotate(270deg);
+	    	-webkit-transform: rotate(270deg);
+    	}
+    }
+
+    .color-scheme-light & {
+
+		 &:after {
+		 	color:white;
+		}   	
+    }
+}
+
+.woodmart-show-categories {
+	display: none;
+	margin-top: 5px;
+    margin-bottom: -10px;
+    cursor: pointer;
+
+	a {
+		display: inline-block;
+		text-transform: uppercase;
+		text-decoration: none;
+	    font-weight: 900;
+	    letter-spacing: 0.3px;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 10px;
+		padding-right: 10px;
+
+		&:after {
+	    	@include font-icon($font-Flaticon-arrows);
+	    	font-size: 14px;
+	    	margin-left: 7px;
+	    	color:$heading-color;
+	    	display: inline-block;
+	    	 
+
+	    	backface-visibility: hidden;
+	    	-webkit-backface-visibility: hidden;
+
+		    -webkit-transition:transform 0.25s ease;
+			transition:transform 0.25s ease;
+	    }
+	}	
+
+	&.button-open {
+
+		a {
+
+			&:after {
+	    		transform: rotate(-180deg);
+		    	-webkit-transform: rotate(-180deg);
+	    	}			
+		}
+	}
+
+	.color-scheme-light & {
+
+		a {
+			color: $scheme-light--body-color-darken;
+    	
+			&:after {
+			 	color:$scheme-light--body-color-darken;
+			} 
+		}  	
+    }
+}
+
+/** ------------------------------------------
+* PAGINATION WOOCOMMERCE 
+* ------------------------------------------ */
+
+.woocommerce-pagination {
+
+	.page-numbers {
+		display:inline-block;
+		font-size: 0;
+
+		li {
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			margin-right: 2px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		a {
+			text-decoration: none;
+
+			&:hover,
+			&:focus {
+				background-color: #eeeeee;
+			}
+		}
+
+		.page-numbers {
+			display: inline-block;
+			color:$heading-color;
+			font-size: 14px;
+			font-weight: 600;
+		    min-width: 32px;
+		    height: 34px;
+		    line-height: 34px;
+		    box-sizing: content-box;
+			-webkit-transition:all 0.2s ease;
+			transition:all 0.2s ease;
+		}
+
+		.current {
+			color:white;
+			@extend %primary-background;
+			font-weight: 600;
+		}
+
+		.next,
+		.prev {
+			font-size: 0px;
+
+			&:before {
+				@include font-icon($font-Flaticon-right-arrow-chevron);
+
+				font-size: 12px;
+				 
+			}
+		}
+
+		.prev {
+				
+			&:before {
+				@include font-icon($font-Flaticon-left-arrow-chevron);
+			}
+		}
+	}
+
+	.woodmart-dark & {
+
+		a {
+
+			&:hover,
+			&:focus {
+				color:$scheme-light--body-color-darken;
+				background-color: $scheme-light--background-light-dark;
+			}
+		}
+
+		.page-numbers {
+			color:$scheme-light--body-color-darken;
+		}
+	}
+}
+
+/** ------------------------------------------
+* STAR RATING
+* ------------------------------------------ */
+
+.star-rating {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	height: 18px;
+	line-height: 18px;
+	font-size: 14px;
+    letter-spacing: 3px;
+    width: 80px;
+    font-weight: 300;
+	font-family: "FontAwesome";
+
+	&:before {
+		content:"\f006\f006\f006\f006\f006";
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: #c9c9c9;
+	}
+	
+	span {
+		overflow: hidden;
+		top: 0;
+		left: 0;
+		position: absolute;
+		font-size: 0;
+
+		strong,
+		span {
+			display: none;
+		}
+
+		&:before {
+			content:"\f005\f005\f005\f005\f005";
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: #eabe12;
+			font-size: 14px;
+		}
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		&:before {
+			color: $scheme-light--body-color-lighten;
+		}
+	}
+}
+
+/** ------------------------------------------
+* PRICE
+* ------------------------------------------ */
+
+.amount {
+	font-weight: 600;
+	@extend %primary-color;
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+		color:$scheme-light--body-color-darken;
+	}
+}
+
+del {
+
+	.amount {
+		color:#BDBDBD;
+		font-weight: normal;
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+
+		.amount {
+			color:$scheme-light--body-color-lighten;		
+		}
+	}
+}
+
+.price {
+	@extend %primary-color;
+
+	del {
+		color:#BDBDBD;
+		font-size:90%; 
+	}
+
+	ins {
+		text-decoration: none;
+		background-color:transparent;
+		padding:0;
+		opacity:1;
+		@extend %primary-color;
+	}
+
+	.color-scheme-light &,
+	.woodmart-dark & {
+		color:white;
+
+		del {
+			color:$scheme-light--body-color-lighten;
+		}
+
+		ins {
+			color:$scheme-light--body-color-darken;
+		}
+	}
+}
+
+/** ------------------------------------------
+* PRODUCT TITLE STYLE
+* ------------------------------------------ */
+
+.product-title {
+	@extend %secondary-title-style;
+	
+	a {
+		@extend %title-hover;
+	}
+}
+
+a.product-title {
+	@extend %title-hover;
+}
+
+
+body.woodmart-show-hidden-sidebar {
+
+	.area-sidebar-shop {
+		transform: translate3d(0,0,0);
+		-webkit-transform: translate3d(0,0,0);	
+	}
+}
+
+.woodmart-close-sidebar-btn {
+    display: none;
+    flex:0 0 auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+    border-bottom: 1px solid;
+    @extend %main-border-color;
+    text-align: right;
+
+	span {
+		text-decoration:none;
+		font-size:14px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: .3px;
+		line-height:30px;
+		position:relative;
+		color:$heading-color;
+		@include close-btn(right,2px, 15px,$heading-color);
+		@include close-btn-rotate;
+	}
+
+	.woodmart-dark & {
+
+		span {
+			color:$scheme-light--body-color-darken;
+
+			&:after,
+			&:before {
+				background-color:$scheme-light--background-white;
+			}
+		}
+	}
+}
+
+
+
+
+

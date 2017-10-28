@@ -1,0 +1,485 @@
+@charset "UTF-8";
+/*====================================================
+=            Simple flexbox layout system            =
+====================================================*/
+.woodmart-row {
+  margin: 0 -15px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.woodmart-row.woodmart-two-columns .woodmart-column {
+  -webkit-flex: 1 1 50%;
+  flex: 1 1 50%;
+}
+
+.woodmart-column .woodmart-column-inner {
+  display: -webkit-flex;
+  display: flex;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 15px;
+}
+
+.woodmart-box {
+  background: white;
+  display: -webkit-flex;
+  display: flex;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.woodmart-box.woodmart-box-shadow {
+  -moz-box-shadow: #dedede 0 0 10px;
+  -webkit-box-shadow: #dedede 0 0 10px;
+  box-shadow: #dedede 0 0 10px;
+}
+
+.woodmart-box-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #f5f5f5;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.woodmart-box-header h2 {
+  margin: 0;
+}
+
+.woodmart-box-label {
+  border: 2px solid #efefef;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 3px 14px;
+  font-size: 11px;
+}
+.woodmart-box-label.woodmart-label-error {
+  color: #420404;
+  border-color: #d02222;
+}
+.woodmart-box-label.woodmart-label-success {
+  color: #215208;
+  border-color: #388c0d;
+}
+.woodmart-box-label.woodmart-label-warning {
+  color: #986c00;
+  border-color: #f9b826;
+}
+
+.woodmart-box-content {
+  padding: 20px;
+}
+
+.woodmart-box-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #f5f5f5;
+}
+.woodmart-box-footer p {
+  margin: 0;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/*======================================
+=            Dashboard page            =
+======================================*/
+.woodmart-wrap-content {
+  padding: 20px;
+}
+.woodmart-wrap-content h2.nav-tab-wrapper {
+  margin-bottom: 15px;
+}
+
+.woodmart-theme-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #7eb934;
+  padding: 20px;
+  color: #efefef;
+  margin: 5px 0 0 0;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.woodmart-theme-badge i {
+  font-size: 100px;
+  text-align: center;
+  line-height: 1;
+  font-weight: 900;
+  margin-bottom: 10px;
+  display: block;
+  font-family: Lato;
+  font-style: normal;
+}
+
+/*==============================================
+=            Activation form styles            =
+==============================================*/
+.woodmart-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.woodmart-form small {
+  display: block;
+  margin: -5px 0 10px;
+}
+.woodmart-form input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+}
+
+/*======================================================
+=            Styles for warnings and errors            =
+======================================================*/
+.woodmart-error,
+.woodmart-success,
+.woodmart-warning,
+.woodmart-notice {
+  padding: 20px 25px;
+  background-color: #ECFFE8;
+  border-bottom: 2px solid #378A11;
+  color: #065b05;
+  margin-bottom: 20px;
+  min-width: 350px;
+  max-width: 650px;
+}
+.woodmart-error.small,
+.woodmart-success.small,
+.woodmart-warning.small,
+.woodmart-notice.small {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  width: 250px;
+  max-width: 100%;
+  font-size: 12px;
+}
+.woodmart-error p:last-child,
+.woodmart-success p:last-child,
+.woodmart-warning p:last-child,
+.woodmart-notice p:last-child {
+  margin-bottom: 0;
+}
+
+.woodmart-error {
+  background-color: #FFFAFA;
+  border-bottom: 2px solid #F15A5A;
+  color: #b91111;
+}
+
+.woodmart-warning {
+  background-color: #FFFEE8;
+  border-bottom: 2px solid #DCD41B;
+  color: #887e0e;
+}
+
+.woodmart-notice {
+  background-color: #E8FCFF;
+  border-bottom: 2px solid #1B9CDC;
+  color: #0e7d88;
+}
+
+/*======================================================
+=             Styles needed for wp-admin               =
+======================================================*/
+.woodmart-image-src {
+  max-width: 150px;
+  height: auto;
+  border: 1px solid #e5e5e5;
+  padding: 10px;
+  margin: 10px auto;
+  display: block;
+}
+
+/*======================================================
+=                Import section styles                 =
+======================================================*/
+.woodmart-import-page #woodmart_version {
+  width: 250px;
+  max-width: 100%;
+}
+.woodmart-import-page .description {
+  max-width: 250px;
+  font-size: 12px;
+}
+.woodmart-import-page .page-preview {
+  padding: 3px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  border: 1px solid #efefef;
+  margin: 10px 0;
+  width: 250px;
+}
+.woodmart-import-page .page-preview img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.woodmart-import-progress {
+  display: none;
+  position: relative;
+  height: 10px;
+  background-color: #efefef;
+  max-width: 100%;
+  width: 250px;
+}
+.woodmart-import-progress:after {
+  content: attr(data-progress) "%";
+  display: inline-block;
+  float: right;
+  font-size: 11px;
+  margin: -2px -35px 0 0;
+}
+.woodmart-import-progress div {
+  transition: 0.2s all linear;
+  position: absolute;
+  height: 10px;
+  background-color: #009b02;
+  overflow: hidden;
+}
+.woodmart-import-progress + p {
+  margin-top: 15px;
+}
+.woodmart-import-progress.animated div:after {
+  content: '123';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -20px;
+  background-color: #05aa07;
+  height: 10px;
+  font-size: 0;
+  width: 20px;
+  max-width: 50%;
+  animation: woodmart_loading 2s infinite;
+}
+
+#woodmart-import-form.form-in-action .page-preview {
+  opacity: 0.5;
+  cursor: default;
+}
+#woodmart-import-form.form-in-action p {
+  opacity: 0.5;
+  cursor: default;
+}
+#woodmart-import-form.form-in-action #woodmart_version {
+  opacity: 0.5;
+  cursor: default;
+}
+#woodmart-import-form.form-in-action .button {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@keyframes woodmart_loading {
+  0% {
+    left: -20px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+/*======================================================
+=                 Menu custom fields                   =
+======================================================*/
+.nmi-item-custom-fields {
+  display: none;
+  overflow: hidden;
+  clear: both;
+  padding: 0;
+}
+.nmi-item-custom-fields h4 {
+  margin: 20px 0 10px;
+}
+
+.nmi-div {
+  overflow: hidden;
+  clear: both;
+  color: #a6a6a6;
+}
+.nmi-div a {
+  text-decoration: none;
+  display: inline-block;
+}
+.nmi-div a:hover {
+  text-decoration: underline;
+}
+.nmi-div a.link-with-image {
+  display: block;
+  margin: 10px 0;
+}
+
+.nmi-upload-link {
+  margin: 10px 0;
+}
+
+.nmi-current-image img {
+  display: inline-block;
+  padding: 3px;
+  border: 1px solid #efefef;
+}
+
+/*======================================================
+=                 360 view gallery shop                =
+======================================================*/
+#woocommerce-product-360-images .inside {
+  margin: 0;
+  padding: 0;
+}
+#woocommerce-product-360-images .inside .add_product_360_images {
+  padding: 0 12px 12px;
+}
+#woocommerce-product-360-images .inside #product_360_images_container {
+  padding: 0 0 0 9px;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul {
+  margin: 0;
+  padding: 0;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul:before {
+  content: " ";
+  display: table;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul li.add {
+  width: 80px;
+  float: left;
+  cursor: move;
+  border: 1px solid #d5d5d5;
+  margin: 9px 9px 0 0;
+  background: #f7f7f7;
+  border-radius: 2px;
+  position: relative;
+  box-sizing: border-box;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul li.add img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul li.image {
+  width: 80px;
+  float: left;
+  cursor: move;
+  border: 1px solid #d5d5d5;
+  margin: 9px 9px 0 0;
+  background: #f7f7f7;
+  border-radius: 2px;
+  position: relative;
+  box-sizing: border-box;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul li.image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul li.wc-metabox-sortable-placeholder {
+  width: 80px;
+  float: left;
+  cursor: move;
+  border: 1px solid #d5d5d5;
+  margin: 9px 9px 0 0;
+  background: #f7f7f7;
+  border-radius: 2px;
+  position: relative;
+  box-sizing: border-box;
+  border: 3px dashed #ddd;
+  position: relative;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul li.wc-metabox-sortable-placeholder img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul li.wc-metabox-sortable-placeholder:after {
+  font-family: Dashicons;
+  speak: none;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  margin: 0;
+  text-indent: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  content: "яЕб";
+  font-size: 2.618em;
+  line-height: 72px;
+  color: #ddd;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul li:hover ul.actions {
+  display: block;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul ul.actions {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 2px;
+  display: none;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul ul.actions li {
+  float: right;
+  margin: 0 0 0 2px;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul ul.actions li a {
+  width: 1em;
+  margin: 0;
+  height: 0;
+  display: block;
+  overflow: hidden;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul ul.actions li a.tips {
+  cursor: pointer;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul ul.actions li a.delete {
+  display: block;
+  text-indent: -9999px;
+  position: relative;
+  height: 1em;
+  width: 1em;
+  font-size: 1.4em;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul ul.actions li a.delete:before {
+  font-family: Dashicons;
+  speak: none;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  margin: 0;
+  text-indent: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  content: "яЕУ";
+  color: #999;
+}
+#woocommerce-product-360-images .inside #product_360_images_container ul ul.actions li a.delete:hover:before {
+  color: #a00;
+}

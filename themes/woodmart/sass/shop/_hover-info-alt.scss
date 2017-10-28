@@ -1,0 +1,158 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER BUTTON
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-info-alt {
+	margin-bottom: 30px;
+
+	.product-element-top {
+		margin-bottom: 0;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top:0;
+			bottom: 0;
+			left: 0;
+			right:0;
+			background-color: rgba(0, 0, 0, 0.7);
+			opacity: 0;
+			z-index: 2;
+			transition:opacity .5s ease;
+	    	-webkit-transition:opacity .5s ease;
+		}
+	}
+
+	.woodmart-buttons {
+		@extend %buttons-without-background;
+		@extend %button-color-white;
+	}
+
+	@extend %buttons-without-background-hover;
+	
+	.top-information {
+		position: absolute;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    opacity: 0;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    flex-direction: column;
+	    z-index: 3;
+	    padding: 10px 38px;
+
+	    transition:
+	    	opacity .3s ease;
+		-webkit-transition:
+			opacity .3s ease; 
+
+		.amount, 
+		.price, 
+		.price ins {
+			color:white;
+		}
+
+		del {
+
+			.amount {
+				color: rgba(255,255,255,0.6);		
+			}
+		}
+	}
+
+	h3.product-title {
+		margin-bottom: 7px;
+
+		a {
+			@extend %title-hover-white;
+		}
+	}
+
+	.swatches-on-grid {
+		margin-top: -2px;
+		margin-bottom: 4px;
+
+		.swatch-on-grid {
+			color:white;
+		}
+
+		.current-swatch {
+
+			&:after {
+				background-color: white;
+			}
+		}
+	}
+
+	.woodmart-product-cats {
+		margin-bottom: 7px;
+
+		a {
+			color:rgba(255,255,255,0.7);
+
+			&:hover,
+			&:focus {
+				color:white;
+			}
+		}
+	}
+
+	.star-rating {
+		margin-bottom: 7px;
+
+		&:before {
+			color:rgba(255,255,255,0.7);
+		}
+	}
+
+	.product-actions {
+		margin-top:10px;
+
+		@extend %bordered-white-button;
+
+		.woodmart-tooltip-label {
+			display: none;
+		}
+	}
+
+	&:hover {
+
+		.top-information {
+			opacity: 1;
+		}
+
+		.product-element-top {
+
+			&:before {
+				opacity: 1;
+			}	
+		}
+	}
+
+	&.quick-shop-shown,
+	&.loading-quick-shop {
+		
+		.top-information {
+			opacity: 0;
+		}
+
+		.product-element-top {
+
+			&:before {
+				opacity: 0;
+			}	
+		}		
+	}
+
+	.color-scheme-light &,
+    .woodmart-dark & {
+
+    	.woodmart-buttons {
+    		background-color: transparent;
+    	}
+    }
+}

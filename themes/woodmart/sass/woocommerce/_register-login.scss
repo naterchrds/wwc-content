@@ -1,0 +1,531 @@
+
+/** ------------------------------------------
+* WOO LOGIN
+* ------------------------------------------ */
+
+.woodmart-registration-page {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	max-width: 1000px;
+	margin-left: auto;
+    margin-right: auto;
+
+	h2 {
+	    font-size: 22px;
+	    font-weight: 600;
+	    text-transform: uppercase;
+	}
+
+	&.woodmart-no-registration {
+		max-width:450px;
+	}
+}
+
+#customer_login {
+	margin-left: -40px;
+	margin-right:-40px;
+
+	.col-register,
+	.col-login,
+	.col-register-text {
+		flex: 1 0 0;
+		padding-left:40px;
+		padding-right:40px;
+		padding-top: 25px;
+		padding-bottom: 25px;
+	}	
+}
+
+.col-register,
+.col-register-text {
+	border-left:1px solid;
+	@extend %main-border-color;
+} 
+
+.col-register-text {
+	text-align:center;
+}
+
+.woodmart-switch-to-register {
+	@extend %default-buttons;
+}
+
+.registration-info {
+	margin-bottom:20px;
+}
+
+.woodmart-register-tabs {
+
+	.col-register {
+		border-left:none;
+	}
+
+	.col-register,
+	.col-login {
+		animation:fadeIn 0.7s ease;
+		-webkit-animation:fadeIn 0.7s ease;
+	} 
+
+	.col-register { 
+		display: none;
+	}
+}
+
+.active-register {
+
+	.col-register { 
+		display: block;
+	}
+
+	.col-login {
+		display: none;
+	}
+}
+
+.login {
+
+	&:not(.hidden-form) {
+		display: block!important;
+	}
+
+	.close-login-form {
+		display: none;
+	}
+}
+
+.login-form-footer {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+    .lost_password,
+    .remember-me-label {
+    	margin-bottom: 10px;
+    	font-size: 14px;
+    }
+
+    .remember-me-label {
+    	order:1;
+    }
+
+    .lost_password {
+    	order:2;
+	    @extend %primary-color;
+	    
+    	&:hover,
+    	&:focus {
+    		@extend %primary-color;
+    		text-decoration: underline;
+    		opacity: 0.7;
+    	}
+    }
+
+    .woodmart-dark & {
+
+    	.lost_password {
+			color:$scheme-light--body-color;
+
+	    	&:hover,
+	    	&:focus {
+	    		opacity: 1;
+	    		color:$scheme-light--body-color-darken;
+	    	}
+    	}
+    }
+}
+
+.lost_reset_password {
+	max-width:470px;
+	padding-top:40px;
+	padding-bottom: 40px;
+	margin-left: auto;
+	margin-right: auto;
+
+	.form-row-first {
+		padding-top: 20px;
+		border-top: 1px solid;
+		@extend %main-border-color;
+	}
+
+	p {
+		font-size:110%;
+		width:100%;
+	}
+}
+
+.woocommerce-lost-password {
+
+	.site-content {
+
+		.woocommerce {
+
+			> p {
+				max-width:470px;
+				margin-left: auto;
+				margin-right: auto;
+				font-size:110%;
+				text-align: center;
+
+				&:before {
+					@include font-icon($font-Flaticon-newlatter);
+					display: block;
+				    color: rgba(135, 135, 135, 0.15);
+				    font-size: 180px;
+				    line-height: 180px;
+				    font-weight: normal;
+				    margin-bottom: 10px;				
+				}
+			}
+		}
+	}
+}
+
+.register,
+.login,
+.lost_reset_password {
+
+	.button {
+  		@include full-width-button;
+    	@include btn-default-primary;
+    	@extend %shop-buttons;
+	}
+}
+
+.woodmart-social-login {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
+.social-login-btn {
+	flex:1 1 200px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-bottom: 15px;
+
+	> a {
+		@include default-button;
+		@include button-size-default;
+		color:white!important;
+	    display: block;
+	    @extend %shop-buttons;
+
+		&:before {
+		    position: absolute;
+		    top:50%;
+		    left: 15px;
+		    margin-top: -13px;
+		    font-size: 22px;
+		    line-height: 26px;
+		    font-weight: normal;
+			font-family: "FontAwesome";
+		}
+
+		&:hover {
+			color:white!important;
+		}
+	}
+
+	.login-vk-link {
+	    background-color: #597DA3;
+
+	   	&:before {
+			content:"\f189";
+		}
+
+		&:hover,
+		&:focus {
+			background-color: darken(#597DA3,7%);
+		}
+	}
+
+	.login-fb-link {
+	    background-color: #3B5998;
+
+	    &:before {
+			content:"\f09a";
+		}
+
+		&:hover,
+		&:focus {
+			background-color: darken(#3B5998,7%);
+		}
+	}
+
+	.login-goo-link {
+	    background-color: #ea4235;
+
+	    &:before {
+			content:"\f0d5";
+		}
+
+		&:hover,
+		&:focus {
+			background-color: darken(#ea4235,7%);
+		}		
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.social-login-title,
+.register-or {
+	font-weight: 600;
+	font-size: 14px;
+    text-transform: uppercase;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    @extend %title-font;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+	&:after,
+	&:before {
+	    content:"";
+	    flex:1 0 0;
+	    border-bottom:1px solid;
+	    @extend %main-border-color;
+	}
+
+	&:after {
+		margin-left:20px;
+	}
+
+	&:before {
+		margin-right:20px;
+	}
+
+	.woodmart-dark & {
+		color:$scheme-light--body-color-darken;
+	}
+}
+
+.register-or {
+    display: none;
+    margin-top: 30px;
+}
+
+/** ------------------------------------------
+* PASSWORD HINT
+* ------------------------------------------ */
+
+.register {
+
+	> p {
+		position: relative;
+	}
+}
+
+#reg_password {
+
+	&:focus {
+
+		+ .woocommerce-password-strength {
+			
+			+ .woocommerce-password-hint {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}
+
+.woocommerce-password-hint {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    margin-bottom: -10px;
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    max-width: 300px;
+    width: 100%;
+    transition:opacity 0.5s, visibility 0.5s;
+    -webkit-transition:opacity 0.5s, visibility 0.5s;
+
+    &:after {
+	    content: "\f0d7";
+	    position: absolute;
+	    top: 100%;
+	    left: 30px;
+	    font-size: 26px;
+	    line-height: 7px;
+	    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+	    color: white;
+	    font-family: "FontAwesome";
+    }
+
+    .woodmart-dark & {
+    	background-color: $scheme-light--background-popup;
+
+    	&:after {
+    		color:$scheme-light--background-popup;
+    	}
+    }
+}
+
+.woocommerce-password-strength {
+	margin-top: 20px;
+	margin-bottom: -10px;
+    padding: 10px 20px;
+
+    &.short,
+    &.bad {
+    	color: #ffffff;
+    	background-color: #E0B252;
+    }
+
+    &.strong,
+    &.good {
+	    color: #ffffff;
+	    font-weight: bold;
+	    background: #459647;
+    }
+
+    &:empty {
+    	display: none;
+    }
+}
+
+/** ------------------------------------------
+* LOGIN DROPDOWN
+* ------------------------------------------ */
+
+.menu-item-register {
+
+	.login-title {
+		display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    flex-wrap: wrap;
+		color: $heading-color;
+	    margin-bottom: 15px;
+	    padding-bottom: 2px;
+	    line-height: 1;
+	    border-bottom: 1px solid;
+	    @extend %main-border-color;
+
+	    span,
+	    a {
+	    	margin-bottom: 10px;
+	    }
+
+	 	span {
+		    font-size: 16px;
+		    font-weight: 600;
+		    text-transform: uppercase;
+	 	}
+
+	    a {
+	    	font-size: 14px;
+	    	font-weight: normal;
+		    @extend %primary-color;	
+		    @extend %content-font;
+		    
+	    	&:hover,
+	    	&:focus {
+	    		@extend %primary-color;
+	    		opacity: 0.8;
+	    	}
+	    }
+	}
+
+	.login {
+		line-height: 1.2;
+
+		p {
+			margin-bottom: 15px;
+		}		
+	}
+
+	.woodmart-dark &,
+    .#{$header-drops} & {
+
+    	.login-title {
+    		color:$scheme-light--title-color;
+
+    		a {
+    			color:$scheme-light--body-color;
+
+		    	&:hover,
+		    	&:focus {
+		    		opacity: 1;
+		    		color:$scheme-light--body-color-darken;
+		    	}
+    		}
+    	}
+    }
+
+    .#{$header-drops} & {
+
+    	.login-title {
+    		border-color:$scheme-light--border-color-lighten;
+    	}
+
+    	.social-login-title {
+    		color:$scheme-light--title-color;
+
+    		&:after,
+    		&:before {
+    			border-color:$scheme-light--border-color-lighten;
+    		}
+    	}
+
+    	.login-form-footer {
+
+    		.lost_password {
+    			color:$scheme-light--body-color;
+
+		    	&:hover,
+		    	&:focus {
+		    		opacity: 1;
+		    		color:$scheme-light--body-color-darken;
+		    	}    			
+    		}
+    	}
+    }
+}
+
+/** ------------------------------------------
+* CLOSE LOGIN FORM
+* ------------------------------------------ */
+
+.close-login-form {
+	position: absolute;
+	right:0;
+	top: 0;
+	cursor: pointer;
+	font-size: 0;
+    color:black;
+
+    transition:
+    	background-color .25s ease;
+    -webkit-transition:
+    	background-color .25s ease;
+
+    &:after {
+    	@include font-icon($font-Flaticon-cross);
+    	display: block;
+    	font-size: 14px;
+    	text-align: center;
+    	width: 50px;
+    	height: 50px;
+    	line-height: 50px;
+    	font-weight: 600; 
+    }
+
+	.woodmart-dark &,
+    .#{$header-drops} & {
+    	color:$scheme-light--body-color-darken;
+    }
+}

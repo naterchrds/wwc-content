@@ -1,0 +1,1092 @@
+
+/* ------------------------------------------------------------------------------------------------
+* EXTEND
+* ------------------------------------------------------------------------------------------------ */
+
+// ------------------------------------------
+// EXTEND COLOR BORDER
+// ------------------------------------------ 
+
+// @extend %main-border-color;
+
+%main-border-color {
+	border-color:$main-border-color;
+
+	.woodmart-dark & {
+		border-color:$scheme-light--border-color-lighten;
+	}
+}
+
+// ------------------------------------------
+// COLOR PRIMARY
+// ------------------------------------------ 
+
+// @extend %primary-color;
+
+%primary-color {
+	color:$primary-color;
+}
+
+// ------------------------------------------
+// BACKGROUND PRIMARY
+// ------------------------------------------ 
+
+// @extend %primary-background;
+
+%primary-background {
+	background-color:$primary-color;
+}
+
+// ------------------------------------------
+// BORDER PRIMARY
+// ------------------------------------------ 
+
+// @extend %primary-border;
+
+%primary-border {
+	border-color:$primary-color;
+}
+
+// ------------------------------------------
+// COLOR ALTERNATIVE
+// ------------------------------------------ 
+
+// @extend %alternative-color;
+
+%alternative-color {
+	color:$alternative-color;
+}
+
+// @extend %alternative-background;
+
+%alternative-background {
+	background-color:$alternative-color;
+}
+
+// @extend %alternative-border;
+
+%alternative-border {
+	border-color:$alternative-color;
+}
+
+// ------------------------------------------
+// MAIN CONTENT FONT
+// ------------------------------------------ 
+
+// @extend %content-font;
+
+%content-font {
+	font-family:$main-font;
+}
+
+
+// ------------------------------------------
+// TITLE FONT
+// ------------------------------------------ 
+
+// @extend %title-font;
+
+%title-font {
+	font-family:$title-font;
+}
+
+// ------------------------------------------
+// ENTITIES NAME
+// ------------------------------------------ 
+
+// @extend %secondary-title;
+
+%secondary-title {
+	font-family:$secondary-title;
+}
+
+// ------------------------------------------
+// NAVIGATION FONT
+// ------------------------------------------ 
+
+// @extend %navigation-font;
+
+%navigation-font {
+	font-family:$navigation-font;
+}
+
+// ------------------------------------------
+// ALTERNATIVE FONT
+// ------------------------------------------ 
+
+// @extend %alternative-font;
+
+%alternative-font {
+	font-family:$alternative-font;
+}
+
+// ------------------------------------------
+// HEADING STYLE
+// ------------------------------------------ 
+
+// @extend %heading-style;
+
+%heading-style {
+	@extend %title-font;
+	color: $heading-color;
+	font-weight: 600;
+	margin-bottom: 20px;
+	line-height: 1.4;
+	display: block;
+}
+
+.woodmart-dark {
+
+	%heading-style {
+		color:$scheme-light--title-color;
+	}
+}
+
+// ------------------------------------------
+// TITLES HOVER
+// ------------------------------------------ 
+
+// @extend %title-hover;
+
+%title-hover {
+	color:$light-dark;
+	
+	&:hover {
+		color:$light-dark;
+		opacity: 0.8;
+	}
+}
+
+.color-scheme-light,
+.woodmart-dark {
+
+	%title-hover {
+		@extend %title-hover-white;
+	}	
+}
+
+// @extend %title-hover-white;
+
+%title-hover-white {
+	color:$scheme-light--title-color;
+	
+	&:hover {
+		color:$scheme-light--title-color-hover;
+		opacity: 1;
+	}
+}
+
+
+// ------------------------------------------
+// ALL TITLES SIZE
+// ------------------------------------------ 
+
+// @extend %secondary-title-style;
+
+%secondary-title-style {
+	color:$light-dark;
+	font-weight: 500;
+	line-height: 1.3;
+	@extend %secondary-title;
+}
+
+.color-scheme-light,
+.woodmart-dark {
+
+	%secondary-title-style {
+		color:$scheme-light--title-color;
+	}	
+}
+
+
+// @extend %title-size;
+
+%title-size {
+	font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+// ------------------------------------------
+// WHEN SCROLL IS HIDDEN
+// ------------------------------------------ 
+
+// @extend %hidden-scroll;
+
+%hidden-scroll {
+
+    .topbar-wrapp,
+    .main-header,
+    .main-page-wrapper,
+    .sticky-header,
+    &.sticky-header-prepared .header-menu-top .navigation-wrap {
+        padding-right:$width-scrollbar-windows;
+    }  
+}
+
+
+// ------------------------------------------------------------------------------------------------
+// EXTEND COLOR SHCEME IN HEADER
+// ------------------------------------------------------------------------------------------------ */
+
+
+// @extend %color-white;
+
+%color-white {
+	color:rgba(255,255,255,1);
+}
+
+// @extend %color-white-opacity;
+
+%color-white-opacity {
+	color:rgba(255,255,255,0.8);
+}
+
+// ------------------------------------------
+// COLOR SCHEME GENERAL STYLE MENU
+// ------------------------------------------
+
+// @extend %color-light-general-style-main-navigation;
+
+%color-light-general-style-main-navigation {
+	@include color-light-general-style-main-navigation;
+}
+
+// @extend %color-light-general-style-mega-menu;
+
+%color-light-general-style-mega-menu {
+	
+	.sub-menu {
+
+		> li {
+
+			> a {
+				@extend %color-white;
+
+				&:hover,
+				&:focus {
+					@extend %color-white-opacity;
+				}
+			}
+		}
+	}
+
+	.sub-sub-menu {
+
+		li {
+
+			a { 
+				color:rgba(255,255,255,.6);
+
+				&:hover,
+				&:focus {
+					color:rgba(255,255,255,1);
+				}
+			}
+		}
+	}
+}
+
+
+// ------------------------------------------
+// COLOR SCHEME ON DEFAULT STYLE MENU
+// ------------------------------------------ 
+
+// @extend %color-dark-on-default-style-main-navigation;
+
+%color-dark-on-default-style-main-navigation {
+	@include color-dark-on-default-style-main-navigation;
+}
+
+// @extend %color-dark-on-default-style-mega-menu;
+
+%color-dark-on-default-style-mega-menu {
+
+	.sub-menu {
+
+		> li {
+
+			> a {
+				color: $heading-color;
+
+				&:hover,
+				&:focus {
+					@extend %primary-color;
+				}
+			}
+		}
+	}
+
+	.sub-sub-menu {
+
+		li {
+
+			a { 
+				color:$body-color;
+
+				&:hover,
+				&:focus {
+					@extend %primary-color;
+				}
+			}
+		}
+	}
+}
+
+
+// @extend %color-dark-on-default-style-simple-menu;
+
+%color-dark-on-default-style-simple-menu {
+
+	ul {
+
+		li {
+
+			a {
+				color:$body-color;
+
+				&:hover,
+				&:focus {
+					background-color: #f9f9f9;
+					color:$body-color;
+				}
+			}
+		}
+	}	
+}
+
+// @extend %color-light-on-default-style-simple-menu;
+
+%color-light-on-default-style-simple-menu {
+
+	ul {
+
+		li {
+
+			a {
+				color:rgba(255,255,255,.8);
+
+				&:hover,
+				&:focus {
+					background-color: rgba(255,255,255,0.08);
+					color:rgba(255,255,255,1);
+				}
+			}
+		}
+	}	
+}
+
+// ------------------------------------------
+// COLOR SCHEME ON BORDERED STYLE MENU
+// ------------------------------------------ 
+
+// @extend %color-light-on-bordered-style-main-navigation;
+
+%color-light-on-bordered-style-main-navigation {
+	@include color-light-on-bordered-style-main-navigation;
+}
+
+
+// @extend %color-dark-on-bordered-style-main-navigation;
+
+%color-dark-on-bordered-style-main-navigation {
+	@include color-dark-on-bordered-style-main-navigation;
+}
+
+// @extend %color-dark-on-bordered-style-mega-menu;
+
+%color-dark-on-bordered-style-mega-menu {
+
+	.sub-menu {
+
+		> li {
+
+			> a {
+				color: $heading-color;
+
+				&:hover,
+				&:focus {
+					color: $heading-color;
+				}
+			}
+		}
+	}
+
+	.sub-sub-menu {
+
+		li {
+
+			a { 
+				color:$body-color;
+
+				&:hover,
+				&:focus {
+					color:$light-dark;
+				}
+			}
+		}
+	}
+}
+
+// @extend %color-light-on-bordered-style-menu;
+
+%color-light-on-bordered-style-menu {
+
+	ul {
+
+		li {
+
+			a {
+
+				span:not(.menu-label) {
+
+					&:after {
+						background-color: rgba(255,255,255,0.5);
+					}
+				}
+			}
+		}
+	}
+}
+
+// @extend %color-dark-on-bordered-style-simple-menu;
+
+%color-dark-on-bordered-style-simple-menu {
+
+	ul {
+
+		li {
+
+			a {
+				color:$body-color;
+
+				&:hover,
+				&:focus {
+					color:$light-dark;
+				}
+			}
+		}
+	}	
+}
+
+// @extend %color-light-on-bordered-style-simple-menu;
+
+%color-light-on-bordered-style-simple-menu {
+
+	ul {
+
+		li {
+
+			a {
+				color:rgba(255,255,255,.8);
+
+				span:not(.menu-label) {
+
+					&:after {
+						background-color: rgba(255,255,255,0.5);
+					}
+				}
+
+				&:hover,
+				&:focus {
+					color:rgba(255,255,255,1);
+				}
+			}
+		}
+	}	
+}
+
+// @extend %remove-margin;
+
+%remove-margin {
+	line-height: 1.2;
+
+	> h6, 
+	> h5,
+	> h4,
+	> h3,
+	> h2,
+	> h1,
+	> p {
+		margin-bottom: 0;
+		line-height: 1.2;
+	}
+}
+
+// @extend %color-white-only-widget-area;
+
+%color-white-only-widget-area {
+	color:rgba(255,255,255,1);
+
+	> h6, 
+	> h5,
+	> h4,
+	> h3,
+	> h2,
+	> h1,
+	> p {
+		color:rgba(255,255,255,1);
+	}
+
+	> a {
+		color:rgba(255,255,255,0.1);
+
+		&:hover {
+			color: rgba(255,255,255,0.8);
+		}
+	}
+
+	> ul,
+	> ol {
+
+		li {
+			color:rgba(255,255,255,1);
+
+			a {
+				color:rgba(255,255,255,1);
+
+				&:hover,
+				&:focus {
+					color: rgba(255,255,255,0.8);
+				}
+			}
+		}
+	}	
+}
+
+// @extend %color-white-only-widget-area;
+
+%color-dark-only-widget-area {
+	color: $body-color;
+
+	> p {
+		color: $body-color;
+	}
+
+	> h6, 
+	> h5,
+	> h4,
+	> h3,
+	> h2,
+	> h1 {
+		color: $heading-color;
+	}
+
+	> a {
+		color:#3f3f3f;
+
+		&:hover {
+			@extend %primary-color;
+		}
+	}	
+}
+
+// @extend %search-light-color;
+
+%search-light-color {
+	
+	.searchform {
+
+		input[type="text"] {
+			box-shadow: none;
+			border-color:rgba(255, 255, 255, 0.5);
+			color:rgba(255,255,255,1);
+
+			&:focus {
+				border-color:rgba(255, 255, 255, 0.7);
+			}
+		}
+
+		::-webkit-input-placeholder {color:rgba(255,255,255,0.6)}
+		::-moz-placeholder          {color:rgba(255,255,255,0.6)}/* Firefox 19+ */
+		:-moz-placeholder           {color:rgba(255,255,255,0.6)}/* Firefox 18- */
+		:-ms-input-placeholder      {color:rgba(255,255,255,0.6)}
+
+		#searchsubmit {
+			color:white;
+
+			&:before {
+				border-color:rgba(255,255,255,0.4);
+				border-left-color: white;
+			}
+		}
+	}
+
+	.search-by-category {
+
+		.input-dropdown-inner {
+			border-color:rgba(255, 255, 255, 0.5);
+
+			> a  {
+				color:white;
+			}
+		}
+	}	
+}
+
+// @extend %close-button;
+
+%close-button {
+	position: fixed;
+	top: 0;
+	left:auto;
+	right: 0;
+	bottom: auto;
+	width:50px;
+	height:50px;
+	padding: 0;
+	margin: 0;
+	text-indent: 0;
+	font-size:0;
+	font-weight:400;
+	color:white;
+	background: none;
+	background-color:rgba(0,0,0,0.2);
+	opacity:1;
+
+	&:after {
+		@include font-icon($font-Flaticon-cross);
+		display: inline-block;
+		font-size:16px;
+		line-height:50px;
+		 
+	}
+
+	&:hover,
+	&:focus {
+		color:white;
+		background-color:rgba(0,0,0,0.4);
+		opacity:1;   
+		box-shadow:none;     
+	}
+}
+
+// @extend %close-button-hidden;
+
+%close-button-hidden {
+  	opacity: 0;
+	transition: 
+	  all .25s ease,
+	  opacity 0s ease 0s;
+	-webkit-transition: 
+	  all .25s ease,
+	  opacity 0s ease 0s; 
+}
+
+// @extend %close-button-show;
+
+%close-button-show {
+	opacity: 1;
+	transition: 
+	all .25s ease,
+	opacity .3s ease .35s;
+	-webkit-transition: 
+	all .25s ease,
+	opacity .3s ease .35s; 
+}
+
+// ------------------------------------------
+// SMALL CLOSE BUTTON
+// ------------------------------------------ 
+
+// @extend %small-close-button;
+
+%small-close-button {
+	position: relative;
+	font-size:0px;
+	display:inline-block;
+	height:30px;
+	width:30px;
+	line-height: 30px;
+	vertical-align: middle;
+	@include close-btn($position:right, $height:2px, $width:13px, $color: black);
+	@include close-btn-rotate($a:-44deg, $b:44deg, $h-a:0deg, $h-b:0deg);
+	padding-right: 0;
+	
+	&:after,
+	&:before {
+		right: 8px;
+	}
+}
+
+.woodmart-dark {
+
+	%small-close-button {
+
+		&:after,
+		&:before {
+			background-color: $scheme-light--background-white;
+		}		
+	}
+}
+
+// ------------------------------------------
+// SLIDER BUTTON COMPACT
+// ------------------------------------------ 
+
+// @extend %slider-arrow-compact;
+
+%slider-arrow-compact {
+	position: static;
+    top:auto;
+    left:auto;
+    right:auto;
+    margin-top: 0;
+    border-radius: 0;
+    transform:none;
+	box-shadow: none;
+	background-color: transparent;
+    opacity: 1;
+	width: 40px;
+	height: 45px;
+
+    &:after {
+    	font-size: 18px;
+    	transform:none;
+    }
+
+    &[class*="prev"] {
+        padding-right: 0;   
+        padding-left: 5px; 
+    }
+
+    &[class*="next"] {
+        padding-left: 0; 
+        padding-right: 5px;     
+    }
+}
+
+// ------------------------------------------
+// HIDDEN GRADIENT
+// ------------------------------------------ 
+
+// @extend %gradient-hidden-right;
+
+%gradient-hidden-right {
+    content: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -5px;
+    width: 70px;
+    pointer-events: none;
+    background: -moz-linear-gradient(right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+}
+
+.woodmart-dark {
+
+	%gradient-hidden-right {
+	    background: -moz-linear-gradient(right, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 1) 100%);
+	    background: -webkit-linear-gradient(right, rgba(26, 26, 26, 0) 0%,rgba(26, 26, 26, 1) 100%);
+	    background: linear-gradient(to right, rgba(26, 26, 26, 0) 0%,rgba(26, 26, 26, 1) 100%);		
+	}
+}
+
+// ------------------------------------------
+// LINK HOVER
+// ------------------------------------------ 
+
+// @extend %scale-link-space;
+
+%scale-link-space {
+    position: relative;
+    display:inline-block;
+    padding-top: 1px;
+    padding-bottom: 1px;	
+}
+
+// @extend %scale-link-decoration;
+
+%scale-link-decoration {
+    content:'';
+    position: absolute;
+    top:100%;
+    left:0;
+    width: 0;
+    height: 2px;
+    @extend %primary-background;
+    transition:width 0.4s cubic-bezier(0.175,0.885,0.320,1.15);
+    -webkit-transition:width 0.4s cubic-bezier(0.175,0.885,0.320,1.15);  
+}
+
+// @extend %scale-link-hover;
+
+%scale-link-hover {
+	width:100%;
+}
+
+// ------------------------------------------
+// ALTERNATIVE SLYLE LABLE MENU
+// ------------------------------------------ 
+
+// @extend %alt-style-lable-menu;
+
+%alt-style-lable-menu {
+	position: static;
+	margin-left: 5px;
+
+	&:before {
+		content:none;
+	}
+}
+
+// ------------------------------------------
+// TABLE ALT STYLE
+// ------------------------------------------ 
+
+// @extend %alt-table-style;
+
+%alt-table-style {
+	
+	table {
+		margin-bottom: 0;
+
+		th {
+			font-weight: 600;
+			@extend %content-font;
+		}
+
+		td,
+		th {
+			padding: 5px 5px;
+			border-bottom-style:dashed;
+		}
+
+		tr {
+
+			td {
+
+				&:last-child {
+					text-align: right;
+				}
+			}
+
+			&:last-child {
+
+	    		td,
+	    		th {  
+	    			border-bottom:none;
+	    		} 				
+			}
+		}
+	}
+}
+
+// ------------------------------------------
+// LIST STYLE
+// ------------------------------------------ 
+
+// @extend %list-style;
+
+%list-style {
+	margin-bottom: 20px;
+	padding-left: 20px;
+	text-align: left;
+	 
+
+	li {
+		margin-bottom: 10px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		> ul,
+		> ol {
+			margin-bottom:0;
+		}
+	}	
+	
+	ul,
+	ol {
+		margin-top: 10px;
+		padding-left: 20px;
+	}
+}
+
+// @extend %list-style-definition;
+
+%list-style-definition {
+	text-align: left;
+
+	dt {
+		font-weight: bold;
+		color:$heading-color;
+	}
+
+	dd {
+		margin-bottom: 20px;
+	}
+
+}
+
+
+
+// @extend %list-style-inline;
+
+%list-style-inline {
+	margin-left: -15px;
+	margin-right: -15px;
+
+	li {
+		display: inline-block;
+		padding-left:15px;
+		padding-right: 15px; 
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+}
+
+// @extend %list-style-inline-with-border;
+
+%list-style-inline-with-border {
+
+	li {
+		padding-top: 0;
+		padding-bottom: 0;
+
+		&:not(:last-child) {
+			border-right:1px solid rgba(129, 129, 129, 0.2);
+		}
+	}
+}
+
+.header-color-light,
+.color-scheme-light {
+
+	%list-style-inline-with-border {
+
+		li {
+
+			&:not(:last-child) {
+				border-color:$scheme-light--border-color-lighten;
+			}
+		}
+	}	
+}
+
+// @extend %list-style-ordered;
+
+%list-style-ordered {
+
+	> li {
+		list-style: decimal;
+
+		&:before {
+			content:none;
+		}
+	}
+}
+
+// @extend %list-style-unordered;
+
+%list-style-unordered {
+	
+	> li {
+		list-style: none;
+		position:relative;
+
+		&:before {
+			@include font-icon($font-Flaticon-right-arrow-chevron);
+			position: absolute;
+			top: 6px;
+			left: -20px;
+			font-size: 8px;
+			 
+		}
+	}
+}
+
+// ------------------------------------------
+// FORM STYLE 
+// ------------------------------------------ 
+
+// @extend %form-style-underline-inline;
+
+%form-style-underline-inline {
+	display: flex;
+	flex-direction: row;
+    align-items: center;
+    border-bottom: 2px solid rgba(129, 129, 129, 0.2);
+
+	transition: 
+		border-color .4s ease;
+	-webkit-transition: 
+		border-color .4s ease;
+
+	&:hover {
+		border-color: rgba(129, 129, 129, 0.30);
+	}	
+
+	// VALIDATION FORM
+
+	&.woocommerce-invalid {
+		border-color: #ca1919;
+	}
+
+    label {
+    	margin-bottom: 0;
+    	margin-right: 15px;
+    	flex: 0 0 auto;
+    }
+
+	input[type='email'], 
+	input[type='date'], 
+	input[type='search'], 
+	input[type='number'], 
+	input[type='text'], 
+	input[type='tel'], 
+	input[type='url'], 
+	input[type='password'], 
+	select {
+		flex: 1 1 auto;
+		border-bottom-style:none;
+	}
+}
+
+// ------------------------------------------
+// ARROW COLOR
+// ------------------------------------------ 
+
+// @extend %arrow-disable-color;
+
+%arrow-disable-color {
+
+	> div {
+
+		&:not(.disabled):hover {
+			color: rgba(0,0,0,0.5);
+		}
+
+		&.disabled {
+			color: rgba(0,0,0,0.4);
+			cursor: default;
+		}
+	}
+}
+
+// @extend %arrow-disable-color-white;
+
+%arrow-disable-color-white {
+
+	> div {
+
+		&:not(.disabled):hover {
+			color: rgba(255,255,255,0.8);
+		}
+
+		&.disabled {
+			color: rgba(255,255,255,0.6);
+		}
+	}
+}
+
+
+
+
+
+
+
+
