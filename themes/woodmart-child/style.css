@@ -176,23 +176,22 @@ iframe > .labeldesc.custom_padding10.custom_textAlignJustify {
     padding: 10px;
 }
 
-a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
-    background: #38a3f4;
-    color: white;
+/*a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+    background: #fff;
+    color: #777;
     font-family: Lato;
     font-size: 13px;
     line-height: 13px;
-    font-weight: 700;
-    border: 2px solid #38a3f4;
+    font-weight: 600;
+    border: 0px solid transparent;
     width: auto;
-    padding: 11px 26px 11px 28px;
-}
+    padding: 20px 33px 20px 33px;
+}*/
 
-.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup:hover {
+a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup:hover {
 
-    background: transparent;
-    color: #38a3f4;
-    border: 2px solid transparent;
+    color: #333;
+    background: #fff;
     transition: all 0.3s;
 }   
 
@@ -232,12 +231,12 @@ a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
 
 
 .scrollToTop:after {
-    content: "UP";
+    content: "X";
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     display: inline-block;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 15px;
-    font-weight: bold;
+    font-weight: normal;
     line-height: 40px;
     display: flex;
     justify-content: center;
@@ -257,38 +256,39 @@ a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
     display: none;
 }
 
+article#wwc-portfolio-grid {
+    bottom: 45px;
+}
+
 
 @media only screen and (min-width: 1025px) {
 
-    body.page-id-614 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
-
-        right: 20px;
-        bottom: 24px;
-        padding: 10px 20px;
-        font-size: 16px;
-        position: absolute;
+    /*body.page-id-614 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+        
+        padding: 6px 12px;
+        font-size: 12px;
+        position: relative;
+        bottom: 10px;
 
     }  
 
     body.page-id-52 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
 
-        left: -30px;
-        bottom: -46px;
         padding: 6px 12px;
         font-size: 12px;
-        position: absolute;
+        position: relative;
+        bottom: 10px;
 
     }    
 
     body.page-id-1877 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
 
-        left: -30px;
-        bottom: -46px;
         padding: 6px 12px;
         font-size: 12px;
-        position: absolute;
+        position: relative;
+        bottom: 10px;
 
-    }
+    }*/
 
     div#slider-40-layer-182 {
         right: -70px;
@@ -1135,4 +1135,233 @@ a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
 
 } 
 
+hr {
+    width: 35px;
+    border-top: 1px solid rgba(27, 27, 27, 0.6);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*.custom-cta:after {
+
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-left: 20px solid green;
+    height:100%;
+    border-top:20px solid transparent;
+    border-right:20px solid transparent;
+    border-bottom:20px solid transparent;
+    position:absolute;
+
+}*/
+
+.woodmart-info-box.box-title-small .info-box-title {
+    font-size: 18px;
+}
+
+div#estimate-box {
+    text-align: right;
+}
+
+.woodmart-info-box.color-scheme-light .info-box-content {
+    color: rgba(255, 255, 255, 0.8);
+    margin: auto;
+}
+@media only screen and (min-width: 1025px) {
+    body.page-id-614 {
+        overflow: hidden;
+    }
+
+    body.page-id-52 {
+        overflow: hidden;
+    }
+
+    body.page-id-1877 {
+        overflow: hidden;
+    }
+}    
+
+div.contact-call-to-action {
+    bottom: 45px;
+    height: 75px;
+    width: 100% !important;
+    position: fixed;
+    padding: 0;
+    margin: auto;
+}
+
+.vc_column-inner.vc_custom_1520556861326 {
+
+    background-color: #586375 !important;
+
+}
+
+.vc_column-inner.vc_custom_1520556861326::after {
+
+    top: 0;
+    right: 0;
+    border-left: 25px solid #586375;
+    height: 100%;
+    border-top: 40px solid #777;
+    border-right: 0px solid #777;
+    border-bottom: 40px solid #777;
+    position: absolute;
+
+}
+
+.vc_column-inner.vc_custom_1520556494079 {
+
+    background-color: #777 !important;
+
+}
+
+.vc_column-inner.vc_custom_1520556494079::after {
+
+    top: 0;
+    right: -25px;
+    border-left: 25px solid #777;
+    height: 100%;
+    border-top: 40px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 40px solid transparent;
+    position: absolute;
+
+}
+
+.vc_column-inner.vc_custom_1520809664053 {
+
+    background: #fff !important;
+    padding: 10px 10px;
+    border-top: 2px solid #586375;
+    border-bottom: 2px solid #586375;
+    border-right: 2px solid #586375;
+
+}
+
+.vc_column-inner.vc_custom_1520555186140 {
+
+    background: #fff !important;
+    padding: 10px 10px;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+
+}
+/*.vc_column-inner.vc_custom_1520555186140::before {
+
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0e0";
+    font-size: 2em;
+    align-items: flex-start;
+
+}*/
+
+.scrollToTop {
+    position: fixed;
+    bottom: 230px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    color: #ffffff;
+    text-align: center;
+    z-index: 350;
+    font-size: 0px;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.17);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+    background-color: #e54e23;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.woodmart-title-size-small .woodmart-title-container {
+    font-size: 16px;
+}
+
+.woodmart-info-box.box-title-small .info-box-title {
+    font-size: 18px;
+    max-width: 200px;
+    margin: auto;
+}
+
+.woodmart-button-wrapper.btn-inline {
+    width: 100%;
+    padding: 5px 5px;
+    margin: auto !important;
+}
+
+
+/*.woodmart-button-wrapper.btn-inline::before {
+
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0e0";
+    font-size: 2em;
+    align-items: flex-start;
+
+}*/
+
+/*.woodmart-button-wrapper.btn-inline > a:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0e0";
+    font-size: 2em;
+    margin-right: 10px;
+    vertical-align: middle;
+
+}*/
+
+div#contactForm > a::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0e0";
+    font-size: 2em;
+    margin-right: 10px;
+    vertical-align: middle;
+
+}
+
+a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+    font-size: 16px;
+    position: relative;
+    margin: auto;
+    padding: 15px 15px;
+    background-color: transparent !important;
+    color: #586375;
+}
+
+a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup:hover {
+    color: #586375;
+    background-color: transparent !important;
+    transition: all 0.3s;
+}
+
+
+    /*background: #fff;
+    color: #777;
+    font-family: Lato;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 600;
+    border: 0px solid transparent;
+    width: auto;
+    padding: 20px 33px 20px 33px;*/
+
+.vc_row.wpb_row.vc_row-fluid.portfolio-page-slider.vc_row-no-padding {
+    position: fixed !important;
+    bottom: 120px;
+}
+
+/*.title-wrapper.woodmart-title-color-white.woodmart-title-style-default.woodmart-title-size-medium.woodmart-title-width-100.text-center {
+    background-color: #e2560f;
+    position: absolute;
+    padding: 0px 15px;
+    left: 75px;
+}*/
 

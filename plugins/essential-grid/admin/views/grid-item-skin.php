@@ -25,6 +25,9 @@ wp_enqueue_script('essential-grid-item-editor-script', EG_PLUGIN_URL.'admin/asse
 	$skins_c = new Essential_Grid_Item_Skin();
 	$navigation_c = new Essential_Grid_Navigation();
 	$grid_c = new Essential_Grid();
+
+			Essential_Grid_Item_Skin::propagate_default_item_skins();
+
 	
 	$grid['id'] = '1';
 	$grid['name'] = __('Overview', EG_TEXTDOMAIN);

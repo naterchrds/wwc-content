@@ -306,6 +306,16 @@ class Essential_Grid_Meta {
 								case 'link':
 									$meta_value = get_permalink($my_post['ID']);
 									break;
+								case 'likespost':
+									if(!empty($my_post['ID'])){
+										$count = get_post_meta($my_post['ID'], "eg_votes_count", '');
+										$count[0] = isset($count[0]) ? $count[0] : 0;
+										$meta_value = '<span class="eg-post-count">'.$count[0].'</span>';
+									}
+									else{
+										$meta_value = '';
+									}
+									break;
 								case 'date':
 									$postDate = $base->getVar($my_post, "post_date_gmt");
 									$meta_value = $base->convert_post_date($postDate);
@@ -390,6 +400,7 @@ class Essential_Grid_Meta {
 									break;
 								case 'taxonomy':
 									$terms = get_the_terms($my_post['ID'] , $taxonomy);
+
 									$terms_length = sizeof($terms);			
 									if(is_array($terms)){
 										foreach ($terms as $term) {

@@ -15,7 +15,7 @@ class RsFilmstripBase extends RsAddOnFilmstripBase {
 					 $_PluginUrl     = RS_FILMSTRIP_PLUGIN_URL,
 					 $_PluginTitle   = 'filmstrip',
 				     $_FilePath      = __FILE__,
-				     $_Version       = '1.0.0';
+				     $_Version       = '1.0.2';
 	
 	public function __construct() {
 		

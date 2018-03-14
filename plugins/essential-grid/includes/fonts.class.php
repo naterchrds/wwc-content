@@ -138,6 +138,27 @@ if(!class_exists('ThemePunch_Fonts')) {
 			}
 			
 		}
+
+		/**
+		 * register all fonts
+		 */
+		public function register_icon_fonts($focus){
+			$enable_fontello = get_option('tp_eg_global_enable_fontello', 'backfront');
+			$enable_font_awesome = get_option('tp_eg_global_enable_font_awesome', 'false');
+			$enable_pe7 = get_option('tp_eg_global_enable_pe7', 'false');
+			
+			if($focus=="admin"){
+				if($enable_fontello!="false") wp_enqueue_style('tp-fontello', EG_PLUGIN_URL . 'public/assets/font/fontello/css/fontello.css', array(), Essential_Grid::VERSION );
+				if($enable_pe7!="false") wp_enqueue_style('tp-stroke-7', EG_PLUGIN_URL . 'public/assets/font/pe-icon-7-stroke/css/pe-icon-7-stroke.css', array(), Essential_Grid::VERSION );	
+				if($enable_font_awesome!="false") wp_enqueue_style('tp-font-awesome', EG_PLUGIN_URL . 'public/assets/font/font-awesome/css/font-awesome.css', array(), Essential_Grid::VERSION );
+			}
+			else{
+				if($enable_fontello=="backfront") wp_enqueue_style('tp-fontello', EG_PLUGIN_URL . 'public/assets/font/fontello/css/fontello.css', array(), Essential_Grid::VERSION );
+				if($enable_font_awesome=="backfront") wp_enqueue_style('tp-font-awesome', EG_PLUGIN_URL . 'public/assets/font/font-awesome/css/font-awesome.css', array(), Essential_Grid::VERSION );
+				if($enable_pe7=="backfront") wp_enqueue_style('tp-stroke-7', EG_PLUGIN_URL . 'public/assets/font/pe-icon-7-stroke/css/pe-icon-7-stroke.css', array(), Essential_Grid::VERSION );	
+			}
+			
+		}
 		
 		
 		/**

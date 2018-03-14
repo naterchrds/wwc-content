@@ -1,7 +1,7 @@
 /************************************************************************************
  * jquery.themepunch.essential.js - jQuery Plugin for esg Portfolio Slider
- * @version: 2.1.6 (12.06.2017)
- * @requires jQuery v1.7 or later (tested on 1.9)
+ * @version: 2.2.2 (01.03.2018)
+ * @requires jQuery v1.7 or later
  * @author ThemePunch
 ************************************************************************************/
 //! ++++++++++++++++++++++++++++++++++++++
@@ -11,7 +11,9 @@
 	  //! ANIMATION MATRIX
 	  // PREPARE THE HOVER ANIMATIONS
 	  
-	  var esgAnimmatrix;
+	  var esgAnimmatrix,
+		  esgItemAnimations,
+		  supressFocus;
 	  
 	  function punchgsReady() {
 		  
@@ -95,7 +97,7 @@
 			 				['.esg-falldown',			0.4, {x:0,scale:1,rotationZ:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:0, yPercent:-100},{autoAlpha:1,yPercent:0,ease:punchgs.Power3.easeOut,overwrite:"all"},0.4,{yPercent:-100,autoAlpha:0,z:0,ease:punchgs.Power2.easeOut,delay:0.2,overwrite:"all"} ],
 			 				['.esg-falldownout',		0.4, {autoAlpha:1,yPercent:0,ease:punchgs.Back.easeOut,overwrite:"all"},{x:0,scale:1,rotationZ:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:0, yPercent:100},0.4,{autoAlpha:1,yPercent:0,ease:punchgs.Power3.easeOut,overwrite:"all"} ],
 
-			 				['.esg-rotatescale',		0.3, {x:0,y:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:0,rotationZ:80,scale:0.6,transformOrigin:"50% 50%"},{autoAlpha:1,scale:1,rotationZ:0,ease:punchgs.Back.easeOut,overwrite:"all"},0.3,{autoAlpha:0,scale:0.6,z:0,rotationZ:80,ease:punchgs.Power2.easeOut,overwrite:"all"}],
+			 				['.esg-zoomin',		        0.3, {x:0,y:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:0,rotationZ:80,scale:0.6,transformOrigin:"50% 50%"},{autoAlpha:1,scale:1,rotationZ:0,ease:punchgs.Back.easeOut,overwrite:"all"},0.3,{autoAlpha:0,scale:0.6,z:0,rotationZ:80,ease:punchgs.Power2.easeOut,overwrite:"all"}],
 			 				['.esg-rotatescaleout',		0.3, {autoAlpha:1,scale:1,rotationZ:0,ease:punchgs.Back.easeOut,overwrite:"all"},{x:0,y:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:0,rotationZ:80,scale:0.6,transformOrigin:"50% 50%"},0.3,{autoAlpha:1,scale:1,rotationZ:0,ease:punchgs.Back.easeOut,overwrite:"all"}],
 
 			 				['.esg-zoomintocorner',		0.5, {x:0, y:0,scale:1,rotationZ:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:1,transformOrigin:"20% 50%"},{autoAlpha:1,scale:1.2, x:0, y:0, ease:punchgs.Power3.easeOut,overwrite:"all"},0.5,{x:0, y:0,scale:1,autoAlpha:1,z:0,ease:punchgs.Power2.easeOut,overwrite:"all"}],
@@ -119,8 +121,42 @@
 
 			 				['.esg-pressback',			0.5, {x:0,y:0,scale:1,rotationZ:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:1,transformOrigin:"50% 50%"},{rotationY:0,autoAlpha:1,scale:0.8,ease:punchgs.Power3.easeOut,overwrite:"all"} ,0.3,{rotationY:0,autoAlpha:1,z:0,scale:1,ease:punchgs.Power2.easeOut,overwrite:"all"} ],
 			 				['.esg-3dturnright',		0.5, {x:0,y:0,scale:1,rotationZ:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:1,transformPerspective:600},{x:-40,y:0,scale:0.8,rotationZ:2,rotationX:5,rotationY:-28,skewX:0,skewY:0,autoAlpha:1,transformOrigin:"100% 50% 40%",transformPerspective:600,ease:punchgs.Power3.easeOut,overwrite:"all"} ,0.3,{z:0,x:0,y:0,scale:1,rotationZ:0,rotationX:0,rotationY:0,skewX:0,skewY:0,autoAlpha:1,force3D:"auto",ease:punchgs.Power2.easeOut,overwrite:"all"} ,true]
-			 			   ];
-			
+						   
+						   ];
+						   
+			esgItemAnimations = {
+	  
+				'esg-item-zoomin': {	
+					enter: {time: 0.3, obj: {transformOrigin: '50% 50%', overwrite: 'all', force3D: 'auto', ease: punchgs.Power3.easeOut}}, 
+					leave:  {time: 0.3, obj: {transformOrigin: '50% 50%', scale: 1, overwrite: 'all', force3D: 'auto', ease: punchgs.Power3.easeOut}}		
+				},
+				
+				'esg-item-zoomout': {	
+					enter: {time: 0.3, obj: {transformOrigin: '50% 50%', overwrite: 'all', force3D: 'auto', ease: punchgs.Sine.easeOut}}, 
+					leave:  {time: 0.3, obj: {transformOrigin: '50% 50%', scale: 1, overwrite: 'all', force3D: 'auto', ease: punchgs.Sine.easeOut}}		
+				},
+				
+				'esg-item-fade': {			
+					enter: {time: 0.3, obj: {overwrite: 'all', force3D: 'auto', ease: punchgs.Sine.easeOut}}, 
+					leave:  {time: 0.3, obj: {opacity: 1, overwrite: 'all', force3D: 'auto', ease: punchgs.Sine.easeOut}}		
+				},
+				
+				'esg-item-blur': {		
+					enter: {time: 0.3, obj: {force3D: 'auto', overwrite: 'all', force3D: 'auto', ease: punchgs.Power2.easeOut}}, 
+					leave:  {time: 0.3, obj: {blur: 0, overwrite: 'all', force3D: 'auto', ease: punchgs.Power2.easeOut}}		
+				},
+				
+				'esg-item-shift': {		
+					enter: {time: 0.3, obj: {overwrite: 'all', force3D: 'auto', ease: punchgs.Sine.easeOut}}, 
+					leave:  {time: 0.3, obj: {x: 0, y: 0, overwrite: 'all', force3D: 'auto', ease: punchgs.Sine.easeOut}}		
+				},
+				
+				'esg-item-rotate': {		
+					enter: {time: 0.3, obj: {transformOrigin: '50% 50%', overwrite: 'all', force3D: 'auto', ease: punchgs.Sine.easeOut}}, 
+					leave:  {time: 0.3, obj: {transformOrigin: '50% 50%', rotation: 0, overwrite: 'all', force3D: 'auto', ease: punchgs.Sine.easeOut}}		
+				}
+				
+			};
 	  }
 	  
 	  /* 2.1.5 compatibility for SR defer (tools) */
@@ -194,7 +230,9 @@
 					filterGroupClass:"",
 					filterType:"",
 					filterLogic:"or",
+					filterDeepLink:"off",
 					showDropFilter:"hover",
+					filterNoMatch:"No Items for the Selected Filter",
 					evenGridMasonrySkinPusher:"on",
 
 					loadMoreType:"none",		//none, button, scroll
@@ -298,11 +336,6 @@
 						} else
 						   opt.filterGroupClass = "."+opt.filterGroupClass;
 
-						 
-						//opt.filterGroupClass = jQuery(opt.filterGroupClass);
-
-
-
 						// REPORT SOME IMPORTAN INFORMATION ABOUT THE SLIDER
 						if (window.tplogs==true)
 							try{
@@ -402,7 +435,6 @@
 							-	CHECK VIDEO API'S	-
 						********************************/
 						// var vhandlers = loadVideoApis(container,opt);
-
 
 						/**********************************************************************
 							-	CHECK IF GRID IS FULLSCREEN AND SET PREDEFINED HEIGHT	-
@@ -520,42 +552,363 @@
 						tabBlurringCheck(container,opt);
 					}
 
-					/* 2.1.5 */
-					jQuery('body').on('click', '.esgbox', function() {
+					/* 2.2 */
+					jQuery('body').on('click', '.esg-filterbutton', function() {
+ 
+					    var grid = jQuery(this).closest('.esg-grid');
+					 
+					    if(grid.find('.tp-esg-item').length === grid.find('.tp-esg-item.itemishidden').length) {
+					 		grid.append('<span class="no-filter-message">'+opt.filterNoMatch+'</span>')
+					        grid.addClass('show-message');
+					 
+					    }
+					    else {
+					 
+					        grid.removeClass('show-message');
+					 
+					    }
+					 
+					});
+
+
+					jQuery('body').on('mouseenter mouseover', function() {
+						
+						jQuery('.esgbox-container').addClass('esgbox-show-toolbar esgbox-show-nav');
+						
+					}).on('click', '.esgbox', function() {
 
 						/* 2.1.5 */
 						stopAllVideos(true);
 						
-						/* 2.1.6 (wistia patch) */
-						var $this = jQuery(this);
-						if($this.attr('href').search('wistia') !== -1) {
+					}).on('click', '.esgbox-clone', function() {
+						
+						jQuery(this).closest('.tp-esg-item').find('.esgbox').eq(0).click();
+						return false;
+						
+					}).on('mouseenter mouseleave', '.esg-anime-item', function(e) {
+						
+						/* 2.1.6.2 */
+						
+						var $this = jQuery(this).find('.esg-item-anime');
+						if(!$this.length) return;
+						
+						var tpe = e.type.replace('mouse', ''),
+							data = $this.data(),
+							itm = data.anime_itm,
+							other = data.anime_itm_other;
 
-							var trigger = !$this.hasClass('esgbox.iframe');
-							jQuery('.esgbox').each(function() {
-								var $_this = jQuery(this);
-								if(!$_this.hasClass('esgbox.iframe')) {
-									$_this.addClass('esgbox.iframe').attr('href', $_this.attr('href') + '?autoPlay=true');
+						if(other) {
+							
+							var animeOther = esgItemAnimations[other][tpe],
+								objOther = jQuery.extend({}, animeOther.obj);
+							
+							if(tpe === 'enter') {
+								
+								var prop, val;								
+								switch(other) {
+									
+									case 'esg-item-zoomin':
+										val = data.anime_itm_other_zoomin;
+										if(isNaN(val)) val = '100';
+										val = parseInt(val, 10) * 0.01;
+										objOther.scale = Math.max(Math.min(val, 2), 0);
+									break;
+									
+									case 'esg-item-zoomout':
+										val = data.anime_itm_other_zoomout;
+										if(isNaN(val)) val = '100';
+										val = parseInt(val, 10) * 0.01;
+										objOther.scale = Math.max(Math.min(val, 2), 0);
+									break;
+									
+									case 'esg-item-fade':
+										val = data.anime_itm_other_fade;
+										if(isNaN(val)) val = '100';
+										val = parseInt(val, 10) * 0.01;
+										objOther.opacity = Math.max(Math.min(val, 1), 0);
+									break;
+									
+									case 'esg-item-blur':
+									
+										val = data.anime_itm_other_blur;
+										if(isNaN(val)) val = '5';
+										val = parseInt(val, 10);
+										val = Math.max(Math.min(val, 30), 0);
+										objOther.blur = Math.max(Math.min(val, 30), 0);
+											
+										opt.container.find('.isvisiblenow .esg-item-anime').not($this).each(function() {
+									
+											var $_this = jQuery(this),
+												cur = $_this.data('anime_blur_amount') || 0;
+											
+											var anime = $_this.data('anime_blur');
+											if(anime) {
+												anime.eventCallback('onUpdate', null);
+												anime.kill();
+											}
+											
+											var start = {blur: cur},
+												obj = jQuery.extend({}, objOther),
+												tw = new punchgs.TweenLite(start, animeOther.time, obj);
+												
+											$_this.data('anime_blur', tw);
+											tw.eventCallback('onUpdate', function() {	
+												
+												$_this.data('anime_blur_amount', start.blur);
+												punchgs.TweenLite.set($_this.find('.esg-entry-media'), {msFilter: 'blur('+ start.blur + 'px)', filter: 'blur('+ start.blur + 'px)', webkitFilter: 'blur(' + start.blur + 'px)'});
+											
+											});
+											
+										});
+										
+									break;
+									
+									case 'esg-item-shift':
+										prop = data.anime_itm_other_shift;
+										val = data.anime_itm_shift_other_amount;
+										if(isNaN(val)) val = '10';
+										val = parseInt(val, 10);
+										if(prop === 'up' || prop === 'right') val *= -1;
+										prop = prop === 'up' || prop === 'down' ? 'y' : 'x';
+										objOther[prop] = Math.max(Math.min(val, 200), -200);
+									break;
+									
+									case 'esg-item-rotate':
+										val = data.anime_itm_other_rotate;
+										if(isNaN(val)) val = '100';
+										val = parseInt(val, 10);
+										objOther.rotation = Math.max(Math.min(val, 359), -359);
+									break;
+									
 								}
-							});
+								
+							}
+							
+							if(!objOther.hasOwnProperty('blur')) {
+								punchgs.TweenLite.to(opt.container.find('.isvisiblenow .esg-item-anime').not($this), animeOther.time, objOther);
+							}
+							else if(tpe === 'leave') {
+								
+								opt.container.find('.isvisiblenow .esg-item-anime').not($this).each(function() {
+									
+									var $_this = jQuery(this),
+										cur = $_this.data('anime_blur_amount');
+										
+									if(!cur) return;
+									
+									var anime = $_this.data('anime_blur');
+									if(anime) {
+										anime.eventCallback('onUpdate', null);
+										anime.kill();
+									}
+									
+									var start = {blur: cur},
+										obj = jQuery.extend({}, objOther),
+										tw = new punchgs.TweenLite(start, animeOther.time, obj);
+										
+									$_this.data('anime_blur', tw);
+									tw.eventCallback('onUpdate', function() {	
+										
+										$_this.data('anime_blur_amount', start.blur);
+										punchgs.TweenLite.set($_this.find('.esg-entry-media'), {msFilter: 'blur('+ start.blur + 'px)', filter: 'blur('+ start.blur + 'px)', webkitFilter: 'blur(' + start.blur + 'px)'});
+									
+									});
+									
+								});
+								
+							}
+							
+						}
 
-							if(trigger) {
-								$this.click();
-								return false;
+						if(itm) {
+							
+							var animeItm = esgItemAnimations[itm][tpe],
+								objAnime = jQuery.extend({}, animeItm.obj);
+							
+							if(tpe === 'enter') {
+								
+								var prop, val;	
+								switch(itm) {
+									
+									case 'esg-item-zoomin':
+										val = data.anime_itm_zoomin;
+										if(isNaN(val)) val = '100';
+										val = parseInt(val, 10) * 0.01;
+										objAnime.scale = Math.max(Math.min(val, 2), 0);
+									break;
+									
+									case 'esg-item-zoomout':
+										val = data.anime_itm_zoomout;
+										if(isNaN(val)) val = '100';
+										val = parseInt(val, 10) * 0.01;
+										objAnime.scale = Math.max(Math.min(val, 2), 0);
+									break;
+									
+									case 'esg-item-fade':
+										val = data.anime_itm_fade;
+										if(isNaN(val)) val = '100';
+										val = parseInt(val, 10) * 0.01;
+										objAnime.opacity = Math.max(Math.min(val, 1), 0);
+									break;
+									
+									case 'esg-item-blur':
+									
+										val = data.anime_itm_blur;
+										if(isNaN(val)) val = '5';
+										val = parseInt(val, 10);
+										objAnime.blur = Math.max(Math.min(val, 30), 0);
+										
+										var cur = $this.data('anime_blur_amount') || 0,
+											anime = $this.data('anime_blur');
+											
+										if(anime) {
+											anime.eventCallback('onUpdate', null);
+											anime.kill();
+										}
+										
+										var start = {blur: cur},
+											tw = new punchgs.TweenLite(start, animeItm.time, objAnime);
+											
+										$this.data('anime_blur', tw);
+										tw.eventCallback('onUpdate', function() {	
+											
+											$this.data('anime_blur_amount', start.blur);
+											punchgs.TweenLite.set($this.find('.esg-entry-media'), {msFilter: 'blur('+ start.blur + 'px)', filter: 'blur('+ start.blur + 'px)', webkitFilter: 'blur(' + start.blur + 'px)'});
+										
+										});
+									
+									break;
+									
+									case 'esg-item-shift':
+										prop = data.anime_itm_shift;
+										val = data.anime_itm_shift_amount;
+										if(isNaN(val)) val = '10';
+										val = parseInt(val, 10);
+										if(prop === 'up' || prop === 'right') val *= -1;
+										prop = prop === 'up' || prop === 'down' ? 'y' : 'x';
+										objAnime[prop] = Math.max(Math.min(val, 200), -200);
+									break;
+									
+									case 'esg-item-rotate':
+										val = data.anime_itm_rotate;
+										if(isNaN(val)) val = '30';
+										val = parseInt(val, 10);
+										objAnime.rotation = Math.max(Math.min(val, 359), -359);
+									break;
+									
+								}
 							}
 
+							if(!objAnime.hasOwnProperty('blur')) {
+								punchgs.TweenLite.to($this, animeItm.time, objAnime);
+							}
+							else {
+								
+								var cur = $this.data('anime_blur_amount');
+								if(!cur) return;
+								
+								var anime = $this.data('anime_blur');
+								if(anime) {
+									anime.eventCallback('onUpdate', null);
+									anime.kill();
+								}
+								
+								var start = {blur: cur},
+									tw = new punchgs.TweenLite(start, animeItm.time, objAnime);
+									
+								$this.data('anime_blur', tw);
+								tw.eventCallback('onUpdate', function() {	
+									
+									$this.data('anime_blur_amount', start.blur);
+									punchgs.TweenLite.set($this.find('.esg-entry-media'), {msFilter: 'blur('+ start.blur + 'px)', filter: 'blur('+ start.blur + 'px)', webkitFilter: 'blur(' + start.blur + 'px)'});
+								
+								});	
+							}
 						}
-						/* 2.1.6 - post content */
-						else if($this.hasClass('esgbox-post')) {
-							
-							if($this.attr('href') === '#eg-lightbox-post-content') return;
-							loadPostContent($this, opt, true);
-							return false;
-							
-						}
-						
 					});
+					
+					if(opt.paginationAutoplay === 'on') {
+						
+						var paginationMouse, 
+							paginationDelay,
+							paginationLoaded;
+							
+						function paginationMouseOut() {
+
+							paginationMouse = false;
+							clearInterval(paginationDelay);
+							if(paginationLoaded) paginationDelay = setInterval(changeGrid, opt.paginationAutoplayDelay); 
+
+						}
+
+						function changeGrid() {
+
+							onRightNavClick(container);
+
+						}
+							
+						container.on('mouseenter.esgpagination', function() {
+
+							paginationMouse = true;
+							clearInterval(paginationDelay);
+
+						}).on('mouseleave.esgpagination', paginationMouseOut);
+
+						container.on('essential_grid_ready_to_use', function() {
+							
+							if(!container.find('.esg-pagination').length) {
+								
+								container.off('.esgpagination');
+								return;
+								
+							}
+							
+							paginationLoaded = true;
+							if(!paginationMouse) paginationMouseOut();
+							
+						});
+					}
+
+					// 2.2 Deeplinking
+					if(opt.filterDeepLink == "on") {
+	 
+						jQuery(".esg-filterbutton").click(function(){
+					 		var beforehash = window.location.href.split('#');
+					 		beforehash = beforehash[0]; 
+					 		filter = jQuery(this).data("filter");
+					 		if(filter.indexOf("filter-")!=0){
+					 			history.pushState({}, null,  beforehash);
+					 		}
+					 		else{
+					 			var hash = filter.replace("filter-","#");
+					 			history.pushState({}, null,  beforehash + hash);
+					 		}
+					 	});
+
+					    var grid = jQuery('.esg-grid'),
+					    url = window.location.href;
+					    if(!grid.length || url.search('#') === -1) return;
+					 
+					    var hash = url.split('#');
+					    hash = hash[hash.length - 1];
+					    if(!hash) return;
+					 
+					    hash = hash.toLowerCase().split(' ').join('').split('/').join('');
+					    var timer = setInterval(function() {
+					 
+					        if(grid.is(':visible')) {
+					 
+					            clearInterval(timer);
+					            jQuery('div[data-filter="filter-' + hash + '"]').trigger('click');
+					        }
+					 
+					    }, 500);
+
+					};
+
 
 				}
+
 				
 				/* 2.1.5 compatibility for SR defer (tools) */
 				if(esgAnimmatrix) {
@@ -583,28 +936,6 @@
 				return this;
 
 
-		},
-		
-		/* 2.1.6 internal */
-		eslightboxpost: function(t) {
-				
-			if(t && t.group && Array.isArray(t.group) && t.hasOwnProperty('index')) {
-
-				var itm = t.group[t.index];
-				if(itm && itm.element) {
-					
-					itm = itm.element;
-					if(itm.length && itm.hasClass('esgbox-post') && itm.attr('href') !== '#eg-lightbox-post-content') {
-
-						loadPostContent(itm, getOptions(jQuery(this)), false, t.index);
-						return false;
-
-					}	
-				}
-			}
-			
-			return true;
-			
 		},
 
 		//! METHODS
@@ -706,6 +1037,7 @@
 						setOptions(container,opt);
 						setItemsOnPages(opt);
 						organiseGrid(opt,"esquickdraw");
+						stopAllVideos(true);
 
 		},
 
@@ -737,144 +1069,6 @@
 
 });
 		
-		/* new lightbox post content stuff */
-		function loadPostContent($this, opt, trigger, index) {
-			
-			var itm;
-			if(trigger) {
-				if(opt.lightboxSpinner === 'on') {
-					
-					itm = $this.closest('.tp-esg-item');
-					if(!itm.data('lightboxspinner')) {
-						var spinner = opt.container.closest('.myportfolio-container').find('.esg-loader');
-						if(spinner.length) {
-							spinner = spinner.clone().css('opacity', 1).appendTo(itm);
-							itm.data('lightboxspinner', spinner);
-						}
-					}
-					
-					if(itm.data('lightboxspinner')) {
-						itm.data('lightboxspinner').css('visibility', 'visible');
-					}
-					
-				}
-			}
-			else if(jQuery.fn.esgbox) {
-				jQuery.esgbox.showLoading();
-			}
-			
-			var objData = {
-				action: opt.loadMoreAjaxAction,
-				client_action: 'load_more_content',
-				token: opt.loadMoreAjaxToken,
-				postid: $this.data('post')
-			};
-			
-			jQuery.ajax({
-				
-				 type:'post',
-				 url:opt.loadMoreAjaxUrl,
-				 dataType:'json',
-				 data:objData
-				 
-			}).done(function(response) {
-
-				if(response.success) {
-					
-					var container = document.getElementById('eg-lightbox-post-content');
-					if(!container) {
-						container = document.createElement('div');
-						container.id = 'eg-lightbox-post-content';
-						document.body.appendChild(container);
-					}
-					
-					var html = '<div class="eg-lightbox-post-content-inner">',
-						featured = $this.data('featured'),
-						content = response.data || '',
-						titl = $this.data('posttitle');
-					
-					if(titl && opt.lightBoxPostTitle === 'on') {
-						var titlTag = opt.lightBoxPostTitleTag || 'h2';
-						titl = '<' + titlTag + '>' + titl + '</' + titlTag + '>';
-					}
-					else {
-						titl = '';
-					}
-						
-					if(featured && opt.lightBoxFeaturedImg === 'on') {
-						
-						var margin = opt.lightBoxFeaturedMargin.split('|'),
-							wid = opt.lightBoxFeaturedWidth;
-						
-						if(margin.length === 4) {
-							margin = margin[0] + 'px ' + margin[1] + 'px ' + margin[2] + 'px ' + margin[3] + 'px';
-						}
-						else {
-							margin = '0';
-						}
-						
-						if(isNaN(wid)) wid = 50;
-						wid = parseInt(wid, 10);
-						
-						var dif = (100 - wid);
-						dif = 'width: ' + dif + '%';
-						wid = 'width: ' + wid + '%';
-						featured = '<img class="esg-post-featured-img" src="' + featured + '" style="width: 100%; height: auto; padding: ' + margin + '" />';
-						
-						switch(opt.lightBoxFeaturedPos) {
-							
-							case 'top':
-								html += featured + titl + content;
-							break;
-							
-							case 'left':
-								html += '<div style="float: left; ' + wid + '">' + featured + '</div>';
-								html += '<div style="float: left; ' + dif + '">' + titl + content + '</div>';
-								html += '<div style="clear: both">';
-							break;
-							
-							case 'right':
-								html += '<div style="float: left; ' + dif + '">' + titl + content+ '</div>';
-								html += '<div style="float: left; ' + wid + '">' + featured + '</div>';
-								html += '<div style="clear: both">';
-							break;
-							
-							case 'bottom':
-								html += titl + content + featured;
-							break;
-							
-						}
-						
-					}
-					else {
-						html += titl + content;
-					}
-					
-					container.innerHTML = html + '</div>';
-					jQuery('.esgbox-post[href="#eg-lightbox-post-content"]').attr('href', 'javascript:void(0);');
-					
-					$this.attr('href', '#eg-lightbox-post-content');
-					if(jQuery.fn.esgbox) jQuery.esgbox.showLoading();
-					
-					if(trigger) {
-						if(itm && itm.data('lightboxspinner')) itm.data('lightboxspinner').css('visibility', 'hidden');
-						jQuery('.eg-lightbox-post-content-inner').addClass('ready');
-						$this.click();
-					}
-					else if(jQuery.fn.esgbox) {
-						jQuery.esgbox.hideLoading();
-						jQuery.esgbox.jumpto(index);
-						
-						setTimeout(function() {
-							jQuery('.eg-lightbox-post-content-inner').addClass('ready');
-						}, 100);
-						
-					}
-
-				}
-			});	
-		}
-
 		function checkBottomPos(opt,scroll) {			
 			var bottompos = (opt.container.offset().top + opt.container.height() + (opt.contPadTop + opt.contPadBottom)) - jQuery(document).scrollTop(),
 				wh = jQuery(window).height(),
@@ -959,7 +1153,9 @@
 
 				    // checks for Firefox and other  NON IE Chrome versions
 					jQuery(window).on("focusin", function () {
-
+						
+						if(supressFocus) return;
+						
 				        setTimeout(function(){
 				            // TAB IS ACTIVE, WE CAN START ANY PART OF THE SLIDER
 				            jQuery('body').find('.esg-grid.esg-container').each(function() {
@@ -978,7 +1174,9 @@
 
 				        // bind focus event
 				      window.addEventListener("focus", function (event) {
-
+							
+							if(supressFocus) return;
+							
 				            setTimeout(function(){
 				                 // TAB IS ACTIVE, WE CAN START ANY PART OF THE SLIDER
 					            jQuery('body').find('.esg-grid.esg-container').each(function() {
@@ -995,7 +1193,9 @@
 
 				        // bind focus event
 				        window.attachEvent("focus", function (event) {
-
+							
+							if(supressFocus) return;
+							
 				            setTimeout(function(){
 								// TAB IS ACTIVE, WE CAN START ANY PART OF THE SLIDER
 								jQuery('body').find('.esg-grid.esg-container').each(function() {
@@ -1197,7 +1397,6 @@ function loadMoreItems(opt) {
 	if (opt.loadMoreType==="scroll") {			
 		opt.esgloader.addClass("infinityscollavailable");		
 		if (opt.esgloaderprocess != "add") {
-			//console.log("Show Preloader 1. (no delay, speed 0.5)");
 			opt.esgloaderprocess = "add";
 			punchgs.TweenLite.to(opt.esgloader,0.5,{autoAlpha:1,overwrite:"all"});
 		}
@@ -1248,6 +1447,7 @@ function loadMoreItems(opt) {
 					// CATCH THE CONTAINER
 					prepareItemsInGrid(opt,true);
 					setItemsOnPages(opt);
+					
 					stopAllVideos(true);
 
 					setTimeout(function() {
@@ -1291,7 +1491,6 @@ function loadMoreItems(opt) {
 		if (loadMoreEmpty(opt)) {			
 			opt.lmbut.remove();
 			if (opt.loadMoreType==="scroll")  {
-				//console.log("Remove Preloader Now");
 				opt.esgloader.remove();
 				
 			}
@@ -1515,7 +1714,7 @@ function ajaxCallBack(opt,a) {
 		obj.containerid = "#"+opt.ajaxContentTarget;
 		obj.postsource = a.data('ajaxsource');
 		obj.posttype = a.data('ajaxtype');
-
+		
 		if (opt.ajaxCallbackArgument == "on")
 			eval(callback+"("+args+"obj)");
 		else
@@ -1620,7 +1819,7 @@ function loadMoreContent(container,opt,a) {
 					// IF THE CONTENER WE LOAD IS A YOUTUBE VIDEO
 					case "youtubeid":
 						setTimeout(function() {
-							act.html('<div class="eg-ajax-video-container '+videoaspect+'"><iframe width="560" height="315" src="//www.youtube.com/embed/'+postid+'?autoplay=1&vq=hd1080" frameborder="0" allowfullscreen></iframe></div>');
+							act.html('<div class="eg-ajax-video-container '+videoaspect+'"><iframe width="560" height="315" src="//www.youtube.com/embed/'+postid+'?autoplay=1&vq=hd1080&fs=1" frameborder="0" allowfullscreen></iframe></div>');
 						    removeLoader(act);
 							showHideAjaxContainer(act,true,opt.ajaxScrollToOnLoad,opt.ajaxScrollToOffset);
 							ajaxCallBack(opt,a);
@@ -1649,7 +1848,8 @@ function loadMoreContent(container,opt,a) {
 					case "html5vid":
 						postid=postid.split("|");
 						setTimeout(function() {
-							act.html('<video autoplay="true" loop="" class="rowbgimage" poster="" width="100%" height="auto"><source src="'+postid[0]+'" type="video/mp4"><source src="'+postid[1]+'" type="video/webm"><source src="'+postid[2]+'" type="video/ogg"></video>');
+							var mediaType = postid[0].search('mp4') !== -1 ? 'video/mp4' : 'audio/mpeg';
+							act.html('<video autoplay="true" loop="" class="rowbgimage" poster="" width="100%" height="auto"><source src="'+postid[0]+'" type="' + mediaType + '"><source src="'+postid[1]+'" type="video/webm"><source src="'+postid[2]+'" type="video/ogg"></video>');
 						    removeLoader(act);
 							showHideAjaxContainer(act,true,opt.ajaxScrollToOnLoad,opt.ajaxScrollToOffset);
 							ajaxCallBack(opt,a);
@@ -1784,6 +1984,25 @@ function resetSearchFromCookies(opt) {
 	}
 }
 
+function onRightNavClick(container) {
+	var opt = getOptions(container);
+	opt.oldpage = opt.currentpage;
+	opt.currentpage++;
+
+	if (opt.currentpage>=opt.realmaxpage) opt.currentpage = 0;
+
+	var gbfc = getBestFitColumn(opt,jQuery(window).width(),"id");
+	opt.column = gbfc.column;
+	opt.columnindex = gbfc.index;
+	opt.mmHeight = gbfc.mmHeight;
+
+	setItemsOnPages(opt);
+	organiseGrid(opt,"RightNavigation");
+	setOptions(container,opt);
+	
+	stopAllVideos(true);
+}
+
 /*************************************
 	-	PREPARING ALL THE GOODIES	-
 **************************************/
@@ -1824,6 +2043,7 @@ function mainPreparing(container,opt) {
 			/***********************************
 				-	PREPARE SEARCH FUNCTION	-
 			***********************************/
+
 			if (jQuery(opt.filterGroupClass+'.eg-search-wrapper').length>0) {
 
 				var fgc = opt.filterGroupClass.replace(".",""),
@@ -2096,6 +2316,7 @@ function mainPreparing(container,opt) {
 				setItemsOnPages(opt);
 				organiseGrid(opt,"LeftNavigation");
 				setOptions(container,opt);
+				
 				stopAllVideos(true);
 			});
 
@@ -2103,22 +2324,12 @@ function mainPreparing(container,opt) {
 			/***********************************************
 				-	HANDLE OF RIGHT NAVIGATION BUTTON	-
 			***********************************************/
+			
+			/* 2.1.6.2 */
 			jQuery("body").on("click",opt.filterGroupClass+'.esg-right,'+opt.filterGroupClass+' .esg-right',function() {
-				opt = getOptions(container);
-				opt.oldpage = opt.currentpage;
-				opt.currentpage++;
-
-				if (opt.currentpage>=opt.realmaxpage) opt.currentpage = 0;
-
-				var gbfc = getBestFitColumn(opt,jQuery(window).width(),"id");
-				opt.column = gbfc.column;
-				opt.columnindex = gbfc.index;
-				opt.mmHeight = gbfc.mmHeight;
-
-				setItemsOnPages(opt);
-				organiseGrid(opt,"RightNavigation");
-				setOptions(container,opt);
-				stopAllVideos(true);
+			
+				onRightNavClick(container);
+			
 			});
 
 
@@ -2130,7 +2341,6 @@ function mainPreparing(container,opt) {
 			function onFilterClick() {
 
 				var opt = getOptions(container);
-
 
 				stopAllVideos(true);
 				var efb = jQuery(this);
@@ -2224,7 +2434,8 @@ function mainPreparing(container,opt) {
 			var resizetimer;
 
 
-			jQuery(window).on("resize.essg",function() {
+			jQuery(window).on("resize.essg",function(e) {
+				
 					clearTimeout(resizetimer);
 
 					if (opt.forceFullWidth=="on" || opt.forceFullScreen=="on") {
@@ -2257,13 +2468,74 @@ function mainPreparing(container,opt) {
 					stopAllVideos(true, false, false, true);
 					
 				},200);
-				
-				/* 2.1.6 */
-				if(jQuery.fn.esgbox)  {
-					jQuery.esgbox.update();
-					jQuery.esgbox.reposition();
-				}
 
+			}).on('resize.esglb', function() {
+				
+				var lbVid = jQuery('.esgbox-slide--video .esgbox-iframe');
+				if(lbVid.length) {
+					
+					var ratio = jQuery('body').hasClass('esg-four-by-three'),
+						scale = opt.container.data('lightboxsettings').videoScale,
+						win = jQuery(window),
+						winWide = win.width(),
+						winTall = win.height(),
+						high,
+						wid,
+						vw,
+						vh;
+						
+					if(scale) {
+						buffer = opt.container.data('lightboxsettings').videoScaleBuffer;
+						if(buffer) winTall -= buffer * 2;
+					}
+						
+					if(!ratio) {	
+						vw = 1280;
+						vh = 720;
+					}
+					else {
+						vw = 800;
+						vh = 600;
+					}
+				
+					lbVid.each(function() {
+
+						if(vw < winWide && vh < winTall && !scale) {	
+							wid = vw;
+							high = vh;
+						}
+						else {
+							wid = winWide / vw;
+							high = winTall / vh;
+							
+							var perc = wid > high ? high : wid;
+							wid = vw * perc;
+							high = vh * perc;
+							
+							if(winWide > winTall) {		
+								if(high > winTall) {
+									high = winTall;
+									wid = vw * (high / vh);
+								}
+							}
+							else {
+								if(wid > high) {
+									if(wid > winWide) {
+										wid = winWide;
+										high = vh * (wid / vw);
+									}
+								}
+								else {
+									if(high > winTall) {
+										high = winTall;
+										wid = vw * (high / vh);
+									}
+								}
+							}
+						}
+						jQuery(this).width(wid).height(high);
+					});
+				}
 			});
 
 
@@ -2423,7 +2695,6 @@ function prepareSortingClicks(container) {
 				}
 
 				var dir = eso.data('dir');
-
 				stopAllVideos(true,true);
 				jQuery(opt.filterGroupClass+'.esg-sorting-select,'+opt.filterGroupClass+' .esg-sorting-select').each(function() {
 
@@ -2454,6 +2725,7 @@ function prepareSortingClicks(container) {
 					var sorter = sel.val();
 					var sortername = sel.find('option:selected').text();
 					var dir = eso.data('dir');
+
 					stopAllVideos(true,true);
 					clearTimeout(resizetimer);
 					sel.parent().parent().find('.sortby_data').text(sortername);
@@ -2730,8 +3002,8 @@ function offsetParrents(off,item) {
 
  function itemHoverAnim(item,art,opt,direction) {
 
-
 	  	 if (item.data('simplevideo') != 1) checkMediaListeners(item);
+		 if(item.hasClass('esg-video-active')) return;
 	  	 
 		 /* 2.1.5 */
 	  	 // if (item.find('.isplaying, .isinpause').length>0) return false;
@@ -2786,11 +3058,12 @@ function offsetParrents(off,item) {
 				 }
 
 				 jQuery.each(esgAnimmatrix,function(index,key) {
+					 
 					 item.find(key[0]).each(function() {
 						 	 var elem = jQuery(this),
 							  	 dd = elem.data('delay')!=undefined ? elem.data('delay') : 0;
-							  	 animfrom = key[2];
-							  	 animto = key[3];
+							  	 animfrom = jQuery.extend({}, key[2]);
+							  	 animto = jQuery.extend({}, key[3]);
 
 	  						  // SET ANIMATE POSITIONS
 	  						  animto.delay=dd;
@@ -2854,8 +3127,13 @@ function offsetParrents(off,item) {
 											at = {};
 											jQuery.extend(af,animfrom);
 											jQuery.extend(at,animto);
-	  						  				af.css.x = xy.x;
-	  						  				af.css.y = xy.y;
+											
+	  						  				// af.css.x = xy.x;
+	  						  				// af.css.y = xy.y;
+											
+											af.x = xy.x;
+	  						  				af.y = xy.y;
+											
 											tw = punchgs.TweenLite.fromTo(animobject,key[1],af,at,elemdelay);
 	  						  		break;
 	  						  		case ".esg-slideout":
@@ -2887,11 +3165,13 @@ function offsetParrents(off,item) {
 
 function videoClickEvent(item,container,opt,simpleframe) {
 
+	 supressFocus = true;
+	
 	 item.css({transform:"none",'-moz-transform':'none','-webkit-transform':'none'});
 	 item.closest('.esg-overflowtrick').css({transform:"none",'-moz-transform':'none','-webkit-transform':'none'});
 	 item.closest('ul').css({transform:"none",'-moz-transform':'none','-webkit-transform':'none'});
-
-
+	 item.addClass('esg-video-active');
+	
 	 // PREPARE THE CONTAINERS FOR MEDIAS
 	 if (!simpleframe)
 		 item.find('.esg-media-video').each(function() {
@@ -2899,7 +3179,7 @@ function videoClickEvent(item,container,opt,simpleframe) {
 		   	   media= item.find('.esg-entry-media');
 		   if (prep.data('youtube')!=undefined && item.find('.esg-youtube-frame').length==0) {
 			  
-		  	  var ytframe = "https://www.youtube.com/embed/"+prep.data('youtube')+"?version=3&enablejsapi=1&html5=1&controls=1&autohide=1&rel=0&showinfo=0";
+		  	  var ytframe = "https://www.youtube.com/embed/"+prep.data('youtube')+"?version=3&enablejsapi=1&html5=1&controls=1&autohide=1&rel=0&showinfo=0&fs=1";
 			  media.append('<iframe class="esg-youtube-frame" wmode="Opaque" style="position:absolute;top:0px;left:0px;display:none" width="'+prep.attr("width")+'" height="'+prep.attr("height")+'" data-src="'+ytframe+'" src="about:blank"></iframe>');
 		   }
 
@@ -2922,7 +3202,10 @@ function videoClickEvent(item,container,opt,simpleframe) {
 		   if ((prep.data('mp4')!=undefined || prep.data('webm')!=undefined || prep.data('ogv')!=undefined) && item.find('.esg-video-frame').length==0 ) {
 
 	           media.append('<video class="esg-video-frame" style="position:absolute;top:0px;left:0px;display:none" width="'+prep.attr("width")+'" height="'+prep.attr("height")+'" data-origw="'+prep.attr("width")+'" data-origh="'+prep.attr("height")+'" ></video');
-		       if (prep.data('mp4')!=undefined) media.find('video').append('<source src="'+prep.data("mp4")+'" type="video/mp4" />');
+		       if (prep.data('mp4')!=undefined) {
+				   var mediaType = prep.data("mp4").search('mp4') !== -1 ? 'video/mp4' : 'audio/mpeg';
+				   media.find('video').append('<source src="'+prep.data("mp4")+'" type="' + mediaType + '" />');
+			   }
 		       if (prep.data('webm')!=undefined) media.find('video').append('<source src="'+prep.data("webm")+'" type="video/webm" />');
 		       if (prep.data('ogv')!=undefined) media.find('video').append('<source src="'+prep.data("ogv")+'" type="video/ogg" />');
 		   }
@@ -2954,7 +3237,7 @@ function videoClickEvent(item,container,opt,simpleframe) {
 	 	go = true;
 	 loadVideoApis(container,opt);
 	 
-	 if (!simpleframe) punchgs.TweenLite.set(ifr,{opacity:0,display:"block"});
+	 if (!simpleframe) punchgs.TweenLite.set(ifr,{opacity:1,display:"block"});
 	 var intr = setInterval(function() {
 
 	 	if (go || (vt=="y" && prepareYT(ifr)) || (vt=="v" && prepareVimeo(ifr)) || (vt=="w" && prepareWs(ifr)) || (vt=="s" && prepareSoundCloud(ifr)) || (vt=="h" && prepareVideo(ifr))) {
@@ -2970,12 +3253,17 @@ function videoClickEvent(item,container,opt,simpleframe) {
 			 		punchgs.TweenLite.to(ifr,0.5,{autoAlpha:1});
 			 		punchgs.TweenLite.to(poster,0.5,{autoAlpha:0});
 			 		punchgs.TweenLite.to(cover,0.5,{autoAlpha:0});
-			 		if (vt==="y" || vt==="w") playYT(ifr,simpleframe);
+			
 			 	}
+				
+				if (vt==="y") playYT(ifr,simpleframe);
 			 	if (vt==="v") playVimeo(ifr,simpleframe);
 			 	if (vt==="s") playSC(ifr,simpleframe);
 			 	if (vt==="h") playVideo(ifr,simpleframe);
+				if (vt==="w") playWs(ifr,simpleframe);
 		 	}
+			
+			/*
 		 	if (ifr.attr('src') !=undefined) {
 
 		 		if (ifr.attr('src').toLowerCase().indexOf('youtube')>0)
@@ -2984,16 +3272,15 @@ function videoClickEvent(item,container,opt,simpleframe) {
 				 	playVimeo(ifr,simpleframe);
 				if (ifr.attr('src').toLowerCase().indexOf('wistia')>0)
 				 	playWs(ifr,simpleframe);
-				
-				/* 2.1.6 */
-				// "playSC" is called a second time here causing SoundCloud bugginess
-				/*
 				if (ifr.attr('src').toLowerCase().indexOf('soundcloud')>0)
 				 	playSC(ifr,simpleframe);
-				*/
 				
 			}
-	 	}				 			
+			*/
+	 	}	
+
+		suppressFocus = false;
+		
 	},100);						
 }
 
@@ -3066,6 +3353,12 @@ function setMediaEntryAspectRatio(obj)  {
 		hratio ="auto";
 		kar=false;
 	}
+	
+	/* 2.1.6.2 */
+	var itemAnime = container.find('li[data-anime]').length,
+		itemAnimeOther = container.find('li[data-anime-other]').length;
+		
+	if(itemAnime || itemAnimeOther) container.addClass('esg-itm-anime');
  
 	// PREPARE THE ITEMS
 	for (var q=0;q<items.length;q++) {			
@@ -3086,6 +3379,37 @@ function setMediaEntryAspectRatio(obj)  {
 
 	 	// PREPARE CLASS OF ITEM
 	 	item.addClass("tp-esg-item");
+		
+		// 2.1.6.2
+		if(itemAnime || itemAnimeOther) {
+			
+			var blur1 = item.attr('data-anime-blur'),
+				blur2 = item.attr('data-anime-other-blur');
+				
+			if(blur1 || blur2) item.addClass('esg-anime-blur');
+			
+			item.addClass('esg-anime-item').find('.esg-media-cover-wrapper').addClass('esg-item-anime').data({
+				
+				anime_itm: item.attr('data-anime'),
+				anime_itm_other: item.attr('data-anime-other'),	
+				anime_itm_zoomin: item.attr('data-anime-zoomin'),
+				anime_itm_other_zoomin: item.attr('data-anime-other-zoomin'),	
+				anime_itm_zoomout: item.attr('data-anime-zoomout'),
+				anime_itm_other_zoomout: item.attr('data-anime-other-zoomout'),	
+				anime_itm_fade: item.attr('data-anime-fade'),
+				anime_itm_other_fade: item.attr('data-anime-other-fade'),	
+				anime_itm_shift: item.attr('data-anime-shift'),	
+				anime_itm_other_shift: item.attr('data-anime-other-shift'),	
+				anime_itm_shift_amount: item.attr('data-anime-shift-amount'),
+				anime_itm_shift_other_amount: item.attr('data-anime-other-shift-amount'),
+				anime_itm_rotate: item.attr('data-anime-rotate'),
+				anime_itm_other_rotate: item.attr('data-anime-other-rotate'),
+				anime_itm_blur: blur1,
+				anime_itm_other_blur: blur2
+				
+			}).find('.esg-entry-media.grayscale').removeClass('grayscale').parent().addClass('grayscale');
+
+		}
 
 	 	var imgopts  = { bgpos: img.length>=1 && img!=undefined ? img.data("bgposition") : undefined,
 	 					 bgsize: img.length>=1 && img!=undefined ? img.data("bgsize") : undefined,
@@ -3148,7 +3472,7 @@ function setMediaEntryAspectRatio(obj)  {
 			//YOUTUBE PREPARING
 			if (prep.data('youtube')!=undefined) {
 
-				var ytframe = "https://www.youtube.com/embed/"+prep.data('youtube')+"?version=3&enablejsapi=1&html5=1&controls=1&autohide=1&rel=0&showinfo=0";
+				var ytframe = "https://www.youtube.com/embed/"+prep.data('youtube')+"?version=3&enablejsapi=1&html5=1&controls=1&autohide=1&rel=0&showinfo=0&fs=1";
 			  	media.append('<iframe class="esg-youtube-frame" wmode="Opaque" style="position:absolute;top:0px;left:0px;'+videovisible+'" width="'+prep.attr("width")+'" height="'+prep.attr("height")+'" '+viddatasrc+'"'+ytframe+'" '+vidsrc+'"about:blank"></iframe>');
 			}
 
@@ -3175,7 +3499,10 @@ function setMediaEntryAspectRatio(obj)  {
 
 			   media.append('<video class="esg-video-frame" controls style="position:absolute;top:0px;left:0px;'+videovisible+'" width="'+prep.attr("width")+'" height="'+prep.attr("height")+'" data-origw="'+prep.attr("width")+'" data-origh="'+prep.attr("height")+'"></video');
 			   var hvid = media.find('video');
-			   if (prep.data('mp4')!=undefined) hvid.append('<source src="'+prep.data("mp4")+'" type="video/mp4" />');
+			   if (prep.data('mp4')!=undefined) {
+				   var mediaType = prep.data("mp4").search('mp4') !== -1 ? 'video/mp4' : 'audio/mpeg';
+				   hvid.append('<source src="'+prep.data("mp4")+'" type="' + mediaType + '" />');
+			   }
 			   if (prep.data('webm')!=undefined) hvid.append('<source src="'+prep.data("webm")+'" type="video/webm" />');
 			   if (prep.data('ogv')!=undefined) hvid.append('<source src="'+prep.data("ogv")+'" type="video/ogg" />');
 
@@ -3298,9 +3625,12 @@ function setMediaEntryAspectRatio(obj)  {
 		 	-	HOVER ON ITEMS	-
 		 ********************************/
 		item.on( 'mouseenter.hoverdir, mouseleave.hoverdir', function( event ) {
+			
 		  	var item=jQuery(this),
 		    	direction = getDir( item, { x : event.pageX, y : event.pageY } );
-
+				
+			//if(item.find('.isplaying').length) return;
+				
 		  	if (event.type === 'mouseenter')
 			  	 itemHoverAnim(jQuery(this),"nope",opt,direction);
 			else {
@@ -3505,24 +3835,92 @@ function adjustMediaSize(item,resize,p,opt) {
 		 	 /* cwidth = container.find('.esg-overflowtrick').parent().width(), */
 		 	 maxindex = minindex + itemperpage,
 		 	 filters = jQuery(opt.filterGroupClass+'.esg-filterbutton.selected:not(.esg-navigationbutton),'+opt.filterGroupClass+' .esg-filterbutton.selected:not(.esg-navigationbutton)'),
-		 	 indexcounter = 0;
-
-
-
-
-
+		 	 indexcounter = 0,
+			 isStream = opt.container.closest('.myportfolio-container').hasClass('source_type_stream');
+		
 		 // PREPARE THE ITEMS IF WE HAVE FILTERS ON PAGE
 		 if (jQuery(opt.filterGroupClass+'.esg-filter-wrapper, '+opt.filterGroupClass+' .esg-filter-wrapper').length>0) {		 	
 					 jQuery.each(items,function(index,$item) {
 
-					 	var item= jQuery($item);
-					 	item.find('.esgbox').each(function() {
-					 		if (opt.lightBoxMode=="all")
-					 			jQuery(this).attr('rel',"group");
-					 		else
-						 	if (opt.lightBoxMode!="contentgroup")
-						 		jQuery(this).attr('rel',"");
+					 	var item= jQuery($item),
+					 	items = item.find('.esgbox');
+						
+						if(items.length > 1) {	
+							var len = items.length,
+								itm;
+
+							for(var i = 1; i < len; i++) {
+								itm = items.eq(i);
+								if(itm.parent().hasClass('esgbox-additional')) continue;
+								itm.removeClass('esgbox').addClass('esgbox-clone').off('click.essbox-start').removeAttr('data-esgbox').removeData('esgbox');
+							}
+						}
+						
+						item.find('.esgbox').each(function() {
+							
+							var $this = jQuery(this),
+								oTitle = $this.data('posttitle') || $this.data('caption');
+								
+							theTitle = oTitle ? escape(oTitle) : '';
+							
+					 		if (opt.lightBoxMode=="all") {
+					 			$this.attr('data-esgbox',opt.lightboxHash);
+							}
+					 		else if (opt.lightBoxMode!="contentgroup") {
+						 		$this.attr('data-esgbox',"");
+							}
+							
+							var settings = {
+							
+								featured: $this.data('featured'),
+								titl: theTitle,
+								lbTitle: opt.lightBoxPostTitle,
+								lbTag: opt.lightBoxPostTitleTag,
+								lbImg: opt.lightBoxFeaturedImg,
+								lbMargin: opt.lightBoxFeaturedMargin,
+								lbWidth: opt.lightBoxFeaturedWidth,
+								lbPos: opt.lightBoxFeaturedPos,
+								lbMin: opt.lightboxPostMinWid,
+								lbMax: opt.lightboxPostMaxWid,
+								margin: opt.lightboxMargin,
+								padding: opt.lbContentPadding,
+								overflow: opt.lbContentOverflow,
+								revslider: $this.data('revslider'),
+								essgrid: $this.data('lbesg'),
+								ispost: $this.data('ispost'),
+								gridid: $this.data('gridid')
+								
+							};
+							
+							settings = JSON.stringify(settings);
+							
+							if($this.hasClass('esgbox-post') && $this.attr('href') === 'javascript:void(0);') {
+								
+								$this.attr('data-type', 'ajax')
+									 .attr('href', opt.loadMoreAjaxUrl + 
+									       '?action=' + opt.loadMoreAjaxAction + 
+										   '&client_action=load_post_content' + 
+										   '&token=' + opt.loadMoreAjaxToken + 
+										   '&postid=' + $this.data('post') + 
+										   '&settings=' + settings
+								);
+								
+							}
+							
+							var additional = $this.closest('.tp-esg-item').find('.esgbox-additional').find('.esgbox');
+							if(additional.length) {
+								
+								additional.each(function() {	
+									jQuery(this).attr('data-caption', oTitle).find('img').remove();
+								});
+								
+							}
+							
+							if(isStream) $this.data('ratio', '16:9');
+							
 					 	});
+						
+						opt.container.find('.esgbox').esgbox(opt.container.data('lightboxsettings'));
 
 					 	// CHECK IF THE FILTER SELECTED, AND IT FITS TO THE CURRENT ITEM
 					 	var nofilter = true,
@@ -3540,21 +3938,18 @@ function adjustMediaSize(item,resize,p,opt) {
 					 	// IF SEARCH FILTER IS ACTIVATED, AND ELEMENT IS NOT FITTING IN SEARCH AND IN SELECTED FILTER, THEN HIDE IT
 					 	hidsbutton = jQuery(opt.filterGroupClass+'.esg-filter-wrapper .hiddensearchfield');
 					 	if (hidsbutton.hasClass("eg-forcefilter") && foundfilter < filters.length) nofilter = true;
-
-
+						
 					 	// FILTER BASED SHOW OR HIDE THE ITEM (Less then Items fit on Page
 					 	if (indexcounter>=minindex && indexcounter<maxindex && !nofilter) {
 
 						 	item.addClass("itemtoshow").removeClass("itemishidden").removeClass("itemonotherpage");
 
-						 	if (opt.lightBoxMode=="filterpage" || opt.lightBoxMode=="filterall") 
-						 		item.find('.esgbox').attr('rel',"group");
-						 								 
+						 	if (opt.lightBoxMode=="filterpage" || opt.lightBoxMode=="filterall") {
+						 		item.find('.esgbox').attr('data-esgbox',opt.filterGroupClass.replace('.', ''));
+							}						 
 						 	indexcounter++;
 					 	} else {
 
-						 	if (opt.lightBoxMode=="filterall")
-						 		item.find('.esgbox').attr('rel',"group");
 						 	if (!nofilter) {
 						 		if (indexcounter<minindex || indexcounter>=maxindex) {
 							 		 item.addClass("itemonotherpage");
@@ -3565,6 +3960,11 @@ function adjustMediaSize(item,resize,p,opt) {
 							 		indexcounter++;
 								}
 							 	item.addClass("fitsinfilter");
+								
+								if (opt.lightBoxMode=="filterall") {
+									item.find('.esgbox').attr('data-esgbox',opt.filterGroupClass.replace('.', ''));
+								}
+								
 						 	}  else {
 								item.addClass("itemishidden").removeClass("itemtoshow").removeClass("fitsinfilter");
 							}
@@ -3572,33 +3972,98 @@ function adjustMediaSize(item,resize,p,opt) {
 
 				 	});
 		} else {
-
+	
 				jQuery.each(items,function(index,$item) {
-
-					 	var item= jQuery($item);
-
-
-					 	item.find('.esgbox').each(function() {
+					 	var item= jQuery($item),
+					 	items = item.find('.esgbox');
+						
+						if(items.length > 1) {	
+							var len = items.length,
+								itm;
+								
+							for(var i = 1; i < len; i++) {
+								itm = items.eq(i);
+								if(itm.parent().hasClass('esgbox-additional')) continue;
+								itm.removeClass('esgbox').addClass('esgbox-clone').off('click.essbox-start').removeAttr('data-esgbox').removeData('esgbox');
+							}
+						}
+						
+						item.find('.esgbox').each(function() {
+							
+							var $this = jQuery(this),
+								oTitle = $this.data('posttitle') || $this.data('caption');
+								
+							theTitle = oTitle ? escape(oTitle) : '';
+							
 					 		if (opt.lightBoxMode=="all")
-					 			jQuery(this).attr('rel',"group");
+					 			$this.attr('data-esgbox',opt.lightboxHash);
 					 		else
 						 	if (opt.lightBoxMode!="contentgroup")
-						 		jQuery(this).attr('rel',"");
+						 		$this.attr('data-esgbox',"");
+							
+							var settings = {
+							
+								featured: $this.data('featured'),
+								titl: theTitle,
+								lbTitle: opt.lightBoxPostTitle,
+								lbTag: opt.lightBoxPostTitleTag,
+								lbImg: opt.lightBoxFeaturedImg,
+								lbMargin: opt.lightBoxFeaturedMargin,
+								lbWidth: opt.lightBoxFeaturedWidth,
+								lbPos: opt.lightBoxFeaturedPos,
+								lbMin: opt.lightboxPostMinWid,
+								lbMax: opt.lightboxPostMaxWid,
+								margin: opt.lightboxMargin,
+								padding: opt.lbContentPadding,
+								overflow: opt.lbContentOverflow,
+								revslider: $this.data('revslider'),
+								essgrid: $this.data('lbesg'),
+								ispost: $this.data('ispost'),
+								gridid: $this.data('gridid')
+								
+							};
+							
+							settings = JSON.stringify(settings);
+							
+							if($this.hasClass('esgbox-post') && $this.attr('href') === 'javascript:void(0);') {
+								
+								$this.attr('data-type', 'ajax')
+									 .attr('href', opt.loadMoreAjaxUrl + 
+									       '?action=' + opt.loadMoreAjaxAction + 
+										   '&client_action=load_post_content' + 
+										   '&token=' + opt.loadMoreAjaxToken + 
+										   '&postid=' + $this.data('post') + 
+										   '&settings=' + settings
+								);
+								
+							}
+							
+							var additional = $this.closest('.tp-esg-item').find('.esgbox-additional').find('.esgbox');
+							if(additional.length) {
+								
+								additional.each(function() {	
+									jQuery(this).attr('data-caption', oTitle).find('img').remove();
+								});
+								
+							}
+							
+							if(isStream) $this.data('ratio', '16:9');
+							
 					 	});
 
 					 	if (opt.lightBoxMode=="filterall") 
-						 	item.find('.esgbox').attr('rel',"group");
+						 	item.find('.esgbox').attr('data-esgbox',opt.lightboxHash);
 
 
 					 	// FILTER BASED SHOW OR HIDE THE ITEM (Less then Items fit on Page
 					 	if (indexcounter>=minindex && indexcounter<maxindex) {
-
-						 	item.addClass("itemtoshow").removeClass("itemishidden").removeClass("itemonotherpage");
+					 		item.addClass("itemtoshow").removeClass("itemishidden").removeClass("itemonotherpage");
 						 	indexcounter++;
-						 	if (opt.lightBoxMode=="filterpage" || opt.lightBoxMode=="filterall") 
-						 		item.find('.esgbox').attr('rel',"group");
-					 	} else {
 
+
+						 	if (opt.lightBoxMode=="filterpage" || opt.lightBoxMode=="filterall") 
+						 		item.find('.esgbox').attr('data-esgbox',opt.lightboxHash);
+					 	} else {
 
 						 		if (indexcounter<minindex || indexcounter>=maxindex) {
 							 		 item.addClass("itemonotherpage");
@@ -3612,6 +4077,9 @@ function adjustMediaSize(item,resize,p,opt) {
 					 	}
 
 				 	});
+					
+					opt.container.find('.esgbox').esgbox(opt.container.data('lightboxsettings'));
+
 		}
 
 
@@ -3868,7 +4336,6 @@ var waitForLoads = function(elements,opt) {
 	jQuery.each(elements,function(index,element){
 		element = jQuery(element);
 		if (!element.hasClass("isvisiblenow") && opt.esgloaderprocess!=="add") 		{	
-			//console.log("Show Preloader 1. (  speed 0.5)");
 			opt.esgloaderprocess = "add";			
 			punchgs.TweenLite.to(opt.esgloader,0.5,{autoAlpha:1,ease:punchgs.Power3.easeInOut});
 		}
@@ -3922,7 +4389,7 @@ var waitForLoads = function(elements,opt) {
 					var infdelay = 0;
 					if (opt.esgloader.hasClass("infinityscollavailable"))
 					 	infdelay = 1;
-					//console.log("Hide Preloader 1. (delay:"+infdelay+", speed 0.5)");
+
 					punchgs.TweenLite.to(opt.esgloader,0.5,{autoAlpha:0, ease:punchgs.Power3.easeInOut, delay:infdelay});
 				 }
 			 }
@@ -5497,7 +5964,7 @@ function forceVideoInPause(vid,killiframe,player,vidtype) {
 				vid.removeClass("isplaying");
 
 
-				var item=vid.closest('.tp-esg-item');
+				var item=vid.closest('.tp-esg-item').removeClass('esg-video-active');
 
 
 				if (item.find('.esg-media-video').length>0 && !jQuery("body").data('fullScreenMode')) {
@@ -5553,6 +6020,7 @@ function onPlayerStateChange(event) {
 
 		if (event.data == YT.PlayerState.PLAYING) {
 			event.target.setPlaybackQuality("hd1080");
+
 			stopAllVideos(true,false,ytcont.id);
 			jc.addClass("isplaying").removeClass("isinpause");			
 		}
@@ -5596,19 +6064,18 @@ function vimeoready_auto(vimcont) {
 		vimcont.addClass("readytoplay");
 
 		player.on('play', function(data) {
+			
 			stopAllVideos(true,false,vimcont.attr('id'));
 			vimcont.addClass("isplaying");
 			vimcont.removeClass("isinpause");
 		});
 
 		player.on('finish', function(data) {
-			
 			forceVideoInPause(vimcont);
 			vimcont.removeClass("isplaying");
 		});
 
 		player.on('pause', function(data) {
-			
 			forceVideoInPause(vimcont);
 			vimcont.removeClass("isplaying");
 		});
@@ -5658,6 +6125,7 @@ function html5vidready(myVideo,vidcont,player_id) {
 			isSeeking = false;
 			
 			stopAllVideos(true,false,player_id);
+
 			vidcont.addClass("isplaying");
 			vidcont.removeClass("isinpause");
 		});
@@ -5669,7 +6137,7 @@ function html5vidready(myVideo,vidcont,player_id) {
 		});
 
 		vidcont.on('ended',function() {
-			//console.log('ended');
+
 			forceVideoInPause(vidcont);
 			vidcont.removeClass("isplaying");
 		});
@@ -5896,7 +6364,6 @@ function prepareSoundCloud(ifr) {
 
 function playSC(ifr) {
 
-
 	var player = ifr.data('player');
 	if (player !=undefined) {
 
@@ -5941,6 +6408,7 @@ function prepareVideo(html5vid) {
 }
 
 function playVideo(ifr) {
+	
 	var id = ifr.attr('id');
 	var myVideo=document.getElementById(id);
 	myVideo.play();
@@ -6244,4 +6712,34 @@ function playVideo(ifr) {
 	}
 	// set functions
 	$.fn.TinySort = $.fn.Tinysort = $.fn.tsort = $.fn.tinysort;
+
+	// Post Likes
+	jQuery(document).ready(function() {
+ 
+	    jQuery("span.eg-post-like").click(function(){
+	     	var heart,post_id,count;
+	     	count = 0;
+	        heart = jQuery(this).closest("a");
+	     
+	        // Retrieve post ID from data attribute
+	        post_id = heart.data("post_id");
+	         
+	        // Ajax call
+	        jQuery.ajax({
+	            type: "post",
+	            url: eg_ajax_var.url,
+	            data: "action=ess_grid_post_like&nonce="+eg_ajax_var.nonce+"&post_like=&post_id="+post_id,
+	            success: function(count){
+	                // If vote successful
+	                if(count != "already")
+	                {
+	                    heart.addClass("eg-post-like-voted");
+	                    heart.closest("li").find(".eg-post-count").text(count);
+	                }
+	            }
+	        });
+	         
+	        return false;
+	    })
+	})
 })(jQuery);

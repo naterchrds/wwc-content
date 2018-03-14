@@ -180,6 +180,13 @@ class Essential_Grid_Facebook {
 	public function get_photo_feed($user,$app_id,$app_secret,$item_count=10){
 		$oauth = wp_remote_fopen("https://graph.facebook.com/oauth/access_token?type=client_cred&client_id=".$app_id."&client_secret=".$app_secret);
 		$oauth = json_decode($oauth);
+		
+		if(!isset($oauth->access_token)) {
+			$error_message = __("Please adjust the grid's Facebook credentials", EG_TEXTDOMAIN);
+			echo $error_message;
+			return false;
+		}
+		
 		$url = "https://graph.facebook.com/$user/feed?access_token=".$oauth->access_token."&fields=id,from,message,picture,full_picture,link,name,icon,privacy,type,status_type,object_id,application,created_time,updated_time,is_hidden,is_expired,comments.limit(1).summary(true),likes.limit(1).summary(true)";
 		
 		$transient_name = 'essgrid' . md5($url."&limit=".$item_count);
@@ -266,8 +273,11 @@ class Essential_Grid_Facebook {
 
 			$stream['custom-type'] = 'image'; //image, vimeo, youtube, soundcloud, html
 			if(!empty($photo->name)){
-				$stream['title'] = $photo->name;
-				$stream['content'] = $photo->name;	
+				$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  		$content = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $photo->name);
+
+				$stream['title'] = $content;
+				$stream['content'] = $content;	
 			}
 			$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $photo->updated_time ) );
 			$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $photo->updated_time ) );
@@ -398,8 +408,12 @@ class Essential_Grid_Facebook {
 				$stream['post-link'] = 'https://www.facebook.com/'.$user.'/posts/'.$post_url[1];
 				
 				if(!empty($photo->message)){
-					$stream['title'] = $photo->message;
-					$stream['content'] = $photo->message;
+					$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  			$content = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $photo->message);
+
+					$stream['title'] = $content;
+					$stream['content'] = $content;	
+				
 				}	
 				$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $photo->updated_time ) );
 				$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $photo->updated_time ) );
@@ -550,7 +564,7 @@ class Essential_Grid_Twitter {
     $include_rts = $include_rts=="on" ? "true" : "false"; 
     $exclude_replies = $exclude_replies=="on" ? "true" : "false"; 
 
-	$query = 'count=150&include_entities=true&include_rts='.$include_rts.'&exclude_replies='.$exclude_replies.'&screen_name='.$twitter_account;
+	$query = '&tweet_mode=extended&count=150&include_entities=true&include_rts='.$include_rts.'&exclude_replies='.$exclude_replies.'&screen_name='.$twitter_account;
 	$security = 50;
 	$supervisor_count = 0;
 
@@ -608,9 +622,10 @@ class Essential_Grid_Twitter {
    */
   private function twitter_output_array($tweets,$count,$imageonly){
 	if(is_array($tweets)){
-	  	foreach ($tweets as $tweet) {
 
-	  	  $stream = array();
+		foreach ($tweets as $tweet) {
+
+		  $stream = array();
 	      $image_url = array();
 	      if( $count < 1) break;
 	   
@@ -627,8 +642,19 @@ class Essential_Grid_Twitter {
 	      if($imageonly=="true" && $stream['custom-type'] == 'html') continue;
 	      $stream['custom-type'] = 'image';
 
-	      $stream['title'] = $tweet->text;
-	      $stream['content'] = $tweet->text;
+	      $content_array = explode("https://t.co",$tweet->full_text);
+	      if(sizeof($content_array)>1) array_pop($content_array);
+	      $content = implode("https://t.co",$content_array);
+	      
+
+	      $url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  $content = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $content);
+
+
+		  
+
+	      $stream['title'] = $content;
+	      $stream['content'] = $content;
 	      $stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $tweet->created_at ) );
 	      $stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $tweet->created_at ) );
 	      $stream['author_name'] = $tweet->user->screen_name;
@@ -830,7 +856,7 @@ class Essential_Grid_Instagram {
 	 * @access   private
 	 * @var      string    $api_key    Instagram API key
 	 */
-	private $api_key;
+	private $access_token;
 
 	/**
 	 * Stream Array
@@ -860,62 +886,289 @@ class Essential_Grid_Instagram {
 		$this->transient_sec = $transient_sec;
 	}
 
+
 	/**
-	 * Get Instagram Pictures
+	 * Get Instagram Users Pictures CSV list
 	 *
 	 * @since    3.0
 	 * @param    string    $user_id 	Instagram User id (not name)
 	 */
-	public function get_public_photos($search_user_id,$count){
-		//call the API and decode the response
-		$url = "https://www.instagram.com/".$search_user_id."/media/";
-
-
-
-		$transient_name = 'essgrid_' . md5($url."count=".$count);
-		if ($this->transient_sec > 0 && false !== ($data = get_transient( $transient_name)))
-			return ($data);
-
-		if($count<=20){
-			//call the API and decode the response
-			$rsp = json_decode(wp_remote_fopen($url));
-			$this->instagram_output_array($rsp->items,$count);
-		}
-		else {
-			$runs = ceil($count / 20);
-			$original_count = $count;
-			$supervisor_count = 0;
-			for ($i=0; $i < $runs && sizeof($this->stream) < $original_count && $supervisor_count < 20; $i++) {
-				$supervisor_count++;
-				if(isset($page_rsp->more_available) &&  $page_rsp->more_available == true){
-					$last_item = end($page_rsp->items);
-					$max_id_url = 'https://api.instagram.com/oembed/?url=http://instagram.com/p/'.$last_item->code.'/';
-					$max_id_rsp = json_decode(wp_remote_fopen($max_id_url));
-					$max_id = "?max_id=" . $max_id_rsp->media_id;
-				}
-				else{
-					$max_id = "";
-				}
-				
-				if(isset($page_rsp->more_available) &&  $page_rsp->more_available == false){
-					$i = $runs;
-					continue;
-				}
-				
-				$page_rsp = json_decode( wp_remote_fopen( $url.$max_id ) );
-				$count = @$this->instagram_output_array($page_rsp->items,$count);
+	public function get_users_photos($search_user_id,$count,$orig_image){
+		$search_user_array = explode(",", $search_user_id);
+		if(is_array($search_user_array)){
+			foreach($search_user_array as $search_user){
+				$this->get_public_photos(trim($search_user),$count,$orig_image);
 			}
 		}
-		
-		if(!empty($this->stream)){
-			set_transient( $transient_name, $this->stream, $this->transient_sec );
-			return $this->stream;
+		else {
+			$this->get_public_photos(trim($search_user_id),$count,$orig_image);
+		}
+		return $this->stream;
+	}
+
+	/**
+	 * Get Instagram User Pictures
+	 *
+	 * @since    3.0
+	 * @param    string    $user_id 	Instagram User id (not name)
+	 */
+	public function get_public_photos($search_user_id,$count,$orig_image){
+		if(!empty($search_user_id)){
+
+			$url = 'https://www.instagram.com/'.$search_user_id.'/?__a=1';
+
+			$transient_name = 'essgrid_'. md5($url."count=".$count);
+			if ($this->transient_sec > 0 && false !== ($data = get_transient( $transient_name))){
+				$this->stream = $data;
+				return $this->stream;
+			}
+			else 
+				delete_transient( $transient_name );
+			
+			$rsp = json_decode(wp_remote_fopen($url));
+
+			$count = $this->instagram_output_array($rsp->user->media->nodes,$count,$search_user_id,$orig_image);
+
+			if(!$rsp->user->media->count){
+				_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
+			} 
+
+			while($count){
+				$url = 'https://www.instagram.com/'.$search_user_id.'/?__a=1&max_id='.$rsp->user->media->page_info->end_cursor;
+				$rsp = json_decode(wp_remote_fopen($url));
+				$count = $this->instagram_output_array($rsp->user->media->nodes,$count,$search_user_id,$orig_image);
+			}
+			
+			if(!empty($this->stream)){
+				set_transient( $transient_name, $this->stream, $this->transient_sec );
+				return $this->stream;
+			}
+			else {
+				_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
+			}
 		}
 		else {
-			_e('Instagram reports: Please check the username',EG_TEXTDOMAIN);
-			return false;
+			_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
 		}
 	
+	}
+
+	/**
+	 * Get Instagram Tags Pictures CSV list
+	 *
+	 * @since    3.0
+	 * @param    string    $user_id 	Instagram User id (not name)
+	 */
+	public function get_tags_photos($search_user_id,$count,$orig_image){
+		$search_user_array = explode(",", $search_user_id);
+		if(is_array($search_user_array)){
+			foreach($search_user_array as $search_user){
+				$this->get_tag_photos(trim($search_user),$count,$orig_image);
+			}
+		}
+		else{
+			$this->get_tag_photos(trim($search_user_id),$count,$orig_image);
+		}
+		return $this->stream;
+	}
+
+	/**
+	 * Get Instagram Tag Pictures
+	 *
+	 * @since    3.0
+	 * @param    string    $user_id 	Instagram User id (not name)
+	 */
+	public function get_tag_photos($search_user_id,$count,$orig_image){
+		if(!empty($search_user_id)){
+
+			$search_user_id = str_replace("#", "", $search_user_id);
+
+			$url = 'https://www.instagram.com/explore/tags/'.$search_user_id.'/?__a=1';
+
+			$transient_name = 'essgrid_'. md5($url."count=".$count);
+
+			
+			if ($this->transient_sec > 0 && false !== ($data = get_transient( $transient_name))){
+				$this->stream = $data;
+				return $this->stream;
+			}
+			else 
+				delete_transient( $transient_name );
+			
+			$rsp = json_decode(wp_remote_fopen($url));
+
+			$count = $this->instagram_output_array_tags($rsp->graphql->hashtag->edge_hashtag_to_media->edges,$count,$search_user_id,$orig_image);
+
+			if(!$rsp->graphql->hashtag->edge_hashtag_to_media->count){
+				_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
+			} 
+
+			while($count){
+				$url = 'https://www.instagram.com/explore/tags/'.$search_user_id.'/?__a=1&max_id='.$rsp->graphql->hashtag->edge_hashtag_to_media->page_info->end_cursor;
+				$rsp = json_decode(wp_remote_fopen($url));
+				$count = $this->instagram_output_array($rsp->tag->media->nodes,$count,$search_user_id,$orig_image);
+			}
+
+			if(!empty($this->stream)){
+				set_transient( $transient_name, $this->stream, $this->transient_sec );
+				return $this->stream;
+			}
+			else {
+				_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
+			}
+		}
+		else {
+			_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
+		}
+		
+	}
+
+	/**
+	 * Get Instagram Locations Pictures CSV list
+	 *
+	 * @since    3.0
+	 * @param    string    $user_id 	Instagram User id (not name)
+	 */
+	public function get_places_photos($search_user_id,$count,$orig_image){
+		$search_user_array = explode(",", $search_user_id);
+		if(is_array($search_user_array)){
+			foreach($search_user_array as $search_user){
+				$this->get_place_photos(trim($search_user),$count,$orig_image);
+			}
+		}
+		else {
+			$this->get_place_photos(trim($search_user_id),$count,$orig_image);
+		}
+		return $this->stream;
+	}
+
+	/**
+	 * Get Instagram Location Pictures
+	 *
+	 * @since    3.0
+	 * @param    string    $user_id 	Instagram User id (not name)
+	 */
+	public function get_place_photos($search_user_id,$count,$orig_image){
+		if(!empty($search_user_id)){
+
+			$url = 'https://www.instagram.com/explore/locations/'.$search_user_id.'/?__a=1';
+
+			$transient_name = 'essgrid_'. md5($url."count=".$count);
+			if ($this->transient_sec > 0 && false !== ($data = get_transient( $transient_name))){
+				$this->stream = $data;
+				return $this->stream;
+			}
+			else 
+				delete_transient( $transient_name );
+			
+			$rsp = json_decode(wp_remote_fopen($url));
+
+			$count = $this->instagram_output_array($rsp->location->media->nodes,$count,$search_user_id,$orig_image);
+
+			if(!$rsp->location->media->count){
+				_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
+			} 
+
+			while($count){
+				$url = 'https://www.instagram.com/explore/locations/'.$search_user_id.'/?__a=1&max_id='.$rsp->location->media->page_info->end_cursor;
+				$rsp = json_decode(wp_remote_fopen($url));
+				$count = $this->instagram_output_array($rsp->location->media->nodes,$count,$search_user_id,$orig_image);
+			}
+			
+			if(!empty($this->stream)){
+				set_transient( $transient_name, $this->stream, $this->transient_sec );
+				return $this->stream;
+			}
+			else {
+				_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
+			}
+		}
+		else {
+			_e('Instagram reports: Please check the settings',EG_TEXTDOMAIN);
+				return false;
+		}
+	
+	}
+
+
+	/**
+	 * Prepare output array $stream
+	 *
+	 * @since    3.0
+	 * @param    string    $photos 	Instagram Output Data
+	 */
+	private function instagram_output_array($photos,$count,$search_user_id,$orig_image){
+		foreach ($photos as $photo) {
+			if($count > 0){
+				$count--;
+				$stream = array();
+
+				if($orig_image){
+					$url = 'https://www.instagram.com/p/'.$photo->code.'/?__a=1';
+					$rsp = json_decode(wp_remote_fopen($url));
+					$images = end($rsp->graphql->shortcode_media->display_resources);
+					$orig_image = array( $images->src, $images->config_width, $images->config_height );
+				}
+				else {
+					$orig_image = array('',0,0);
+				}
+
+				$image_url = array(
+					'Low Resolution' 		=> 	array(str_replace("150x150", "320x320", $photo->thumbnail_src),
+							320,
+							320
+					),
+					'Thumbnail' 			=> 	array($photo->thumbnail_src,150,150),
+					'Standard Resolution' 	=>	array(str_replace("150x150", "640x640", $photo->thumbnail_src),
+							640,
+							640,
+					),
+					'Original Resolution'	=> $orig_image
+				);
+
+				$text = empty($photo->caption) ? '' : $photo->caption;
+
+				$stream['id'] = $photo->id;
+				$stream['custom-image-url'] = $image_url; //image for entry
+				
+				if($photo->is_video != "true"){
+					$stream['custom-type'] = 'image'; //image, vimeo, youtube, soundcloud, html
+				}
+				else{
+					$url = 'https://www.instagram.com/p/'.$photo->code.'/?__a=1';
+					$rsp = json_decode(wp_remote_fopen($url));
+					$stream['custom-type'] = 'html5'; //image, vimeo, youtube, soundcloud, html	
+					$stream['custom-html5-mp4'] = $rsp->graphql->shortcode_media->video_url;
+				}
+				
+				$stream['post-link'] = 'https://www.instagram.com/p/' . $photo->code;
+				$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  		$text = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $text);
+				$stream['title'] = $text;
+				$stream['content'] = $text;
+				$stream['date'] = date_i18n( get_option( 'date_format' ), ( $photo->date ) ) ;
+				$stream['date_modified'] = date_i18n( get_option( 'date_format' ), ( $photo->date ) ) ;
+				$stream['author_name'] = $search_user_id;
+				
+				if(isset($photo->tags))	$stream['tags'] = implode(',', $photo->tags);
+
+				$stream['likes'] = $photo->likes->count;
+				$stream['likes_short'] = Essential_Grid_Base::thousandsViewFormat($photo->likes->count);
+				$stream['num_comments'] = $photo->comments->count;
+				
+
+				$this->stream[] = $stream;
+			}
+		}
+		return $count;
 	}
 
 	/**
@@ -924,51 +1177,70 @@ class Essential_Grid_Instagram {
 	 * @since    3.0
 	 * @param    string    $photos 	Instagram Output Data
 	 */
-	private function instagram_output_array($photos,$count){
+	private function instagram_output_array_tags($photos,$count,$search_user_id,$orig_image){
 		foreach ($photos as $photo) {
-
 			if($count > 0){
 				$count--;
 				$stream = array();
 
+				if($orig_image){
+					$url = 'https://www.instagram.com/p/'.$photo->node->shortcode.'/?__a=1';
+					$rsp = json_decode(wp_remote_fopen($url));
+					$images = end($rsp->graphql->shortcode_media->display_resources);
+					$orig_image = array( $images->src, $images->config_width, $images->config_height );
+				}
+				else {
+					$orig_image = array('',0,0);
+				}
+
+				//if(isset($_GET['dg'])){echo '<pre>';   var_dump($photo->node);   echo '</pre>';}
+
 				$image_url = array(
-					'Low Resolution' 		=> 	array(str_replace("150x150", "320x320", $photo->images->thumbnail->url),
+					'Low Resolution' 		=> 	array(str_replace("150x150", "320x320", $photo->node->thumbnail_resources),
 							320,
 							320
 					),
-					'Thumbnail' 			=> 	array($photo->images->thumbnail->url,$photo->images->thumbnail->width,$photo->images->thumbnail->height),
-					'Standard Resolution' 	=>	array(str_replace("150x150", "640x640", $photo->images->thumbnail->url),
+					'Thumbnail' 			=> 	array($photo->node->thumbnail_src,
+							150,
+							150
+					),
+					'Standard Resolution' 	=>	array(str_replace("150x150", "640x640", $photo->node->thumbnail_resources),
 							640,
 							640,
-					)
+					),
+					'Original Resolution'	=> $orig_image
 				);
 
-				$text = empty($photo->caption->text) ? '' : $photo->caption->text;
+				$text = empty($photo->node->edge_media_to_caption->edges[0]->node->text) ? '' : $photo->node->edge_media_to_caption->edges[0]->node->text;
 
-				$stream['id'] = $photo->id;
+				$stream['id'] = $photo->node->id;
 				$stream['custom-image-url'] = $image_url; //image for entry
 				
-				if(!isset($photo->videos->standard_resolution)){
+				if($photo->node->is_video != "true"){
 					$stream['custom-type'] = 'image'; //image, vimeo, youtube, soundcloud, html
 				}
 				else{
+					$url = 'https://www.instagram.com/p/'.$photo->node->shortcode.'/?__a=1';
+					$rsp = json_decode(wp_remote_fopen($url));
 					$stream['custom-type'] = 'html5'; //image, vimeo, youtube, soundcloud, html	
-					$stream['custom-html5-mp4'] = $photo->videos->standard_resolution->url;
+					$stream['custom-html5-mp4'] = $rsp->graphql->shortcode_media->video_url;
 				}
 				
-				$stream['post-link'] = $photo->link;
+				$stream['post-link'] = 'https://www.instagram.com/p/' . $photo->node->shortcode;
+				$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  		$text = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $text);
 				$stream['title'] = $text;
 				$stream['content'] = $text;
-				$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $photo->created_time ) ) ;
-				$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $photo->created_time ) ) ;
-				$stream['author_name'] = $photo->user->username;
+				$stream['date'] = date_i18n( get_option( 'date_format' ), ( $photo->node->taken_at_timestamp ) ) ;
+				$stream['date_modified'] = date_i18n( get_option( 'date_format' ), ( $photo->node->taken_at_timestamp ) ) ;
+				$stream['author_name'] = $search_user_id;
 				
-				if(isset($photo->tags))	$stream['tags'] = implode(',', $photo->tags);
+				if(isset($photo->node->tags))	$stream['tags'] = implode(',', $photo->node->tags);
 
-				$stream['likes'] = $photo->likes->count;
-				$stream['likes_short'] = Essential_Grid_Base::thousandsViewFormat($photo->likes->count);
-				$stream['num_comments'] = $photo->comments->count;
-
+				$stream['likes'] = $photo->node->edge_liked_by->count;
+				$stream['likes_short'] = Essential_Grid_Base::thousandsViewFormat($photo->node->edge_liked_by->count);
+				$stream['num_comments'] = $photo->node->edge_media_to_comment->count;
+				
 
 				$this->stream[] = $stream;
 			}
@@ -1320,8 +1592,12 @@ class Essential_Grid_Flickr {
 			$stream['custom-image-url'] = $image_url; //image for entry
 			$stream['custom-type'] = 'image'; //image, vimeo, youtube, soundcloud, html
 			$stream['title'] = $photo->title;
-			if(!empty($photo->description->_content))	
-				$stream['content'] = $photo->description->_content;
+			if(!empty($photo->description->_content)){
+				$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  		$text = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $photo->description->_content);
+		  		$stream['content'] = $text;
+			}	
+				
 			$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $photo->datetaken ) ) ;
 			$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $photo->datetaken ) ) ;
 			$stream['author_name'] = $photo->ownername;
@@ -1646,7 +1922,9 @@ class Essential_Grid_Youtube {
 				$stream['custom-type'] = 'image'; //image, vimeo, youtube, soundcloud, html
 				$stream['post-link'] = 'https://www.youtube.com/playlist?list='.$video->id;
 				$stream['title'] = $video->snippet->title;
-				$stream['content'] = $video->snippet->description;
+				$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  		$text = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $video->snippet->description);
+				$stream['content'] = $text;
 			
 				$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $video->snippet->publishedAt ) );
 				$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $video->snippet->publishedAt ) );
@@ -1689,7 +1967,9 @@ class Essential_Grid_Youtube {
 				$stream['post-link'] = 'https://www.youtube.com/watch?v='.$video->snippet->resourceId->videoId;
 				$stream['title'] = $video->snippet->title;
 				$stream['channel_title'] = $video->snippet->channelTitle;
-				$stream['content'] = $video->snippet->description;
+				$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  		$text = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $video->snippet->description);
+				$stream['content'] = $text;
 				
 				$stream['date'] = $video->snippet->publishedAt ;
 				$stream['date_modified'] = $video->snippet->publishedAt ;
@@ -1748,7 +2028,9 @@ class Essential_Grid_Youtube {
 				$stream['post-link'] = 'https://www.youtube.com/watch?v='.$video->id->videoId;
 				$stream['title'] = $video->snippet->title;
 				$stream['channel_title'] = $video->snippet->channelTitle;
-				$stream['content'] = $video->snippet->description;
+				$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  		$text = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $video->snippet->description);
+				$stream['content'] = $text;
 				$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $video->snippet->publishedAt ) );
 				$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $video->snippet->publishedAt ) );
 				$stream['author_name'] = $video->snippet->channelTitle;
@@ -1893,7 +2175,9 @@ class Essential_Grid_Vimeo {
 			$stream['id'] = $video->id;
 			$stream['post-link'] = $video->url;
 			$stream['title'] = $video->title;
-			$stream['content'] = $video->description;
+			$url = '~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i'; 
+		  	$text = preg_replace($url, '<a href="$0" target="_blank" title="$0">$0</a>', $video->description);
+			$stream['content'] = $text;
 			$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $video->upload_date) );
 			$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $video->upload_date) );
 			$stream['author_name'] = $video->user_name;
@@ -2092,6 +2376,514 @@ class Essential_Grid_Behance {
 	 * @param    string    $videos 	Behance Output Data
 	 */
 	private function behance_output_array($images){
+		if(is_object($images)){
+			foreach ($images->projects as $image) {
+				$stream = array();
+
+				$image_url = @array(
+					'115' 		=> 	array($image->covers->{'115'}),
+					'202' 		=> 	array($image->covers->{'202'}),
+					'230' 		=> 	array($image->covers->{'230'}),
+					'404' 		=> 	array($image->covers->{'404'}),
+					'original' 	=> 	array($image->covers->original),
+				);
+				$stream['custom-image-url'] = $image_url;
+
+				$stream['custom-type'] = 'image'; //image, vimeo, youtube, soundcloud, html
+				$stream['post-link'] = $image->url;
+				$stream['title'] = $image->name;
+				$stream['content'] = $image->name;
+				$stream['date'] = $image->modified_on;
+				$stream['date_modified'] = $image->modified_on;
+				$stream['author_name'] = 'dude';
+				$this->stream[] = $stream;
+			}
+		}
+	}
+}
+
+/**
+ * NextGen
+ *
+ * show images from NextGen Albums and Galleries
+ *
+ * @package    socialstreams
+ * @subpackage socialstreams/nextgen
+ * @author     ThemePunch <info@themepunch.com>
+ */
+
+class Essential_Grid_Nextgen {
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @since    3.0
+	 */
+	/**
+	 * Stream Array
+	 *
+	 * @since    3.0
+	 * @access   private
+	 * @var      array    $stream    Stream Data Array
+	 */
+	private $stream;
+
+	public function __construct() {
+			
+	}
+
+	/**
+	 * Prepare list of Albums options for selectbox
+	 *
+	 * @since    3.0
+	 */
+	public function get_album_list($current_album){
+		global $nggdb; //nextgen basic class
+		
+		// Galleries in Albums
+		$albums = $nggdb->find_all_album();
+		
+		// Build <option>s for <select>
+		$return = array();
+		foreach ($albums as $album) {
+			$album_details = $nggdb->find_album($album->id);
+			$return[] = '<option value="'.$album_details->id.'" '.selected( $album_details->id , $current_album , false ).'>'.$album_details->name.'</option> ';  
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Prepare list of Albums options for selectbox
+	 *
+	 * @since    3.0
+	 */
+	public function get_gallery_list($current_gallery){
+		global $nggdb; //nextgen basic class
+		
+		// Galleries
+		$gallerys = $nggdb->find_all_galleries();
+		
+		// Build <option>s for <select>
+		$return = array();
+		foreach ($gallerys as $gallery) {
+			//$gallery_details = $nggdb->find_gallery($gallery->id);
+			$return[] = '<option value="'.$gallery->gid.'" '.selected( $gallery->gid , $current_gallery , false ).'>'.$gallery->title.'</option> ';  
+			
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Prepare list of Tags options for selectbox
+	 *
+	 * @since    3.0
+	 */
+	public function get_tag_list($current_tags){
+		global $nggdb; //nextgen basic class
+		
+		// Tags
+		$tags= nggTags::find_all_tags(); 
+		
+		// Build <option>s for <select>
+		$return = array();
+		$current_tags = explode(",", $current_tags);
+		foreach ($tags as $tag) {
+			$selected = in_array($tag->term_id, $current_tags) ? 'selected' : '';
+
+			$return[] = '<option value="'.$tag->term_id.'" '.$selected.'>'.$tag->name.'</option> ';  
+			
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Prepare list of Albums options for selectbox
+	 *
+	 * @since    3.0
+	 */
+	public function get_album_images($album_id){
+		global $nggdb; //nextgen basic class
+		$galleries = $nggdb->find_album($album_id);
+		$return = $this->get_gallery_images($galleries->gallery_ids);	
+		return $return;	
+	}
+
+	/**
+	 * Prepare list of Albums options for selectbox
+	 *
+	 * @since    3.0
+	 */
+	public function get_tags_images($tags){
+		global $nggdb; //nextgen basic class
+		
+		//$images = nggTags::find_images_for_tags($tags);
+		$tags = explode(",", $tags);
+		
+		$picids = get_objects_in_term($tags, 'ngg_tag');
+
+		$mapper = C_Image_Mapper::get_instance();
+		$images = array();
+		foreach ($picids as $image_id) {
+			$images[] = $mapper->find($image_id);
+		}
+
+		foreach ( $images as $image ){
+			//if ( $image->hidden ) continue;
+		   	$image = nggdb::find_image($image->pid);
+
+		    $image_url = @array(
+				'thumb' 	=> 	array($image->thumbnailURL),
+				'original' 	=> 	array($image->imageURL),
+			);
+			$stream['custom-image-url'] = $image_url;
+
+			$stream['custom-type'] = 'image';
+			$stream['post-link'] = $image->imageURL;
+			$stream['title'] = $image->alttext;
+			$stream['content'] = $image->description;
+			$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $image->imagedate ) ) ;
+			$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $image->imagedate ) ) ;
+			$this->stream[] = $stream;
+		}
+
+		return $this->stream;	
+	}
+
+	public function get_gallery_images($gallery_ids){
+		global $nggdb;
+		$counter = 0;
+
+		foreach($gallery_ids as $gallery_id){
+
+			if( !is_numeric($gallery_id) && $counter < 25){
+				$counter++;
+				$galleries_inside = $nggdb->find_album( preg_replace("/[^0-9]/", "", $gallery_id) );
+				$return = $this->get_gallery_images( $galleries_inside->gallery_ids );
+			}
+			else{
+				$this->nextgen_output_array($gallery_id);	
+			}
+		}
+		return $this->stream;
+	}
+
+	public function nextgen_output_array($gallery_id){
+		$images = nggdb::get_gallery($gallery_id);
+		foreach ( $images as $image ){
+			if ( $image->hidden ) continue;
+		    $image_url = @array(
+				'thumb' 	=> 	array($image->thumbnailURL),
+				'original' 	=> 	array($image->imageURL),
+			);
+			$stream['custom-image-url'] = $image_url;
+
+			$stream['custom-type'] = 'image';
+			$stream['post-link'] = $image->imageURL;
+			$stream['title'] = $image->alttext;
+			$stream['content'] = $image->description;
+			$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $image->imagedate ) ) ;
+			$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $image->imagedate ) ) ;
+			$this->stream[] = $stream;
+		}
+	}
+
+}
+
+/**
+ * Real Media Library
+ *
+ * show images from Real Media Library Folders and Galleries
+ *
+ * @package    socialstreams
+ * @subpackage socialstreams/nextgen
+ * @author     ThemePunch <info@themepunch.com>
+ */
+
+class Essential_Grid_Rml {
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @since    3.0
+	 */
+	/**
+	 * Stream Array
+	 *
+	 * @since    3.0
+	 * @access   private
+	 * @var      array    $stream    Stream Data Array
+	 */
+	private $stream;
+
+	public function __construct() {
+			
+	}
+
+	public function get_images($folder_id = -1){
+		$query = new WP_Query(array(
+			'post_status' => 'inherit',
+			'post_type' => 'attachment',
+			'rml_folder' => $folder_id,
+			'orderby' => "rml",
+			'posts_per_page' => 9999
+		));
+
+		$posts = $this->rml_output_array($query->posts);
+		return $this->stream;
+	}
+
+	public static function option_list_image_sizes($selected=""){
+		$image_sizes = Essential_Grid_Rml::get_image_sizes();
+		$options = "";
+		foreach ($image_sizes as $image_name => $image_size) {
+			$options .= '<option value="' . $image_name . '" '. selected( $selected, $image_name , false ) .'>' . $image_name .'</option>';
+		}
+		$options .= '<option value="original" '. selected( $selected, "original" , false ) .'>original</option>';
+		return $options;
+	}
+
+	public static function get_image_sizes() {
+		global $_wp_additional_image_sizes;
+
+		$sizes = array();
+
+
+		foreach ( get_intermediate_image_sizes() as $_size ) {
+			if ( in_array( $_size, array('thumbnail', 'medium', 'medium_large', 'large') ) ) {
+
+				$sizes[ $_size ]['width']  = get_option( "{$_size}_size_w" );
+				$sizes[ $_size ]['height'] = get_option( "{$_size}_size_h" );
+				$sizes[ $_size ]['crop']   = (bool) get_option( "{$_size}_crop" );
+			} elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
+				$sizes[ $_size ] = array(
+					'width'  => $_wp_additional_image_sizes[ $_size ]['width'],
+					'height' => $_wp_additional_image_sizes[ $_size ]['height'],
+					'crop'   => $_wp_additional_image_sizes[ $_size ]['crop'],
+				);
+			}
+		}
+
+		return $sizes;
+	}
+
+	public function rml_output_array($images){
+		$this->stream = array();
+		$image_sizes = $this->get_image_sizes();
+		foreach ( $images as $image ){
+			
+			foreach ($image_sizes as $slug => $details) {
+				$image_url[$slug] = wp_get_attachment_image_src($image->ID, $slug);
+			}
+			$image_url['original'] = array($image->guid);
+
+			$stream['custom-image-url'] = $image_url;
+
+			$stream['custom-type'] = 'image';
+			$stream['post-link'] = $image->guid;
+			$stream['title'] = $image->post_title;
+			$stream['content'] = $image->post_content;
+			$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $image->post_date ) ) ;
+			$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $image->post_modified ) ) ;
+
+			$this->stream[] = $stream;
+		}
+	}
+}
+
+
+/**
+ * Dribbble
+ *
+ * with help of the API this class delivers all kind of Images/Projects from Dribbble
+ *
+ * @package    socialstreams
+ * @subpackage socialstreams/dribbble
+ * @author     ThemePunch <info@themepunch.com>
+ */
+
+class Essential_Grid_Dribbble {
+	/**
+	 * Stream Array
+	 *
+	 * @since    3.0
+	 * @access   private
+	 * @var      array    $stream    Stream Data Array
+	 */
+	private $stream;
+
+	/**
+	 * Client Access Token
+	 *
+	 * @since    3.0
+	 * @access   private
+	 * @var      string    $client_access_token    dribbble API Client Access Token
+	 */
+	private $client_access_token;
+
+	/**
+	 * User ID
+	 *
+	 * @since    3.0
+	 * @access   private
+	 * @var      string    $user_id    dribbble User ID
+	 */
+	private $user_id;
+
+	/**
+	* Transient seconds
+	*
+	* @since    3.0
+	* @access   private
+	* @var      number    $transient Transient time in seconds
+	*/
+	private $transient_sec;
+
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @since    3.0
+	 */
+	public function __construct($client_access_token,$user_id,$transient_sec=0) {
+		$this->user_id = $user_id;
+		$this->client_access_token = $client_access_token;
+		$this->transient_sec = 0;//$transient_sec;
+		$this->stream = array();
+	}
+
+	/**
+	 * Get Behance User Projects
+	 *
+	 * @since    3.0
+	 */
+	public function get_dribbble_projects($count=100){
+		//call the API and decode the response
+		$url = "https://www.behance.net/v2/users/".$this->user_id."/projects?api_key=".$this->api_key."&per_page=".$count;
+		
+		//var_dump($url);
+
+		$transient_name = 'essgrid_' . md5($url);
+
+		if ($this->transient_sec > 0 && false !== ($data = get_transient( $transient_name)))
+			return ($data);
+
+		$rsp = json_decode(wp_remote_fopen($url));
+
+		if(!empty($rsp)){
+			$this->behance_output_array($rsp);
+			set_transient( $transient_name, $this->stream, $this->transient_sec );
+			return $this->stream;
+		}
+	}
+
+	/**
+	 * Get Projects from Channel as Options for Selectbox
+	 *
+	 * @since    3.0
+	 */
+	public function get_dribbble_projects_options($current_project = ""){
+		//call the API and decode the response
+		$url = 'https://api.dribbble.com/v1/users/'.$this->user_id.'/projects?access_token='.$this->client_access_token;
+		$rsp = json_decode(wp_remote_fopen($url));
+		
+		$return = array();
+
+		if(is_array($rsp))
+			foreach ($rsp as $project) {
+				$return[] = '<option '.selected( $project->id , $current_project , false ).' value="'.$project->id.'">'.$project->name.'</option>"';
+			}
+		else
+			$return = "";
+		return $return;
+	}
+
+	/**
+	 * Get Buckets from Channel as Options for Selectbox
+	 *
+	 * @since    3.0
+	 */
+	public function get_dribbble_buckets_options($current_project = ""){
+		//call the API and decode the response
+		$url = 'https://api.dribbble.com/v1/users/'.$this->user_id.'/buckets?access_token='.$this->client_access_token;
+		$rsp = json_decode(wp_remote_fopen($url));
+		
+		$return = array();
+
+		if(is_array($rsp))
+			foreach ($rsp as $bucket) {
+				$return[] = '<option '.selected( $bucket->id , $current_bucket , false ).' value="'.$bucket->id.'">'.$bucket->name.'</option>"';
+			}
+		else
+			$return = "";
+		return $return;
+	}
+
+	/**
+	 * Get Images from single Project
+	 *
+	 * @since    3.0
+	 */
+	public function get_dribbble_project_images($project="",$count=100){
+		//call the API and decode the response
+		if(!empty($project) ){
+			$url = "https://www.behance.net/v2/projects/".$project."?api_key=".$this->api_key."&per_page=".$count;
+
+			$transient_name = 'essgrid_' . md5($url);
+
+			if ($this->transient_sec > 0 && false !== ($data = get_transient( $transient_name)))
+				return ($data);
+
+			$rsp = json_decode( wp_remote_fopen($url) );
+
+			if(!empty($rsp)){
+				$this->behance_images_output_array($rsp,$count);
+				set_transient( $transient_name, $this->stream, $this->transient_sec );
+				return $this->stream;
+			}
+		}	
+	}
+
+	/**
+	 * Prepare output array $stream for Behance images
+	 *
+	 * @since    3.0
+	 * @param    string    $videos 	Behance Output Data
+	 */
+	private function dribbble_images_output_array($images,$count){
+		if(is_object($images)){
+			foreach ($images->project->modules as $image) {
+				if(!$count--) break;
+				$stream = array();
+
+				if($image->type == "image") {
+					$image_url = @array(
+						'disp' 			=> 	array($image->sizes->disp),
+						'max_86400' 	=> 	array($image->sizes->max_86400),
+						'max_1240' 		=> 	array($image->sizes->max_1240),
+						'original' 		=> 	array($image->sizes->original),
+					);
+
+					$stream['custom-image-url'] = $image_url;
+					$stream['custom-type'] = 'image'; //image, vimeo, youtube, soundcloud, html
+					$stream['post-link'] = $images->project->url;
+					$stream['title'] = $images->project->name;
+					$stream['content'] = $images->project->name;
+					$stream['date'] = date_i18n( get_option( 'date_format' ), strtotime( $images->project->modified_on ) ) ;
+					$stream['date_modified'] = date_i18n( get_option( 'date_format' ), strtotime( $images->project->modified_on ) ) ;
+					$stream['author_name'] = $images->project->owners[0]->first_name;
+					$this->stream[] = $stream;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Prepare output array $stream for Behance Projects
+	 *
+	 * @since    3.0
+	 * @param    string    $videos 	Behance Output Data
+	 */
+	private function dribbble_output_array($images){
 		if(is_object($images)){
 			foreach ($images->projects as $image) {
 				$stream = array();

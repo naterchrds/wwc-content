@@ -11,7 +11,8 @@ class RsAddonBeforeAfterSliderFront {
 	
 	protected function enqueueScripts() {
 		
-		add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+		// add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+		add_action('revslider_slide_initByData', array($this, 'enqueue_scripts'), 10, 1);
 		
 	}
 	
@@ -28,16 +29,36 @@ class RsAddonBeforeAfterSliderFront {
 		
 	}
 	
-	public function enqueue_scripts() {
+	public function enqueue_scripts($_record) {
 		
-		$ops           = new RevSliderOperations();
-		$globals       = $ops->getGeneralSettingsValues();
+		if(empty($_record)) return $_record;
+		
+		$_params = RevSliderFunctions::getVal($_record, 'params', false);
+		$_sliderId = RevSliderFunctions::getVal($_record, 'slider_id', false);
+		
+		if(empty($_params) || empty($_sliderId)) return $_record;
+		
+		$_params = json_decode($_params);
+		if(empty($_params)) return $_record;
+		
+		$_slider = new RevSlider();
+		$_slider->initByID($_sliderId);
+		
+		if(empty($_slider)) return $_record;
+			
+		$_settings = $_slider->getParams();
+		if(empty($_settings)) return $_record;
+		
+		$_enabled = RevSliderFunctions::getVal($_settings, static::$_PluginTitle . '_enabled', false) == 'true';
+		if(empty($_enabled)) return $_record;
+		
 		$_handle       = 'rs-' . static::$_PluginTitle . '-front';
 		$_base         = static::$_PluginUrl . 'public/assets/';
 		
 		wp_enqueue_style(
 		
-			'rs-icon-set-fa-icon-', RS_PLUGIN_URL .  'public/assets/fonts/font-awesome/css/font-awesome.css', 
+			'rs-icon-set-fa-icon-', 
+			RS_PLUGIN_URL .  'public/assets/fonts/font-awesome/css/font-awesome.css', 
 			array(), 
 			RevSliderGlobals::SLIDER_REVISION
 			
@@ -61,6 +82,9 @@ class RsAddonBeforeAfterSliderFront {
 			true
 			
 		);
+		
+		remove_action('revslider_slide_initByData', array($this, 'enqueue_scripts'), 10);
+		return $_record;
 		
 	}
 	

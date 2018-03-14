@@ -11,7 +11,8 @@ class RsAddonFilmstripSliderFront {
 	
 	protected function enqueueScripts() {
 		
-		add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+		// add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+		add_action('revslider_slide_initByData', array($this, 'enqueue_scripts'), 10, 1);
 		
 	}
 	
@@ -27,12 +28,28 @@ class RsAddonFilmstripSliderFront {
 		
 	}
 	
-	public function enqueue_scripts() {
+	public function enqueue_scripts($_record) {
 		
-		$ops           = new RevSliderOperations();
-		$globals       = $ops->getGeneralSettingsValues();
+		if(empty($_record)) return $_record;
 		
-		$putJsToFooter = RevSliderFunctions::getVal($globals, 'js_to_footer', 'off') === 'off';
+		$_params = RevSliderFunctions::getVal($_record, 'params', false);
+		$_sliderId = RevSliderFunctions::getVal($_record, 'slider_id', false);
+		
+		if(empty($_params) || empty($_sliderId)) return $_record;
+		
+		$_params = json_decode($_params);
+		if(empty($_params)) return $_record;
+		
+		$_slider = new RevSlider();
+		$_slider->initByID($_sliderId);
+		
+		if(empty($_slider)) return $_record;
+			
+		$_settings = $_slider->getParams();
+		if(empty($_settings)) return $_record;
+		
+		$_enabled = RevSliderFunctions::getVal($_settings, static::$_PluginTitle . '_enabled', false) == 'true';
+		if(empty($_enabled)) return $_record;
 		
 		$_handle       = 'rs-' . static::$_PluginTitle . '-front';
 		$_base         = static::$_PluginUrl . 'public/assets/';
@@ -52,9 +69,12 @@ class RsAddonFilmstripSliderFront {
 			$_base . 'js/revolution.addon.' . static::$_PluginTitle . '.min.js', 
 			array('jquery', 'revmin'), 
 			static::$_Version, 
-			$putJsToFooter
+			true
 			
 		);
+		
+		remove_action('revslider_slide_initByData', array($this, 'enqueue_scripts'), 10);
+		return $_record;
 		
 	}
 	

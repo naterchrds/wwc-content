@@ -4,7 +4,7 @@ Plugin Name: Slider Revolution Background FilmStrip Add-On
 Plugin URI: http://www.themepunch.com/
 Description: Display a continously rotating set of images for your slide backgrounds
 Author: ThemePunch
-Version: 1.0.0
+Version: 1.0.2
 Author URI: http://themepunch.com
 */
 

@@ -509,9 +509,7 @@ class Essential_Grid_Navigation {
 	
     public function set_orders($data){
         $this->sorting = $data + $this->sorting; //merges the array and preserves the key
-        
-		arsort($this->sorting);
-		
+        arsort($this->sorting);
 		$this->sorting = apply_filters('essgrid_set_orders', $this->sorting);
     }
 	
@@ -830,7 +828,7 @@ class Essential_Grid_Navigation {
 		echo '>';
 		
 		echo '<div class="esg-cartbutton">';
-		echo '<a href="'.esc_url(WC()->cart->get_cart_url()).'">';
+		echo '<a href="'.wc_get_cart_url().'">';
 		echo '<i class="eg-icon-basket"></i><span class="ess-cart-content">';
 		echo WC()->cart->get_cart_contents_count();
 		echo __(' items - ', EG_TEXTDOMAIN);

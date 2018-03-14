@@ -8,8 +8,8 @@
  * @wordpress-plugin
  * Plugin Name:       Essential Grid
  * Plugin URI:        http://www.themepunch.com/essential/
- * Description:       Essential Grid - Premium grid plugin
- * Version:           2.1.6.1
+ * Description:       Essential Grid - The Original Premium Grid Plugin
+ * Version:           2.2.2
  * Author:            ThemePunch
  * Author URI:        http://themepunch.com
  * Text Domain:       essential-grid
@@ -98,17 +98,10 @@ add_shortcode('ess_grid_nav', array('Essential_Grid', 'register_shortcode_filter
 add_shortcode('ess_grid_search', array('Essential_Grid_Search', 'register_shortcode_search'));
 
 add_action('widgets_init', array('Essential_Grid', 'register_custom_sidebars'));
-add_action('widgets_init', create_function('', 'return register_widget("Essential_Grids_Widget");'));
+add_action('widgets_init', array('Essential_Grid', 'register_custom_widget'));
 
-/* //ToDo Widget part
-add_action('widgets_init', create_function('', 'return register_widget("Essential_Grids_Widget_Filter");'));
-add_action('widgets_init', create_function('', 'return register_widget("Essential_Grids_Widget_Pagination");'));
-add_action('widgets_init', create_function('', 'return register_widget("Essential_Grids_Widget_Pagination_Left");'));
-add_action('widgets_init', create_function('', 'return register_widget("Essential_Grids_Widget_Pagination_Right");'));
-add_action('widgets_init', create_function('', 'return register_widget("Essential_Grids_Widget_Sorting");'));
-add_action('widgets_init', create_function('', 'return register_widget("Essential_Grids_Widget_Cart");'));
-*/
-
+// Featured Grid
+add_filter( 'post_thumbnail_html', array('Essential_Grid','post_thumbnail_replace'), 20, 5);
 
 /*----------------------------------------------------------------------------*
  * FrontEnd Special Functionality
@@ -155,6 +148,7 @@ if(is_admin()){ // && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )
 	$EssentialAsTheme = false;
 	
 	function set_ess_grid_as_theme(){
+		/*
 		global $EssentialAsTheme;
 		
 		if(defined('ESS_GRID_AS_THEME')){
@@ -163,7 +157,7 @@ if(is_admin()){ // && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )
 		}else{
 			if(get_option('EssentialAsTheme', 'true') == 'true')
 				$EssentialAsTheme = true;
-		}
+		}*/
 	}
 	/*****************
 	 * END: Developer Part for deactivation of the Activation Area

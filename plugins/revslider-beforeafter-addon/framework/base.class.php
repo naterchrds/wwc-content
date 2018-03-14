@@ -9,7 +9,7 @@ if(!defined('ABSPATH')) exit();
 
 class RsAddOnBeforeAfterBase {
 	
-	const MINIMUM_VERSION = '5.4.3.2';
+	const MINIMUM_VERSION = '5.4.6';
 	
 	protected function systemsCheck() {
 		

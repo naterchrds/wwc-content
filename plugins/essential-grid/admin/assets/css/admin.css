@@ -952,6 +952,9 @@ vertical-align: top;
 #eg-wrap .input-settings-small.firstinput,
 #eg-wrap input[type=radio].firstinput	{	margin-left:0px}
 
+#eg-wrap input.instagram-type-source { margin-left:15px }
+#eg-wrap input.instagram-type-source.firstinput { margin-left:0 }
+
 #eg-wrap input[type=radio] {
 			opacity: 1;
 			filter: alpha(opacity=100);
@@ -1180,6 +1183,12 @@ vertical-align: top;
     color: #FFF;
 }
 
+.font_headline {
+    display: block;
+    clear: both;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 .eg-icon-chooser,
 #dialog-eg-fakeicon-in,
@@ -1207,7 +1216,7 @@ vertical-align: top;
 .et-add-new-icon:hover	{	color:#555}
 
 .eg-additional-parameters { width: 625px; }
-
+#nextgen-tags {resize: vertical;}
 
 /***************************************
 	-	LAYER SETTINGS VERTICAL MENU	-
@@ -1452,7 +1461,6 @@ li.selected-submenu-setting				{	background-color:#fff; border:1px solid transpa
 .eg-postbox {
     background: none repeat scroll 0 0 #fff;
 }
-
 
 .rs-icon-save-light {
 background-image: url(../images/toolbar/icon-save-light.png);
@@ -2244,5 +2252,18 @@ div.star_red:before { content: '\f155'; font-family: "dashicons"; color:#e03301;
 .rev-colorpickerspan {
 	line-height: 0;
 	vertical-align: top;
-	display: inline-block;
+	
 }
+
+#eg-form-item-skin-layout-settings label {vertical-align: top}
+
+body.hide-custom-options .eg-addnewitem-wrapper {display: none !important}
+.esg-entry-cover .esg-open-edit-dialog {opacity: 0}
+.esg-entry-cover:hover .esg-open-edit-dialog {transition: opacity 0.2s ease 0.2s; opacity: 1}
+
+/* 2.2 */
+.featured-img-hideable {display: none; margin-left: 30px}
+.show-featured-img-settings .featured-img-hideable {display: block}
+
+
+

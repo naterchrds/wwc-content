@@ -9,7 +9,7 @@ if(!defined('ABSPATH')) exit();
 
 class RsAddOnFilmstripBase {
 	
-	const MINIMUM_VERSION = '5.2.0';
+	const MINIMUM_VERSION = '5.4.6';
 	
 	protected function systemsCheck() {
 		

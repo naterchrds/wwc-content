@@ -23,8 +23,13 @@ if( !defined( 'ABSPATH') ) exit();
 	$enable_log = get_option('tp_eg_enable_log', 'false');
 	$use_lightbox = get_option('tp_eg_use_lightbox', 'false');
 	$enable_custom_post_type = get_option('tp_eg_enable_custom_post_type', 'true');
+	$enable_media_filter = get_option('tp_eg_enable_media_filter', 'false');
 	$enable_post_meta = get_option('tp_eg_enable_post_meta', 'true');
+	$no_filter_match_message = get_option('tp_eg_no_filter_match_message', 'No Items for the Selected Filter');
 	$global_default_img = get_option('tp_eg_global_default_img', '');
+	$enable_fontello = get_option('tp_eg_global_enable_fontello', 'backfront');
+	$enable_font_awesome = get_option('tp_eg_global_enable_font_awesome', 'false');
+	$enable_pe7 = get_option('tp_eg_global_enable_pe7', 'false');
 	
 	if(empty($global_default_img)) {
 		$display_global_img = 'hidden';
@@ -192,6 +197,21 @@ if( !defined( 'ABSPATH') ) exit();
 			<i style=""><?php echo _e('If this is changed, caching of Essential Grid may be required to be deleted!', EG_TEXTDOMAIN); ?></i>
 		</div>
 	</div>
+
+	<div class="esg-global-setting">
+		<div class="esg-gs-tc">
+			<label><?php echo _e('Enable Media Filter', EG_TEXTDOMAIN); ?>:</label>
+		</div>
+		<div class="esg-gs-tc">
+			<select name="enable_media_filter">
+				<option <?php echo ($enable_media_filter == 'true') ?  'selected="selected" ' : '';?>value="true"><?php _e('On', EG_TEXTDOMAIN); ?></option>
+				<option <?php echo ($enable_media_filter == 'false') ? 'selected="selected" ' : '';?>value="false"><?php _e('Off', EG_TEXTDOMAIN); ?></option>
+			</select>
+		</div>
+		<div class="esg-gs-tc">	
+			<i style=""><?php echo _e('This enables the media filters in the backend.', EG_TEXTDOMAIN); ?></i>								 
+		</div>
+	</div>
 	<div class="esg-global-setting">
 		<div class="esg-gs-tc">
 			<label><?php echo _e('Enable Debug Log', EG_TEXTDOMAIN); ?>:</label>
@@ -235,18 +255,79 @@ if( !defined( 'ABSPATH') ) exit();
 		</div>
 	</div>
 	
-	<div class="esg-global-setting last-egs">
+	<div class="esg-global-setting">
 		<div class="esg-gs-tc">
 			<label><?php echo _e('Global Default Image', EG_TEXTDOMAIN); ?>:</label>
 		</div>
 		<div class="esg-gs-tc">
-			<img id="global_default_img-img" class="image-holder-wrap-div" src="<?php echo $global_default_src; ?>" style="display: <?php echo $display_global_img; ?>; margin: 0 30px 5px 0">
+			<img id="global_default_img-img" class="image-holder-wrap-div" src="<?php echo $global_default_src; ?>" style="display: <?php echo $display_global_img; ?>">
 			<a class="button-primary revblue eg-global-add-image" href="javascript:void(0);" data-setto="global_default_img">Choose Image</a>
 			<a class="button-primary revred eg-global-image-clear" href="javascript:void(0);" data-setto="global_default_img">Remove Image</a>
 			<input type="hidden" id="global_default_img" name="global_default_img" value="<?php echo $global_default_img; ?>">
 		</div>
 		<div class="esg-gs-tc">	
 			<i style=""><?php echo _e('Set an optional default global image to avoid possible blank grid items', EG_TEXTDOMAIN); ?></i>								 
+		</div>
+	</div>
+
+	<div class="esg-global-setting">
+		<div class="esg-gs-tc">
+			<label><?php echo _e('No Filter Match Message', EG_TEXTDOMAIN); ?>:</label>
+		</div>
+		<div class="esg-gs-tc">
+			<input type=text name="no_filter_match_message" id="no_filter_match_message" value="<?php echo $no_filter_match_message; ?>">
+		</div>
+		<div class="esg-gs-tc">	
+			<i style=""><?php echo _e('Normally filter selections would always return a result, but if you are using multiple Filter Groups with "AND" set for the Category Relation
+this custom message will be displayed to the user.', EG_TEXTDOMAIN); ?></i>								 
+		</div>
+	</div>
+
+	<div class="esg-global-setting">
+		<div class="esg-gs-tc">
+			<label><?php echo _e('Enable Fontello Icons (Standard)', EG_TEXTDOMAIN); ?>:</label>
+		</div>
+		<div class="esg-gs-tc">
+			<select name="enable_fontello">
+				<!--option <?php echo ($enable_fontello == 'false') ? 'selected="selected" ' : '';?> value="false"><?php _e('Off', EG_TEXTDOMAIN); ?></option-->
+				<option <?php echo ($enable_fontello == 'backfront') ?  'selected="selected" ' : '';?> value="backfront"><?php _e('Backend+Frontend', EG_TEXTDOMAIN); ?></option>
+				<option <?php echo ($enable_fontello == 'back') ?  'selected="selected" ' : '';?> value="back"><?php _e('Only Backend', EG_TEXTDOMAIN); ?></option>
+			</select>
+		</div>
+		<div class="esg-gs-tc">	
+			<i style=""><?php echo _e('This enables Fontello Icons for your Frontend and Backend or only Backend (if the font is already loaded on the frontend).', EG_TEXTDOMAIN); ?></i>								 
+		</div>
+	</div>
+
+	<div class="esg-global-setting">
+		<div class="esg-gs-tc">
+			<label><?php echo _e('Enable Font-Awesome Icons', EG_TEXTDOMAIN); ?>:</label>
+		</div>
+		<div class="esg-gs-tc">
+			<select name="enable_font_awesome">
+				<option <?php echo ($enable_font_awesome == 'false') ? 'selected="selected" ' : '';?> value="false"><?php _e('Off', EG_TEXTDOMAIN); ?></option>
+				<option <?php echo ($enable_font_awesome == 'backfront') ?  'selected="selected" ' : '';?> value="backfront"><?php _e('Backend+Frontend', EG_TEXTDOMAIN); ?></option>
+				<option <?php echo ($enable_font_awesome == 'back') ?  'selected="selected" ' : '';?> value="back"><?php _e('Only Backend', EG_TEXTDOMAIN); ?></option>
+			</select>
+		</div>
+		<div class="esg-gs-tc">	
+			<i style=""><?php echo _e('This enables Font Awesome Icons for your Frontend and Backend or only Backend (if the font is already loaded on the frontend).', EG_TEXTDOMAIN); ?></i>								 
+		</div>
+	</div>
+
+	<div class="esg-global-setting last-egs">
+		<div class="esg-gs-tc">
+			<label><?php echo _e('Enable Stroke 7 Icons', EG_TEXTDOMAIN); ?>:</label>
+		</div>
+		<div class="esg-gs-tc">
+			<select name="enable_pe7">
+				<option <?php echo ($enable_pe7 == 'false') ? 'selected="selected" ' : '';?> value="false"><?php _e('Off', EG_TEXTDOMAIN); ?></option>
+				<option <?php echo ($enable_pe7 == 'backfront') ?  'selected="selected" ' : '';?> value="backfront"><?php _e('Backend+Frontend', EG_TEXTDOMAIN); ?></option>
+				<option <?php echo ($enable_pe7 == 'back') ?  'selected="selected" ' : '';?> value="back"><?php _e('Only Backend', EG_TEXTDOMAIN); ?></option>
+			</select>
+		</div>
+		<div class="esg-gs-tc">	
+			<i style=""><?php echo _e('This enables Stroke 7 Icons for your Frontend and Backend or only Backend (if the font is already loaded on the frontend).', EG_TEXTDOMAIN); ?></i>								 
 		</div>
 	</div>
 	

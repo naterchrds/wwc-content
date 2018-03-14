@@ -145,7 +145,7 @@ if(!class_exists('TPColorpicker')){
 				return array($clr, 'rgb');
 				
 			}
-			else if(preg_match(TPColorpicker::isColor, $clr) !== false) {
+			else if(preg_match(TPColorpicker::$isColor, $clr) !== false) {
 				$clr = preg_replace('/\s+/', '', $clr);
 				return array($clr, 'hex');
 			}

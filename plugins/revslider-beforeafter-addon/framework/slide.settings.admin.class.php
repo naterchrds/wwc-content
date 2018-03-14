@@ -19,7 +19,7 @@ class RsAddonBeforeAfterSlideSettingsAdmin {
 		
 		// only add to slide editor if enabled from slider settings first
 		if($_slider->getParam(static::$_Title . '_enabled', false) == 'true') {
-		
+
 			static::_init($_slider, $_slide);
 			
 			$_settings[static::$_Title] = array(

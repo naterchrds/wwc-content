@@ -780,7 +780,7 @@ if(!isset($skin['layers'])) $skin['layers'] = array(); //fallback if skin does n
 														<div class="select_fake"><span><?php _e('Not uppercased', EG_TEXTDOMAIN); ?></span><i class="eg-icon-sort"></i></div>
 														<select name="element-source-function" style="width:180px" class="elements-select-wrap">
 															<option value="none"><?php _e('None', EG_TEXTDOMAIN); ?></option>
-															<option value="link"><?php _e('Link To Post', EG_TEXTDOMAIN); ?></option>
+															<option value="link"><?php _e('Link', EG_TEXTDOMAIN); ?></option>
 															<option value="filter"><?php _e('Trigger Filter', EG_TEXTDOMAIN); ?></option>
 														</select>
 													</div>
@@ -827,6 +827,7 @@ if(!isset($skin['layers'])) $skin['layers'] = array(); //fallback if skin does n
 															<option value="none"><?php _e('None', EG_TEXTDOMAIN); ?></option>
 															<option value="words"><?php _e('Words', EG_TEXTDOMAIN); ?></option>
 															<option value="chars"><?php _e('Characters', EG_TEXTDOMAIN); ?></option>
+															<option value="sentence"><?php _e('End Sentence Words', EG_TEXTDOMAIN); ?></option>
 														</select>
 													</div>
 
@@ -1566,6 +1567,9 @@ if(!isset($skin['layers'])) $skin['layers'] = array(); //fallback if skin does n
 												<option value="embedded_video"><?php _e('Play Embedded Video', EG_TEXTDOMAIN); ?></option>
 												<option value="sharefacebook"><?php _e('Share on Facebook', EG_TEXTDOMAIN); ?></option>
 												<option value="sharetwitter"><?php _e('Share on Twitter', EG_TEXTDOMAIN); ?></option>
+												<option value="sharegplus"><?php _e('Share on Google+', EG_TEXTDOMAIN); ?></option>
+												<option value="sharepinterest"><?php _e('Share on Pinterest', EG_TEXTDOMAIN); ?></option>
+												<option value="likepost"><?php _e('Like Post', EG_TEXTDOMAIN); ?></option>
 											</select>
 										</div><div class="clear"></div>
 									</div>
@@ -1637,22 +1641,81 @@ if(!isset($skin['layers'])) $skin['layers'] = array(); //fallback if skin does n
 											</div><div class="clear"></div>
 										</div>
 									</div>
-									<?php
-									/*
-									<p>
-										<label><?php _e('Attribute', EG_TEXTDOMAIN); ?></label>
-										<input class="element-setting" name="element-attribute" type="text" value="">
-									</p>
-									<p>
-										<label><?php _e('Class', EG_TEXTDOMAIN); ?></label>
-										<input class="element-setting" name="element-class" type="text" value="">
-									</p>
-									<p>
-										<label><?php _e('Rel', EG_TEXTDOMAIN); ?></label>
-										<input class="element-setting" name="element-rel" type="text" value="">
-									</p>
-									*/
-									?>
+									<!-- Gplus Fields -->
+									<div class="eg-element-gplus-wrap" id="eg-element-gplus-wrap">
+										<div style="margin-top:10px">
+											<label style="float:left"><?php _e('Link Target', EG_TEXTDOMAIN); ?></label>
+											<div class="select_wrapper" style="float:left;">
+												<div class="select_fake"><span><?php _e('Not uppercased', EG_TEXTDOMAIN); ?></span><i class="eg-icon-sort"></i></div>
+												<select name="element-gplus-sharing-link">
+													<option value="site"><?php _e("Parent Site URL",EG_TEXTDOMAIN); ?></option>
+													<option value="post"><?php _e("Post URL",EG_TEXTDOMAIN); ?></option>
+													<option value="custom"><?php _e("Custom URL",EG_TEXTDOMAIN); ?></option>
+												</select>
+											</div><div class="clear"></div>
+										</div>
+										<div style="margin-top:10px">
+											<div class="eg-element-gplus_link_custom">
+												<label style="float:left"><?php _e("URL",EG_TEXTDOMAIN); ?></label>
+												<input type="text" style="width:250px;" name="element-gplus-link-url" value="">
+											</div><div class="clear"></div>
+										</div>
+									</div>
+									<!-- Pinterest Fields -->
+									<div class="eg-element-pinterest-wrap" id="eg-element-pinterest-wrap">
+										<div style="margin-top:10px">
+											<label style="float:left"><?php _e('Link Target', EG_TEXTDOMAIN); ?></label>
+											<div class="select_wrapper" style="float:left;">
+												<div class="select_fake"><span><?php _e('Not uppercased', EG_TEXTDOMAIN); ?></span><i class="eg-icon-sort"></i></div>
+												<select name="element-pinterest-sharing-link">
+													<option value="site"><?php _e("Parent Site URL",EG_TEXTDOMAIN); ?></option>
+													<option value="post"><?php _e("Post URL",EG_TEXTDOMAIN); ?></option>
+													<option value="custom"><?php _e("Custom URL",EG_TEXTDOMAIN); ?></option>
+												</select>
+											</div><div class="clear"></div>
+										</div>
+										<div style="margin-top:10px">
+											<div class="eg-element-pinterest_link_custom">
+												<label style="float:left"><?php _e("URL",EG_TEXTDOMAIN); ?></label>
+												<input type="text" style="width:250px;" name="element-pinterest-link-url" value="">
+											</div><div class="clear"></div>
+										</div>
+										<div style="margin-top:10px">
+											<label style="float:left" class="eg-tooltip-wrap" title="<?php _e('Use placeholder %title%,%excerpt% for replacement', EG_TEXTDOMAIN); ?>"><?php _e("Description",EG_TEXTDOMAIN); ?></label>
+											<textarea type="text" style="width:250px;" name="element-pinterest-description" value="" class="eg-tooltip-wrap" title="<?php _e('Use placeholder %title%,%excerpt% for replacement', EG_TEXTDOMAIN); ?>"></textarea>
+											<div class="clear"></div>
+										</div>
+									</div>
+									<!-- Twitter Fields -->
+									<div class="eg-element-twitter-wrap" id="eg-element-twitter-wrap">
+										<div style="margin-top:10px">
+											<label style="float:left" class="eg-tooltip-wrap" title="<?php _e('Use placeholder %title%,%excerpt% for replacement', EG_TEXTDOMAIN); ?>"><?php _e("Text before Link",EG_TEXTDOMAIN); ?></label>
+											<input type="text" style="width:250px;" name="element-twitter-text-before" value="" class="eg-tooltip-wrap" title="<?php _e('Use placeholder %title%,%excerpt% for replacement', EG_TEXTDOMAIN); ?>">
+											<div class="clear"></div>
+										</div>
+										<div style="margin-top:10px">
+											<label style="float:left"><?php _e('Link Target', EG_TEXTDOMAIN); ?></label>
+											<div class="select_wrapper" style="float:left;">
+												<div class="select_fake"><span><?php _e('Not uppercased', EG_TEXTDOMAIN); ?></span><i class="eg-icon-sort"></i></div>
+												<select name="element-twitter-sharing-link">
+													<option value="site"><?php _e("Parent Site URL",EG_TEXTDOMAIN); ?></option>
+													<option value="post"><?php _e("Post URL",EG_TEXTDOMAIN); ?></option>
+													<option value="custom"><?php _e("Custom URL",EG_TEXTDOMAIN); ?></option>
+												</select>
+											</div><div class="clear"></div>
+										</div>
+										<div style="margin-top:10px">
+											<div class="eg-element-twitter_link_custom">
+												<label style="float:left"><?php _e("URL",EG_TEXTDOMAIN); ?></label>
+												<input type="text" style="width:250px;" name="element-twitter-link-url" value="">
+											</div><div class="clear"></div>
+										</div>
+										<div style="margin-top:10px">
+											<label style="float:left" class="eg-tooltip-wrap" title="<?php _e('Use placeholder %title%,%excerpt% for replacement', EG_TEXTDOMAIN); ?>"><?php _e("Text after Link",EG_TEXTDOMAIN); ?></label>
+											<input type="text" style="width:250px;" name="element-twitter-text-after" value="" class="eg-tooltip-wrap" title="<?php _e('Use placeholder %title%,%excerpt% for replacement', EG_TEXTDOMAIN); ?>">
+											<div class="clear"></div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<p id="dz-delete" class="eg-delete-wrapper">

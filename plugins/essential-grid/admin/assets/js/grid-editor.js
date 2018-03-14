@@ -66,8 +66,8 @@ var GridEditorEssentials = new function(){
 	 * set init meta keys
 	 */
 	t.setInitMetaKeysJson = function(json_meta){
-		
 		arr_meta_keys = jQuery.parseJSON(json_meta);
+		console.log(arr_meta_keys);
 	}
 
 	/**
@@ -260,7 +260,6 @@ var GridEditorEssentials = new function(){
 		if(id !== undefined){
 			if(typeof layers[id] === 'object' && layers[id]['handle'] !== 'undefined'){
 				var ie_settings = layers[id]['settings'];//init_elements[layers[id]['handle']]['settings'];
-				
 				for(var handle in all_attributes){
 					if(typeof ie_settings[handle] === 'undefined') continue;
 
@@ -329,7 +328,27 @@ var GridEditorEssentials = new function(){
 								if(typeof ie_settings['link-type-url'] !== 'undefined') jQuery('input[name="element-url-link"]').val(ie_settings['link-type-url']);
 								if(typeof ie_settings['link-type-meta'] !== 'undefined') jQuery('input[name="element-meta-link"]').val(ie_settings['link-type-meta']);
 								if(typeof ie_settings['link-type-javascript'] !== 'undefined') jQuery('input[name="element-javascript-link"]').val(ie_settings['link-type-javascript']);
-								if(typeof ie_settings['link-type-sharefacebook'] !== 'undefined') jQuery('select[name="element-facebook-sharing-link"]').val(ie_settings['link-type-sharefacebook']);
+								if(typeof ie_settings['link-type-sharefacebook'] !== 'undefined') {
+									jQuery('select[name="element-facebook-sharing-link"]').val(ie_settings['link-type-sharefacebook']);
+									jQuery('input[name="element-facebook-link-url"]').val(ie_settings['element-facebook-link-url']);
+									//if(ie_settings['link-type-sharefacebook']=="custom") jQuery(".eg-element-facebook_link_custom").show();
+									//else  jQuery(".eg-element-facebook_link_custom").hide();
+								}
+								if(typeof ie_settings['link-type-sharegplus'] !== 'undefined') {
+									jQuery('select[name="element-gplus-sharing-link"]').val(ie_settings['link-type-sharegplus']);
+									jQuery('input[name="element-gplus-link-url"]').val(ie_settings['element-gplus-link-url']);
+								}
+								if(typeof ie_settings['link-type-sharepinterest'] !== 'undefined') {
+									jQuery('select[name="element-pinterest-sharing-link"]').val(ie_settings['link-type-sharepinterest']);
+									jQuery('input[name="element-pinterest-link-url"]').val(ie_settings['element-pinterest-link-url']);
+									jQuery('textarea[name="element-pinterest-description"]').val(ie_settings['link-type-sharepinterest-description']);
+								}
+								if(typeof ie_settings['link-type-sharetwitter'] !== 'undefined') {
+									jQuery('select[name="element-twitter-sharing-link"]').val(ie_settings['link-type-sharetwitter']);
+									jQuery('input[name="element-twitter-link-url"]').val(ie_settings['element-twitter-link-url']);
+									jQuery('input[name="element-twitter-text-before"]').val(ie_settings['link-type-sharetwitter-text-before']);
+									jQuery('input[name="element-twitter-text-after"]').val(ie_settings['link-type-sharetwitter-text-after']);
+								}
 							}else if(handle == 'text-align' || handle == 'float'){ //set to default depending on display setting
 								if(jQuery('input[name="element-display"]').val() == 'block'){
 									if(handle == 'float') jQuery('select[name="element-'+handle+'"] option[value="none"]').attr("selected","selected");
@@ -394,9 +413,29 @@ var GridEditorEssentials = new function(){
 					}
 				}
 			}
-
 		}
+
+
+		// Social Sharing
+		jQuery('select[name="element-facebook-sharing-link"]').change(function(){
+			if(jQuery('select[name="element-facebook-sharing-link"]').val()=="custom") jQuery(".eg-element-facebook_link_custom").show();
+			else jQuery(".eg-element-facebook_link_custom").hide();
+		});
+		jQuery('select[name="element-gplus-sharing-link"]').change(function(){
+			if(jQuery('select[name="element-gplus-sharing-link"]').val()=="custom") jQuery(".eg-element-gplus_link_custom").show();
+			else jQuery(".eg-element-gplus_link_custom").hide();
+		});
+		jQuery('select[name="element-pinterest-sharing-link"]').change(function(){
+			if(jQuery('select[name="element-pinterest-sharing-link"]').val()=="custom") jQuery(".eg-element-pinterest_link_custom").show();
+			else jQuery(".eg-element-pinterest_link_custom").hide();
+		});
+		jQuery('select[name="element-twitter-sharing-link"]').change(function(){
+			if(jQuery('select[name="element-twitter-sharing-link"]').val()=="custom") jQuery(".eg-element-twitter_link_custom").show();
+			else jQuery(".eg-element-twitter_link_custom").hide();
+		});
+
 	}
+
 
 
 	/**
@@ -500,6 +539,9 @@ var GridEditorEssentials = new function(){
 							delete(layers[key]['settings']['link-type-meta']);
 							delete(layers[key]['settings']['link-type-javascript']);
 							delete(layers[key]['settings']['link-type-sharefacebook']);
+							delete(layers[key]['settings']['link-type-sharegplus']);
+							delete(layers[key]['settings']['link-type-sharepinterest']);
+							delete(layers[key]['settings']['link-type-sharetwitter']);
 
 							switch(layers[key]['settings'][handle]){
 								case 'post'://do nothing
@@ -514,8 +556,25 @@ var GridEditorEssentials = new function(){
 								break;
 								case 'javascript':
 									layers[key]['settings']['link-type-javascript'] = jQuery('input[name="element-javascript-link"]').val();
+									break;
 								case 'sharefacebook':
 									layers[key]['settings']['link-type-sharefacebook'] = jQuery('select[name="element-facebook-sharing-link"]').val();
+									layers[key]['settings']['link-type-sharefacebook-custom-url'] = jQuery('input[name="element-facebook-link-url"]').val();
+								break;
+								case 'sharegplus':
+									layers[key]['settings']['link-type-sharegplus'] = jQuery('select[name="element-gplus-sharing-link"]').val();
+									layers[key]['settings']['link-type-sharegplus-custom-url'] = jQuery('input[name="element-gplus-link-url"]').val();
+								break;
+								case 'sharepinterest':
+									layers[key]['settings']['link-type-sharepinterest'] = jQuery('select[name="element-pinterest-sharing-link"]').val();
+									layers[key]['settings']['link-type-sharepinterest-custom-url'] = jQuery('input[name="element-pinterest-link-url"]').val();
+									layers[key]['settings']['link-type-sharepinterest-description'] = jQuery('textarea[name="element-pinterest-description"]').val();
+								break;
+								case 'sharetwitter':
+									layers[key]['settings']['link-type-sharetwitter'] = jQuery('select[name="element-twitter-sharing-link"]').val();
+									layers[key]['settings']['link-type-sharetwitter-custom-url'] = jQuery('input[name="element-twitter-link-url"]').val();
+									layers[key]['settings']['link-type-sharetwitter-text-before'] = jQuery('input[name="element-twitter-text-before"]').val();
+									layers[key]['settings']['link-type-sharetwitter-text-after'] = jQuery('input[name="element-twitter-text-after"]').val();
 								break;
 							}
 
@@ -681,6 +740,9 @@ var GridEditorEssentials = new function(){
 							jQuery('#eg-element-post-javascript-wrap').hide();
 							jQuery('#eg-element-link-details-wrap').show();
 							jQuery('#eg-element-facebook-wrap').hide();
+							jQuery('#eg-element-gplus-wrap').hide();
+							jQuery('#eg-element-pinterest-wrap').hide();
+							jQuery('#eg-element-twitter-wrap').hide();
 
 							switch(layers[key]['settings'][handle]){
 								case 'post':
@@ -703,6 +765,36 @@ var GridEditorEssentials = new function(){
 									jQuery('#eg-element-link-details-wrap').hide();
 									jQuery('#eg-element-facebook-wrap').show();
 									jQuery('select[name="element-facebook-sharing-link"]').val(layers[key]['settings']['link-type-sharefacebook']);
+									jQuery('input[name="element-facebook-link-url"]').val(layers[key]['settings']['link-type-sharefacebook-custom-url']);
+									if(jQuery('select[name="element-facebook-sharing-link"]').val()=="custom") jQuery(".eg-element-facebook_link_custom").show();
+									else  jQuery(".eg-element-facebook_link_custom").hide();
+								break;
+								case 'sharegplus':
+									jQuery('#eg-element-link-details-wrap').hide();
+									jQuery('#eg-element-gplus-wrap').show();
+									jQuery('select[name="element-gplus-sharing-link"]').val(layers[key]['settings']['link-type-sharegplus']);
+									jQuery('input[name="element-gplus-link-url"]').val(layers[key]['settings']['link-type-sharegplus-custom-url']);
+									if(jQuery('select[name="element-gplus-sharing-link"]').val()=="custom") jQuery(".eg-element-gplus_link_custom").show();
+									else  jQuery(".eg-element-gplus_link_custom").hide();
+								break;
+								case 'sharepinterest':
+									jQuery('#eg-element-link-details-wrap').hide();
+									jQuery('#eg-element-pinterest-wrap').show();
+									jQuery('select[name="element-pinterest-sharing-link"]').val(layers[key]['settings']['link-type-sharepinterest']);
+									jQuery('input[name="element-pinterest-link-url"]').val(layers[key]['settings']['link-type-sharepinterest-custom-url']);
+									jQuery('textarea[name="element-pinterest-description"]').val(layers[key]['settings']['link-type-sharepinterest-description']);
+									if(jQuery('select[name="element-pinterest-sharing-link"]').val()=="custom") jQuery(".eg-element-pinterest_link_custom").show();
+									else  jQuery(".eg-element-pinterest_link_custom").hide();
+								break;
+								case 'sharetwitter':
+									jQuery('#eg-element-link-details-wrap').hide();
+									jQuery('#eg-element-twitter-wrap').show();
+									jQuery('select[name="element-twitter-sharing-link"]').val(layers[key]['settings']['link-type-sharetwitter']);
+									jQuery('input[name="element-twitter-link-url"]').val(layers[key]['settings']['link-type-sharetwitter-custom-url']);
+									jQuery('input[name="element-twitter-text-before"]').val(layers[key]['settings']['link-type-sharetwitter-text-before']);
+									jQuery('input[name="element-twitter-text-after"]').val(layers[key]['settings']['link-type-sharetwitter-text-after']);
+									if(jQuery('select[name="element-twitter-sharing-link"]').val()=="custom") jQuery(".eg-element-twitter_link_custom").show();
+									else  jQuery(".eg-element-twitter_link_custom").hide();
 								break;
 							}
 						}else if(handle == 'display'){
@@ -2236,12 +2328,12 @@ var GridEditorEssentials = new function(){
 		});
 
 		jQuery('#show-fontello-dialog').click(function(){
-			jQuery('#eg-fontello-icons-dialog-wrap').dialog({
+			jQuery('#eg-fontello-icons-dialog-wrap').css('overflow','auto').dialog({
 				modal:true,
 				draggable:false,
 				resizable:false,
-				width:632,
-				height:565,
+				width:700,
+				height:580,
 				title:eg_lang.fontello_icons,
 				closeOnEscape:true,
 				dialogClass:'wp-dialog'
@@ -3037,6 +3129,9 @@ var GridEditorEssentials = new function(){
 			jQuery('#eg-element-post-javascript-wrap').hide();
 			jQuery('#eg-element-link-details-wrap').show();
 			jQuery('#eg-element-facebook-wrap').hide();
+			jQuery('#eg-element-gplus-wrap').hide();
+			jQuery('#eg-element-pinterest-wrap').hide();
+			jQuery('#eg-element-twitter-wrap').hide();
 
 			switch(jQuery(this).val()){
 				case 'post':
@@ -3055,9 +3150,26 @@ var GridEditorEssentials = new function(){
 				case 'sharefacebook':
 					jQuery('#eg-element-link-details-wrap').hide();
 					jQuery('#eg-element-facebook-wrap').show();
+					if(jQuery('select[name="element-facebook-sharing-link"]').val()=="custom") jQuery(".eg-element-facebook_link_custom").show();
+					else jQuery(".eg-element-facebook_link_custom").hide();
+					break;
+				case 'sharegplus':
+					jQuery('#eg-element-link-details-wrap').hide();
+					jQuery('#eg-element-gplus-wrap').show();
+					if(jQuery('select[name="element-gplus-sharing-link"]').val()=="custom") jQuery(".eg-element-gplus_link_custom").show();
+					else jQuery(".eg-element-gplus_link_custom").hide();
+					break;
+				case 'sharepinterest':
+					jQuery('#eg-element-link-details-wrap').hide();
+					jQuery('#eg-element-pinterest-wrap').show();
+					if(jQuery('select[name="element-pinterest-sharing-link"]').val()=="custom") jQuery(".eg-element-pinterest_link_custom").show();
+					else jQuery(".eg-element-pinterest_link_custom").hide();
 					break;
 				case 'sharetwitter':
 					jQuery('#eg-element-link-details-wrap').hide();
+					jQuery('#eg-element-twitter-wrap').show();
+					if(jQuery('select[name="element-twitter-sharing-link"]').val()=="custom") jQuery(".eg-element-twitter_link_custom").show();
+					else jQuery(".eg-element-twitter_link_custom").hide();
 					break;
 				default:
 					break;

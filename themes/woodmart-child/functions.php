@@ -12,3 +12,10 @@ function woodmart_child_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array('bootstrap') );
 }
 
+function wpb_load_fa() {
+ 
+wp_enqueue_style( 'wpb-fa', 'https://use.fontawesome.com/releases/v5.0.8/css/all.css' );
+ 
+}
+ 
+add_action( 'wp_enqueue_scripts', 'wpb_load_fa' );

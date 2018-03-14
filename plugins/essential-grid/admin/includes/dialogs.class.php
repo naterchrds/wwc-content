@@ -79,7 +79,8 @@ class Essential_Grid_Dialogs {
 	 */
 	public static function fontello_icons_dialog(){
 		?>
-		<div id="eg-fontello-icons-dialog-wrap" style="width:602px; height:405px; margin-left:15px;margin-top:15px;overflow:visible;display:none">
+		<div id="eg-fontello-icons-dialog-wrap" style="width:602px; height:405px; margin-left:15px;overflow:visible;display:none">
+			<div class="font_headline">Fontello Icons</div>
 			<div id="dialog-eg-fakeicon-in"></div>
 			<div id="dialog-eg-fakeicon-out"></div>				
 			<div class="eg-icon-chooser eg-icon-soundcloud"></div>
@@ -286,6 +287,12 @@ class Essential_Grid_Dialogs {
 			<div class="eg-icon-chooser eg-icon-pencil-1"></div>
 			<div class="eg-icon-chooser eg-icon-align-justify"></div>
 			<?php
+				$enable_fontello = get_option('tp_eg_global_enable_fontello', 'backfront');
+				$enable_font_awesome = get_option('tp_eg_global_enable_font_awesome', 'false');
+				$enable_pe7 = get_option('tp_eg_global_enable_pe7', 'false');	
+				if($enable_font_awesome!="false") include(EG_PLUGIN_PATH."admin/views/skin-font-awesome-list.php");
+				if($enable_pe7!="false") include(EG_PLUGIN_PATH."admin/views/skin-pe-icon-7-stroke-list.php");
+			
 			do_action('essgrid_fontello_icons_dialog_post');
 			?>
 		</div>
@@ -394,6 +401,7 @@ class Essential_Grid_Dialogs {
 	 * @since    1.0.0
 	 */
 	public static function meta_dialog(){
+	
 		$m = new Essential_Grid_Meta();
 		$item_ele = new Essential_Grid_Item_Element();
 		
@@ -624,8 +632,8 @@ class Essential_Grid_Dialogs {
 					<div class="eg-elset-row esg-item-skin-elements" id="esg-item-skin-elements-media-ratio">
 						<div class="eg-elset-label"  for="custom-ratio"><?php _e('Video Ratio', EG_TEXTDOMAIN); ?></div>
 						<select name="custom-ratio">
-							<option value="0"><?php _e('4:3', EG_TEXTDOMAIN); ?></option>
 							<option value="1"><?php _e('16:9', EG_TEXTDOMAIN); ?></option>
+							<option value="0"><?php _e('4:3', EG_TEXTDOMAIN); ?></option>
 						</select>
 					</div>
 				</div>
@@ -693,8 +701,76 @@ class Essential_Grid_Dialogs {
 							<?php echo $p_lang[$type]; ?>
 						</div>
 						<?php
-						foreach($element as $handle => $name){
-							echo '<div class="eg-elset-row"><div class="eg-elset-label"  for="'.$handle.'">'.$name['name'].':</div><input name="'.$handle.'" value="" /></div>';
+						foreach($element as $handle => $itm){
+							
+							switch($itm['type']) {
+								
+								case 'image';
+								
+									echo '<div class="eg-elset-row"><div class="eg-elset-label"  for="'.$handle.'">'.$itm['name'].':</div>';
+									echo '<input type="hidden" value="" name="eg-' . $handle . '" id="eg-' . $handle . '-cm" />';
+									echo '<a class="button-primary revblue eg-image-add" href="javascript:void(0);" data-setto="eg-' . $handle . '-cm">' . __('Choose Image', EG_TEXTDOMAIN) . '</a> ';
+									echo '<a class="button-primary revred eg-image-clear" href="javascript:void(0);" data-setto="eg-' . $handle . '-cm">' . __('Remove Image', EG_TEXTDOMAIN) . '</a>';
+									echo '<div>';
+									echo '<img id="eg-' . $handle . '-cm-img" src="" style="max-width:200px; display: none;margin:20px 0px 0px 250px;">';
+									echo '</div>';
+									echo '</div>';
+								
+								break;
+								
+								case 'revslider';
+
+									if(class_exists('RevSlider')) {
+										
+										$rev_slider = new RevSlider();
+										if(method_exists($rev_slider, 'getAllSliderForAdminMenu')) {
+										
+											$sliders = $rev_slider->getAllSliderForAdminMenu();
+											if(!empty($sliders)) {
+												
+												echo '<div class="eg-elset-row"><div class="eg-elset-label"  for="'.$handle.'">'.$itm['name'].':</div>';
+												echo '<select name="' . $handle . '">';
+												echo '<option value="">--- Choose Slider ---</option>';
+												
+												foreach($sliders as $id => $val) {
+													
+													if(isset($val['title']) && !empty($val['title'])) {
+														echo '<option value="' . $id . '">' . $val['title'] . '</option>';
+													}
+													
+												}
+												echo '</select></div>';
+				
+											}
+										}	
+									}
+								
+								break;
+								
+								case 'essgrid':
+									
+									$grids = Essential_Grid::get_essential_grids();
+									if(!empty($grids)) {
+										
+										echo '<div class="eg-elset-row"><div class="eg-elset-label"  for="'.$handle.'">'.$itm['name'].':</div>';
+										echo '<select name="' . $handle . '">';
+										echo '<option value="">--- Choose Grid ---</option>';
+									
+										foreach($grids as $grid) {				
+											echo '<option value="' . $grid->handle . '">' . $grid->name . '</option>';
+										}
+										
+										echo '</select></div>';
+									}
+								
+								break;
+								
+								default:
+								
+									echo '<div class="eg-elset-row"><div class="eg-elset-label"  for="'.$handle.'">'.$itm['name'].':</div><input name="'.$handle.'" value="" /></div>';
+								
+							}
+							
 						}
 					}
 					echo '<div class="eg-elset-title">';	
@@ -812,7 +888,7 @@ class Essential_Grid_Dialogs {
 				jQuery('#eg-custom-choose-from-image-library').click(function(e) {
 					e.preventDefault();
 					AdminEssentials.upload_image_img(jQuery(this).data('setto'));
-					
+
 					return false; 
 				});
 				
@@ -1148,8 +1224,9 @@ class Essential_Grid_Dialogs {
 							<div id="ess-grid-tiny-custom-ratio-wrap" class="ess-grid-tiny-option-wrap" style="display: none;">
 								<div class="ess-grid-tiny-elset-label"><?php _e('Video Ratio', EG_TEXTDOMAIN); ?> </div>
 								<select name="ess-grid-tiny-custom-ratio[]">
-									<option value="0" selected="selected">4:3</option>
-									<option value="1">16:9</option>
+									<option value="1" selected>16:9</option>
+									<option value="0">4:3</option>
+									
 								</select>
 							</div>
 							<!-- COBBLES SETTINGS -->
@@ -1241,7 +1318,7 @@ class Essential_Grid_Dialogs {
 							
 							$elements = Essential_Grid_Item_Element::getElementsForDropdown();
 							$p_lang = array('post' => __('Post', EG_TEXTDOMAIN), 'woocommerce' => __('WooCommerce', EG_TEXTDOMAIN));
-							
+						
 							foreach($elements as $type => $element){
 								?>
 								<!--<div class="ess-grid-tiny-elset-title">

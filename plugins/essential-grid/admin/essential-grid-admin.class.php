@@ -81,23 +81,12 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 		add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
 		add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 		add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts_language'));
+
 		
-		// Add the meta box to post/pages
+        // Add the meta box to post/pages
 		add_action('registered_post_type', array($this, 'prepare_add_plugin_meta_box'), 10, 2);
 		add_action('save_post', array($this, 'add_plugin_meta_box_save'));
 		add_action('wp_ajax_Essential_Grid_request_ajax', array($this, 'on_ajax_action'));
-
-		//Add-On Admin
-		/*
-		$addon_admin = new Ess_Grid_Addon_Admin( 'essgrid_addon', Essential_Grid::VERSION );
-		add_action( 'admin_enqueue_scripts', array( $addon_admin, 'enqueue_styles') );
-		add_action( 'admin_enqueue_scripts', array( $addon_admin, 'enqueue_scripts') );
-		add_action( 'admin_menu', array( $addon_admin, 'add_plugin_admin_menu'), 11 );
-		// Add-on Admin Button Ajax Actions
-		add_action( 'wp_ajax_activate_essgrid_plugin', array( $addon_admin, 'activate_plugin') );
-		add_action( 'wp_ajax_deactivate_essgrid_plugin', array( $addon_admin, 'deactivate_plugin'));
-		add_action( 'wp_ajax_install_essgrid_plugin', array( $addon_admin, 'install_plugin'));
-		*/
 		
 		if(!$EssentialAsTheme){
 			$validated = get_option('tp_eg_valid', 'false');
@@ -134,6 +123,8 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 		if( !empty($gallery) && $gallery != "off"  ){
 			add_action( 'print_media_templates', array($this, 'ess_grid_addon_media_form' ) );
 		}
+
+
 	}
 	
 	
@@ -277,10 +268,11 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 			wp_register_style($this->plugin_slug . '-plugin-settings', EG_PLUGIN_URL . 'public/assets/css/settings.css', array(), Essential_Grid::VERSION);
 			wp_enqueue_style($this->plugin_slug . '-plugin-settings' );
 			
-			wp_register_style('themepunchboxextcss', EG_PLUGIN_URL . 'public/assets/css/lightbox.css', array(), Essential_Grid::VERSION);
+			wp_register_style('themepunchboxextcss', EG_PLUGIN_URL . 'public/assets/css/jquery.esgbox.min.css', array(), Essential_Grid::VERSION);
 			
 			$font = new ThemePunch_Fonts();
 			$font->register_fonts();
+			$font->register_icon_fonts("admin");
 		}
 		
 		wp_enqueue_style($this->plugin_slug .'-global-styles', EG_PLUGIN_URL . 'admin/assets/css/global.css', array(), Essential_Grid::VERSION );
@@ -312,8 +304,8 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 		if(in_array($screen->id, $this->plugin_screen_hook_suffix)) {
 			wp_enqueue_script(array('jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'jquery-ui-slider', 'jquery-ui-autocomplete', 'jquery-ui-sortable', 'jquery-ui-droppable', 'jquery-ui-tabs', 'wp-color-picker'));
 			
-			wp_register_script( 'themepunchboxext', EG_PLUGIN_URL . 'public/assets/js/lightbox.js', array('jquery'), Essential_Grid::VERSION);
-			
+			//wp_register_script( 'themepunchboxext', EG_PLUGIN_URL . 'public/assets/js/lightbox.js', array('jquery'), Essential_Grid::VERSION);
+			wp_enqueue_script( 'themepunchboxext', EG_PLUGIN_URL . 'public/assets/js/jquery.esgbox.min.js', array('jquery'), Essential_Grid::VERSION);
 			wp_enqueue_script($this->plugin_slug . '-admin-script', plugins_url('assets/js/admin.js', __FILE__ ), array('jquery', 'wp-color-picker'), Essential_Grid::VERSION );
             
 			wp_enqueue_script($this->plugin_slug . '-codemirror-script', plugins_url('assets/js/codemirror.js', __FILE__ ), array('jquery'), Essential_Grid::VERSION );			
@@ -693,6 +685,18 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 		if(isset($metas['eg_image_align_v']))
 			update_post_meta($post_id, 'eg_image_align_v', esc_attr($metas['eg_image_align_v']));
 		
+		/* 2.2 ?? */
+		if(isset($metas['eg_sources_revslider'])) {
+			update_post_meta($post_id, 'eg_sources_revslider', esc_attr($metas['eg_sources_revslider']));
+		}
+		
+		if(isset($metas['eg_sources_essgrid']))
+			update_post_meta($post_id, 'eg_sources_essgrid', esc_attr($metas['eg_sources_essgrid']));
+
+		if(isset($metas['eg_featured_grid']))
+			update_post_meta($post_id, 'eg_featured_grid', esc_attr($metas['eg_featured_grid']));
+
+		
 		if($ajax === false){ //only update these if we are in post, not at ajax that comes from the plugin in preview mode
 			/**
 			 * Save Custom Meta Things that Modify Skins
@@ -720,6 +724,10 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 			if(isset($metas['eg_custom_meta_216']))
 				update_post_meta($post_id, 'eg_custom_meta_216', $metas['eg_custom_meta_216']);
 		
+			if(!is_numeric(get_post_meta( $post_id, 'eg_votes_count', $single = true ))){
+				update_post_meta($post_id, 'eg_votes_count',0);
+			}
+
 		}
 		
 		/**
@@ -1007,8 +1015,8 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 			'category' => __('Content', EG_TEXTDOMAIN),
 			'show_settings_on_create' => false,
 			'js_view' => 'VcEssentialGrid',
-			'admin_enqueue_js' => EG_PLUGIN_URL.'/admin/assets/js/vc.js',
-			'front_enqueue_js' => EG_PLUGIN_URL.'/admin/assets/js/vc.js',
+			'admin_enqueue_js' => EG_PLUGIN_URL.'admin/assets/js/vc.js',
+			'front_enqueue_js' => EG_PLUGIN_URL.'admin/assets/js/vc.js',
 			//'admin_enqueue_js' => array(EG_PLUGIN_URL.'/admin/assets/js/tinymce-shortcode-script.js'),
 			'params' => array(
 				array(
@@ -1558,9 +1566,18 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 						update_option('tp_eg_enable_log', @$data['enable_log']);
 						update_option('tp_eg_enable_post_meta', @$data['enable_post_meta']);
 						update_option('tp_eg_enable_custom_post_type', @$data['enable_custom_post_type']);
+						update_option('tp_eg_enable_media_filter', @$data['enable_media_filter']);
 						
 						update_option('tp_eg_use_lightbox', @$data['use_lightbox']);
 						update_option('tp_eg_global_default_img', @$data['global_default_img']);
+
+						update_option('tp_eg_no_filter_match_message', @$data['no_filter_match_message']);
+
+						update_option('tp_eg_global_enable_pe7',@$data['enable_pe7']);
+						update_option('tp_eg_global_enable_fontello', @$data['enable_fontello']);
+						update_option('tp_eg_global_enable_font_awesome', @$data['enable_font_awesome']);
+
+
 						
 						if(@$data['use_lightbox'] === 'jackbox'){
 							Essential_Grid_Jackbox::enable_jackbox();
@@ -1633,9 +1650,21 @@ class Essential_Grid_Admin extends Essential_Grid_Base {
 								}
 								Essential_Grid::ajaxResponseSuccess(__("Grid successfully saved/changed!", EG_TEXTDOMAIN), $result);
 							}else{
-								Essential_Grid::ajaxResponseSuccess(__("Grid successfully saved/changed!", EG_TEXTDOMAIN), array('data' => $result, 'is_redirect' => true, 'redirect_url' => self::getViewUrl(Essential_Grid_Admin::VIEW_OVERVIEW)));
+								$grid_id = false;
+								$esg_alias = $data['handle'];
+								$grids = Essential_Grid::get_essential_grids();
+								
+								foreach($grids as $grid) {
+									
+									$alias = $grid -> handle;
+									if($alias === $esg_alias) {
+										$grid_id = $grid -> id;
+										break;
+									}
+								}
+								
+								Essential_Grid::ajaxResponseSuccess(__("Grid successfully saved/changed!", EG_TEXTDOMAIN), array('data' => $result, 'is_redirect' => false, 'redirect_url' => self::getViewUrl(Essential_Grid_Admin::VIEW_OVERVIEW), 'grid_id' => $grid_id));
 							}
-							
 						}
 					break;
 					case 'delete_grid':
