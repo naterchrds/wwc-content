@@ -219,31 +219,55 @@ a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup:h
     height:0px;
   
 }*/
+
+
 .scrollToTop.button-show {
     pointer-events: visible;
     opacity: 1;
     transform: none;
     -webkit-transform: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
+.scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    color: #333;
+    text-align: center;
+    z-index: 350;
+    font-size: 0;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,.17);
+    box-shadow: 0 0 5px rgba(0,0,0,.17);
+    background-color: rgba(255,255,255,.9);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.scrollToTop:hover, .scrollToTop:focus {
+    color: #333;
+    background-color: rgba(255,255,255,.8);
+}
 
 .scrollToTop:after {
-    content: "X";
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    content: "\f112";
+    font-family: woodmart-font;
     display: inline-block;
-    font-size: 18px;
-    line-height: 15px;
-    font-weight: normal;
-    line-height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 700;
+    line-height: 50px;
 }
+
 .vc_column-inner.vc_custom_1505163488657 {
-    background-color: #333;
+    background-color: #222237;
+    padding: 15px;
 }
 
 .woodmart-social-icons.icons-design-colored .woodmart-social-icon.social-email a {
@@ -622,13 +646,11 @@ article#wwc-portfolio-grid {
 @media only screen and (max-width: 768px) {
 
     a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
-        padding: 10px 15px;
-        font-size: 12px;
-        line-height: 12px;
-        position: absolute;
-        transform-origin: 50% 50% 0px;
-        right: 0;
-        bottom: 33%;
+	    padding: 10px 15px;
+	    font-size: 12px;
+	    line-height: 12px;
+	    position: relative;
+	    transform-origin: 50% 50% 0px;
     }
 
     body.page-id-52 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
@@ -1258,7 +1280,7 @@ div.contact-call-to-action {
 
 }*/
 
-.scrollToTop {
+/*.scrollToTop {
     position: fixed;
     bottom: 230px;
     right: 10px;
@@ -1278,7 +1300,7 @@ div.contact-call-to-action {
     -webkit-transform: translateX(100%);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-}
+}*/
 
 .woodmart-title-size-small .woodmart-title-container {
     font-size: 16px;
@@ -1327,18 +1349,18 @@ div#contactForm > a::before {
 
 }
 
-a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
-    font-size: 16px;
-    position: relative;
-    margin: auto;
-    padding: 15px 15px;
+/*a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup {
+    font-size: 22px;
     background-color: transparent !important;
-    color: #586375;
-}
+    color: #fff;
+    margin-top: -15px;
+    margin-bottom: auto;
+    display: inline-block;
+}*/
 
 a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup:hover {
-    color: #586375;
-    background-color: transparent !important;
+    color: #777;
+    background-color: #f3f3f3;
     transition: all 0.3s;
 }
 
@@ -1364,4 +1386,449 @@ a.btn.btn-color-default.btn-style-default.btn-size-default.woodmart-open-popup:h
     padding: 0px 15px;
     left: 75px;
 }*/
+
+.mobile-nav-icon .woodmart-burger, .mobile-nav-icon .woodmart-burger::before, .mobile-nav-icon .woodmart-burger::after {
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+}
+
+.header-advanced .wrapp-header>.search-extended {
+    width: 340px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    display: none;
+}
+
+.woodmart-navigation .category-icon {
+    max-height: 30px;
+    display: inline-block;
+    margin-right: 7px;
+}
+
+/*div#custom_html-2 {
+    background-color: #ffc000;
+    margin-top: -80px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    margin-bottom: 50px;
+    max-height: 80px;
+}
+*/
+
+.post-single-page .meta-post-categories {
+    margin-top: 0;
+    margin-bottom: 15px;
+    visibility: hidden;
+}
+
+input#submit {
+    background-color: #222;
+}
+
+
+/*header.main-header.header-has-bg.header-categories.icons-design-line.header-color-dark.header-mobile-right {
+    height: 0px;
+    margin: 0;
+    padding: 0;
+}*/
+
+.menu-style-bordered .main-nav .item-level-0>a, .menu-style-bordered .main-nav .menu>.menu-item-language>a, .menu-style-bordered .woodmart-header-links .item-level-0>a, .menu-style-bordered .woodmart-header-links .menu>.menu-item-language>a {
+    color: #fff !important;
+}
+
+.main-nav .item-level-0 > a, .main-nav .menu > .menu-item-language > a, .woodmart-header-links > ul > li > a, .main-nav-style {
+    font-family: Lato,'MS Sans Serif', Geneva, sans-serif;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+}
+
+.document-ready .woodmart-checkout-steps .step-active span:after, .masonry-filter li a.filter-active:after, .masonry-filter li a:focus:after, .masonry-filter li a:hover:after, .menu-style-bordered .main-nav .item-level-0.current-menu-item>a span:not(.menu-label):after, .menu-style-bordered .main-nav .item-level-0:hover>a span:not(.menu-label):after, .menu-style-bordered .main-nav .menu>.menu-item-language.current-menu-item>a span:not(.menu-label):after, .menu-style-bordered .main-nav .menu>.menu-item-language:hover>a span:not(.menu-label):after, .menu-style-bordered .menu-item-my-account .sub-menu li a:focus span:not(.menu-label):after, .menu-style-bordered .menu-item-my-account .sub-menu li a:hover span:not(.menu-label):after, .menu-style-bordered .menu-item-my-account .sub-sub-menu li a:focus span:not(.menu-label):after, .menu-style-bordered .menu-item-my-account .sub-sub-menu li a:hover span:not(.menu-label):after, .menu-style-bordered .sub-menu-dropdown .sub-menu li a:focus span:not(.menu-label):after, .menu-style-bordered .sub-menu-dropdown .sub-menu li a:hover span:not(.menu-label):after, .menu-style-bordered .sub-menu-dropdown .sub-sub-menu li a:focus span:not(.menu-label):after, .menu-style-bordered .sub-menu-dropdown .sub-sub-menu li a:hover span:not(.menu-label):after, .menu-style-bordered .woodmart-header-links .item-level-0.current-menu-item>a span:not(.menu-label):after, .menu-style-bordered .woodmart-header-links .item-level-0:hover>a span:not(.menu-label):after, .menu-style-bordered .woodmart-header-links .menu>.menu-item-language.current-menu-item>a span:not(.menu-label):after, .menu-style-bordered .woodmart-header-links .menu>.menu-item-language:hover>a span:not(.menu-label):after, .woodmart-product-categories .category-nav-link>a:focus .category-name:after, .woodmart-product-categories .category-nav-link>a:hover .category-name:after, .woodmart-product-categories .current-cat>.category-nav-link .category-name:after, .woodmart-products-tabs.tabs-design-default .products-tabs-title li.active-tab-title .tab-label:after, .wpb-js-composer .vc_tta.vc_general.vc_tta-style-classic.vc_tta-tabs .vc_tta-tab.vc_active .vc_tta-title-text:after, .wpb-js-composer .vc_tta.vc_general.vc_tta-style-classic.vc_tta-tabs .vc_tta-tab>a:hover .vc_tta-title-text:after {
+    width: 80%;
+    height: 2px;
+    margin-top: 4px;
+}
+
+.category-nav-link .category-name:after, .masonry-filter li a:after, .menu-style-bordered .main-nav .item-level-0>a span:not(.menu-label):after, .menu-style-bordered .main-nav .menu>.menu-item-language>a span:not(.menu-label):after, .menu-style-bordered .menu-item-my-account .sub-menu li a span:not(.menu-label):after, .menu-style-bordered .menu-item-my-account .sub-sub-menu li a span:not(.menu-label):after, .menu-style-bordered .sub-menu-dropdown .sub-menu li a span:not(.menu-label):after, .menu-style-bordered .sub-menu-dropdown .sub-sub-menu li a span:not(.menu-label):after, .menu-style-bordered .woodmart-header-links .item-level-0>a span:not(.menu-label):after, .menu-style-bordered .woodmart-header-links .menu>.menu-item-language>a span:not(.menu-label):after, .woodmart-checkout-steps ul li span:after, .wpb-js-composer .vc_tta.vc_general.vc_tta-style-classic.vc_tta-tabs .vc_tta-tab .vc_tta-title-text:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: width .4s cubic-bezier(.175,.885,.32,1.15);
+    -webkit-transition: width .4s cubic-bezier(.175,.885,.32,1.15);
+    margin-top: 4px;
+}
+
+
+.page-id-107 header.main-header.header-has-bg.header-categories.icons-design-line.header-color-dark.header-mobile-right{
+	height: 0px;
+    margin: 0;
+    padding: 0;
+
+}
+
+.page-id-107 header.main-header.header-has-bg.header-advanced.icons-design-line.header-color-dark.header-mobile-right{
+    height: 0px;
+    margin: 0;
+    padding: 0;
+
+}
+
+.main-nav .item-level-0>a, .main-nav .menu>.menu-item-language>a {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.woodmart-navigation .item-level-0>a {
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+.wrapp-header {
+    min-height: 105px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.header-categories .search-extended {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: none;
+}
+
+.secondary-header {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+}
+
+.main-header, .sticky-header.header-clone, .header-spacing {
+    background: #222 !important;
+}
+
+.admin-bar .sticky-header {
+    top: 5px;
+}
+
+.sticky-header .main-nav {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    background-color: rgba(0,0,0,0.6);
+    margin: 0 auto;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-radius: 3px;
+    /*max-width: 620px;*/
+}
+
+.menu-opener .burger-icon, .menu-opener .burger-icon::after, .menu-opener .burger-icon::before {
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    background-color: #333;
+    -webkit-transition: all .25s ease;
+    transition: all .25s ease;
+    display: none;
+}
+
+
+.header-categories .vertical-navigation {
+    margin-right: 10px;
+    min-width: 190px;
+    margin-left: 50px;
+}
+
+li.menu-item.item-level-0.menu-item-my-account.menu-item-has-children {
+    display: none;
+}
+
+.mobile-nav .searchform {
+    position: relative;
+    z-index: 2;
+    -webkit-box-shadow: 0 -1px 9px rgba(0,0,0,.17);
+    box-shadow: 0 -1px 9px rgba(0,0,0,.17);
+    display: none;
+}
+
+.site-mobile-menu li a .category-icon {
+    max-height: 23px;
+    margin-right: 7px;
+    margin-top: -4px;
+    background-color: #fff;
+    padding: 2px;
+}
+@media (min-width: 1024px) {
+
+    /*.header-categories .vertical-navigation {
+	    margin-right: 400px;
+	    min-width: 200px;
+	    margin-left: 20px;
+	    position: absolute;
+	    top: 497px;
+	    left: 380px;
+    }*/
+
+    .main-nav.site-navigation.woodmart-navigation.menu-right.navigation-style-bordered {
+    	max-width: 700px;
+	}
+
+    body.page-id-107 {
+        overflow: hidden !important;
+    }
+
+}
+
+
+@media (max-width: 1024px) {
+	.vertical-navigation.header-categories-nav.show-on-hover {
+    	display: none;
+	}
+	.mobile-nav-icon .mobile-menu-btn-label {
+	    display: inline-block;
+	    color: #fff;
+	}
+
+    /*.product-tabs-wrapper {
+        display: none !important;
+    }*/
+
+}
+
+@media (max-width: 767px) {
+	.main-header .site-logo img {
+	    padding-top: 10px;
+	    padding-right: 0;
+	    padding-bottom: 10px;
+	    padding-left: 0;
+	    max-height: 80px !important;
+	}
+
+}
+
+.dropdowns-color-light .mobile-nav, .woodmart-dark .mobile-nav {
+    background-color: #222;
+}
+
+@media (max-width: 480px) {
+	.mobile-nav-icon .mobile-menu-btn-label {
+	    display: inline-block;
+	    color: #fff;
+	}
+
+	.mobile-nav-icon {
+    	margin-right: 30px;
+	}
+
+	.vertical-navigation.header-categories-nav.show-on-hover {
+    	display: none;
+	}
+
+	.woodmart-logo-wrap.switch-logo-enable {
+    	margin-left: 20px;
+	}
+
+}
+
+
+.shop-loop-head {
+    display: none;
+}
+
+.search-extended {
+    display: none;
+}
+
+li.unclickable > a {
+
+	cursor: default;
+}
+
+.sticky-header .right-column {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    display: none;
+}
+
+.secondary-header {
+    width: 70%;
+    display: flex;
+    top: 60px;
+    left: 160px;
+    z-index: 100;
+}
+
+
+.color-scheme-light .copyrights-wrapper {
+    border-color: rgba(255,255,255,.1);
+    background-color: #000 !important;
+}
+
+
+/*.header-categories-nav .menu-opener {
+    background-color: transparent  !important;
+    border: none !important;
+}*/
+
+/*span.arrow-opener {
+    margin-right: 80px;
+}*/
+
+/*.sub-menu-dropdown.color-scheme-dark {
+    left: 60% !important;
+}*/
+
+.menu-item-design-default .sub-menu-dropdown, .menu-item-design-default .sub-sub-menu {
+    width: 250px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.website-wrapper {
+    background-color: transparent !important;
+}
+
+a.btn.btn-color-primary.btn-style-bordered.btn-size-default.woodmart-open-popup {
+    color: #fff;
+    background-color: #646C7F;
+    border: none !important;
+}
+
+a.btn.btn-color-primary.btn-style-bordered.btn-size-default.woodmart-open-popup:hover {
+    background-color: rgba(100,108,127,0.85);
+}
+
+.woodmart-navbar {
+    margin-left: 20px;
+}
+
+.secondary-inner {
+    border: none !important;
+}
+
+
+.info-btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+/*div.menu-registration-cta:after {
+
+    content: "";
+    position: absolute;
+    margin: auto 0;
+    height: 50px;
+    width:5px;
+    background-color: #000;
+}*/
+
+.woodmart-text-block-wrapper.color-scheme-dark .woodmart-title-container {
+    color: #777;
+    font-size: 14px;
+    font-weight: 500;
+    margin: auto;
+}
+
+.woodmart-title-size-medium .woodmart-title-container {
+    font-size: 20px;
+    color: #2d2a2a;
+}
+
+a.btn.btn-color-alt.btn-style-default.btn-size-default.jobs-bidding {
+    margin-bottom: 20px;
+}
+
+.menu-item-2660 > .sub-menu-dropdown {
+    background-color: transparent !important;
+}
+
+.vc_single_image-wrapper.vc_box_circle.vc_box_border_grey {
+    background-color: #646c7f;
+}
+
+.wpb_single_image.wpb_content_element.vc_align_center.title-img {
+    margin-bottom: 15px;
+    margin-top: -13px;
+}
+
+
+.page-id-107 footer.footer-container {
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    flex: auto;
+    width: 100vw !important;
+}
+
+.min-footer {
+    min-width: 100vw !important;
+}
+
+.title-wrapper.woodmart-title-color-default.woodmart-title-style-default.woodmart-title-size-small.woodmart-title-width-100.text-left {
+    text-transform: uppercase;
+}
+
+.title-wrapper.woodmart-title-color-default.woodmart-title-style-default.woodmart-title-size-small.woodmart-title-width-100.text-left.project-description-title {
+    text-transform: uppercase;
+}
+
+.main-header {
+    background-image: url("http://wasatchwest.test/wp-content/uploads/2017/06/film-strip-dark2-01.jpg") !important;
+    background-size: contain !important;
+    background-color: #000;
+    border-bottom: 1px solid #777;
+}
+
+.product-360-button > a > span {
+    display:none !important;
+}
+
+/*.product-tabs-wrapper {
+    position: absolute;
+    bottom: -210px;
+    width: 60vw !important;
+    background-color: #fff;
+    right: 0;
+    border: none !important;
+    margin-bottom: 90px !important;
+}
+
+.tabs-layout-tabs .tabs li a {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #777777;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+section.related.products {
+    margin-bottom: -50px;
+    padding-bottom: 0px;
+    margin-top: 60px;
+}
+
+.vc_column-inner.vc_custom_1526771526424 {
+    width: 110%;
+}*/
+
+
+
 

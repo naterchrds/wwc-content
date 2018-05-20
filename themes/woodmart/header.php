@@ -10,6 +10,14 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<?php wp_head(); ?>
+
+	<script type="text/javascript">
+		jQuery(function($) {
+		$("ul#menu-categories-1>li").children("a").attr('href', "javascript:void(0)");
+		});
+	</script>
+	<script type="text/javascript">jQuery(function($) {    $("ul#menu-categories-1>li").children("a").attr('href', "javascript:void(0)");});
+	</script>
 </head>
 
 <body <?php body_class(); ?>>

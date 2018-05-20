@@ -1397,10 +1397,10 @@ if( ! function_exists( 'woodmart_show_categories_dropdown' ) ) {
 			<div class="search-by-category input-dropdown">
 				<div class="input-dropdown-inner woodmart-scroll-content">
 					<input type="hidden" name="product_cat" value="0">
-					<a href="#" data-val="0"><?php esc_html_e('Select category', 'woodmart'); ?></a>
+					<a href="#" data-val="0"><?php esc_html_e('Select Project Type', 'woodmart'); ?></a>
 					<div class="list-wrapper woodmart-scroll">
 						<ul class="woodmart-scroll-content">
-							<li style="display:none;"><a href="#" data-val="0"><?php esc_html_e('Select category', 'woodmart'); ?></a></li>
+							<li style="display:none;"><a href="#" data-val="0"><?php esc_html_e('Select Project Type', 'woodmart'); ?></a></li>
 							<?php
 								if( ! apply_filters( 'woodmart_show_only_parent_categories_dropdown', false ) ) {
 							        $args = array(
@@ -1441,7 +1441,7 @@ class WOODMART_Custom_Walker_Category extends Walker_Category {
 			return;
 		}
 
-		$link = '<a href="' . esc_url( get_term_link( $category ) ) . '" data-val="' . esc_attr( $category->slug ) . '" ';
+		$link = '<a href="' . esc_url( get_term_link( $post ) ) . '" data-val="' . esc_attr( $category->slug ) . '" ';
 		if ( $args['use_desc_for_title'] && ! empty( $category->description ) ) {
 			/**
 			 * Filters the category description for display.
@@ -1565,7 +1565,7 @@ if( ! function_exists( 'woodmart_header_block_categories_menu' ) ) {
 			<div class="vertical-navigation header-categories-nav <?php if( $opened ) echo 'opened-menu'; else echo 'show-on-hover'; ?>" role="navigation">
 				<span class="menu-opener <?php echo esc_attr( $class ); ?>">
 					<span class="menu-open-label">
-						<span class="burger-icon"></span><?php esc_html_e('Browse Categories', 'woodmart'); ?>
+						<span class="burger-icon"></span><?php esc_html_e('Contracting Services', 'woodmart'); ?>
 					</span>
 					<span class="arrow-opener"></span>
 				</span>
@@ -1660,7 +1660,7 @@ if( ! function_exists( 'woodmart_header_block_mobile_nav' ) ) {
 							<div class="mobile-nav-tabs">
 								<ul>
 									<li class="mobile-tab-title mobile-pages-title active" data-menu="pages"><span><?php esc_html_e('Menu', 'woodmart'); ?></span></li>
-									<li class="mobile-tab-title mobile-categories-title" data-menu="categories"><span><?php esc_html_e('Categories', 'woodmart'); ?></span></li>
+									<li class="mobile-tab-title mobile-categories-title" data-menu="categories"><span><?php esc_html_e('Services', 'woodmart'); ?></span></li>
 								</ul>
 							</div>
 						<?php
@@ -2125,12 +2125,15 @@ if( ! function_exists( 'woodmart_generate_header' ) ) {
 						'header-left-side' => array(
 							'mobile_icon',
 						),
-						'logo',
+						'logo',			
 						'main_nav',
+						/*'categories_menu',*/
+						'widget_area',
 						'right-column' => array(
 							'header_links',
 							'wishlist',
 							'cart',
+							/*'widget_area',*/
 						)
 					)	
 				),
@@ -2155,6 +2158,7 @@ if( ! function_exists( 'woodmart_generate_header' ) ) {
 						'search_extended',
 						'right-column' => array(
 							'cart',
+							'widget_area',
 						)
 					)	
 				),

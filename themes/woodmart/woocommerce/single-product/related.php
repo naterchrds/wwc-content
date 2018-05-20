@@ -18,7 +18,7 @@ if ( $related_products ) : ?>
 
 			$slider_args = array(
 				'slides_per_view' => apply_filters( 'woodmart_related_products_per_view', 4 ),
-				'title' => esc_html__( 'Related products', 'woodmart' ),
+				'title' => esc_html__( 'Related projects', 'woodmart' ),
 				'img_size' => 'shop_catalog'
 			);
 
